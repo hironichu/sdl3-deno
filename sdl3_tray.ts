@@ -257,12 +257,63 @@ export function init_pumpEvents(tick = 1000 / 60): number {
   return setInterval(SDL.pumpEvents, tick);
 }
 
+export interface TrayOption {
+  icon?: string;
+  tooltip?: string;
+  menu?: TrayEntryOption[];
+}
+
+export type TrayEntryFlag =
+  | "button" /**< Make the entry a simple button. Required. */
+  | "checkbox" /**< Make the entry a checkbox. Required. */
+  | "submenu" /**< Prepare the entry to have a submenu. Required */
+  | "disabled" /**< Make the entry disabled. Optional. */
+  | "checked"; /**< Make the entry checked. This is valid only for checkboxes. Optional. */
+
+export interface TrayEntryOption {
+  pos?: number;
+  label?: string;
+  flag?: TrayEntryFlag | TrayEntryFlag[];
+  action?: TrayEntryCallback;
+  submenu?: TrayEntryOption[];
+  userdata?: Deno.PointerValue;
+}
+
 /**
  * An opaque handle representing a toplevel system tray object.
+ *
+ * #example
+ * ```typescript
+ * const tray = new Tray({
+ *   icon: "icon.png",
+ *   tooltip: "My App",
+ *   menu: [
+ *     { label: "Item 1", action: () => console.log("Item 1 clicked") },
+ *     { label: "Item 2", action: () => console.log("Item 2 clicked") },
+ *     { label: "Item 3", submenu: [
+ *       { label: "Subitem 1", action: () => console.log("Subitem 1 clicked") },
+ *       { label: "Subitem 2", action: () => console.log("Subitem 2 clicked") },
+ *     ] },
+ *     {}, // a separator
+ *     { label: "quit", action: () => {tray.destroy(); clearInterval(eventPumpInterval); SDL.quit(); } },
+ *   ],
+ * });
+ * ```
  */
 export class Tray {
   pointer: Deno.PointerValue;
   private entryCb: TrayEntryUnsafeCallback[] = [];
+
+  constructor({ icon, tooltip, menu }: TrayOption, tray?: Deno.PointerValue) {
+    this.pointer = tray !== undefined ? tray : Tray.create(icon, tooltip);
+    if (menu && this.pointer) {
+      this.createMenu().createSubmenu(this, menu);
+    }
+  }
+
+  static of(tray: Deno.PointerValue): Tray {
+    return new Tray({}, tray);
+  }
 
   /**
    * Create an icon to be placed in the operating system's tray, or equivalent.
@@ -288,13 +339,14 @@ export class Tray {
    *
    * @from SDL_tray.h:120 SDL_Tray * SDL_CreateTray(SDL_Surface *icon, const char *tooltip);
    */
-  constructor(iconPath?: string, tooltips?: string) {
-    const icon = new Surface(iconPath);
-    this.pointer = SDL.createTray(icon.pointer, cstr(tooltips));
-    icon.destroy();
-    if (!this.pointer) {
+  static create(icon?: string, tooltip?: string): Deno.PointerValue {
+    const s = new Surface(icon);
+    const tray = SDL.createTray(s.pointer, cstr(tooltip));
+    s.destroy();
+    if (!tray) {
       throw new Error(`Failed to create system tray: ${getErr()}`);
     }
+    return tray;
   }
 
   static destroy(tray: Deno.PointerValue) {
@@ -888,6 +940,43 @@ export class TrayMenu {
 
   constructor(pointer: Deno.PointerValue) {
     this.pointer = pointer;
+  }
+
+  createSubmenu(tray: Tray, entries?: TrayEntryOption[]) {
+    if (!entries || entries.length === 0) return;
+    for (const { pos, label, flag, action, submenu, userdata } of entries) {
+      const flagType = (s: TrayEntryFlag): number => {
+        switch (s) {
+          case "button":
+            return SDL.TRAYENTRY.BUTTON;
+          case "checkbox":
+            return SDL.TRAYENTRY.CHECKBOX;
+          case "submenu":
+            return SDL.TRAYENTRY.SUBMENU;
+          case "disabled":
+            return SDL.TRAYENTRY.DISABLED;
+          case "checked":
+            return SDL.TRAYENTRY.CHECKED;
+          default:
+            return 0;
+        }
+      };
+      const f = !flag
+        ? 0
+        : typeof flag === "string"
+        ? flagType(flag)
+        : flag.reduce((acc, cur) => acc | flagType(cur), 0);
+
+      const e = this.insertEntryAt(pos ?? -1, label ?? "", f);
+
+      if (action) {
+        e.setCallback(tray, action, userdata ?? null);
+      }
+
+      if (submenu) {
+        e.createSubmenu().createSubmenu(tray, submenu);
+      }
+    }
   }
 
   static of(pointer: Deno.PointerValue) {
