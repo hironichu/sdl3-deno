@@ -250,6 +250,46 @@ export class Surface {
   }
 }
 
+const entryCb = {
+  map: new Array<{
+    tray: Deno.PointerValue;
+    entry: Deno.PointerValue;
+    callback: TrayEntryUnsafeCallback;
+  }>(),
+
+  addCallback(
+    tray: Deno.PointerValue,
+    entry: Deno.PointerValue,
+    callback: TrayEntryUnsafeCallback,
+  ) {
+    const index = this.map.findIndex((i) => i.entry == entry);
+    if (index != -1) {
+      this.map[index].callback.close();
+      this.map[index].callback = callback;
+    } else {
+      this.map.push({ tray, entry, callback });
+    }
+  },
+  removeEntry(entry: Deno.PointerValue) {
+    const index = this.map.findIndex((i) => i.entry == entry);
+    if (index !== -1) {
+      this.map[index].callback.close();
+      this.map.splice(index, 1);
+    }
+  },
+  removeTray(tray: Deno.PointerValue) {
+    const r = this.map;
+    this.map = [];
+    for (const i of r) {
+      if (i.tray == tray) {
+        i.callback.close();
+      } else {
+        this.map.push(i);
+      }
+    }
+  },
+};
+
 export function init_pumpEvents(tick = 1000 / 60): number {
   if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
     throw new Error("SDL init video and events failed");
@@ -302,7 +342,6 @@ export interface TrayEntryOption {
  */
 export class Tray {
   pointer: Deno.PointerValue;
-  private entryCb: TrayEntryUnsafeCallback[] = [];
 
   constructor({ icon, tooltip, menu }: TrayOption, tray?: Deno.PointerValue) {
     this.pointer = tray !== undefined ? tray : Tray.create(icon, tooltip);
@@ -369,13 +408,8 @@ export class Tray {
    */
   destroy() {
     Tray.destroy(this.pointer);
+    entryCb.removeTray(this.pointer);
     this.pointer = null;
-
-    let c;
-    do {
-      c = this.entryCb.pop();
-      if (c) c.close();
-    } while (c);
   }
 
   static setIcon(tray: Deno.PointerValue, iconPath?: string) {
@@ -588,7 +622,7 @@ export class Tray {
     userdata: Deno.PointerValue = null,
   ) {
     const c = Tray.setEntryCallback(entry, callback, userdata);
-    this.entryCb.push(c);
+    entryCb.addCallback(this.pointer, entry, c);
   }
 
   static clickEntry(entry: Deno.PointerValue) {
@@ -728,6 +762,8 @@ export class TrayEntry {
    */
   remove() {
     TrayEntry.remove(this.pointer);
+    entryCb.removeEntry(this.pointer);
+    this.pointer = null;
   }
 
   static setLabel(entry: Deno.PointerValue, label: string) {
