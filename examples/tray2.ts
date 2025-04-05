@@ -8,7 +8,7 @@ function main() {
   const pumpInterval = init_pumpEvents();
 
   console.log("createTray");
-  const tray = new Tray("./examples/search.svg", "heelo");
+  const tray = new Tray({ icon: "./examples/search.svg", tooltip: "heelo" });
 
   const menu = tray.createMenu();
 
