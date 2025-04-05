@@ -1,0 +1,4099 @@
+/*
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+*/
+
+/**
+ * # CategoryStdinc
+ *
+ * SDL provides its own implementation of some of the most important C runtime
+ * functions.
+ *
+ * Using these functions allows an app to have access to common C
+ * functionality without depending on a specific C runtime (or a C runtime at
+ * all). More importantly, the SDL implementations work identically across
+ * platforms, so apps can avoid surprises like snprintf() behaving differently
+ * between Windows and Linux builds, or itoa() only existing on some
+ * platforms.
+ *
+ * For many of the most common functions, like SDL_memcpy, SDL might just call
+ * through to the usual C runtime behind the scenes, if it makes sense to do
+ * so (if it's faster and always available/reliable on a given platform),
+ * reducing library size and offering the most optimized option.
+ *
+ * SDL also offers other C-runtime-adjacent functionality in this header that
+ * either isn't, strictly speaking, part of any C runtime standards, like
+ * SDL_crc32() and SDL_reinterpret_cast, etc. It also offers a few better
+ * options, like SDL_strlcpy(), which functions as a safer form of strcpy().
+ */
+
+export const symbols = {
+
+/**
+ * Get the original set of SDL memory functions.
+ *
+ * This is what SDL_malloc and friends will use by default, if there has been
+ * no call to SDL_SetMemoryFunctions. This is not necessarily using the C
+ * runtime's `malloc` functions behind the scenes! Different platforms and
+ * build configurations might do any number of unexpected things.
+ *
+ * @param malloc_func filled with malloc function.
+ * @param calloc_func filled with calloc function.
+ * @param realloc_func filled with realloc function.
+ * @param free_func filled with free function.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:1502 void SDL_GetOriginalMemoryFunctions(SDL_malloc_func *malloc_func,                                                            SDL_calloc_func *calloc_func,                                                            SDL_realloc_func *realloc_func,                                                            SDL_free_func *free_func);
+ */
+SDL_GetOriginalMemoryFunctions: {
+      parameters: ["pointer", "pointer", "pointer", "pointer"],
+      result: "void"
+    },
+
+
+/**
+ * Get the current set of SDL memory functions.
+ *
+ * @param malloc_func filled with malloc function.
+ * @param calloc_func filled with calloc function.
+ * @param realloc_func filled with realloc function.
+ * @param free_func filled with free function.
+ *
+ * @threadsafety This does not hold a lock, so do not call this in the
+ *               unlikely event of a background thread calling
+ *               SDL_SetMemoryFunctions simultaneously.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_SetMemoryFunctions
+ * @sa SDL_GetOriginalMemoryFunctions
+ *
+ * @from SDL_stdinc.h:1524 void SDL_GetMemoryFunctions(SDL_malloc_func *malloc_func,                                                    SDL_calloc_func *calloc_func,                                                    SDL_realloc_func *realloc_func,                                                    SDL_free_func *free_func);
+ */
+SDL_GetMemoryFunctions: {
+      parameters: ["pointer", "pointer", "pointer", "pointer"],
+      result: "void"
+    },
+
+
+/**
+ * Replace SDL's memory allocation functions with a custom set.
+ *
+ * It is not safe to call this function once any allocations have been made,
+ * as future calls to SDL_free will use the new allocator, even if they came
+ * from an SDL_malloc made with the old one!
+ *
+ * If used, usually this needs to be the first call made into the SDL library,
+ * if not the very first thing done at program startup time.
+ *
+ * @param malloc_func custom malloc function.
+ * @param calloc_func custom calloc function.
+ * @param realloc_func custom realloc function.
+ * @param free_func custom free function.
+ * @returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @threadsafety It is safe to call this function from any thread, but one
+ *               should not replace the memory functions once any allocations
+ *               are made!
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetMemoryFunctions
+ * @sa SDL_GetOriginalMemoryFunctions
+ *
+ * @from SDL_stdinc.h:1555 bool SDL_SetMemoryFunctions(SDL_malloc_func malloc_func,                                                            SDL_calloc_func calloc_func,                                                            SDL_realloc_func realloc_func,                                                            SDL_free_func free_func);
+ */
+SDL_SetMemoryFunctions: {
+      parameters: ["function", "function", "function", "function"],
+      result: "bool"
+    },
+
+
+/**
+ * Allocate memory aligned to a specific alignment.
+ *
+ * The memory returned by this function must be freed with SDL_aligned_free(),
+ * _not_ SDL_free().
+ *
+ * If `alignment` is less than the size of `void *`, it will be increased to
+ * match that.
+ *
+ * The returned memory address will be a multiple of the alignment value, and
+ * the size of the memory allocated will be a multiple of the alignment value.
+ *
+ * @param alignment the alignment of the memory.
+ * @param size the size to allocate.
+ * @returns a pointer to the aligned memory, or NULL if allocation failed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_aligned_free
+ *
+ * @from SDL_stdinc.h:1582 SDL_MALLOC void * SDL_aligned_alloc(size_t alignment, size_t size);
+ */
+SDL_aligned_alloc: {
+      parameters: ["usize", "usize"],
+      result: "pointer"
+    },
+
+
+/**
+ * Free memory allocated by SDL_aligned_alloc().
+ *
+ * The pointer is no longer valid after this call and cannot be dereferenced
+ * anymore.
+ *
+ * If `mem` is NULL, this function does nothing.
+ *
+ * @param mem a pointer previously returned by SDL_aligned_alloc(), or NULL.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_aligned_alloc
+ *
+ * @from SDL_stdinc.h:1600 void SDL_aligned_free(void *mem);
+ */
+SDL_aligned_free: {
+      parameters: ["pointer"],
+      result: "void"
+    },
+
+
+/**
+ * Get the number of outstanding (unfreed) allocations.
+ *
+ * @returns the number of allocations or -1 if allocation counting is
+ *          disabled.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:1612 int SDL_GetNumAllocations(void);
+ */
+SDL_GetNumAllocations: {
+      parameters: [],
+      result: "i32"
+    },
+
+
+/**
+ * Get the process environment.
+ *
+ * This is initialized at application start and is not affected by setenv()
+ * and unsetenv() calls after that point. Use SDL_SetEnvironmentVariable() and
+ * SDL_UnsetEnvironmentVariable() if you want to modify this environment, or
+ * SDL_setenv_unsafe() or SDL_unsetenv_unsafe() if you want changes to persist
+ * in the C runtime environment after SDL_Quit().
+ *
+ * @returns a pointer to the environment for the process or NULL on failure;
+ *          call SDL_GetError() for more information.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironmentVariable
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_SetEnvironmentVariable
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1650 SDL_Environment * SDL_GetEnvironment(void);
+ */
+SDL_GetEnvironment: {
+      parameters: [],
+      result: "pointer"
+    },
+
+
+/**
+ * Create a set of environment variables
+ *
+ * @param populated true to initialize it from the C runtime environment,
+ *                  false to create an empty environment.
+ * @returns a pointer to the new environment or NULL on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * @threadsafety If `populated` is false, it is safe to call this function
+ *               from any thread, otherwise it is safe if no other threads are
+ *               calling setenv() or unsetenv()
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironmentVariable
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_SetEnvironmentVariable
+ * @sa SDL_UnsetEnvironmentVariable
+ * @sa SDL_DestroyEnvironment
+ *
+ * @from SDL_stdinc.h:1672 SDL_Environment * SDL_CreateEnvironment(bool populated);
+ */
+SDL_CreateEnvironment: {
+      parameters: ["bool"],
+      result: "pointer"
+    },
+
+
+/**
+ * Get the value of a variable in the environment.
+ *
+ * @param env the environment to query.
+ * @param name the name of the variable to get.
+ * @returns a pointer to the value of the variable or NULL if it can't be
+ *          found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironment
+ * @sa SDL_CreateEnvironment
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_SetEnvironmentVariable
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1692 const char * SDL_GetEnvironmentVariable(SDL_Environment *env, const char *name);
+ */
+SDL_GetEnvironmentVariable: {
+      parameters: ["pointer", "pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Get all variables in the environment.
+ *
+ * @param env the environment to query.
+ * @returns a NULL terminated array of pointers to environment variables in
+ *          the form "variable=value" or NULL on failure; call SDL_GetError()
+ *          for more information. This is a single allocation that should be
+ *          freed with SDL_free() when it is no longer needed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironment
+ * @sa SDL_CreateEnvironment
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_SetEnvironmentVariable
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1713 char ** SDL_GetEnvironmentVariables(SDL_Environment *env);
+ */
+SDL_GetEnvironmentVariables: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Set the value of a variable in the environment.
+ *
+ * @param env the environment to modify.
+ * @param name the name of the variable to set.
+ * @param value the value of the variable to set.
+ * @param overwrite true to overwrite the variable if it exists, false to
+ *                  return success without setting the variable if it already
+ *                  exists.
+ * @returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironment
+ * @sa SDL_CreateEnvironment
+ * @sa SDL_GetEnvironmentVariable
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1737 bool SDL_SetEnvironmentVariable(SDL_Environment *env, const char *name, const char *value, bool overwrite);
+ */
+SDL_SetEnvironmentVariable: {
+      parameters: ["pointer", "pointer", "pointer", "bool"],
+      result: "bool"
+    },
+
+
+/**
+ * Clear a variable from the environment.
+ *
+ * @param env the environment to modify.
+ * @param name the name of the variable to unset.
+ * @returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_GetEnvironment
+ * @sa SDL_CreateEnvironment
+ * @sa SDL_GetEnvironmentVariable
+ * @sa SDL_GetEnvironmentVariables
+ * @sa SDL_SetEnvironmentVariable
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1758 bool SDL_UnsetEnvironmentVariable(SDL_Environment *env, const char *name);
+ */
+SDL_UnsetEnvironmentVariable: {
+      parameters: ["pointer", "pointer"],
+      result: "bool"
+    },
+
+
+/**
+ * Destroy a set of environment variables.
+ *
+ * @param env the environment to destroy.
+ *
+ * @threadsafety It is safe to call this function from any thread, as long as
+ *               the environment is no longer in use.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_CreateEnvironment
+ *
+ * @from SDL_stdinc.h:1772 void SDL_DestroyEnvironment(SDL_Environment *env);
+ */
+SDL_DestroyEnvironment: {
+      parameters: ["pointer"],
+      result: "void"
+    },
+
+
+/**
+ * Get the value of a variable in the environment.
+ *
+ * This function uses SDL's cached copy of the environment and is thread-safe.
+ *
+ * @param name the name of the variable to get.
+ * @returns a pointer to the value of the variable or NULL if it can't be
+ *          found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:1787 const char * SDL_getenv(const char *name);
+ */
+SDL_getenv: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Get the value of a variable in the environment.
+ *
+ * This function bypasses SDL's cached copy of the environment and is not
+ * thread-safe.
+ *
+ * @param name the name of the variable to get.
+ * @returns a pointer to the value of the variable or NULL if it can't be
+ *          found.
+ *
+ * @threadsafety This function is not thread safe, consider using SDL_getenv()
+ *               instead.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_getenv
+ *
+ * @from SDL_stdinc.h:1806 const char * SDL_getenv_unsafe(const char *name);
+ */
+SDL_getenv_unsafe: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Set the value of a variable in the environment.
+ *
+ * @param name the name of the variable to set.
+ * @param value the value of the variable to set.
+ * @param overwrite 1 to overwrite the variable if it exists, 0 to return
+ *                  success without setting the variable if it already exists.
+ * @returns 0 on success, -1 on error.
+ *
+ * @threadsafety This function is not thread safe, consider using
+ *               SDL_SetEnvironmentVariable() instead.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_SetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1824 int SDL_setenv_unsafe(const char *name, const char *value, int overwrite);
+ */
+SDL_setenv_unsafe: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Clear a variable from the environment.
+ *
+ * @param name the name of the variable to unset.
+ * @returns 0 on success, -1 on error.
+ *
+ * @threadsafety This function is not thread safe, consider using
+ *               SDL_UnsetEnvironmentVariable() instead.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_UnsetEnvironmentVariable
+ *
+ * @from SDL_stdinc.h:1839 int SDL_unsetenv_unsafe(const char *name);
+ */
+SDL_unsetenv_unsafe: {
+      parameters: ["pointer"],
+      result: "i32"
+    },
+
+
+/**
+ * Sort an array.
+ *
+ * For example:
+ *
+ * ```c
+ * typedef struct {
+ *     int key;
+ *     const char *string;
+ * } data;
+ *
+ * int SDLCALL compare(const void *a, const void *b)
+ * {
+ *     const data *A = (const data *)a;
+ *     const data *B = (const data *)b;
+ *
+ *     if (A->n < B->n) {
+ *         return -1;
+ *     } else if (B->n < A->n) {
+ *         return 1;
+ *     } else {
+ *         return 0;
+ *     }
+ * }
+ *
+ * data values[] = {
+ *     { 3, "third" }, { 1, "first" }, { 2, "second" }
+ * };
+ *
+ * SDL_qsort(values, SDL_arraysize(values), sizeof(values[0]), compare);
+ * ```
+ *
+ * @param base a pointer to the start of the array.
+ * @param nmemb the number of elements in the array.
+ * @param size the size of the elements in the array.
+ * @param compare a function used to compare elements in the array.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_bsearch
+ * @sa SDL_qsort_r
+ *
+ * @from SDL_stdinc.h:1901 void SDL_qsort(void *base, size_t nmemb, size_t size, SDL_CompareCallback compare);
+ */
+SDL_qsort: {
+      parameters: ["pointer", "usize", "usize", "function"],
+      result: "void"
+    },
+
+
+/**
+ * Perform a binary search on a previously sorted array.
+ *
+ * For example:
+ *
+ * ```c
+ * typedef struct {
+ *     int key;
+ *     const char *string;
+ * } data;
+ *
+ * int SDLCALL compare(const void *a, const void *b)
+ * {
+ *     const data *A = (const data *)a;
+ *     const data *B = (const data *)b;
+ *
+ *     if (A->n < B->n) {
+ *         return -1;
+ *     } else if (B->n < A->n) {
+ *         return 1;
+ *     } else {
+ *         return 0;
+ *     }
+ * }
+ *
+ * data values[] = {
+ *     { 1, "first" }, { 2, "second" }, { 3, "third" }
+ * };
+ * data key = { 2, NULL };
+ *
+ * data *result = SDL_bsearch(&key, values, SDL_arraysize(values), sizeof(values[0]), compare);
+ * ```
+ *
+ * @param key a pointer to a key equal to the element being searched for.
+ * @param base a pointer to the start of the array.
+ * @param nmemb the number of elements in the array.
+ * @param size the size of the elements in the array.
+ * @param compare a function used to compare elements in the array.
+ * @returns a pointer to the matching element in the array, or NULL if not
+ *          found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_bsearch_r
+ * @sa SDL_qsort
+ *
+ * @from SDL_stdinc.h:1951 void * SDL_bsearch(const void *key, const void *base, size_t nmemb, size_t size, SDL_CompareCallback compare);
+ */
+SDL_bsearch: {
+      parameters: ["pointer", "pointer", "usize", "usize", "function"],
+      result: "pointer"
+    },
+
+
+/**
+ * Sort an array, passing a userdata pointer to the compare function.
+ *
+ * For example:
+ *
+ * ```c
+ * typedef enum {
+ *     sort_increasing,
+ *     sort_decreasing,
+ * } sort_method;
+ *
+ * typedef struct {
+ *     int key;
+ *     const char *string;
+ * } data;
+ *
+ * int SDLCALL compare(const void *userdata, const void *a, const void *b)
+ * {
+ *     sort_method method = (sort_method)(uintptr_t)userdata;
+ *     const data *A = (const data *)a;
+ *     const data *B = (const data *)b;
+ *
+ *     if (A->key < B->key) {
+ *         return (method == sort_increasing) ? -1 : 1;
+ *     } else if (B->key < A->key) {
+ *         return (method == sort_increasing) ? 1 : -1;
+ *     } else {
+ *         return 0;
+ *     }
+ * }
+ *
+ * data values[] = {
+ *     { 3, "third" }, { 1, "first" }, { 2, "second" }
+ * };
+ *
+ * SDL_qsort_r(values, SDL_arraysize(values), sizeof(values[0]), compare, (const void *)(uintptr_t)sort_increasing);
+ * ```
+ *
+ * @param base a pointer to the start of the array.
+ * @param nmemb the number of elements in the array.
+ * @param size the size of the elements in the array.
+ * @param compare a function used to compare elements in the array.
+ * @param userdata a pointer to pass to the compare function.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_bsearch_r
+ * @sa SDL_qsort
+ *
+ * @from SDL_stdinc.h:2021 void SDL_qsort_r(void *base, size_t nmemb, size_t size, SDL_CompareCallback_r compare, void *userdata);
+ */
+SDL_qsort_r: {
+      parameters: ["pointer", "usize", "usize", "function", "pointer"],
+      result: "void"
+    },
+
+
+/**
+ * Perform a binary search on a previously sorted array, passing a userdata
+ * pointer to the compare function.
+ *
+ * For example:
+ *
+ * ```c
+ * typedef enum {
+ *     sort_increasing,
+ *     sort_decreasing,
+ * } sort_method;
+ *
+ * typedef struct {
+ *     int key;
+ *     const char *string;
+ * } data;
+ *
+ * int SDLCALL compare(const void *userdata, const void *a, const void *b)
+ * {
+ *     sort_method method = (sort_method)(uintptr_t)userdata;
+ *     const data *A = (const data *)a;
+ *     const data *B = (const data *)b;
+ *
+ *     if (A->key < B->key) {
+ *         return (method == sort_increasing) ? -1 : 1;
+ *     } else if (B->key < A->key) {
+ *         return (method == sort_increasing) ? 1 : -1;
+ *     } else {
+ *         return 0;
+ *     }
+ * }
+ *
+ * data values[] = {
+ *     { 1, "first" }, { 2, "second" }, { 3, "third" }
+ * };
+ * data key = { 2, NULL };
+ *
+ * data *result = SDL_bsearch_r(&key, values, SDL_arraysize(values), sizeof(values[0]), compare, (const void *)(uintptr_t)sort_increasing);
+ * ```
+ *
+ * @param key a pointer to a key equal to the element being searched for.
+ * @param base a pointer to the start of the array.
+ * @param nmemb the number of elements in the array.
+ * @param size the size of the elements in the array.
+ * @param compare a function used to compare elements in the array.
+ * @param userdata a pointer to pass to the compare function.
+ * @returns a pointer to the matching element in the array, or NULL if not
+ *          found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_bsearch
+ * @sa SDL_qsort_r
+ *
+ * @from SDL_stdinc.h:2079 void * SDL_bsearch_r(const void *key, const void *base, size_t nmemb, size_t size, SDL_CompareCallback_r compare, void *userdata);
+ */
+SDL_bsearch_r: {
+      parameters: ["pointer", "pointer", "usize", "usize", "function", "pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Compute the absolute value of `x`.
+ *
+ * @param x an integer value.
+ * @returns the absolute value of x.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2091 int SDL_abs(int x);
+ */
+SDL_abs: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Query if a character is alphabetic (a letter).
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * for English 'a-z' and 'A-Z' as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2166 int SDL_isalpha(int x);
+ */
+SDL_isalpha: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Query if a character is alphabetic (a letter) or a number.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * for English 'a-z', 'A-Z', and '0-9' as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2181 int SDL_isalnum(int x);
+ */
+SDL_isalnum: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is blank (a space or tab).
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 0x20 (space) or 0x9 (tab) as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2196 int SDL_isblank(int x);
+ */
+SDL_isblank: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is a control character.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 0 through 0x1F, and 0x7F, as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2211 int SDL_iscntrl(int x);
+ */
+SDL_iscntrl: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is a numeric digit.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * '0' (0x30) through '9' (0x39), as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2226 int SDL_isdigit(int x);
+ */
+SDL_isdigit: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is a hexadecimal digit.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'A' through 'F', 'a' through 'f', and '0' through '9', as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2241 int SDL_isxdigit(int x);
+ */
+SDL_isxdigit: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is a punctuation mark.
+ *
+ * **WARNING**: Regardless of system locale, this is equivalent to
+ * `((SDL_isgraph(x)) && (!SDL_isalnum(x)))`.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isgraph
+ * @sa SDL_isalnum
+ *
+ * @from SDL_stdinc.h:2259 int SDL_ispunct(int x);
+ */
+SDL_ispunct: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is whitespace.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat the
+ * following ASCII values as true:
+ *
+ * - space (0x20)
+ * - tab (0x09)
+ * - newline (0x0A)
+ * - vertical tab (0x0B)
+ * - form feed (0x0C)
+ * - return (0x0D)
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2281 int SDL_isspace(int x);
+ */
+SDL_isspace: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is upper case.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'A' through 'Z' as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2296 int SDL_isupper(int x);
+ */
+SDL_isupper: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is lower case.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'a' through 'z' as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2311 int SDL_islower(int x);
+ */
+SDL_islower: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is "printable".
+ *
+ * Be advised that "printable" has a definition that goes back to text
+ * terminals from the dawn of computing, making this a sort of special case
+ * function that is not suitable for Unicode (or most any) text management.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * ' ' (0x20) through '~' (0x7E) as true.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2330 int SDL_isprint(int x);
+ */
+SDL_isprint: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Report if a character is any "printable" except space.
+ *
+ * Be advised that "printable" has a definition that goes back to text
+ * terminals from the dawn of computing, making this a sort of special case
+ * function that is not suitable for Unicode (or most any) text management.
+ *
+ * **WARNING**: Regardless of system locale, this is equivalent to
+ * `(SDL_isprint(x)) && ((x) != ' ')`.
+ *
+ * @param x character value to check.
+ * @returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isprint
+ *
+ * @from SDL_stdinc.h:2351 int SDL_isgraph(int x);
+ */
+SDL_isgraph: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Convert low-ASCII English letters to uppercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'a' through 'z' to uppercase.
+ *
+ * This function returns the uppercase equivalent of `x`. If a character
+ * cannot be converted, or is already uppercase, this function returns `x`.
+ *
+ * @param x character value to check.
+ * @returns capitalized version of x, or x if no conversion available.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2369 int SDL_toupper(int x);
+ */
+SDL_toupper: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Convert low-ASCII English letters to lowercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'A' through 'Z' to lowercase.
+ *
+ * This function returns the lowercase equivalent of `x`. If a character
+ * cannot be converted, or is already lowercase, this function returns `x`.
+ *
+ * @param x character value to check.
+ * @returns lowercase version of x, or x if no conversion available.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2387 int SDL_tolower(int x);
+ */
+SDL_tolower: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Calculate a CRC-16 value.
+ *
+ * https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+ *
+ * This function can be called multiple times, to stream data to be
+ * checksummed in blocks. Each call must provide the previous CRC-16 return
+ * value to be updated with the next block. The first call to this function
+ * for a set of blocks should pass in a zero CRC value.
+ *
+ * @param crc the current checksum for this data set, or 0 for a new data set.
+ * @param data a new block of data to add to the checksum.
+ * @param len the size, in bytes, of the new block of data.
+ * @returns a CRC-16 checksum value of all blocks in the data set.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2408 Uint16 SDL_crc16(Uint16 crc, const void *data, size_t len);
+ */
+SDL_crc16: {
+      parameters: ["u16", "pointer", "usize"],
+      result: "u16"
+    },
+
+
+/**
+ * Calculate a CRC-32 value.
+ *
+ * https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+ *
+ * This function can be called multiple times, to stream data to be
+ * checksummed in blocks. Each call must provide the previous CRC-32 return
+ * value to be updated with the next block. The first call to this function
+ * for a set of blocks should pass in a zero CRC value.
+ *
+ * @param crc the current checksum for this data set, or 0 for a new data set.
+ * @param data a new block of data to add to the checksum.
+ * @param len the size, in bytes, of the new block of data.
+ * @returns a CRC-32 checksum value of all blocks in the data set.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2429 Uint32 SDL_crc32(Uint32 crc, const void *data, size_t len);
+ */
+SDL_crc32: {
+      parameters: ["u32", "pointer", "usize"],
+      result: "u32"
+    },
+
+
+/**
+ * Calculate a 32-bit MurmurHash3 value for a block of data.
+ *
+ * https://en.wikipedia.org/wiki/MurmurHash
+ *
+ * A seed may be specified, which changes the final results consistently, but
+ * this does not work like SDL_crc16 and SDL_crc32: you can't feed a previous
+ * result from this function back into itself as the next seed value to
+ * calculate a hash in chunks; it won't produce the same hash as it would if
+ * the same data was provided in a single call.
+ *
+ * If you aren't sure what to provide for a seed, zero is fine. Murmur3 is not
+ * cryptographically secure, so it shouldn't be used for hashing top-secret
+ * data.
+ *
+ * @param data the data to be hashed.
+ * @param len the size of data, in bytes.
+ * @param seed a value that alters the final hash value.
+ * @returns a Murmur3 32-bit hash value.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2455 Uint32 SDL_murmur3_32(const void *data, size_t len, Uint32 seed);
+ */
+SDL_murmur3_32: {
+      parameters: ["pointer", "usize", "u32"],
+      result: "u32"
+    },
+
+
+/**
+ * Initialize all 32-bit words of buffer of memory to a specific value.
+ *
+ * This function will set a buffer of `dwords` Uint32 values, pointed to by
+ * `dst`, to the value specified in `val`.
+ *
+ * Unlike SDL_memset, this sets 32-bit values, not bytes, so it's not limited
+ * to a range of 0-255.
+ *
+ * @param dst the destination memory region. Must not be NULL.
+ * @param val the Uint32 value to set.
+ * @param dwords the number of Uint32 values to set in `dst`.
+ * @returns `dst`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2579 void * SDL_memset4(void *dst, Uint32 val, size_t dwords);
+ */
+SDL_memset4: {
+      parameters: ["pointer", "u32", "usize"],
+      result: "pointer"
+    },
+
+
+/**
+ * This works exactly like wcsnlen() but doesn't require access to a C
+ * runtime.
+ *
+ * Counts up to a maximum of `maxlen` wchar_t values in `wstr`, excluding the
+ * null terminator.
+ *
+ * Like SDL_strnlen only counts bytes and not codepoints in a UTF-8 string,
+ * this counts wchar_t values in a string, even if the string's encoding is of
+ * variable width, like UTF-16.
+ *
+ * Also be aware that wchar_t is different sizes on different platforms (4
+ * bytes on Linux, 2 on Windows, etc).
+ *
+ * Also, `maxlen` is a count of wide characters, not bytes!
+ *
+ * @param wstr The null-terminated wide string to read. Must not be NULL.
+ * @param maxlen The maximum amount of wide characters to count.
+ * @returns the length (in wide characters, excluding the null terminator) of
+ *          `wstr` but never more than `maxlen`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_wcslen
+ * @sa SDL_utf8strlen
+ * @sa SDL_utf8strnlen
+ *
+ * @from SDL_stdinc.h:2719 size_t SDL_wcsnlen(const wchar_t *wstr, size_t maxlen);
+ */
+SDL_wcsnlen: {
+      parameters: ["pointer", "usize"],
+      result: "usize"
+    },
+
+
+/**
+ * Search a wide string, up to n wide chars, for the first instance of a
+ * specific substring.
+ *
+ * The search ends once it finds the requested substring, or a null terminator
+ * value to end the string, or `maxlen` wide character have been examined. It
+ * is possible to use this function on a wide string without a null
+ * terminator.
+ *
+ * Note that this looks for strings of _wide characters_, not _codepoints_, so
+ * it's legal to search for malformed and incomplete UTF-16 sequences.
+ *
+ * @param haystack the wide string to search. Must not be NULL.
+ * @param needle the wide string to search for. Must not be NULL.
+ * @param maxlen the maximum number of wide characters to search in
+ *               `haystack`.
+ * @returns a pointer to the first instance of `needle` in the string, or NULL
+ *          if not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2838 wchar_t * SDL_wcsnstr(const wchar_t *haystack, const wchar_t *needle, size_t maxlen);
+ */
+SDL_wcsnstr: {
+      parameters: ["pointer", "pointer", "usize"],
+      result: "pointer"
+    },
+
+
+/**
+ * Compare two null-terminated wide strings, case-insensitively.
+ *
+ * This will work with Unicode strings, using a technique called
+ * "case-folding" to handle the vast majority of case-sensitive human
+ * languages regardless of system locale. It can deal with expanding values: a
+ * German Eszett character can compare against two ASCII 's' chars and be
+ * considered a match, for example. A notable exception: it does not handle
+ * the Turkish 'i' character; human language is complicated!
+ *
+ * Depending on your platform, "wchar_t" might be 2 bytes, and expected to be
+ * UTF-16 encoded (like Windows), or 4 bytes in UTF-32 format. Since this
+ * handles Unicode, it expects the string to be well-formed and not a
+ * null-terminated string of arbitrary bytes. Characters that are not valid
+ * UTF-16 (or UTF-32) are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), which is to say two strings of random bits may turn out to
+ * match if they convert to the same amount of replacement characters.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2918 int SDL_wcscasecmp(const wchar_t *str1, const wchar_t *str2);
+ */
+SDL_wcscasecmp: {
+      parameters: ["pointer", "pointer"],
+      result: "i32"
+    },
+
+
+/**
+ * Compare two wide strings, case-insensitively, up to a number of wchar_t.
+ *
+ * This will work with Unicode strings, using a technique called
+ * "case-folding" to handle the vast majority of case-sensitive human
+ * languages regardless of system locale. It can deal with expanding values: a
+ * German Eszett character can compare against two ASCII 's' chars and be
+ * considered a match, for example. A notable exception: it does not handle
+ * the Turkish 'i' character; human language is complicated!
+ *
+ * Depending on your platform, "wchar_t" might be 2 bytes, and expected to be
+ * UTF-16 encoded (like Windows), or 4 bytes in UTF-32 format. Since this
+ * handles Unicode, it expects the string to be well-formed and not a
+ * null-terminated string of arbitrary bytes. Characters that are not valid
+ * UTF-16 (or UTF-32) are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), which is to say two strings of random bits may turn out to
+ * match if they convert to the same amount of replacement characters.
+ *
+ * Note that while this function might deal with variable-sized characters,
+ * `maxlen` specifies a _wchar_ limit! If the limit lands in the middle of a
+ * multi-byte UTF-16 sequence, it may convert a portion of the final character
+ * to one or more Unicode character U+FFFD (REPLACEMENT CHARACTER) so as not
+ * to overflow a buffer.
+ *
+ * `maxlen` specifies a maximum number of wchar_t values to compare; if the
+ * strings match to this number of wchar_t (or both have matched to a
+ * null-terminator character before this number of bytes), they will be
+ * considered equal.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @param maxlen the maximum number of wchar_t values to compare.
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2960 int SDL_wcsncasecmp(const wchar_t *str1, const wchar_t *str2, size_t maxlen);
+ */
+SDL_wcsncasecmp: {
+      parameters: ["pointer", "pointer", "usize"],
+      result: "i32"
+    },
+
+
+/**
+ * Parse a `long` from a wide string.
+ *
+ * If `str` starts with whitespace, then those whitespace characters are
+ * skipped before attempting to parse the number.
+ *
+ * If the parsed number does not fit inside a `long`, the result is clamped to
+ * the minimum and maximum representable `long` values.
+ *
+ * @param str The null-terminated wide string to read. Must not be NULL.
+ * @param endp If not NULL, the address of the first invalid wide character
+ *             (i.e. the next character after the parsed number) will be
+ *             written to this pointer.
+ * @param base The base of the integer to read. Supported values are 0 and 2
+ *             to 36 inclusive. If 0, the base will be inferred from the
+ *             number's prefix (0x for hexadecimal, 0 for octal, decimal
+ *             otherwise).
+ * @returns the parsed `long`, or 0 if no number could be parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strtol
+ *
+ * @from SDL_stdinc.h:2987 long SDL_wcstol(const wchar_t *str, wchar_t **endp, int base);
+ */
+SDL_wcstol: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "i64"
+    },
+
+
+/**
+ * This works exactly like strnlen() but doesn't require access to a C
+ * runtime.
+ *
+ * Counts up to a maximum of `maxlen` bytes in `str`, excluding the null
+ * terminator.
+ *
+ * If you need the length of a UTF-8 string, consider using SDL_utf8strnlen().
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @param maxlen The maximum amount of bytes to count.
+ * @returns the length (in bytes, excluding the null terminator) of `src` but
+ *          never more than `maxlen`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strlen
+ * @sa SDL_utf8strlen
+ * @sa SDL_utf8strnlen
+ *
+ * @from SDL_stdinc.h:3031 size_t SDL_strnlen(const char *str, size_t maxlen);
+ */
+SDL_strnlen: {
+      parameters: ["pointer", "usize"],
+      result: "usize"
+    },
+
+
+/**
+ * Copy an UTF-8 string.
+ *
+ * This function copies up to `dst_bytes` - 1 bytes from `src` to `dst` while
+ * also ensuring that the string written to `dst` does not end in a truncated
+ * multi-byte sequence. Finally, it appends a null terminator.
+ *
+ * `src` and `dst` must not overlap.
+ *
+ * Note that unlike SDL_strlcpy(), this function returns the number of bytes
+ * written, not the length of `src`.
+ *
+ * @param dst The destination buffer. Must not be NULL, and must not overlap
+ *            with `src`.
+ * @param src The null-terminated UTF-8 string to copy. Must not be NULL, and
+ *            must not overlap with `dst`.
+ * @param dst_bytes The length (in bytes) of the destination buffer. Must not
+ *                  be 0.
+ * @returns the number of bytes written, excluding the null terminator.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strlcpy
+ *
+ * @from SDL_stdinc.h:3088 size_t SDL_utf8strlcpy(SDL_OUT_Z_CAP(dst_bytes) char *dst, const char *src, size_t dst_bytes);
+ */
+SDL_utf8strlcpy: {
+      parameters: ["pointer", "pointer", "usize"],
+      result: "usize"
+    },
+
+
+/**
+ * Allocate a copy of a string, up to n characters.
+ *
+ * This allocates enough space for a null-terminated copy of `str`, up to
+ * `maxlen` bytes, using SDL_malloc, and then makes a copy of the string into
+ * this space.
+ *
+ * If the string is longer than `maxlen` bytes, the returned string will be
+ * `maxlen` bytes long, plus a null-terminator character that isn't included
+ * in the count.
+ *
+ * The returned string is owned by the caller, and should be passed to
+ * SDL_free when no longer needed.
+ *
+ * @param str the string to copy.
+ * @param maxlen the maximum length of the copied string, not counting the
+ *               null-terminator character.
+ * @returns a pointer to the newly-allocated string.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3159 SDL_MALLOC char * SDL_strndup(const char *str, size_t maxlen);
+ */
+SDL_strndup: {
+      parameters: ["pointer", "usize"],
+      result: "pointer"
+    },
+
+
+/**
+ * Reverse a string's contents.
+ *
+ * This reverses a null-terminated string in-place. Only the content of the
+ * string is reversed; the null-terminator character remains at the end of the
+ * reversed string.
+ *
+ * **WARNING**: This function reverses the _bytes_ of the string, not the
+ * codepoints. If `str` is a UTF-8 string with Unicode codepoints > 127, this
+ * will ruin the string data. You should only use this function on strings
+ * that are completely comprised of low ASCII characters.
+ *
+ * @param str the string to reverse.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3180 char * SDL_strrev(char *str);
+ */
+SDL_strrev: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert a string to uppercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'A' through 'Z' to uppercase.
+ *
+ * This function operates on a null-terminated string of bytes--even if it is
+ * malformed UTF-8!--and converts ASCII characters 'a' through 'z' to their
+ * uppercase equivalents in-place, returning the original `str` pointer.
+ *
+ * @param str the string to convert in-place. Can not be NULL.
+ * @returns the `str` pointer passed into this function.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strlwr
+ *
+ * @from SDL_stdinc.h:3201 char * SDL_strupr(char *str);
+ */
+SDL_strupr: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert a string to lowercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'A' through 'Z' to lowercase.
+ *
+ * This function operates on a null-terminated string of bytes--even if it is
+ * malformed UTF-8!--and converts ASCII characters 'A' through 'Z' to their
+ * lowercase equivalents in-place, returning the original `str` pointer.
+ *
+ * @param str the string to convert in-place. Can not be NULL.
+ * @returns the `str` pointer passed into this function.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strupr
+ *
+ * @from SDL_stdinc.h:3222 char * SDL_strlwr(char *str);
+ */
+SDL_strlwr: {
+      parameters: ["pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Search a string, up to n bytes, for the first instance of a specific
+ * substring.
+ *
+ * The search ends once it finds the requested substring, or a null terminator
+ * byte to end the string, or `maxlen` bytes have been examined. It is
+ * possible to use this function on a string without a null terminator.
+ *
+ * Note that this looks for strings of _bytes_, not _characters_, so it's
+ * legal to search for malformed and incomplete UTF-8 sequences.
+ *
+ * @param haystack the string to search. Must not be NULL.
+ * @param needle the string to search for. Must not be NULL.
+ * @param maxlen the maximum number of bytes to search in `haystack`.
+ * @returns a pointer to the first instance of `needle` in the string, or NULL
+ *          if not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3304 char * SDL_strnstr(const char *haystack, const char *needle, size_t maxlen);
+ */
+SDL_strnstr: {
+      parameters: ["pointer", "pointer", "usize"],
+      result: "pointer"
+    },
+
+
+/**
+ * Search a UTF-8 string for the first instance of a specific substring,
+ * case-insensitively.
+ *
+ * This will work with Unicode strings, using a technique called
+ * "case-folding" to handle the vast majority of case-sensitive human
+ * languages regardless of system locale. It can deal with expanding values: a
+ * German Eszett character can compare against two ASCII 's' chars and be
+ * considered a match, for example. A notable exception: it does not handle
+ * the Turkish 'i' character; human language is complicated!
+ *
+ * Since this handles Unicode, it expects the strings to be well-formed UTF-8
+ * and not a null-terminated string of arbitrary bytes. Bytes that are not
+ * valid UTF-8 are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), which is to say two strings of random bits may turn out to
+ * match if they convert to the same amount of replacement characters.
+ *
+ * @param haystack the string to search. Must not be NULL.
+ * @param needle the string to search for. Must not be NULL.
+ * @returns a pointer to the first instance of `needle` in the string, or NULL
+ *          if not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3332 char * SDL_strcasestr(const char *haystack, const char *needle);
+ */
+SDL_strcasestr: {
+      parameters: ["pointer", "pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Count the number of codepoints in a UTF-8 string.
+ *
+ * Counts the _codepoints_, not _bytes_, in `str`, excluding the null
+ * terminator.
+ *
+ * If you need to count the bytes in a string instead, consider using
+ * SDL_strlen().
+ *
+ * Since this handles Unicode, it expects the strings to be well-formed UTF-8
+ * and not a null-terminated string of arbitrary bytes. Bytes that are not
+ * valid UTF-8 are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), so a malformed or incomplete UTF-8 sequence might increase the
+ * count by several replacement characters.
+ *
+ * @param str The null-terminated UTF-8 string to read. Must not be NULL.
+ * @returns The length (in codepoints, excluding the null terminator) of
+ *          `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_utf8strnlen
+ * @sa SDL_strlen
+ *
+ * @from SDL_stdinc.h:3389 size_t SDL_utf8strlen(const char *str);
+ */
+SDL_utf8strlen: {
+      parameters: ["pointer"],
+      result: "usize"
+    },
+
+
+/**
+ * Count the number of codepoints in a UTF-8 string, up to n bytes.
+ *
+ * Counts the _codepoints_, not _bytes_, in `str`, excluding the null
+ * terminator.
+ *
+ * If you need to count the bytes in a string instead, consider using
+ * SDL_strnlen().
+ *
+ * The counting stops at `bytes` bytes (not codepoints!). This seems
+ * counterintuitive, but makes it easy to express the total size of the
+ * string's buffer.
+ *
+ * Since this handles Unicode, it expects the strings to be well-formed UTF-8
+ * and not a null-terminated string of arbitrary bytes. Bytes that are not
+ * valid UTF-8 are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), so a malformed or incomplete UTF-8 sequence might increase the
+ * count by several replacement characters.
+ *
+ * @param str The null-terminated UTF-8 string to read. Must not be NULL.
+ * @param bytes The maximum amount of bytes to count.
+ * @returns The length (in codepoints, excluding the null terminator) of `src`
+ *          but never more than `maxlen`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_utf8strlen
+ * @sa SDL_strnlen
+ *
+ * @from SDL_stdinc.h:3422 size_t SDL_utf8strnlen(const char *str, size_t bytes);
+ */
+SDL_utf8strnlen: {
+      parameters: ["pointer", "usize"],
+      result: "usize"
+    },
+
+
+/**
+ * Convert an integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget possible negative
+ * signs, null terminator bytes, etc).
+ *
+ * @param value the integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_uitoa
+ * @sa SDL_ltoa
+ * @sa SDL_lltoa
+ *
+ * @from SDL_stdinc.h:3450 char * SDL_itoa(int value, char *str, int radix);
+ */
+SDL_itoa: {
+      parameters: ["i32", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert an unsigned integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget null terminator
+ * bytes, etc).
+ *
+ * @param value the unsigned integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_itoa
+ * @sa SDL_ultoa
+ * @sa SDL_ulltoa
+ *
+ * @from SDL_stdinc.h:3478 char * SDL_uitoa(unsigned int value, char *str, int radix);
+ */
+SDL_uitoa: {
+      parameters: ["u32", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert a long integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget possible negative
+ * signs, null terminator bytes, etc).
+ *
+ * @param value the long integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ultoa
+ * @sa SDL_itoa
+ * @sa SDL_lltoa
+ *
+ * @from SDL_stdinc.h:3506 char * SDL_ltoa(long value, char *str, int radix);
+ */
+SDL_ltoa: {
+      parameters: ["i64", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert an unsigned long integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget null terminator
+ * bytes, etc).
+ *
+ * @param value the unsigned long integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ltoa
+ * @sa SDL_uitoa
+ * @sa SDL_ulltoa
+ *
+ * @from SDL_stdinc.h:3534 char * SDL_ultoa(unsigned long value, char *str, int radix);
+ */
+SDL_ultoa: {
+      parameters: ["u32", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert a long long integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget possible negative
+ * signs, null terminator bytes, etc).
+ *
+ * @param value the long long integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ulltoa
+ * @sa SDL_itoa
+ * @sa SDL_ltoa
+ *
+ * @from SDL_stdinc.h:3564 char * SDL_lltoa(long long value, char *str, int radix);
+ */
+SDL_lltoa: {
+      parameters: ["i64", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Convert an unsigned long long integer into a string.
+ *
+ * This requires a radix to specified for string format. Specifying 10
+ * produces a decimal number, 16 hexidecimal, etc. Must be in the range of 2
+ * to 36.
+ *
+ * Note that this function will overflow a buffer if `str` is not large enough
+ * to hold the output! It may be safer to use SDL_snprintf to clamp output, or
+ * SDL_asprintf to allocate a buffer. Otherwise, it doesn't hurt to allocate
+ * much more space than you expect to use (and don't forget null terminator
+ * bytes, etc).
+ *
+ * @param value the unsigned long long integer to convert.
+ * @param str the buffer to write the string into.
+ * @param radix the radix to use for string generation.
+ * @returns `str`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_lltoa
+ * @sa SDL_uitoa
+ * @sa SDL_ultoa
+ *
+ * @from SDL_stdinc.h:3592 char * SDL_ulltoa(unsigned long long value, char *str, int radix);
+ */
+SDL_ulltoa: {
+      parameters: ["u32", "pointer", "i32"],
+      result: "pointer"
+    },
+
+
+/**
+ * Parse an `int` from a string.
+ *
+ * The result of calling `SDL_atoi(str)` is equivalent to
+ * `(int)SDL_strtol(str, NULL, 10)`.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @returns the parsed `int`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atof
+ * @sa SDL_strtol
+ * @sa SDL_strtoul
+ * @sa SDL_strtoll
+ * @sa SDL_strtoull
+ * @sa SDL_strtod
+ * @sa SDL_itoa
+ *
+ * @from SDL_stdinc.h:3616 int SDL_atoi(const char *str);
+ */
+SDL_atoi: {
+      parameters: ["pointer"],
+      result: "i32"
+    },
+
+
+/**
+ * Parse a `double` from a string.
+ *
+ * The result of calling `SDL_atof(str)` is equivalent to `SDL_strtod(str,
+ * NULL)`.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @returns the parsed `double`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_strtol
+ * @sa SDL_strtoul
+ * @sa SDL_strtoll
+ * @sa SDL_strtoull
+ * @sa SDL_strtod
+ *
+ * @from SDL_stdinc.h:3638 double SDL_atof(const char *str);
+ */
+SDL_atof: {
+      parameters: ["pointer"],
+      result: "f64"
+    },
+
+
+/**
+ * Parse a `long` from a string.
+ *
+ * If `str` starts with whitespace, then those whitespace characters are
+ * skipped before attempting to parse the number.
+ *
+ * If the parsed number does not fit inside a `long`, the result is clamped to
+ * the minimum and maximum representable `long` values.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @param endp If not NULL, the address of the first invalid character (i.e.
+ *             the next character after the parsed number) will be written to
+ *             this pointer.
+ * @param base The base of the integer to read. Supported values are 0 and 2
+ *             to 36 inclusive. If 0, the base will be inferred from the
+ *             number's prefix (0x for hexadecimal, 0 for octal, decimal
+ *             otherwise).
+ * @returns the parsed `long`, or 0 if no number could be parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_atof
+ * @sa SDL_strtoul
+ * @sa SDL_strtoll
+ * @sa SDL_strtoull
+ * @sa SDL_strtod
+ * @sa SDL_ltoa
+ * @sa SDL_wcstol
+ *
+ * @from SDL_stdinc.h:3672 long SDL_strtol(const char *str, char **endp, int base);
+ */
+SDL_strtol: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "i64"
+    },
+
+
+/**
+ * Parse an `unsigned long` from a string.
+ *
+ * If `str` starts with whitespace, then those whitespace characters are
+ * skipped before attempting to parse the number.
+ *
+ * If the parsed number does not fit inside an `unsigned long`, the result is
+ * clamped to the maximum representable `unsigned long` value.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @param endp If not NULL, the address of the first invalid character (i.e.
+ *             the next character after the parsed number) will be written to
+ *             this pointer.
+ * @param base The base of the integer to read. Supported values are 0 and 2
+ *             to 36 inclusive. If 0, the base will be inferred from the
+ *             number's prefix (0x for hexadecimal, 0 for octal, decimal
+ *             otherwise).
+ * @returns the parsed `unsigned long`, or 0 if no number could be parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_atof
+ * @sa SDL_strtol
+ * @sa SDL_strtoll
+ * @sa SDL_strtoull
+ * @sa SDL_strtod
+ * @sa SDL_ultoa
+ *
+ * @from SDL_stdinc.h:3705 unsigned long SDL_strtoul(const char *str, char **endp, int base);
+ */
+SDL_strtoul: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "u64"
+    },
+
+
+/**
+ * Parse a `long long` from a string.
+ *
+ * If `str` starts with whitespace, then those whitespace characters are
+ * skipped before attempting to parse the number.
+ *
+ * If the parsed number does not fit inside a `long long`, the result is
+ * clamped to the minimum and maximum representable `long long` values.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @param endp If not NULL, the address of the first invalid character (i.e.
+ *             the next character after the parsed number) will be written to
+ *             this pointer.
+ * @param base The base of the integer to read. Supported values are 0 and 2
+ *             to 36 inclusive. If 0, the base will be inferred from the
+ *             number's prefix (0x for hexadecimal, 0 for octal, decimal
+ *             otherwise).
+ * @returns the parsed `long long`, or 0 if no number could be parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_atof
+ * @sa SDL_strtol
+ * @sa SDL_strtoul
+ * @sa SDL_strtoull
+ * @sa SDL_strtod
+ * @sa SDL_lltoa
+ *
+ * @from SDL_stdinc.h:3740 long long SDL_strtoll(const char *str, char **endp, int base);
+ */
+SDL_strtoll: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "i64"
+    },
+
+
+/**
+ * Parse an `unsigned long long` from a string.
+ *
+ * If `str` starts with whitespace, then those whitespace characters are
+ * skipped before attempting to parse the number.
+ *
+ * If the parsed number does not fit inside an `unsigned long long`, the
+ * result is clamped to the maximum representable `unsigned long long` value.
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @param endp If not NULL, the address of the first invalid character (i.e.
+ *             the next character after the parsed number) will be written to
+ *             this pointer.
+ * @param base The base of the integer to read. Supported values are 0 and 2
+ *             to 36 inclusive. If 0, the base will be inferred from the
+ *             number's prefix (0x for hexadecimal, 0 for octal, decimal
+ *             otherwise).
+ * @returns the parsed `unsigned long long`, or 0 if no number could be
+ *          parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_atof
+ * @sa SDL_strtol
+ * @sa SDL_strtoll
+ * @sa SDL_strtoul
+ * @sa SDL_strtod
+ * @sa SDL_ulltoa
+ *
+ * @from SDL_stdinc.h:3774 unsigned long long SDL_strtoull(const char *str, char **endp, int base);
+ */
+SDL_strtoull: {
+      parameters: ["pointer", "pointer", "i32"],
+      result: "u64"
+    },
+
+
+/**
+ * Parse a `double` from a string.
+ *
+ * This function makes fewer guarantees than the C runtime `strtod`:
+ *
+ * - Only decimal notation is guaranteed to be supported. The handling of
+ *   scientific and hexadecimal notation is unspecified.
+ * - Whether or not INF and NAN can be parsed is unspecified.
+ * - The precision of the result is unspecified.
+ *
+ * @param str the null-terminated string to read. Must not be NULL.
+ * @param endp if not NULL, the address of the first invalid character (i.e.
+ *             the next character after the parsed number) will be written to
+ *             this pointer.
+ * @returns the parsed `double`, or 0 if no number could be parsed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atoi
+ * @sa SDL_atof
+ * @sa SDL_strtol
+ * @sa SDL_strtoll
+ * @sa SDL_strtoul
+ * @sa SDL_strtoull
+ *
+ * @from SDL_stdinc.h:3804 double SDL_strtod(const char *str, char **endp);
+ */
+SDL_strtod: {
+      parameters: ["pointer", "pointer"],
+      result: "f64"
+    },
+
+
+/**
+ * Decode a UTF-8 string, one Unicode codepoint at a time.
+ *
+ * This will return the first Unicode codepoint in the UTF-8 encoded string in
+ * `*pstr`, and then advance `*pstr` past any consumed bytes before returning.
+ *
+ * It will not access more than `*pslen` bytes from the string. `*pslen` will
+ * be adjusted, as well, subtracting the number of bytes consumed.
+ *
+ * `pslen` is allowed to be NULL, in which case the string _must_ be
+ * NULL-terminated, as the function will blindly read until it sees the NULL
+ * char.
+ *
+ * if `*pslen` is zero, it assumes the end of string is reached and returns a
+ * zero codepoint regardless of the contents of the string buffer.
+ *
+ * If the resulting codepoint is zero (a NULL terminator), or `*pslen` is
+ * zero, it will not advance `*pstr` or `*pslen` at all.
+ *
+ * Generally this function is called in a loop until it returns zero,
+ * adjusting its parameters each iteration.
+ *
+ * If an invalid UTF-8 sequence is encountered, this function returns
+ * SDL_INVALID_UNICODE_CODEPOINT and advances the string/length by one byte
+ * (which is to say, a multibyte sequence might produce several
+ * SDL_INVALID_UNICODE_CODEPOINT returns before it syncs to the next valid
+ * UTF-8 sequence).
+ *
+ * Several things can generate invalid UTF-8 sequences, including overlong
+ * encodings, the use of UTF-16 surrogate values, and truncated data. Please
+ * refer to
+ * [RFC3629](https://www.ietf.org/rfc/rfc3629.txt)
+ * for details.
+ *
+ * @param pstr a pointer to a UTF-8 string pointer to be read and adjusted.
+ * @param pslen a pointer to the number of bytes in the string, to be read and
+ *              adjusted. NULL is allowed.
+ * @returns the first Unicode codepoint in the string.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:4000 Uint32 SDL_StepUTF8(const char **pstr, size_t *pslen);
+ */
+SDL_StepUTF8: {
+      parameters: ["pointer", "pointer"],
+      result: "u32"
+    },
+
+
+/**
+ * Decode a UTF-8 string in reverse, one Unicode codepoint at a time.
+ *
+ * This will go to the start of the previous Unicode codepoint in the string,
+ * move `*pstr` to that location and return that codepoint.
+ *
+ * If `*pstr` is already at the start of the string), it will not advance
+ * `*pstr` at all.
+ *
+ * Generally this function is called in a loop until it returns zero,
+ * adjusting its parameter each iteration.
+ *
+ * If an invalid UTF-8 sequence is encountered, this function returns
+ * SDL_INVALID_UNICODE_CODEPOINT.
+ *
+ * Several things can generate invalid UTF-8 sequences, including overlong
+ * encodings, the use of UTF-16 surrogate values, and truncated data. Please
+ * refer to
+ * [RFC3629](https://www.ietf.org/rfc/rfc3629.txt)
+ * for details.
+ *
+ * @param start a pointer to the beginning of the UTF-8 string.
+ * @param pstr a pointer to a UTF-8 string pointer to be read and adjusted.
+ * @returns the previous Unicode codepoint in the string.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:4031 Uint32 SDL_StepBackUTF8(const char *start, const char **pstr);
+ */
+SDL_StepBackUTF8: {
+      parameters: ["pointer", "pointer"],
+      result: "u32"
+    },
+
+
+/**
+ * Convert a single Unicode codepoint to UTF-8.
+ *
+ * The buffer pointed to by `dst` must be at least 4 bytes long, as this
+ * function may generate between 1 and 4 bytes of output.
+ *
+ * This function returns the first byte _after_ the newly-written UTF-8
+ * sequence, which is useful for encoding multiple codepoints in a loop, or
+ * knowing where to write a NULL-terminator character to end the string (in
+ * either case, plan to have a buffer of _more_ than 4 bytes!).
+ *
+ * If `codepoint` is an invalid value (outside the Unicode range, or a UTF-16
+ * surrogate value, etc), this will use U+FFFD (REPLACEMENT CHARACTER) for the
+ * codepoint instead, and not set an error.
+ *
+ * If `dst` is NULL, this returns NULL immediately without writing to the
+ * pointer and without setting an error.
+ *
+ * @param codepoint a Unicode codepoint to convert to UTF-8.
+ * @param dst the location to write the encoded UTF-8. Must point to at least
+ *            4 bytes!
+ * @returns the first byte past the newly-written UTF-8 sequence.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:4060 char * SDL_UCS4ToUTF8(Uint32 codepoint, char *dst);
+ */
+SDL_UCS4ToUTF8: {
+      parameters: ["u32", "pointer"],
+      result: "pointer"
+    },
+
+
+/**
+ * Seeds the pseudo-random number generator.
+ *
+ * Reusing the seed number will cause SDL_rand() to repeat the same stream of
+ * 'random' numbers.
+ *
+ * @param seed the value to use as a random number seed, or 0 to use
+ *             SDL_GetPerformanceCounter().
+ *
+ * @threadsafety This should be called on the same thread that calls
+ *               SDL_rand()
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_rand
+ * @sa SDL_rand_bits
+ * @sa SDL_randf
+ *
+ * @from SDL_stdinc.h:4272 void SDL_srand(Uint64 seed);
+ */
+SDL_srand: {
+      parameters: ["u64"],
+      result: "void"
+    },
+
+
+/**
+ * Generate a pseudo-random number less than n for positive n
+ *
+ * The method used is faster and of better quality than `rand() % n`. Odds are
+ * roughly 99.9% even for n = 1 million. Evenness is better for smaller n, and
+ * much worse as n gets bigger.
+ *
+ * Example: to simulate a d6 use `SDL_rand(6) + 1` The +1 converts 0..5 to
+ * 1..6
+ *
+ * If you want to generate a pseudo-random number in the full range of Sint32,
+ * you should use: (Sint32)SDL_rand_bits()
+ *
+ * If you want reproducible output, be sure to initialize with SDL_srand()
+ * first.
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @param n the number of possible outcomes. n must be positive.
+ * @returns a random value in the range of [0 .. n-1].
+ *
+ * @threadsafety All calls should be made from a single thread
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_srand
+ * @sa SDL_randf
+ *
+ * @from SDL_stdinc.h:4306 Sint32 SDL_rand(Sint32 n);
+ */
+SDL_rand: {
+      parameters: ["i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Generate a uniform pseudo-random floating point number less than 1.0
+ *
+ * If you want reproducible output, be sure to initialize with SDL_srand()
+ * first.
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @returns a random value in the range of [0.0, 1.0).
+ *
+ * @threadsafety All calls should be made from a single thread
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_srand
+ * @sa SDL_rand
+ *
+ * @from SDL_stdinc.h:4329 float SDL_randf(void);
+ */
+SDL_randf: {
+      parameters: [],
+      result: "f32"
+    },
+
+
+/**
+ * Generate 32 pseudo-random bits.
+ *
+ * You likely want to use SDL_rand() to get a psuedo-random number instead.
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @returns a random value in the range of [0-SDL_MAX_UINT32].
+ *
+ * @threadsafety All calls should be made from a single thread
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_rand
+ * @sa SDL_randf
+ * @sa SDL_srand
+ *
+ * @from SDL_stdinc.h:4352 Uint32 SDL_rand_bits(void);
+ */
+SDL_rand_bits: {
+      parameters: [],
+      result: "u32"
+    },
+
+
+/**
+ * Generate a pseudo-random number less than n for positive n
+ *
+ * The method used is faster and of better quality than `rand() % n`. Odds are
+ * roughly 99.9% even for n = 1 million. Evenness is better for smaller n, and
+ * much worse as n gets bigger.
+ *
+ * Example: to simulate a d6 use `SDL_rand_r(state, 6) + 1` The +1 converts
+ * 0..5 to 1..6
+ *
+ * If you want to generate a pseudo-random number in the full range of Sint32,
+ * you should use: (Sint32)SDL_rand_bits_r(state)
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @param state a pointer to the current random number state, this may not be
+ *              NULL.
+ * @param n the number of possible outcomes. n must be positive.
+ * @returns a random value in the range of [0 .. n-1].
+ *
+ * @threadsafety This function is thread-safe, as long as the state pointer
+ *               isn't shared between threads.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_rand
+ * @sa SDL_rand_bits_r
+ * @sa SDL_randf_r
+ *
+ * @from SDL_stdinc.h:4387 Sint32 SDL_rand_r(Uint64 *state, Sint32 n);
+ */
+SDL_rand_r: {
+      parameters: ["pointer", "i32"],
+      result: "i32"
+    },
+
+
+/**
+ * Generate a uniform pseudo-random floating point number less than 1.0
+ *
+ * If you want reproducible output, be sure to initialize with SDL_srand()
+ * first.
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @param state a pointer to the current random number state, this may not be
+ *              NULL.
+ * @returns a random value in the range of [0.0, 1.0).
+ *
+ * @threadsafety This function is thread-safe, as long as the state pointer
+ *               isn't shared between threads.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_rand_bits_r
+ * @sa SDL_rand_r
+ * @sa SDL_randf
+ *
+ * @from SDL_stdinc.h:4414 float SDL_randf_r(Uint64 *state);
+ */
+SDL_randf_r: {
+      parameters: ["pointer"],
+      result: "f32"
+    },
+
+
+/**
+ * Generate 32 pseudo-random bits.
+ *
+ * You likely want to use SDL_rand_r() to get a psuedo-random number instead.
+ *
+ * There are no guarantees as to the quality of the random sequence produced,
+ * and this should not be used for security (cryptography, passwords) or where
+ * money is on the line (loot-boxes, casinos). There are many random number
+ * libraries available with different characteristics and you should pick one
+ * of those to meet any serious needs.
+ *
+ * @param state a pointer to the current random number state, this may not be
+ *              NULL.
+ * @returns a random value in the range of [0-SDL_MAX_UINT32].
+ *
+ * @threadsafety This function is thread-safe, as long as the state pointer
+ *               isn't shared between threads.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_rand_r
+ * @sa SDL_randf_r
+ *
+ * @from SDL_stdinc.h:4439 Uint32 SDL_rand_bits_r(Uint64 *state);
+ */
+SDL_rand_bits_r: {
+      parameters: ["pointer"],
+      result: "u32"
+    },
+
+
+/**
+ * Compute the arc cosine of `x`.
+ *
+ * The definition of `y = acos(x)` is `x = cos(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `0 <= y <= Pi`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_acosf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc cosine of `x`, in radians.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_acosf
+ * @sa SDL_asin
+ * @sa SDL_cos
+ *
+ * @from SDL_stdinc.h:4493 double SDL_acos(double x);
+ */
+SDL_acos: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the arc cosine of `x`.
+ *
+ * The definition of `y = acos(x)` is `x = cos(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `0 <= y <= Pi`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_acos for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc cosine of `x`, in radians.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_acos
+ * @sa SDL_asinf
+ * @sa SDL_cosf
+ *
+ * @from SDL_stdinc.h:4523 float SDL_acosf(float x);
+ */
+SDL_acosf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the arc sine of `x`.
+ *
+ * The definition of `y = asin(x)` is `x = sin(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_asinf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc sine of `x`, in radians.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_asinf
+ * @sa SDL_acos
+ * @sa SDL_sin
+ *
+ * @from SDL_stdinc.h:4553 double SDL_asin(double x);
+ */
+SDL_asin: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the arc sine of `x`.
+ *
+ * The definition of `y = asin(x)` is `x = sin(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_asin for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc sine of `x`, in radians.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_asin
+ * @sa SDL_acosf
+ * @sa SDL_sinf
+ *
+ * @from SDL_stdinc.h:4583 float SDL_asinf(float x);
+ */
+SDL_asinf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the arc tangent of `x`.
+ *
+ * The definition of `y = atan(x)` is `x = tan(y)`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_atanf for single-precision floats.
+ *
+ * To calculate the arc tangent of y / x, use SDL_atan2.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc tangent of of `x` in radians, or 0 if `x = 0`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atanf
+ * @sa SDL_atan2
+ * @sa SDL_tan
+ *
+ * @from SDL_stdinc.h:4615 double SDL_atan(double x);
+ */
+SDL_atan: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the arc tangent of `x`.
+ *
+ * The definition of `y = atan(x)` is `x = tan(y)`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_atan for dboule-precision floats.
+ *
+ * To calculate the arc tangent of y / x, use SDL_atan2f.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns arc tangent of of `x` in radians, or 0 if `x = 0`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atan
+ * @sa SDL_atan2f
+ * @sa SDL_tanf
+ *
+ * @from SDL_stdinc.h:4647 float SDL_atanf(float x);
+ */
+SDL_atanf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
+ * the result's quadrant.
+ *
+ * The definition of `z = atan2(x, y)` is `y = x tan(z)`, where the quadrant
+ * of z is determined based on the signs of x and y.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_atan2f for single-precision floats.
+ *
+ * To calculate the arc tangent of a single value, use SDL_atan.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param y floating point value of the numerator (y coordinate).
+ * @param x floating point value of the denominator (x coordinate).
+ * @returns arc tangent of of `y / x` in radians, or, if `x = 0`, either
+ *          `-Pi/2`, `0`, or `Pi/2`, depending on the value of `y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atan2f
+ * @sa SDL_atan
+ * @sa SDL_tan
+ *
+ * @from SDL_stdinc.h:4683 double SDL_atan2(double y, double x);
+ */
+SDL_atan2: {
+      parameters: ["f64", "f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
+ * the result's quadrant.
+ *
+ * The definition of `z = atan2(x, y)` is `y = x tan(z)`, where the quadrant
+ * of z is determined based on the signs of x and y.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_atan2 for double-precision floats.
+ *
+ * To calculate the arc tangent of a single value, use SDL_atanf.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param y floating point value of the numerator (y coordinate).
+ * @param x floating point value of the denominator (x coordinate).
+ * @returns arc tangent of of `y / x` in radians, or, if `x = 0`, either
+ *          `-Pi/2`, `0`, or `Pi/2`, depending on the value of `y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_atan2
+ * @sa SDL_atan
+ * @sa SDL_tan
+ *
+ * @from SDL_stdinc.h:4719 float SDL_atan2f(float y, float x);
+ */
+SDL_atan2f: {
+      parameters: ["f32", "f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the ceiling of `x`.
+ *
+ * The ceiling of `x` is the smallest integer `y` such that `y > x`, i.e `x`
+ * rounded up to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_ceilf for single-precision floats.
+ *
+ * @param x floating point value.
+ * @returns the ceiling of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ceilf
+ * @sa SDL_floor
+ * @sa SDL_trunc
+ * @sa SDL_round
+ * @sa SDL_lround
+ *
+ * @from SDL_stdinc.h:4747 double SDL_ceil(double x);
+ */
+SDL_ceil: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the ceiling of `x`.
+ *
+ * The ceiling of `x` is the smallest integer `y` such that `y > x`, i.e `x`
+ * rounded up to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_ceil for double-precision floats.
+ *
+ * @param x floating point value.
+ * @returns the ceiling of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ceil
+ * @sa SDL_floorf
+ * @sa SDL_truncf
+ * @sa SDL_roundf
+ * @sa SDL_lroundf
+ *
+ * @from SDL_stdinc.h:4775 float SDL_ceilf(float x);
+ */
+SDL_ceilf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Copy the sign of one floating-point value to another.
+ *
+ * The definition of copysign is that ``copysign(x, y) = abs(x) * sign(y)``.
+ *
+ * Domain: `-INF <= x <= INF`, ``-INF <= y <= f``
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_copysignf for single-precision floats.
+ *
+ * @param x floating point value to use as the magnitude.
+ * @param y floating point value to use as the sign.
+ * @returns the floating point value with the sign of y and the magnitude of
+ *          x.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_copysignf
+ * @sa SDL_fabs
+ *
+ * @from SDL_stdinc.h:4801 double SDL_copysign(double x, double y);
+ */
+SDL_copysign: {
+      parameters: ["f64", "f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Copy the sign of one floating-point value to another.
+ *
+ * The definition of copysign is that ``copysign(x, y) = abs(x) * sign(y)``.
+ *
+ * Domain: `-INF <= x <= INF`, ``-INF <= y <= f``
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_copysign for double-precision floats.
+ *
+ * @param x floating point value to use as the magnitude.
+ * @param y floating point value to use as the sign.
+ * @returns the floating point value with the sign of y and the magnitude of
+ *          x.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_copysign
+ * @sa SDL_fabsf
+ *
+ * @from SDL_stdinc.h:4827 float SDL_copysignf(float x, float y);
+ */
+SDL_copysignf: {
+      parameters: ["f32", "f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the cosine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_cosf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns cosine of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_cosf
+ * @sa SDL_acos
+ * @sa SDL_sin
+ *
+ * @from SDL_stdinc.h:4855 double SDL_cos(double x);
+ */
+SDL_cos: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the cosine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_cos for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns cosine of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_cos
+ * @sa SDL_acosf
+ * @sa SDL_sinf
+ *
+ * @from SDL_stdinc.h:4883 float SDL_cosf(float x);
+ */
+SDL_cosf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the exponential of `x`.
+ *
+ * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
+ * natural logarithm. The inverse is the natural logarithm, SDL_log.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * The output will overflow if `exp(x)` is too large to be represented.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_expf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns value of `e^x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_expf
+ * @sa SDL_log
+ *
+ * @from SDL_stdinc.h:4915 double SDL_exp(double x);
+ */
+SDL_exp: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the exponential of `x`.
+ *
+ * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
+ * natural logarithm. The inverse is the natural logarithm, SDL_logf.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * The output will overflow if `exp(x)` is too large to be represented.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_exp for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value.
+ * @returns value of `e^x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_exp
+ * @sa SDL_logf
+ *
+ * @from SDL_stdinc.h:4947 float SDL_expf(float x);
+ */
+SDL_expf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the absolute value of `x`
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_fabsf for single-precision floats.
+ *
+ * @param x floating point value to use as the magnitude.
+ * @returns the absolute value of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_fabsf
+ *
+ * @from SDL_stdinc.h:4968 double SDL_fabs(double x);
+ */
+SDL_fabs: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the absolute value of `x`
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_fabs for double-precision floats.
+ *
+ * @param x floating point value to use as the magnitude.
+ * @returns the absolute value of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_fabs
+ *
+ * @from SDL_stdinc.h:4989 float SDL_fabsf(float x);
+ */
+SDL_fabsf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the floor of `x`.
+ *
+ * The floor of `x` is the largest integer `y` such that `y > x`, i.e `x`
+ * rounded down to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_floorf for single-precision floats.
+ *
+ * @param x floating point value.
+ * @returns the floor of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_floorf
+ * @sa SDL_ceil
+ * @sa SDL_trunc
+ * @sa SDL_round
+ * @sa SDL_lround
+ *
+ * @from SDL_stdinc.h:5017 double SDL_floor(double x);
+ */
+SDL_floor: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the floor of `x`.
+ *
+ * The floor of `x` is the largest integer `y` such that `y > x`, i.e `x`
+ * rounded down to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_floor for double-precision floats.
+ *
+ * @param x floating point value.
+ * @returns the floor of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_floor
+ * @sa SDL_ceilf
+ * @sa SDL_truncf
+ * @sa SDL_roundf
+ * @sa SDL_lroundf
+ *
+ * @from SDL_stdinc.h:5045 float SDL_floorf(float x);
+ */
+SDL_floorf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Truncate `x` to an integer.
+ *
+ * Rounds `x` to the next closest integer to 0. This is equivalent to removing
+ * the fractional part of `x`, leaving only the integer part.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_truncf for single-precision floats.
+ *
+ * @param x floating point value.
+ * @returns `x` truncated to an integer.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_truncf
+ * @sa SDL_fmod
+ * @sa SDL_ceil
+ * @sa SDL_floor
+ * @sa SDL_round
+ * @sa SDL_lround
+ *
+ * @from SDL_stdinc.h:5074 double SDL_trunc(double x);
+ */
+SDL_trunc: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Truncate `x` to an integer.
+ *
+ * Rounds `x` to the next closest integer to 0. This is equivalent to removing
+ * the fractional part of `x`, leaving only the integer part.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_trunc for double-precision floats.
+ *
+ * @param x floating point value.
+ * @returns `x` truncated to an integer.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_trunc
+ * @sa SDL_fmodf
+ * @sa SDL_ceilf
+ * @sa SDL_floorf
+ * @sa SDL_roundf
+ * @sa SDL_lroundf
+ *
+ * @from SDL_stdinc.h:5103 float SDL_truncf(float x);
+ */
+SDL_truncf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Return the floating-point remainder of `x / y`
+ *
+ * Divides `x` by `y`, and returns the remainder.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`, `y != 0`
+ *
+ * Range: `-y <= z <= y`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_fmodf for single-precision floats.
+ *
+ * @param x the numerator.
+ * @param y the denominator. Must not be 0.
+ * @returns the remainder of `x / y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_fmodf
+ * @sa SDL_modf
+ * @sa SDL_trunc
+ * @sa SDL_ceil
+ * @sa SDL_floor
+ * @sa SDL_round
+ * @sa SDL_lround
+ *
+ * @from SDL_stdinc.h:5133 double SDL_fmod(double x, double y);
+ */
+SDL_fmod: {
+      parameters: ["f64", "f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Return the floating-point remainder of `x / y`
+ *
+ * Divides `x` by `y`, and returns the remainder.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`, `y != 0`
+ *
+ * Range: `-y <= z <= y`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_fmod for double-precision floats.
+ *
+ * @param x the numerator.
+ * @param y the denominator. Must not be 0.
+ * @returns the remainder of `x / y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_fmod
+ * @sa SDL_truncf
+ * @sa SDL_modff
+ * @sa SDL_ceilf
+ * @sa SDL_floorf
+ * @sa SDL_roundf
+ * @sa SDL_lroundf
+ *
+ * @from SDL_stdinc.h:5163 float SDL_fmodf(float x, float y);
+ */
+SDL_fmodf: {
+      parameters: ["f32", "f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Return whether the value is infinity.
+ *
+ * @param x double-precision floating point value.
+ * @returns non-zero if the value is infinity, 0 otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isinff
+ *
+ * @from SDL_stdinc.h:5177 int SDL_isinf(double x);
+ */
+SDL_isinf: {
+      parameters: ["f64"],
+      result: "i32"
+    },
+
+
+/**
+ * Return whether the value is infinity.
+ *
+ * @param x floating point value.
+ * @returns non-zero if the value is infinity, 0 otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isinf
+ *
+ * @from SDL_stdinc.h:5191 int SDL_isinff(float x);
+ */
+SDL_isinff: {
+      parameters: ["f32"],
+      result: "i32"
+    },
+
+
+/**
+ * Return whether the value is NaN.
+ *
+ * @param x double-precision floating point value.
+ * @returns non-zero if the value is NaN, 0 otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isnanf
+ *
+ * @from SDL_stdinc.h:5205 int SDL_isnan(double x);
+ */
+SDL_isnan: {
+      parameters: ["f64"],
+      result: "i32"
+    },
+
+
+/**
+ * Return whether the value is NaN.
+ *
+ * @param x floating point value.
+ * @returns non-zero if the value is NaN, 0 otherwise.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_isnan
+ *
+ * @from SDL_stdinc.h:5219 int SDL_isnanf(float x);
+ */
+SDL_isnanf: {
+      parameters: ["f32"],
+      result: "i32"
+    },
+
+
+/**
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_logf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than 0.
+ * @returns the natural logarithm of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_logf
+ * @sa SDL_log10
+ * @sa SDL_exp
+ *
+ * @from SDL_stdinc.h:5249 double SDL_log(double x);
+ */
+SDL_log: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_log for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than 0.
+ * @returns the natural logarithm of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_log
+ * @sa SDL_expf
+ *
+ * @from SDL_stdinc.h:5278 float SDL_logf(float x);
+ */
+SDL_logf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_log10f for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than 0.
+ * @returns the logarithm of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_log10f
+ * @sa SDL_log
+ * @sa SDL_pow
+ *
+ * @from SDL_stdinc.h:5308 double SDL_log10(double x);
+ */
+SDL_log10: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_log10 for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than 0.
+ * @returns the logarithm of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_log10
+ * @sa SDL_logf
+ * @sa SDL_powf
+ *
+ * @from SDL_stdinc.h:5338 float SDL_log10f(float x);
+ */
+SDL_log10f: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Split `x` into integer and fractional parts
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_modff for single-precision floats.
+ *
+ * @param x floating point value.
+ * @param y output pointer to store the integer part of `x`.
+ * @returns the fractional part of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_modff
+ * @sa SDL_trunc
+ * @sa SDL_fmod
+ *
+ * @from SDL_stdinc.h:5358 double SDL_modf(double x, double *y);
+ */
+SDL_modf: {
+      parameters: ["f64", "pointer"],
+      result: "f64"
+    },
+
+
+/**
+ * Split `x` into integer and fractional parts
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_modf for double-precision floats.
+ *
+ * @param x floating point value.
+ * @param y output pointer to store the integer part of `x`.
+ * @returns the fractional part of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_modf
+ * @sa SDL_truncf
+ * @sa SDL_fmodf
+ *
+ * @from SDL_stdinc.h:5378 float SDL_modff(float x, float *y);
+ */
+SDL_modff: {
+      parameters: ["f32", "pointer"],
+      result: "f32"
+    },
+
+
+/**
+ * Raise `x` to the power `y`
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * If `y` is the base of the natural logarithm (e), consider using SDL_exp
+ * instead.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_powf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x the base.
+ * @param y the exponent.
+ * @returns `x` raised to the power `y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_powf
+ * @sa SDL_exp
+ * @sa SDL_log
+ *
+ * @from SDL_stdinc.h:5410 double SDL_pow(double x, double y);
+ */
+SDL_pow: {
+      parameters: ["f64", "f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Raise `x` to the power `y`
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * If `y` is the base of the natural logarithm (e), consider using SDL_exp
+ * instead.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_pow for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x the base.
+ * @param y the exponent.
+ * @returns `x` raised to the power `y`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_pow
+ * @sa SDL_expf
+ * @sa SDL_logf
+ *
+ * @from SDL_stdinc.h:5442 float SDL_powf(float x, float y);
+ */
+SDL_powf: {
+      parameters: ["f32", "f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Round `x` to the nearest integer.
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_roundf for single-precision floats. To get the result as an integer
+ * type, use SDL_lround.
+ *
+ * @param x floating point value.
+ * @returns the nearest integer to `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_roundf
+ * @sa SDL_lround
+ * @sa SDL_floor
+ * @sa SDL_ceil
+ * @sa SDL_trunc
+ *
+ * @from SDL_stdinc.h:5471 double SDL_round(double x);
+ */
+SDL_round: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Round `x` to the nearest integer.
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_round for double-precision floats. To get the result as an integer
+ * type, use SDL_lroundf.
+ *
+ * @param x floating point value.
+ * @returns the nearest integer to `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_round
+ * @sa SDL_lroundf
+ * @sa SDL_floorf
+ * @sa SDL_ceilf
+ * @sa SDL_truncf
+ *
+ * @from SDL_stdinc.h:5500 float SDL_roundf(float x);
+ */
+SDL_roundf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Round `x` to the nearest integer representable as a long
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `MIN_LONG <= y <= MAX_LONG`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_lroundf for single-precision floats. To get the result as a
+ * floating-point type, use SDL_round.
+ *
+ * @param x floating point value.
+ * @returns the nearest integer to `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_lroundf
+ * @sa SDL_round
+ * @sa SDL_floor
+ * @sa SDL_ceil
+ * @sa SDL_trunc
+ *
+ * @from SDL_stdinc.h:5529 long SDL_lround(double x);
+ */
+SDL_lround: {
+      parameters: ["f64"],
+      result: "i64"
+    },
+
+
+/**
+ * Round `x` to the nearest integer representable as a long
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `MIN_LONG <= y <= MAX_LONG`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_lround for double-precision floats. To get the result as a
+ * floating-point type, use SDL_roundf.
+ *
+ * @param x floating point value.
+ * @returns the nearest integer to `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_lround
+ * @sa SDL_roundf
+ * @sa SDL_floorf
+ * @sa SDL_ceilf
+ * @sa SDL_truncf
+ *
+ * @from SDL_stdinc.h:5558 long SDL_lroundf(float x);
+ */
+SDL_lroundf: {
+      parameters: ["f32"],
+      result: "i64"
+    },
+
+
+/**
+ * Scale `x` by an integer power of two.
+ *
+ * Multiplies `x` by the `n`th power of the floating point radix (always 2).
+ *
+ * Domain: `-INF <= x <= INF`, `n` integer
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_scalbnf for single-precision floats.
+ *
+ * @param x floating point value to be scaled.
+ * @param n integer exponent.
+ * @returns `x * 2^n`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_scalbnf
+ * @sa SDL_pow
+ *
+ * @from SDL_stdinc.h:5583 double SDL_scalbn(double x, int n);
+ */
+SDL_scalbn: {
+      parameters: ["f64", "i32"],
+      result: "f64"
+    },
+
+
+/**
+ * Scale `x` by an integer power of two.
+ *
+ * Multiplies `x` by the `n`th power of the floating point radix (always 2).
+ *
+ * Domain: `-INF <= x <= INF`, `n` integer
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_scalbn for double-precision floats.
+ *
+ * @param x floating point value to be scaled.
+ * @param n integer exponent.
+ * @returns `x * 2^n`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_scalbn
+ * @sa SDL_powf
+ *
+ * @from SDL_stdinc.h:5608 float SDL_scalbnf(float x, int n);
+ */
+SDL_scalbnf: {
+      parameters: ["f32", "i32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the sine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_sinf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns sine of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_sinf
+ * @sa SDL_asin
+ * @sa SDL_cos
+ *
+ * @from SDL_stdinc.h:5636 double SDL_sin(double x);
+ */
+SDL_sin: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the sine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_sin for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns sine of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_sin
+ * @sa SDL_asinf
+ * @sa SDL_cosf
+ *
+ * @from SDL_stdinc.h:5664 float SDL_sinf(float x);
+ */
+SDL_sinf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the square root of `x`.
+ *
+ * Domain: `0 <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_sqrtf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than or equal to 0.
+ * @returns square root of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_sqrtf
+ *
+ * @from SDL_stdinc.h:5690 double SDL_sqrt(double x);
+ */
+SDL_sqrt: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the square root of `x`.
+ *
+ * Domain: `0 <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_sqrt for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value. Must be greater than or equal to 0.
+ * @returns square root of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_sqrt
+ *
+ * @from SDL_stdinc.h:5716 float SDL_sqrtf(float x);
+ */
+SDL_sqrtf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Compute the tangent of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_tanf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns tangent of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_tanf
+ * @sa SDL_sin
+ * @sa SDL_cos
+ * @sa SDL_atan
+ * @sa SDL_atan2
+ *
+ * @from SDL_stdinc.h:5746 double SDL_tan(double x);
+ */
+SDL_tan: {
+      parameters: ["f64"],
+      result: "f64"
+    },
+
+
+/**
+ * Compute the tangent of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_tan for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * @param x floating point value, in radians.
+ * @returns tangent of `x`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_tan
+ * @sa SDL_sinf
+ * @sa SDL_cosf
+ * @sa SDL_atanf
+ * @sa SDL_atan2f
+ *
+ * @from SDL_stdinc.h:5776 float SDL_tanf(float x);
+ */
+SDL_tanf: {
+      parameters: ["f32"],
+      result: "f32"
+    },
+
+
+/**
+ * Helper function to convert a string's encoding in one call.
+ *
+ * This function converts a buffer or string between encodings in one pass.
+ *
+ * The string does not need to be NULL-terminated; this function operates on
+ * the number of bytes specified in `inbytesleft` whether there is a NULL
+ * character anywhere in the buffer.
+ *
+ * The returned string is owned by the caller, and should be passed to
+ * SDL_free when no longer needed.
+ *
+ * @param tocode the character encoding of the output string. Examples are
+ *               "UTF-8", "UCS-4", etc.
+ * @param fromcode the character encoding of data in `inbuf`.
+ * @param inbuf the string to convert to a different encoding.
+ * @param inbytesleft the size of the input string _in bytes_.
+ * @returns a new string, converted to the new encoding, or NULL on error.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_iconv_open
+ * @sa SDL_iconv_close
+ * @sa SDL_iconv
+ *
+ * @from SDL_stdinc.h:5890 char * SDL_iconv_string(const char *tocode,                                               const char *fromcode,                                               const char *inbuf,                                               size_t inbytesleft);
+ */
+SDL_iconv_string: {
+      parameters: ["pointer", "pointer", "pointer", "usize"],
+      result: "pointer"
+    },
+
+} as const satisfies Deno.ForeignLibraryInterface;
