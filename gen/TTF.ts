@@ -1,3 +1,12 @@
+/**
+ * SDL3_ttf library bindings.
+ *
+ * This module exports functions and enums to the `TTF` object from the SDL3_ttf library
+ *
+ * @module
+ */
+
+
 import { libSdlPath } from './_utils.ts';
 
 import * as SDL_textengine_enums from "./enums/SDL_textengine.ts";

@@ -1,3 +1,13 @@
+/**
+ * # CategorySDLImage
+ *
+ * Header file for SDL_image library
+ *
+ * A simple library to load images of various formats as SDL surfaces
+ *
+ * @module
+ */
+
 /*
   SDL_image:  An example image loading library for use with SDL
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,14 +28,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategorySDLImage
- *
- * Header file for SDL_image library
- *
- * A simple library to load images of various formats as SDL surfaces
- */
 
 import * as _ from "@denosaurs/byte-type";
 

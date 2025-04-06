@@ -1,3 +1,19 @@
+/**
+ * # CategoryTime
+ *
+ * SDL realtime clock and date/time routines.
+ *
+ * There are two data types that are used in this category: SDL_Time, which
+ * represents the nanoseconds since a specific moment (an "epoch"), and
+ * SDL_DateTime, which breaks time down into human-understandable components:
+ * years, months, days, hours, etc.
+ *
+ * Much of the functionality is involved in converting those two types to
+ * other useful forms.
+ *
+ * @module
+ */
+
 /*
 Simple DirectMedia Layer
 Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,20 +34,6 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategoryTime
- *
- * SDL realtime clock and date/time routines.
- *
- * There are two data types that are used in this category: SDL_Time, which
- * represents the nanoseconds since a specific moment (an "epoch"), and
- * SDL_DateTime, which breaks time down into human-understandable components:
- * years, months, days, hours, etc.
- *
- * Much of the functionality is involved in converting those two types to
- * other useful forms.
- */
 
 import * as _ from "@denosaurs/byte-type";
 

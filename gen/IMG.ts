@@ -1,3 +1,12 @@
+/**
+ * SDL3_image library bindings.
+ *
+ * This module exports functions and enums to the `IMG` object from the SDL3_image library
+ *
+ * @module
+ */
+
+
 import { libSdlPath } from './_utils.ts';
 
 import * as SDL_image_enums from "./enums/SDL_image.ts";

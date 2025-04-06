@@ -1,3 +1,14 @@
+/**
+ * # CategorySDLTTF
+ *
+ * Header file for SDL_ttf library
+ *
+ * This library is a wrapper around the excellent FreeType 2.0 library,
+ * available at: https://www.freetype.org/
+ *
+ * @module
+ */
+
 /*
   SDL_ttf:  A companion library to SDL for working with TrueType (tm) fonts
   Copyright (C) 2001-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,15 +29,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategorySDLTTF
- *
- * Header file for SDL_ttf library
- *
- * This library is a wrapper around the excellent FreeType 2.0 library,
- * available at: https://www.freetype.org/
- */
 
 import * as _ from "@denosaurs/byte-type";
 

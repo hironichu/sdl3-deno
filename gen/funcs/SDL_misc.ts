@@ -1,3 +1,11 @@
+/**
+ * # CategoryMisc
+ *
+ * SDL API functions that don't fit elsewhere.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,12 +26,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategoryMisc
- *
- * SDL API functions that don't fit elsewhere.
- */
 
 export const symbols = {
 

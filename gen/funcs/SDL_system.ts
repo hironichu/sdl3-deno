@@ -1,3 +1,17 @@
+/**
+ * # CategorySystem
+ *
+ * Platform-specific SDL API functions. These are functions that deal with
+ * needs of specific operating systems, that didn't make sense to offer as
+ * platform-independent, generic APIs.
+ *
+ * Most apps can make do without these functions, but they can be useful for
+ * integrating with other parts of a specific system, adding platform-specific
+ * polish to an app, or solving problems that only affect one target.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,18 +32,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategorySystem
- *
- * Platform-specific SDL API functions. These are functions that deal with
- * needs of specific operating systems, that didn't make sense to offer as
- * platform-independent, generic APIs.
- *
- * Most apps can make do without these functions, but they can be useful for
- * integrating with other parts of a specific system, adding platform-specific
- * polish to an app, or solving problems that only affect one target.
- */
 
 export const symbols = {
 

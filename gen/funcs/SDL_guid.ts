@@ -1,3 +1,14 @@
+/**
+ * # CategoryGUID
+ *
+ * A GUID is a 128-bit value that represents something that is uniquely
+ * identifiable by this value: "globally unique."
+ *
+ * SDL provides functions to convert a GUID to/from a string.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,15 +29,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategoryGUID
- *
- * A GUID is a 128-bit value that represents something that is uniquely
- * identifiable by this value: "globally unique."
- *
- * SDL provides functions to convert a GUID to/from a string.
- */
 
 export const symbols = {
 

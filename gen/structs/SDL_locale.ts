@@ -1,3 +1,17 @@
+/**
+ * # CategoryLocale
+ *
+ * SDL locale services.
+ *
+ * This provides a way to get a list of preferred locales (language plus
+ * country) for the user. There is exactly one function:
+ * SDL_GetPreferredLocales(), which handles all the heavy lifting, and offers
+ * documentation on all the strange ways humans might have configured their
+ * language settings.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,18 +32,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategoryLocale
- *
- * SDL locale services.
- *
- * This provides a way to get a list of preferred locales (language plus
- * country) for the user. There is exactly one function:
- * SDL_GetPreferredLocales(), which handles all the heavy lifting, and offers
- * documentation on all the strange ways humans might have configured their
- * language settings.
- */
 
 import * as _ from "@denosaurs/byte-type";
 

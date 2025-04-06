@@ -1,3 +1,12 @@
+/**
+ * SDL3 library bindings.
+ *
+ * This module exports functions and enums to the `SDL` object from the SDL3 library
+ *
+ * @module
+ */
+
+
 import { libSdlPath } from './_utils.ts';
 
 import * as SDL_assert_enums from "./enums/SDL_assert.ts";

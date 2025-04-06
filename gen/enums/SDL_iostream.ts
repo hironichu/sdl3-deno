@@ -1,3 +1,16 @@
+/**
+ * # CategoryIOStream
+ *
+ * SDL provides an abstract interface for reading and writing data streams. It
+ * offers implementations for files, memory, etc, and the app can provide
+ * their own implementations, too.
+ *
+ * SDL_IOStream is not related to the standard C++ iostream class, other than
+ * both are abstract interfaces to read/write data.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,17 +31,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategoryIOStream
- *
- * SDL provides an abstract interface for reading and writing data streams. It
- * offers implementations for files, memory, etc, and the app can provide
- * their own implementations, too.
- *
- * SDL_IOStream is not related to the standard C++ iostream class, other than
- * both are abstract interfaces to read/write data.
- */
 
 /**
  * @from SDL_iostream:275 SDL_PROP_IOSTREAM_

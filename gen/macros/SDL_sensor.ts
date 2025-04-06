@@ -1,3 +1,17 @@
+/**
+ * # CategorySensor
+ *
+ * SDL sensor management.
+ *
+ * These APIs grant access to gyros and accelerometers on various platforms.
+ *
+ * In order to use these functions, SDL_Init() must have been called with the
+ * SDL_INIT_SENSOR flag. This causes SDL to scan the system for sensors, and
+ * load appropriate drivers.
+ *
+ * @module
+ */
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -18,18 +32,6 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * # CategorySensor
- *
- * SDL sensor management.
- *
- * These APIs grant access to gyros and accelerometers on various platforms.
- *
- * In order to use these functions, SDL_Init() must have been called with the
- * SDL_INIT_SENSOR flag. This causes SDL to scan the system for sensors, and
- * load appropriate drivers.
- */
 
 /**
  * @from SDL_sensor:75
