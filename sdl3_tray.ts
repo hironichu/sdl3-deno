@@ -314,10 +314,13 @@ export interface TrayOption {
  *
  * @sa SDL_InsertTrayEntryAt
  */
-export type TrayEntryFlag =
+export type TrayEntryFlag = TrayEntryFlagRequired | TrayEntryFlagOptional;
+
+export type TrayEntryFlagRequired =
   | "button" /**< Make the entry a simple button. Required. */
   | "checkbox" /**< Make the entry a checkbox. Required. */
-  | "submenu" /**< Prepare the entry to have a submenu. Required */
+  | "submenu"; /**< Prepare the entry to have a submenu. Required */
+export type TrayEntryFlagOptional =
   | "disabled" /**< Make the entry disabled. Optional. */
   | "checked"; /**< Make the entry checked. This is valid only for checkboxes. Optional. */
 
@@ -325,9 +328,15 @@ export interface TrayEntryOption {
   pos?: number;
   label?: string;
   flag?: TrayEntryFlag | TrayEntryFlag[];
+
   action?: TrayEntryCallback;
-  submenu?: TrayEntryOption[];
   userdata?: Deno.PointerValue;
+
+  disabled?: boolean;
+
+  checked?: boolean;
+  submenu?: TrayEntryOption[];
+  type?: TrayEntryFlagRequired;
 }
 
 /**
@@ -996,7 +1005,19 @@ export class TrayMenu {
         "Invalid TrayMenu pointer, possibly missing submenu flag",
       );
     }
-    for (const { pos, label, flag, action, submenu, userdata } of entries) {
+    for (
+      const {
+        pos,
+        label,
+        flag,
+        action,
+        userdata,
+        submenu,
+        disabled,
+        checked,
+        type,
+      } of entries
+    ) {
       const flagType = (s: TrayEntryFlag): number => {
         switch (s) {
           case "button":
@@ -1013,11 +1034,21 @@ export class TrayMenu {
             return 0;
         }
       };
-      const f = !flag
+      let f = !flag
         ? 0
         : typeof flag === "string"
         ? flagType(flag)
         : flag.reduce((acc, cur) => acc | flagType(cur), 0);
+
+      if (type === "button") f |= SDL.TRAYENTRY.BUTTON;
+      if (type === "checkbox" || checked !== undefined) {
+        f |= SDL.TRAYENTRY.CHECKBOX;
+      }
+      if (type === "submenu" || submenu !== undefined) {
+        f |= SDL.TRAYENTRY.SUBMENU;
+      }
+      if (checked) f |= SDL.TRAYENTRY.CHECKED;
+      if (disabled) f |= SDL.TRAYENTRY.DISABLED;
 
       const e = this.insertEntryAt(pos ?? -1, label, f);
 
