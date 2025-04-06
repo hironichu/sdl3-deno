@@ -56,6 +56,30 @@ if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
 // call SDL.pollEvents if you need handle events
 const pumpInterval = setInterval(SDL.pumpEvents, 1000 / 60);
 
+const tray = new Tray({
+  icon: "./examples/search.svg",
+  tooltip: "a tooltip",
+  menu: [
+    {
+      label: "a label",
+      action: () => {
+        console.log("Tray entry clicked!");
+      },
+    },
+    {
+      label: "Quit",
+      flag: "button",
+      action: () => {
+        console.log("quit");
+        tray.destroy();
+        clearInterval(pumpInterval);
+        SDL.quit();
+      },
+    },
+  ],
+});
+
+// or
 const tray = new Tray({icon: "./examples/search.svg", tooltip: "a tooltip"});
 
 const menu = tray.createMenu();
@@ -84,30 +108,6 @@ quit.setCallback(tray, () => {
   tray.destroy();
   clearInterval(pumpInterval);
   SDL.quit();
-});
-
-// or
-const tray = new Tray({
-  icon: "./examples/search.svg",
-  tooltip: "a tooltip",
-  menu: [
-    {
-      label: "a label",
-      action: () => {
-        console.log("Tray entry clicked!");
-      },
-    },
-    {
-      label: "Quit",
-      flag: "button",
-      action: () => {
-        console.log("quit");
-        tray.destroy();
-        clearInterval(pumpInterval);
-        SDL.quit();
-      },
-    },
-  ],
 });
 ```
 
