@@ -37,9 +37,20 @@ export function getErr(): string {
 export class Surface {
   pointer: Deno.PointerValue<unknown> = null;
 
-  constructor(imagePath?: string) {
+  constructor(imagePath?: string, surface?: Deno.PointerValue) {
+    if (surface !== undefined) {
+      this.pointer = surface;
+      return;
+    }
     if (!imagePath) return;
-    this.load(imagePath);
+    this.pointer = IMG.load(cstr(imagePath));
+    if (!this.pointer) {
+      throw new Error(`Failed to load image: ${getErr()}`);
+    }
+  }
+
+  static of(pointer: Deno.PointerValue): Surface {
+    return new Surface(undefined, pointer);
   }
 
   /**
@@ -87,12 +98,8 @@ export class Surface {
    *
    * @from SDL_image.h:177 SDL_Surface * IMG_Load(const char *file);
    */
-  load(imagePath: string) {
-    this.pointer = IMG.load(cstr(imagePath));
-    if (!this.pointer) {
-      throw new Error(`Failed to load image: ${getErr()}`);
-    }
-    return this.pointer;
+  static load(imagePath: string): Surface {
+    return new Surface(imagePath);
   }
 
   /**
@@ -147,16 +154,16 @@ export class Surface {
    *
    * @from SDL_image.h:231 SDL_Surface * IMG_Load_IO(SDL_IOStream *src, bool closeio);
    */
-  loadMem(buffer: Uint8Array) {
+  static loadMem(buffer: Uint8Array): Surface {
     const io = SDL.ioFromConstMem(
       Deno.UnsafePointer.of(buffer),
       BigInt(buffer.length),
     );
-    this.pointer = IMG.loadIo(io, false);
-    if (!this.pointer) {
+    const pointer = IMG.loadIo(io, false);
+    if (!pointer) {
       throw new Error(`Failed to load image: ${getErr()}`);
     }
-    return this.pointer;
+    return Surface.of(pointer);
   }
 
   /**
@@ -219,16 +226,16 @@ export class Surface {
    *
    * @from SDL_image.h:132 SDL_Surface * IMG_LoadTyped_IO(SDL_IOStream *src, bool closeio, const char *type);
    */
-  loadMemTyped(buffer: Uint8Array, fmt_hint: string) {
+  static loadMemTyped(buffer: Uint8Array, fmt_hint: string): Surface {
     const io = SDL.ioFromConstMem(
       Deno.UnsafePointer.of(buffer),
       BigInt(buffer.length),
     );
-    this.pointer = IMG.loadTypedIo(io, false, cstr(fmt_hint));
-    if (!this.pointer) {
+    const pointer = IMG.loadTypedIo(io, false, cstr(fmt_hint));
+    if (!pointer) {
       throw new Error(`Failed to load image: ${getErr()}`);
     }
-    return this.pointer;
+    return Surface.of(pointer);
   }
   /**
    * Free a surface.
@@ -676,7 +683,7 @@ export class TrayEntry {
     this.pointer = pointer;
   }
 
-  static of(pointer: Deno.PointerValue) {
+  static of(pointer: Deno.PointerValue): TrayEntry {
     return new TrayEntry(pointer);
   }
 
@@ -864,7 +871,7 @@ export class TrayEntry {
   setChecked(checked: boolean = true) {
     TrayEntry.setChecked(this.pointer, checked);
   }
-  static getChecked(entry: Deno.PointerValue) {
+  static getChecked(entry: Deno.PointerValue): boolean {
     return Tray.getEntryChecked(entry);
   }
 
@@ -886,7 +893,7 @@ export class TrayEntry {
    *
    * @from SDL_tray.h:388 bool SDL_GetTrayEntryChecked(SDL_TrayEntry *entry);
    */
-  get checked() {
+  get checked(): boolean {
     return TrayEntry.getChecked(this.pointer);
   }
 
@@ -913,7 +920,7 @@ export class TrayEntry {
   setEnabled(checked: boolean = true) {
     TrayEntry.setEnabled(this.pointer, checked);
   }
-  static getEnabled(entry: Deno.PointerValue) {
+  static getEnabled(entry: Deno.PointerValue): boolean {
     return Tray.getEntryEnabled(entry);
   }
   /**
@@ -932,7 +939,7 @@ export class TrayEntry {
    *
    * @from SDL_tray.h:422 bool SDL_GetTrayEntryEnabled(SDL_TrayEntry *entry);
    */
-  get enabled() {
+  get enabled(): boolean {
     return TrayEntry.getEnabled(this.pointer);
   }
 
@@ -1062,7 +1069,7 @@ export class TrayMenu {
     }
   }
 
-  static of(pointer: Deno.PointerValue) {
+  static of(pointer: Deno.PointerValue): TrayMenu {
     return new TrayMenu(pointer);
   }
 
