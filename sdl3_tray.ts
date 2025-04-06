@@ -16,7 +16,7 @@ type TrayEntryCallback = (
 const enc = new TextEncoder();
 
 export function cstr(s?: string): Deno.PointerValue {
-  if (!s) return null;
+  if (s === undefined) return null;
   return Deno.UnsafePointer.of(enc.encode(`${s}\0`));
 }
 
@@ -571,7 +571,7 @@ export class Tray {
   static insertEntryAt(
     menu: Deno.PointerValue,
     pos: number,
-    label: string,
+    label: string | undefined,
     flag: number,
   ): Deno.PointerValue {
     return SDL.insertTrayEntryAt(menu, pos, cstr(label), flag);
@@ -991,6 +991,11 @@ export class TrayMenu {
 
   createSubmenu(tray: Tray, entries?: TrayEntryOption[]) {
     if (!entries || entries.length === 0) return;
+    if (!this.pointer) {
+      throw new Error(
+        "Invalid TrayMenu pointer, possibly missing submenu flag",
+      );
+    }
     for (const { pos, label, flag, action, submenu, userdata } of entries) {
       const flagType = (s: TrayEntryFlag): number => {
         switch (s) {
@@ -1014,7 +1019,7 @@ export class TrayMenu {
         ? flagType(flag)
         : flag.reduce((acc, cur) => acc | flagType(cur), 0);
 
-      const e = this.insertEntryAt(pos ?? -1, label ?? "", f);
+      const e = this.insertEntryAt(pos ?? -1, label, f);
 
       if (action) {
         e.setCallback(tray, action, userdata ?? null);
@@ -1112,7 +1117,7 @@ export class TrayMenu {
   static insertEntryAt(
     menu: Deno.PointerValue,
     pos: number,
-    label: string,
+    label: string | undefined,
     flag: number,
   ): Deno.PointerValue {
     return Tray.insertEntryAt(menu, pos, label, flag);
@@ -1147,7 +1152,7 @@ export class TrayMenu {
    */
   insertEntryAt(
     pos: number,
-    label: string,
+    label: string | undefined,
     flag: number,
   ): TrayEntry {
     return TrayEntry.of(TrayMenu.insertEntryAt(this.pointer, pos, label, flag));
