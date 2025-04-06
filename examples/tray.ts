@@ -14,7 +14,6 @@ const tray = new Tray({
   menu: [
     {
       label: "a label",
-      flag: "button",
       action: () => {
         console.log("Tray entry clicked!", ++clicked);
         if (clicked > 3) {
@@ -24,7 +23,7 @@ const tray = new Tray({
     },
     {
       label: "a checkbox",
-      flag: ["checkbox"],
+      checked: true,
       action: () => {
         console.log("checkbox entry clicked!", ++checked);
         const entries = tray.menu.entries;
@@ -41,7 +40,6 @@ const tray = new Tray({
     {}, //a sep
     {
       label: "a sub",
-      flag: ["checkbox", "checked", "submenu"],
       submenu: [
         {
           label: "sub1",
@@ -55,7 +53,7 @@ const tray = new Tray({
         },
         {
           label: "sub3",
-          flag: "button",
+          type: "button",
           action: () => {
             console.log("sub3 clicked!");
             const entries = tray.menu.entries;
@@ -65,11 +63,11 @@ const tray = new Tray({
         },
         {
           label: "sub2",
-          flag: "button",
+          pos: 1,
           action: () => {
             console.log("sub2 clicked!");
             const e = tray.menu.entries;
-            console.log("Submenu", e.map((i) => i.label));
+            console.log("menu", e.map((i) => i.label));
             const a_sub = e[3];
             a_sub.setChecked(!a_sub.checked);
           },
@@ -79,7 +77,7 @@ const tray = new Tray({
     {}, //a sep
     {
       label: "quit",
-      flag: ["button"],
+      type: "button",
       action: () => {
         console.log("quit");
         tray.destroy();

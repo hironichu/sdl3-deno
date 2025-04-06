@@ -93,7 +93,6 @@ const tray = new Tray({
   menu: [
     {
       label: "a label",
-      flag: "button",
       action: () => {
         console.log("Tray entry clicked!");
       },
