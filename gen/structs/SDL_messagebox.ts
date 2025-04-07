@@ -79,7 +79,7 @@ export const SDL_MessageBoxColor = new _.Struct({
  * @from SDL_messagebox.h:117 
  */
 export const SDL_MessageBoxColorScheme = new _.Struct({
-  colors: new _.ArrayType(SDL_MessageBoxColor, SDL_MESSAGEBOX_COLOR_COUNT), /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
+  colors: new _.ArrayType(SDL_MessageBoxColor, 5), /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
 });
 
 

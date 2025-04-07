@@ -17,18 +17,24 @@
  * @module
  */
 
+import {
+  SDL_MessageBoxButtonData,
+  SDL_MessageBoxData,
+} from "./gen/structs/SDL_messagebox.ts";
+import { ArrayType } from "@denosaurs/byte-type";
+
 import { SDL } from "./gen/SDL.ts";
 
-import { cstr } from "./_utils.ts";
+import { cstr, cstr_v } from "./_utils.ts";
 
 /** informational dialog  */
 export function info(title: string, message: string, flags?: number): void {
-  simple({ title, message, type: "information", flags });
+  simple({ title, message, type: "info", flags });
 }
 
 /** warning dialog */
 export function warn(title: string, message: string, flags?: number): void {
-  simple({ title, message, type: "warning", flags });
+  simple({ title, message, type: "warn", flags });
 }
 
 /** error dialog */
@@ -36,16 +42,22 @@ export function error(title: string, message: string, flags?: number): void {
   simple({ title, message, type: "error", flags });
 }
 
-export type MsgBoxFlag = "information" | "warning" | "error";
+export type MsgBoxFlag = MsgBoxFlagType | MsgBoxFlagBtnDirection;
+export type MsgBoxFlagType = "info" | "warn" | "error";
+export type MsgBoxFlagBtnDirection = "left" | "right";
 
 function msgBoxFlag(f: MsgBoxFlag): number {
   switch (f) {
-    case "information":
+    case "info":
       return SDL.MESSAGEBOX.INFORMATION;
-    case "warning":
+    case "warn":
       return SDL.MESSAGEBOX.WARNING;
     case "error":
       return SDL.MESSAGEBOX.ERROR;
+    case "left":
+      return SDL.MESSAGEBOX.BUTTONS_RIGHT_TO_LEFT;
+    case "right":
+      return SDL.MESSAGEBOX.BUTTONS_LEFT_TO_RIGHT;
     default:
       return 0;
   }
@@ -94,16 +106,16 @@ function msgBoxFlag(f: MsgBoxFlag): number {
  * @from SDL_messagebox.h:216 bool SDL_ShowSimpleMessageBox(SDL_MessageBoxFlags flags, const char *title, const char *message, SDL_Window *window);
  */
 export function simple(
-  { title, message, window, flags, type }: {
-    title: string;
-    message: string;
-    type?: string;
-    flags?: number;
-    window?: Deno.PointerValue;
-  },
+  { title, message, window, flags, type, direction }: MsgBoxOptionSimple,
 ): void {
-  let f = flags ?? 0;
+  let f = 0;
+  if (flags) {
+    for (const flag of flags) {
+      f |= msgBoxFlag(flag);
+    }
+  }
   if (type) f |= msgBoxFlag(type);
+  if (direction) f |= msgBoxFlag(direction);
   SDL.showSimpleMessageBox(
     f,
     cstr(title),
@@ -111,3 +123,148 @@ export function simple(
     window ?? null,
   );
 }
+
+/**
+ * Create a modal message box.
+ *
+ * If your needs aren't complex, it might be easier to use
+ * SDL_ShowSimpleMessageBox.
+ *
+ * This function should be called on the thread that created the parent
+ * window, or on the main thread if the messagebox has no parent. It will
+ * block execution of that thread until the user clicks a button or closes the
+ * messagebox.
+ *
+ * This function may be called at any time, even before SDL_Init(). This makes
+ * it useful for reporting errors like a failure to create a renderer or
+ * OpenGL context.
+ *
+ * On X11, SDL rolls its own dialog box with X11 primitives instead of a
+ * formal toolkit like GTK+ or Qt.
+ *
+ * Note that if SDL_Init() would fail because there isn't any available video
+ * target, this function is likely to fail for the same reasons. If this is a
+ * concern, check the return value from this function and fall back to writing
+ * to stderr if you can.
+ *
+ * @param messageboxdata the SDL_MessageBoxData structure with title, text and
+ *                       other options.
+ * @param buttonid the pointer to which user id of hit button should be
+ *                 copied.
+ * @returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_ShowSimpleMessageBox
+ *
+ * @from SDL_messagebox.h:174 bool SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid);
+ */
+export function show(opt: MsgBoxOption): number | undefined {
+  const {
+    type,
+    direction,
+    flags,
+    window,
+    title,
+    message,
+    buttons,
+    colorScheme,
+  } = opt;
+
+  const btnFlag = (f: ButtonFlags | undefined) => {
+    switch (f) {
+      case "return":
+        return SDL.MESSAGEBOX_BUTTON.RETURNKEY_DEFAULT;
+      case "escape":
+        return SDL.MESSAGEBOX_BUTTON.ESCAPEKEY_DEFAULT;
+      default:
+        return 0;
+    }
+  };
+
+  const buttonBuf = new Uint32Array(4 * buttons.length);
+
+  new ArrayType(SDL_MessageBoxButtonData, buttons.length).write(
+    buttons.map((button) => ({
+      flags: btnFlag(button.flags),
+      buttonID: button.id,
+      text: cstr_v(button.text),
+    })),
+    new DataView(buttonBuf.buffer),
+  );
+
+  let f = flags ?? 0;
+  if (type) f |= msgBoxFlag(type);
+  if (direction) f |= msgBoxFlag(direction);
+
+  const buf = new BigUint64Array(7);
+
+  SDL_MessageBoxData.write({
+    flags: f,
+    window: Deno.UnsafePointer.value(window ?? null),
+    title: cstr_v(title),
+    message: cstr_v(message),
+    numbuttons: buttons.length,
+    buttons: Deno.UnsafePointer.value(
+      Deno.UnsafePointer.of(buttonBuf),
+    ), /* const SDL_MessageBoxButtonData * */
+    colorScheme: Deno.UnsafePointer.value(colorScheme ?? null), // TODO
+  }, new DataView(buf.buffer));
+
+  const buttonId = new Int32Array(1);
+  if (
+    !SDL.showMessageBox(
+      Deno.UnsafePointer.of(buf),
+      Deno.UnsafePointer.of(buttonId),
+    )
+  ) {
+    return undefined;
+  }
+
+  return buttonId[0];
+}
+
+export interface MsgBoxOptionSimple {
+  type?: MsgBoxFlagType;
+  direction?: MsgBoxFlagBtnDirection;
+  flags?: MsgBoxFlag[]; /* SDL_MessageBoxFlags */
+  window?: Deno.PointerValue; /**< SDL_Window * : Parent window, can be NULL */
+  title: string; /**< const char * : UTF-8 title */
+  message: string; /**< const char * : UTF-8 message text */
+}
+
+/**
+ * MessageBox structure containing title, text, window, etc.
+ *
+ * @since This struct is available since SDL 3.2.0.
+ *
+ * @from SDL_messagebox.h:127
+ */
+export interface MsgBoxOption extends MsgBoxOptionSimple {
+  //numbuttons: _.i32, /* int */
+  buttons: ButtonOption[]; /* const SDL_MessageBoxButtonData * */
+  colorScheme?:
+    Deno.PointerValue; /**< const SDL_MessageBoxColorScheme * : SDL_MessageBoxColorScheme, can be NULL to use system settings */
+}
+
+/**
+ * Individual button data.
+ *
+ * @since This struct is available since SDL 3.2.0.
+ *
+ * @from SDL_messagebox.h:81
+ */
+export interface ButtonOption {
+  type?: ButtonFlags; /* SDL_MessageBoxButtonFlags */
+  id:
+    number; /**< int : User defined button id (value returned via SDL_ShowMessageBox) */
+  text: string; /**< const char * : The UTF-8 button text */
+}
+
+/**
+ * Marks the default button when return/escape is hit
+ *
+ * @from SDL_messagebox.h:73 SDL_MESSAGEBOX_BUTTON_
+ */
+export type ButtonFlags = "return" | "escape";

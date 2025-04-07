@@ -6,3 +6,6 @@ export { Tray } from "./tray.ts";
 
 import * as Dialog from "./dialog.ts";
 export { Dialog };
+
+import * as MessageBox from "./messagebox.ts";
+export { MessageBox };
