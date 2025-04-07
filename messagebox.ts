@@ -28,18 +28,21 @@ import { SDL } from "./gen/SDL.ts";
 import { cstr, cstr_v } from "./_utils.ts";
 
 /** informational dialog  */
-export function info(title: string, message: string, flags?: number): void {
-  simple({ title, message, type: "info", flags });
+export function info(title: string, message: string): void {
+  simple({ title, message, type: "info" });
 }
 
 /** warning dialog */
-export function warn(title: string, message: string, flags?: number): void {
-  simple({ title, message, type: "warn", flags });
+export function warn(title: string, message: string): void {
+  simple({ title, message, type: "warn" });
 }
 
 /** error dialog */
-export function error(title: string, message: string, flags?: number): void {
-  simple({ title, message, type: "error", flags });
+export function error(
+  title: string,
+  message: string,
+): void {
+  simple({ title, message, type: "error" });
 }
 
 export type MsgBoxFlag = MsgBoxFlagType | MsgBoxFlagBtnDirection;
@@ -187,14 +190,19 @@ export function show(opt: MsgBoxOption): number | undefined {
 
   new ArrayType(SDL_MessageBoxButtonData, buttons.length).write(
     buttons.map((button) => ({
-      flags: btnFlag(button.flags),
+      flags: btnFlag(button.type),
       buttonID: button.id,
       text: cstr_v(button.text),
     })),
     new DataView(buttonBuf.buffer),
   );
 
-  let f = flags ?? 0;
+  let f = 0;
+  if (flags) {
+    for (const flag of flags) {
+      f |= msgBoxFlag(flag);
+    }
+  }
   if (type) f |= msgBoxFlag(type);
   if (direction) f |= msgBoxFlag(direction);
 
