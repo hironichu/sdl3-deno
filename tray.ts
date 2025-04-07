@@ -15,7 +15,7 @@ import { SDL } from "./gen/SDL.ts";
 import { callbacks as CB } from "./gen/callbacks/mod.ts";
 
 import { cstr, ptr_view, read_cstr, throwSdlError } from "./_utils.ts";
-import { Surface } from "./sdl3_surface.ts";
+import { Surface } from "./surface.ts";
 
 type TrayEntryUnsafeCallback = Deno.UnsafeCallback<typeof CB.SDL_TrayCallback>;
 

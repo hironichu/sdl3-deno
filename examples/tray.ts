@@ -1,4 +1,4 @@
-import { Tray } from "../sdl3_tray.ts";
+import { Tray } from "../tray.ts";
 import { SDL } from "../gen/SDL.ts";
 
 if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {

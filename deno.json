@@ -1,9 +1,11 @@
 {
   "name": "@sdl3/sdl3-deno",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "MIT",
   "exports": {
-    "./tray": "./sdl3_tray.ts",
+    ".": "./mod.ts",
+    "./tray": "./tray.ts",
+    "./dialog": "./dialog.ts",
     "./SDL": "./gen/SDL.ts",
     "./IMG": "./gen/IMG.ts",
     "./TTF": "./gen/TTF.ts",
