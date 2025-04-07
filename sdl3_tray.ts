@@ -1,10 +1,21 @@
-import { SDL } from "./gen/SDL.ts";
-import { IMG } from "./gen/IMG.ts";
+/**
+ * # CategoryTray
+ *
+ * SDL offers a way to add items to the "system tray" (more correctly called
+ * the "notification area" on Windows). On platforms that offer this concept,
+ * an SDL app can add a tray icon, submenus, checkboxes, and clickable
+ * entries, and register a callback that is fired when the user clicks on
+ * these pieces.
+ *
+ * @module
+ */
 
-export { SDL };
-export { IMG };
+import { SDL } from "./gen/SDL.ts";
 
 import { callbacks as CB } from "./gen/callbacks/mod.ts";
+
+import { cstr, ptr_view, read_cstr, throwSdlError } from "./_utils.ts";
+import { Surface } from "./sdl3_surface.ts";
 
 type TrayEntryUnsafeCallback = Deno.UnsafeCallback<typeof CB.SDL_TrayCallback>;
 
@@ -12,250 +23,6 @@ type TrayEntryCallback = (
   userdata: Deno.PointerValue,
   entry: Deno.PointerValue,
 ) => void;
-
-const enc = new TextEncoder();
-
-export function cstr(s?: string): Deno.PointerValue {
-  if (s === undefined) return null;
-  return Deno.UnsafePointer.of(enc.encode(`${s}\0`));
-}
-
-function ptr_view(p: Deno.PointerValue): Deno.UnsafePointerView {
-  if (!p) throw new Error("Pointer is null");
-  return new Deno.UnsafePointerView(p);
-}
-
-export function read_cstr(p: Deno.PointerValue): string {
-  return ptr_view(p).getCString();
-}
-
-export function getErr(): string {
-  const e = SDL.getError();
-  return read_cstr(e);
-}
-
-export class Surface {
-  pointer: Deno.PointerValue<unknown> = null;
-
-  constructor(imagePath?: string, surface?: Deno.PointerValue) {
-    if (surface !== undefined) {
-      this.pointer = surface;
-      return;
-    }
-    if (!imagePath) return;
-    this.pointer = IMG.load(cstr(imagePath));
-    if (!this.pointer) {
-      throw new Error(`Failed to load image: ${getErr()}`);
-    }
-  }
-
-  static of(pointer: Deno.PointerValue): Surface {
-    return new Surface(undefined, pointer);
-  }
-
-  /**
-   * Load an image from a filesystem path into a software surface.
-   *
-   * An SDL_Surface is a buffer of pixels in memory accessible by the CPU. Use
-   * this if you plan to hand the data to something else or manipulate it
-   * further in code.
-   *
-   * There are no guarantees about what format the new SDL_Surface data will be;
-   * in many cases, SDL_image will attempt to supply a surface that exactly
-   * matches the provided image, but in others it might have to convert (either
-   * because the image is in a format that SDL doesn't directly support or
-   * because it's compressed data that could reasonably uncompress to various
-   * formats and SDL_image had to pick one). You can inspect an SDL_Surface for
-   * its specifics, and use SDL_ConvertSurface to then migrate to any supported
-   * format.
-   *
-   * If the image format supports a transparent pixel, SDL will set the colorkey
-   * for the surface. You can enable RLE acceleration on the surface afterwards
-   * by calling: SDL_SetSurfaceColorKey(image, SDL_RLEACCEL,
-   * image->format->colorkey);
-   *
-   * There is a separate function to read files from an SDL_IOStream, if you
-   * need an i/o abstraction to provide data from anywhere instead of a simple
-   * filesystem read; that function is IMG_Load_IO().
-   *
-   * If you are using SDL's 2D rendering API, there is an equivalent call to
-   * load images directly into an SDL_Texture for use by the GPU without using a
-   * software surface: call IMG_LoadTexture() instead.
-   *
-   * When done with the returned surface, the app should dispose of it with a
-   * call to
-   * [SDL_DestroySurface](https://wiki.libsdl.org/SDL3/SDL_DestroySurface)
-   * ().
-   *
-   * @param imagePath a path on the filesystem to load an image from.
-   * @returns a new SDL surface, or NULL on error.
-   *
-   * @since This function is available since SDL_image 3.0.0.
-   *
-   * @sa IMG_LoadTyped_IO
-   * @sa IMG_Load_IO
-   * @sa SDL_DestroySurface
-   *
-   * @from SDL_image.h:177 SDL_Surface * IMG_Load(const char *file);
-   */
-  static load(imagePath: string): Surface {
-    return new Surface(imagePath);
-  }
-
-  /**
-   * Load an image from an SDL data source into a software surface.
-   *
-   * An SDL_Surface is a buffer of pixels in memory accessible by the CPU. Use
-   * this if you plan to hand the data to something else or manipulate it
-   * further in code.
-   *
-   * There are no guarantees about what format the new SDL_Surface data will be;
-   * in many cases, SDL_image will attempt to supply a surface that exactly
-   * matches the provided image, but in others it might have to convert (either
-   * because the image is in a format that SDL doesn't directly support or
-   * because it's compressed data that could reasonably uncompress to various
-   * formats and SDL_image had to pick one). You can inspect an SDL_Surface for
-   * its specifics, and use SDL_ConvertSurface to then migrate to any supported
-   * format.
-   *
-   * If the image format supports a transparent pixel, SDL will set the colorkey
-   * for the surface. You can enable RLE acceleration on the surface afterwards
-   * by calling: SDL_SetSurfaceColorKey(image, SDL_RLEACCEL,
-   * image->format->colorkey);
-   *
-   * If `closeio` is true, `src` will be closed before returning, whether this
-   * function succeeds or not. SDL_image reads everything it needs from `src`
-   * during this call in any case.
-   *
-   * There is a separate function to read files from disk without having to deal
-   * with SDL_IOStream: `IMG_Load("filename.jpg")` will call this function and
-   * manage those details for you, determining the file type from the filename's
-   * extension.
-   *
-   * There is also IMG_LoadTyped_IO(), which is equivalent to this function
-   * except a file extension (like "BMP", "JPG", etc) can be specified, in case
-   * SDL_image cannot autodetect the file format.
-   *
-   * If you are using SDL's 2D rendering API, there is an equivalent call to
-   * load images directly into an SDL_Texture for use by the GPU without using a
-   * software surface: call IMG_LoadTexture_IO() instead.
-   *
-   * When done with the returned surface, the app should dispose of it with a
-   * call to SDL_DestroySurface().
-   *
-   * @param buffer data will be read from.
-   * @returns a new SDL surface, or NULL on error.
-   *
-   * @since This function is available since SDL_image 3.0.0.
-   *
-   * @sa IMG_Load
-   * @sa IMG_LoadTyped_IO
-   * @sa SDL_DestroySurface
-   *
-   * @from SDL_image.h:231 SDL_Surface * IMG_Load_IO(SDL_IOStream *src, bool closeio);
-   */
-  static loadMem(buffer: Uint8Array): Surface {
-    const io = SDL.ioFromConstMem(
-      Deno.UnsafePointer.of(buffer),
-      BigInt(buffer.length),
-    );
-    const pointer = IMG.loadIo(io, false);
-    if (!pointer) {
-      throw new Error(`Failed to load image: ${getErr()}`);
-    }
-    return Surface.of(pointer);
-  }
-
-  /**
-   * Load an image from an SDL data source into a software surface.
-   *
-   * An SDL_Surface is a buffer of pixels in memory accessible by the CPU. Use
-   * this if you plan to hand the data to something else or manipulate it
-   * further in code.
-   *
-   * There are no guarantees about what format the new SDL_Surface data will be;
-   * in many cases, SDL_image will attempt to supply a surface that exactly
-   * matches the provided image, but in others it might have to convert (either
-   * because the image is in a format that SDL doesn't directly support or
-   * because it's compressed data that could reasonably uncompress to various
-   * formats and SDL_image had to pick one). You can inspect an SDL_Surface for
-   * its specifics, and use SDL_ConvertSurface to then migrate to any supported
-   * format.
-   *
-   * If the image format supports a transparent pixel, SDL will set the colorkey
-   * for the surface. You can enable RLE acceleration on the surface afterwards
-   * by calling: SDL_SetSurfaceColorKey(image, SDL_RLEACCEL,
-   * image->format->colorkey);
-   *
-   * If `closeio` is true, `src` will be closed before returning, whether this
-   * function succeeds or not. SDL_image reads everything it needs from `src`
-   * during this call in any case.
-   *
-   * Even though this function accepts a file type, SDL_image may still try
-   * other decoders that are capable of detecting file type from the contents of
-   * the image data, but may rely on the caller-provided type string for formats
-   * that it cannot autodetect. If `type` is NULL, SDL_image will rely solely on
-   * its ability to guess the format.
-   *
-   * There is a separate function to read files from disk without having to deal
-   * with SDL_IOStream: `IMG_Load("filename.jpg")` will call this function and
-   * manage those details for you, determining the file type from the filename's
-   * extension.
-   *
-   * There is also IMG_Load_IO(), which is equivalent to this function except
-   * that it will rely on SDL_image to determine what type of data it is
-   * loading, much like passing a NULL for type.
-   *
-   * If you are using SDL's 2D rendering API, there is an equivalent call to
-   * load images directly into an SDL_Texture for use by the GPU without using a
-   * software surface: call IMG_LoadTextureTyped_IO() instead.
-   *
-   * When done with the returned surface, the app should dispose of it with a
-   * call to SDL_DestroySurface().
-   *
-   * @param buffer data will be read from.
-   * @param fmt_hint a filename extension that represent this data ("BMP", "GIF",
-   *             "PNG", etc).
-   * @returns a new SDL surface, or NULL on error.
-   *
-   * @since This function is available since SDL_image 3.0.0.
-   *
-   * @sa IMG_Load
-   * @sa IMG_Load_IO
-   * @sa SDL_DestroySurface
-   *
-   * @from SDL_image.h:132 SDL_Surface * IMG_LoadTyped_IO(SDL_IOStream *src, bool closeio, const char *type);
-   */
-  static loadMemTyped(buffer: Uint8Array, fmt_hint: string): Surface {
-    const io = SDL.ioFromConstMem(
-      Deno.UnsafePointer.of(buffer),
-      BigInt(buffer.length),
-    );
-    const pointer = IMG.loadTypedIo(io, false, cstr(fmt_hint));
-    if (!pointer) {
-      throw new Error(`Failed to load image: ${getErr()}`);
-    }
-    return Surface.of(pointer);
-  }
-  /**
-   * Free a surface.
-   *
-   * It is safe to pass NULL to this function.
-   *
-   * @threadsafety No other thread should be using the surface when it is freed.
-   *
-   * @since This function is available since SDL 3.2.0.
-   *
-   * @sa SDL_CreateSurface
-   * @sa SDL_CreateSurfaceFrom
-   *
-   * @from SDL_surface.h:212 void SDL_DestroySurface(SDL_Surface *surface);
-   */
-  destroy() {
-    SDL.destroySurface(this.pointer);
-    this.pointer = null;
-  }
-}
 
 const entryCb = {
   map: new Array<{
@@ -297,13 +64,6 @@ const entryCb = {
   },
 };
 
-export function init_pumpEvents(tick = 1000 / 60): number {
-  if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
-    throw new Error("SDL init video and events failed");
-  }
-  return setInterval(SDL.pumpEvents, tick);
-}
-
 export interface TrayOption {
   icon?: string;
   tooltip?: string;
@@ -320,6 +80,8 @@ export interface TrayOption {
  * @since This datatype is available since SDL 3.2.0.
  *
  * @sa SDL_InsertTrayEntryAt
+ *
+ * @from SDL_tray.h:78
  */
 export type TrayEntryFlag = TrayEntryFlagRequired | TrayEntryFlagOptional;
 
@@ -409,9 +171,7 @@ export class Tray {
     const s = new Surface(icon);
     const tray = SDL.createTray(s.pointer, cstr(tooltip));
     s.destroy();
-    if (!tray) {
-      throw new Error(`Failed to create system tray: ${getErr()}`);
-    }
+    if (!tray) throwSdlError(`Failed to create system tray`);
     return tray;
   }
 
@@ -483,13 +243,6 @@ export class Tray {
   setTooltip(tooltip?: string) {
     Tray.setTooltip(this.pointer, tooltip);
   }
-  static createMenu(tray: Deno.PointerValue): Deno.PointerValue {
-    const menu = SDL.createTrayMenu(tray);
-    if (!menu) {
-      throw new Error(`Failed to create menu: ${getErr()}`);
-    }
-    return menu;
-  }
   /**
    * Create a menu for a system tray.
    *
@@ -514,15 +267,16 @@ export class Tray {
    * @from SDL_tray.h:174 SDL_TrayMenu * SDL_CreateTrayMenu(SDL_Tray *tray);
    */
   createMenu(): TrayMenu {
-    return TrayMenu.of(Tray.createMenu(this.pointer));
+    const menu = Tray.createMenu(this.pointer);
+    if (!menu) throwSdlError(`Failed to create menu`);
+    return TrayMenu.of(menu);
+  }
+  static createMenu(tray: Deno.PointerValue): Deno.PointerValue {
+    return SDL.createTrayMenu(tray);
   }
 
   static createSubmenu(entry: Deno.PointerValue): Deno.PointerValue {
-    const menu = SDL.createTraySubmenu(entry);
-    if (!menu) {
-      throw new Error(`Failed to create sub menu: ${getErr()}`);
-    }
-    return menu;
+    return SDL.createTraySubmenu(entry);
   }
 
   static getMenu(tray: Deno.PointerValue): Deno.PointerValue {
@@ -736,7 +490,9 @@ export class TrayEntry {
    * @from SDL_tray.h:198 SDL_TrayMenu * SDL_CreateTraySubmenu(SDL_TrayEntry *entry);
    */
   createSubmenu(): TrayMenu {
-    return new TrayMenu(TrayEntry.createSubmenu(this.pointer));
+    const menu = TrayEntry.createSubmenu(this.pointer);
+    if (!menu) throwSdlError(`Failed to create sub menu`);
+    return new TrayMenu(menu);
   }
 
   static getSubmenu(menu: Deno.PointerValue): Deno.PointerValue {
