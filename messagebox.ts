@@ -17,12 +17,7 @@
  * @module
  */
 
-import {
-  SDL_MessageBoxButtonData,
-  SDL_MessageBoxData,
-} from "./gen/structs/SDL_messagebox.ts";
-import { ArrayType } from "@denosaurs/byte-type";
-
+import * as _ from "./gen/structs/SDL_messagebox.ts";
 import { SDL } from "./gen/SDL.ts";
 
 import { cstr, cstr_v } from "./_utils.ts";
@@ -187,15 +182,13 @@ export function show(opt: MsgBoxOption): number | undefined {
   };
 
   const buttonBuf = new Uint32Array(4 * buttons.length);
-
-  new ArrayType(SDL_MessageBoxButtonData, buttons.length).write(
-    buttons.map((button) => ({
-      flags: btnFlag(button.type),
+  buttons.forEach((button, i) => _.write_SDL_MessageBoxButtonData({
+      flags: btnFlag(button.flags),
       buttonID: button.id,
-      text: cstr_v(button.text),
-    })),
-    new DataView(buttonBuf.buffer),
-  );
+      text: button.text,
+    },
+    new DataView(buttonBuf.buffer, 4*4*i),
+  ));
 
   let f = 0;
   if (flags) {
@@ -208,16 +201,14 @@ export function show(opt: MsgBoxOption): number | undefined {
 
   const buf = new BigUint64Array(7);
 
-  SDL_MessageBoxData.write({
+  _.write_SDL_MessageBoxData({
     flags: f,
-    window: Deno.UnsafePointer.value(window ?? null),
-    title: cstr_v(title),
-    message: cstr_v(message),
+    window: window ?? null,
+    title,
+    message,
     numbuttons: buttons.length,
-    buttons: Deno.UnsafePointer.value(
-      Deno.UnsafePointer.of(buttonBuf),
-    ), /* const SDL_MessageBoxButtonData * */
-    colorScheme: Deno.UnsafePointer.value(colorScheme ?? null), // TODO
+    buttons: Deno.UnsafePointer.of(buttonBuf), /* const SDL_MessageBoxButtonData * */
+    colorScheme: colorScheme ?? null, // TODO
   }, new DataView(buf.buffer));
 
   const buttonId = new Int32Array(1);
