@@ -61,12 +61,12 @@ import * as _b from "../_structs/SDL_dialog.ts";
  *
  * @from SDL_dialog.h:69 
  */
-export interface SDL_DialogFileFilter {
+export interface DialogFileFilter {
   name: string; /* const char * */
   pattern: string; /* const char * */
 }
 
-export function read_SDL_DialogFileFilter(dt: DataView): SDL_DialogFileFilter {
+export function read_DialogFileFilter(dt: DataView): DialogFileFilter {
   const t = _b.SDL_DialogFileFilter.read(dt);
   return {
     name: _.read_cstr_v(t.name), /** const char * */
@@ -74,7 +74,7 @@ export function read_SDL_DialogFileFilter(dt: DataView): SDL_DialogFileFilter {
   };
 }
 
-export function write_SDL_DialogFileFilter(t: SDL_DialogFileFilter, dt: DataView) {
+export function write_DialogFileFilter(t: DialogFileFilter, dt: DataView) {
   _b.SDL_DialogFileFilter.write({
     name: _.cstr_v(t.name), /** const char * */
     pattern: _.cstr_v(t.pattern), /** const char * */

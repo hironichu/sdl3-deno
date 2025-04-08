@@ -57,7 +57,7 @@ import * as _b from "../_structs/SDL_filesystem.ts";
  *
  * @from SDL_filesystem.h:252 
  */
-export interface SDL_PathInfo {
+export interface PathInfo {
   type: number; /**< SDL_PathType : the path type */
   size: bigint; /**< Uint64 : the file size in bytes */
   create_time: bigint; /**< SDL_Time : the time when the path was created */
@@ -65,7 +65,7 @@ export interface SDL_PathInfo {
   access_time: bigint; /**< SDL_Time : the last time the path was read */
 }
 
-export function read_SDL_PathInfo(dt: DataView): SDL_PathInfo {
+export function read_PathInfo(dt: DataView): PathInfo {
   const t = _b.SDL_PathInfo.read(dt);
   return {
     type: t.type, /** SDL_PathType */
@@ -76,7 +76,7 @@ export function read_SDL_PathInfo(dt: DataView): SDL_PathInfo {
   };
 }
 
-export function write_SDL_PathInfo(t: SDL_PathInfo, dt: DataView) {
+export function write_PathInfo(t: PathInfo, dt: DataView) {
   _b.SDL_PathInfo.write({
     type: t.type, /** SDL_PathType */
     size: t.size, /** Uint64 */

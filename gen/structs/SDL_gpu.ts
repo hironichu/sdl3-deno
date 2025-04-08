@@ -316,7 +316,7 @@ import * as _b from "../_structs/SDL_gpu.ts";
  *
  * @from SDL_gpu.h:1298 
  */
-export interface SDL_GPUViewport {
+export interface GPUViewport {
   x: number; /**< float : The left offset of the viewport. */
   y: number; /**< float : The top offset of the viewport. */
   w: number; /**< float : The width of the viewport. */
@@ -325,7 +325,7 @@ export interface SDL_GPUViewport {
   max_depth: number; /**< float : The maximum depth of the viewport. */
 }
 
-export function read_SDL_GPUViewport(dt: DataView): SDL_GPUViewport {
+export function read_GPUViewport(dt: DataView): GPUViewport {
   const t = _b.SDL_GPUViewport.read(dt);
   return {
     x: t.x, /** float */
@@ -337,7 +337,7 @@ export function read_SDL_GPUViewport(dt: DataView): SDL_GPUViewport {
   };
 }
 
-export function write_SDL_GPUViewport(t: SDL_GPUViewport, dt: DataView) {
+export function write_GPUViewport(t: GPUViewport, dt: DataView) {
   _b.SDL_GPUViewport.write({
     x: t.x, /** float */
     y: t.y, /** float */
@@ -360,14 +360,14 @@ export function write_SDL_GPUViewport(t: SDL_GPUViewport, dt: DataView) {
  *
  * @from SDL_gpu.h:1317 
  */
-export interface SDL_GPUTextureTransferInfo {
+export interface GPUTextureTransferInfo {
   transfer_buffer: Deno.PointerValue; /**< SDL_GPUTransferBuffer * : The transfer buffer used in the transfer operation. */
   offset: number; /**< Uint32 : The starting byte of the image data in the transfer buffer. */
   pixels_per_row: number; /**< Uint32 : The number of pixels from one row to the next. */
   rows_per_layer: number; /**< Uint32 : The number of rows from one layer/depth-slice to the next. */
 }
 
-export function read_SDL_GPUTextureTransferInfo(dt: DataView): SDL_GPUTextureTransferInfo {
+export function read_GPUTextureTransferInfo(dt: DataView): GPUTextureTransferInfo {
   const t = _b.SDL_GPUTextureTransferInfo.read(dt);
   return {
     transfer_buffer: Deno.UnsafePointer.create(t.transfer_buffer), /** SDL_GPUTransferBuffer * */
@@ -377,7 +377,7 @@ export function read_SDL_GPUTextureTransferInfo(dt: DataView): SDL_GPUTextureTra
   };
 }
 
-export function write_SDL_GPUTextureTransferInfo(t: SDL_GPUTextureTransferInfo, dt: DataView) {
+export function write_GPUTextureTransferInfo(t: GPUTextureTransferInfo, dt: DataView) {
   _b.SDL_GPUTextureTransferInfo.write({
     transfer_buffer: Deno.UnsafePointer.value(t.transfer_buffer), /** SDL_GPUTransferBuffer * */
     offset: t.offset, /** Uint32 */
@@ -399,12 +399,12 @@ export function write_SDL_GPUTextureTransferInfo(t: SDL_GPUTextureTransferInfo, 
  *
  * @from SDL_gpu.h:1335 
  */
-export interface SDL_GPUTransferBufferLocation {
+export interface GPUTransferBufferLocation {
   transfer_buffer: Deno.PointerValue; /**< SDL_GPUTransferBuffer * : The transfer buffer used in the transfer operation. */
   offset: number; /**< Uint32 : The starting byte of the buffer data in the transfer buffer. */
 }
 
-export function read_SDL_GPUTransferBufferLocation(dt: DataView): SDL_GPUTransferBufferLocation {
+export function read_GPUTransferBufferLocation(dt: DataView): GPUTransferBufferLocation {
   const t = _b.SDL_GPUTransferBufferLocation.read(dt);
   return {
     transfer_buffer: Deno.UnsafePointer.create(t.transfer_buffer), /** SDL_GPUTransferBuffer * */
@@ -412,7 +412,7 @@ export function read_SDL_GPUTransferBufferLocation(dt: DataView): SDL_GPUTransfe
   };
 }
 
-export function write_SDL_GPUTransferBufferLocation(t: SDL_GPUTransferBufferLocation, dt: DataView) {
+export function write_GPUTransferBufferLocation(t: GPUTransferBufferLocation, dt: DataView) {
   _b.SDL_GPUTransferBufferLocation.write({
     transfer_buffer: Deno.UnsafePointer.value(t.transfer_buffer), /** SDL_GPUTransferBuffer * */
     offset: t.offset, /** Uint32 */
@@ -431,7 +431,7 @@ export function write_SDL_GPUTransferBufferLocation(t: SDL_GPUTransferBufferLoca
  *
  * @from SDL_gpu.h:1350 
  */
-export interface SDL_GPUTextureLocation {
+export interface GPUTextureLocation {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture used in the copy operation. */
   mip_level: number; /**< Uint32 : The mip level index of the location. */
   layer: number; /**< Uint32 : The layer index of the location. */
@@ -440,7 +440,7 @@ export interface SDL_GPUTextureLocation {
   z: number; /**< Uint32 : The front offset of the location. */
 }
 
-export function read_SDL_GPUTextureLocation(dt: DataView): SDL_GPUTextureLocation {
+export function read_GPUTextureLocation(dt: DataView): GPUTextureLocation {
   const t = _b.SDL_GPUTextureLocation.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -452,7 +452,7 @@ export function read_SDL_GPUTextureLocation(dt: DataView): SDL_GPUTextureLocatio
   };
 }
 
-export function write_SDL_GPUTextureLocation(t: SDL_GPUTextureLocation, dt: DataView) {
+export function write_GPUTextureLocation(t: GPUTextureLocation, dt: DataView) {
   _b.SDL_GPUTextureLocation.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     mip_level: t.mip_level, /** Uint32 */
@@ -477,7 +477,7 @@ export function write_SDL_GPUTextureLocation(t: SDL_GPUTextureLocation, dt: Data
  *
  * @from SDL_gpu.h:1371 
  */
-export interface SDL_GPUTextureRegion {
+export interface GPUTextureRegion {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture used in the copy operation. */
   mip_level: number; /**< Uint32 : The mip level index to transfer. */
   layer: number; /**< Uint32 : The layer index to transfer. */
@@ -489,7 +489,7 @@ export interface SDL_GPUTextureRegion {
   d: number; /**< Uint32 : The depth of the region. */
 }
 
-export function read_SDL_GPUTextureRegion(dt: DataView): SDL_GPUTextureRegion {
+export function read_GPUTextureRegion(dt: DataView): GPUTextureRegion {
   const t = _b.SDL_GPUTextureRegion.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -504,7 +504,7 @@ export function read_SDL_GPUTextureRegion(dt: DataView): SDL_GPUTextureRegion {
   };
 }
 
-export function write_SDL_GPUTextureRegion(t: SDL_GPUTextureRegion, dt: DataView) {
+export function write_GPUTextureRegion(t: GPUTextureRegion, dt: DataView) {
   _b.SDL_GPUTextureRegion.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     mip_level: t.mip_level, /** Uint32 */
@@ -528,7 +528,7 @@ export function write_SDL_GPUTextureRegion(t: SDL_GPUTextureRegion, dt: DataView
  *
  * @from SDL_gpu.h:1391 
  */
-export interface SDL_GPUBlitRegion {
+export interface GPUBlitRegion {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture. */
   mip_level: number; /**< Uint32 : The mip level index of the region. */
   layer_or_depth_plane: number; /**< Uint32 : The layer index or depth plane of the region. This value is treated as a layer index on 2D array and cube textures, and as a depth plane on 3D textures. */
@@ -538,7 +538,7 @@ export interface SDL_GPUBlitRegion {
   h: number; /**< Uint32 : The height of the region. */
 }
 
-export function read_SDL_GPUBlitRegion(dt: DataView): SDL_GPUBlitRegion {
+export function read_GPUBlitRegion(dt: DataView): GPUBlitRegion {
   const t = _b.SDL_GPUBlitRegion.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -551,7 +551,7 @@ export function read_SDL_GPUBlitRegion(dt: DataView): SDL_GPUBlitRegion {
   };
 }
 
-export function write_SDL_GPUBlitRegion(t: SDL_GPUBlitRegion, dt: DataView) {
+export function write_GPUBlitRegion(t: GPUBlitRegion, dt: DataView) {
   _b.SDL_GPUBlitRegion.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     mip_level: t.mip_level, /** Uint32 */
@@ -575,12 +575,12 @@ export function write_SDL_GPUBlitRegion(t: SDL_GPUBlitRegion, dt: DataView) {
  *
  * @from SDL_gpu.h:1411 
  */
-export interface SDL_GPUBufferLocation {
+export interface GPUBufferLocation {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer. */
   offset: number; /**< Uint32 : The starting byte within the buffer. */
 }
 
-export function read_SDL_GPUBufferLocation(dt: DataView): SDL_GPUBufferLocation {
+export function read_GPUBufferLocation(dt: DataView): GPUBufferLocation {
   const t = _b.SDL_GPUBufferLocation.read(dt);
   return {
     buffer: Deno.UnsafePointer.create(t.buffer), /** SDL_GPUBuffer * */
@@ -588,7 +588,7 @@ export function read_SDL_GPUBufferLocation(dt: DataView): SDL_GPUBufferLocation 
   };
 }
 
-export function write_SDL_GPUBufferLocation(t: SDL_GPUBufferLocation, dt: DataView) {
+export function write_GPUBufferLocation(t: GPUBufferLocation, dt: DataView) {
   _b.SDL_GPUBufferLocation.write({
     buffer: Deno.UnsafePointer.value(t.buffer), /** SDL_GPUBuffer * */
     offset: t.offset, /** Uint32 */
@@ -608,13 +608,13 @@ export function write_SDL_GPUBufferLocation(t: SDL_GPUBufferLocation, dt: DataVi
  *
  * @from SDL_gpu.h:1427 
  */
-export interface SDL_GPUBufferRegion {
+export interface GPUBufferRegion {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer. */
   offset: number; /**< Uint32 : The starting byte within the buffer. */
   size: number; /**< Uint32 : The size in bytes of the region. */
 }
 
-export function read_SDL_GPUBufferRegion(dt: DataView): SDL_GPUBufferRegion {
+export function read_GPUBufferRegion(dt: DataView): GPUBufferRegion {
   const t = _b.SDL_GPUBufferRegion.read(dt);
   return {
     buffer: Deno.UnsafePointer.create(t.buffer), /** SDL_GPUBuffer * */
@@ -623,7 +623,7 @@ export function read_SDL_GPUBufferRegion(dt: DataView): SDL_GPUBufferRegion {
   };
 }
 
-export function write_SDL_GPUBufferRegion(t: SDL_GPUBufferRegion, dt: DataView) {
+export function write_GPUBufferRegion(t: GPUBufferRegion, dt: DataView) {
   _b.SDL_GPUBufferRegion.write({
     buffer: Deno.UnsafePointer.value(t.buffer), /** SDL_GPUBuffer * */
     offset: t.offset, /** Uint32 */
@@ -648,14 +648,14 @@ export function write_SDL_GPUBufferRegion(t: SDL_GPUBufferRegion, dt: DataView) 
  *
  * @from SDL_gpu.h:1448 
  */
-export interface SDL_GPUIndirectDrawCommand {
+export interface GPUIndirectDrawCommand {
   num_vertices: number; /**< Uint32 : The number of vertices to draw. */
   num_instances: number; /**< Uint32 : The number of instances to draw. */
   first_vertex: number; /**< Uint32 : The index of the first vertex to draw. */
   first_instance: number; /**< Uint32 : The ID of the first instance to draw. */
 }
 
-export function read_SDL_GPUIndirectDrawCommand(dt: DataView): SDL_GPUIndirectDrawCommand {
+export function read_GPUIndirectDrawCommand(dt: DataView): GPUIndirectDrawCommand {
   const t = _b.SDL_GPUIndirectDrawCommand.read(dt);
   return {
     num_vertices: t.num_vertices, /** Uint32 */
@@ -665,7 +665,7 @@ export function read_SDL_GPUIndirectDrawCommand(dt: DataView): SDL_GPUIndirectDr
   };
 }
 
-export function write_SDL_GPUIndirectDrawCommand(t: SDL_GPUIndirectDrawCommand, dt: DataView) {
+export function write_GPUIndirectDrawCommand(t: GPUIndirectDrawCommand, dt: DataView) {
   _b.SDL_GPUIndirectDrawCommand.write({
     num_vertices: t.num_vertices, /** Uint32 */
     num_instances: t.num_instances, /** Uint32 */
@@ -691,7 +691,7 @@ export function write_SDL_GPUIndirectDrawCommand(t: SDL_GPUIndirectDrawCommand, 
  *
  * @from SDL_gpu.h:1470 
  */
-export interface SDL_GPUIndexedIndirectDrawCommand {
+export interface GPUIndexedIndirectDrawCommand {
   num_indices: number; /**< Uint32 : The number of indices to draw per instance. */
   num_instances: number; /**< Uint32 : The number of instances to draw. */
   first_index: number; /**< Uint32 : The base index within the index buffer. */
@@ -699,7 +699,7 @@ export interface SDL_GPUIndexedIndirectDrawCommand {
   first_instance: number; /**< Uint32 : The ID of the first instance to draw. */
 }
 
-export function read_SDL_GPUIndexedIndirectDrawCommand(dt: DataView): SDL_GPUIndexedIndirectDrawCommand {
+export function read_GPUIndexedIndirectDrawCommand(dt: DataView): GPUIndexedIndirectDrawCommand {
   const t = _b.SDL_GPUIndexedIndirectDrawCommand.read(dt);
   return {
     num_indices: t.num_indices, /** Uint32 */
@@ -710,7 +710,7 @@ export function read_SDL_GPUIndexedIndirectDrawCommand(dt: DataView): SDL_GPUInd
   };
 }
 
-export function write_SDL_GPUIndexedIndirectDrawCommand(t: SDL_GPUIndexedIndirectDrawCommand, dt: DataView) {
+export function write_GPUIndexedIndirectDrawCommand(t: GPUIndexedIndirectDrawCommand, dt: DataView) {
   _b.SDL_GPUIndexedIndirectDrawCommand.write({
     num_indices: t.num_indices, /** Uint32 */
     num_instances: t.num_instances, /** Uint32 */
@@ -730,13 +730,13 @@ export function write_SDL_GPUIndexedIndirectDrawCommand(t: SDL_GPUIndexedIndirec
  *
  * @from SDL_gpu.h:1486 
  */
-export interface SDL_GPUIndirectDispatchCommand {
+export interface GPUIndirectDispatchCommand {
   groupcount_x: number; /**< Uint32 : The number of local workgroups to dispatch in the X dimension. */
   groupcount_y: number; /**< Uint32 : The number of local workgroups to dispatch in the Y dimension. */
   groupcount_z: number; /**< Uint32 : The number of local workgroups to dispatch in the Z dimension. */
 }
 
-export function read_SDL_GPUIndirectDispatchCommand(dt: DataView): SDL_GPUIndirectDispatchCommand {
+export function read_GPUIndirectDispatchCommand(dt: DataView): GPUIndirectDispatchCommand {
   const t = _b.SDL_GPUIndirectDispatchCommand.read(dt);
   return {
     groupcount_x: t.groupcount_x, /** Uint32 */
@@ -745,7 +745,7 @@ export function read_SDL_GPUIndirectDispatchCommand(dt: DataView): SDL_GPUIndire
   };
 }
 
-export function write_SDL_GPUIndirectDispatchCommand(t: SDL_GPUIndirectDispatchCommand, dt: DataView) {
+export function write_GPUIndirectDispatchCommand(t: GPUIndirectDispatchCommand, dt: DataView) {
   _b.SDL_GPUIndirectDispatchCommand.write({
     groupcount_x: t.groupcount_x, /** Uint32 */
     groupcount_y: t.groupcount_y, /** Uint32 */
@@ -770,7 +770,7 @@ export function write_SDL_GPUIndirectDispatchCommand(t: SDL_GPUIndirectDispatchC
  *
  * @from SDL_gpu.h:1509 
  */
-export interface SDL_GPUSamplerCreateInfo {
+export interface GPUSamplerCreateInfo {
   min_filter: number; /**< SDL_GPUFilter : The minification filter to apply to lookups. */
   mag_filter: number; /**< SDL_GPUFilter : The magnification filter to apply to lookups. */
   mipmap_mode: number; /**< SDL_GPUSamplerMipmapMode : The mipmap filter to apply to lookups. */
@@ -789,7 +789,7 @@ export interface SDL_GPUSamplerCreateInfo {
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUSamplerCreateInfo(dt: DataView): SDL_GPUSamplerCreateInfo {
+export function read_GPUSamplerCreateInfo(dt: DataView): GPUSamplerCreateInfo {
   const t = _b.SDL_GPUSamplerCreateInfo.read(dt);
   return {
     min_filter: t.min_filter, /** SDL_GPUFilter */
@@ -811,7 +811,7 @@ export function read_SDL_GPUSamplerCreateInfo(dt: DataView): SDL_GPUSamplerCreat
   };
 }
 
-export function write_SDL_GPUSamplerCreateInfo(t: SDL_GPUSamplerCreateInfo, dt: DataView) {
+export function write_GPUSamplerCreateInfo(t: GPUSamplerCreateInfo, dt: DataView) {
   _b.SDL_GPUSamplerCreateInfo.write({
     min_filter: t.min_filter, /** SDL_GPUFilter */
     mag_filter: t.mag_filter, /** SDL_GPUFilter */
@@ -853,14 +853,14 @@ export function write_SDL_GPUSamplerCreateInfo(t: SDL_GPUSamplerCreateInfo, dt: 
  *
  * @from SDL_gpu.h:1548 
  */
-export interface SDL_GPUVertexBufferDescription {
+export interface GPUVertexBufferDescription {
   slot: number; /**< Uint32 : The binding slot of the vertex buffer. */
   pitch: number; /**< Uint32 : The byte pitch between consecutive elements of the vertex buffer. */
   input_rate: number; /**< SDL_GPUVertexInputRate : Whether attribute addressing is a function of the vertex index or instance index. */
   instance_step_rate: number; /**< Uint32 : Reserved for future use. Must be set to 0. */
 }
 
-export function read_SDL_GPUVertexBufferDescription(dt: DataView): SDL_GPUVertexBufferDescription {
+export function read_GPUVertexBufferDescription(dt: DataView): GPUVertexBufferDescription {
   const t = _b.SDL_GPUVertexBufferDescription.read(dt);
   return {
     slot: t.slot, /** Uint32 */
@@ -870,7 +870,7 @@ export function read_SDL_GPUVertexBufferDescription(dt: DataView): SDL_GPUVertex
   };
 }
 
-export function write_SDL_GPUVertexBufferDescription(t: SDL_GPUVertexBufferDescription, dt: DataView) {
+export function write_GPUVertexBufferDescription(t: GPUVertexBufferDescription, dt: DataView) {
   _b.SDL_GPUVertexBufferDescription.write({
     slot: t.slot, /** Uint32 */
     pitch: t.pitch, /** Uint32 */
@@ -894,14 +894,14 @@ export function write_SDL_GPUVertexBufferDescription(t: SDL_GPUVertexBufferDescr
  *
  * @from SDL_gpu.h:1568 
  */
-export interface SDL_GPUVertexAttribute {
+export interface GPUVertexAttribute {
   location: number; /**< Uint32 : The shader input location index. */
   buffer_slot: number; /**< Uint32 : The binding slot of the associated vertex buffer. */
   format: number; /**< SDL_GPUVertexElementFormat : The size and type of the attribute data. */
   offset: number; /**< Uint32 : The byte offset of this attribute relative to the start of the vertex element. */
 }
 
-export function read_SDL_GPUVertexAttribute(dt: DataView): SDL_GPUVertexAttribute {
+export function read_GPUVertexAttribute(dt: DataView): GPUVertexAttribute {
   const t = _b.SDL_GPUVertexAttribute.read(dt);
   return {
     location: t.location, /** Uint32 */
@@ -911,7 +911,7 @@ export function read_SDL_GPUVertexAttribute(dt: DataView): SDL_GPUVertexAttribut
   };
 }
 
-export function write_SDL_GPUVertexAttribute(t: SDL_GPUVertexAttribute, dt: DataView) {
+export function write_GPUVertexAttribute(t: GPUVertexAttribute, dt: DataView) {
   _b.SDL_GPUVertexAttribute.write({
     location: t.location, /** Uint32 */
     buffer_slot: t.buffer_slot, /** Uint32 */
@@ -933,14 +933,14 @@ export function write_SDL_GPUVertexAttribute(t: SDL_GPUVertexAttribute, dt: Data
  *
  * @from SDL_gpu.h:1586 
  */
-export interface SDL_GPUVertexInputState {
+export interface GPUVertexInputState {
   vertex_buffer_descriptions: Deno.PointerValue; /**< const SDL_GPUVertexBufferDescription * : A pointer to an array of vertex buffer descriptions. */
   num_vertex_buffers: number; /**< Uint32 : The number of vertex buffer descriptions in the above array. */
   vertex_attributes: Deno.PointerValue; /**< const SDL_GPUVertexAttribute * : A pointer to an array of vertex attribute descriptions. */
   num_vertex_attributes: number; /**< Uint32 : The number of vertex attribute descriptions in the above array. */
 }
 
-export function read_SDL_GPUVertexInputState(dt: DataView): SDL_GPUVertexInputState {
+export function read_GPUVertexInputState(dt: DataView): GPUVertexInputState {
   const t = _b.SDL_GPUVertexInputState.read(dt);
   return {
     vertex_buffer_descriptions: Deno.UnsafePointer.create(t.vertex_buffer_descriptions), /** const SDL_GPUVertexBufferDescription * */
@@ -950,7 +950,7 @@ export function read_SDL_GPUVertexInputState(dt: DataView): SDL_GPUVertexInputSt
   };
 }
 
-export function write_SDL_GPUVertexInputState(t: SDL_GPUVertexInputState, dt: DataView) {
+export function write_GPUVertexInputState(t: GPUVertexInputState, dt: DataView) {
   _b.SDL_GPUVertexInputState.write({
     vertex_buffer_descriptions: Deno.UnsafePointer.value(t.vertex_buffer_descriptions), /** const SDL_GPUVertexBufferDescription * */
     num_vertex_buffers: t.num_vertex_buffers, /** Uint32 */
@@ -969,14 +969,14 @@ export function write_SDL_GPUVertexInputState(t: SDL_GPUVertexInputState, dt: Da
  *
  * @from SDL_gpu.h:1601 
  */
-export interface SDL_GPUStencilOpState {
+export interface GPUStencilOpState {
   fail_op: number; /**< SDL_GPUStencilOp : The action performed on samples that fail the stencil test. */
   pass_op: number; /**< SDL_GPUStencilOp : The action performed on samples that pass the depth and stencil tests. */
   depth_fail_op: number; /**< SDL_GPUStencilOp : The action performed on samples that pass the stencil test and fail the depth test. */
   compare_op: number; /**< SDL_GPUCompareOp : The comparison operator used in the stencil test. */
 }
 
-export function read_SDL_GPUStencilOpState(dt: DataView): SDL_GPUStencilOpState {
+export function read_GPUStencilOpState(dt: DataView): GPUStencilOpState {
   const t = _b.SDL_GPUStencilOpState.read(dt);
   return {
     fail_op: t.fail_op, /** SDL_GPUStencilOp */
@@ -986,7 +986,7 @@ export function read_SDL_GPUStencilOpState(dt: DataView): SDL_GPUStencilOpState 
   };
 }
 
-export function write_SDL_GPUStencilOpState(t: SDL_GPUStencilOpState, dt: DataView) {
+export function write_GPUStencilOpState(t: GPUStencilOpState, dt: DataView) {
   _b.SDL_GPUStencilOpState.write({
     fail_op: t.fail_op, /** SDL_GPUStencilOp */
     pass_op: t.pass_op, /** SDL_GPUStencilOp */
@@ -1005,7 +1005,7 @@ export function write_SDL_GPUStencilOpState(t: SDL_GPUStencilOpState, dt: DataVi
  *
  * @from SDL_gpu.h:1616 
  */
-export interface SDL_GPUColorTargetBlendState {
+export interface GPUColorTargetBlendState {
   src_color_blendfactor: number; /**< SDL_GPUBlendFactor : The value to be multiplied by the source RGB value. */
   dst_color_blendfactor: number; /**< SDL_GPUBlendFactor : The value to be multiplied by the destination RGB value. */
   color_blend_op: number; /**< SDL_GPUBlendOp : The blend operation for the RGB components. */
@@ -1019,7 +1019,7 @@ export interface SDL_GPUColorTargetBlendState {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_GPUColorTargetBlendState(dt: DataView): SDL_GPUColorTargetBlendState {
+export function read_GPUColorTargetBlendState(dt: DataView): GPUColorTargetBlendState {
   const t = _b.SDL_GPUColorTargetBlendState.read(dt);
   return {
     src_color_blendfactor: t.src_color_blendfactor, /** SDL_GPUBlendFactor */
@@ -1036,7 +1036,7 @@ export function read_SDL_GPUColorTargetBlendState(dt: DataView): SDL_GPUColorTar
   };
 }
 
-export function write_SDL_GPUColorTargetBlendState(t: SDL_GPUColorTargetBlendState, dt: DataView) {
+export function write_GPUColorTargetBlendState(t: GPUColorTargetBlendState, dt: DataView) {
   _b.SDL_GPUColorTargetBlendState.write({
     src_color_blendfactor: t.src_color_blendfactor, /** SDL_GPUBlendFactor */
     dst_color_blendfactor: t.dst_color_blendfactor, /** SDL_GPUBlendFactor */
@@ -1062,7 +1062,7 @@ export function write_SDL_GPUColorTargetBlendState(t: SDL_GPUColorTargetBlendSta
  *
  * @from SDL_gpu.h:1639 
  */
-export interface SDL_GPUShaderCreateInfo {
+export interface GPUShaderCreateInfo {
   code_size: bigint; /**< size_t : The size in bytes of the code pointed to. */
   code: Deno.PointerValue; /**< const Uint8 * : A pointer to shader code. */
   entrypoint: string; /**< const char * : A pointer to a null-terminated UTF-8 string specifying the entry point function name for the shader. */
@@ -1075,7 +1075,7 @@ export interface SDL_GPUShaderCreateInfo {
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUShaderCreateInfo(dt: DataView): SDL_GPUShaderCreateInfo {
+export function read_GPUShaderCreateInfo(dt: DataView): GPUShaderCreateInfo {
   const t = _b.SDL_GPUShaderCreateInfo.read(dt);
   return {
     code_size: t.code_size, /** size_t */
@@ -1091,7 +1091,7 @@ export function read_SDL_GPUShaderCreateInfo(dt: DataView): SDL_GPUShaderCreateI
   };
 }
 
-export function write_SDL_GPUShaderCreateInfo(t: SDL_GPUShaderCreateInfo, dt: DataView) {
+export function write_GPUShaderCreateInfo(t: GPUShaderCreateInfo, dt: DataView) {
   _b.SDL_GPUShaderCreateInfo.write({
     code_size: t.code_size, /** size_t */
     code: Deno.UnsafePointer.value(t.code), /** const Uint8 * */
@@ -1124,7 +1124,7 @@ export function write_SDL_GPUShaderCreateInfo(t: SDL_GPUShaderCreateInfo, dt: Da
  *
  * @from SDL_gpu.h:1669 
  */
-export interface SDL_GPUTextureCreateInfo {
+export interface GPUTextureCreateInfo {
   type: number; /**< SDL_GPUTextureType : The base dimensionality of the texture. */
   format: number; /**< SDL_GPUTextureFormat : The pixel format of the texture. */
   usage: number; /**< SDL_GPUTextureUsageFlags : How the texture is intended to be used by the client. */
@@ -1136,7 +1136,7 @@ export interface SDL_GPUTextureCreateInfo {
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUTextureCreateInfo(dt: DataView): SDL_GPUTextureCreateInfo {
+export function read_GPUTextureCreateInfo(dt: DataView): GPUTextureCreateInfo {
   const t = _b.SDL_GPUTextureCreateInfo.read(dt);
   return {
     type: t.type, /** SDL_GPUTextureType */
@@ -1151,7 +1151,7 @@ export function read_SDL_GPUTextureCreateInfo(dt: DataView): SDL_GPUTextureCreat
   };
 }
 
-export function write_SDL_GPUTextureCreateInfo(t: SDL_GPUTextureCreateInfo, dt: DataView) {
+export function write_GPUTextureCreateInfo(t: GPUTextureCreateInfo, dt: DataView) {
   _b.SDL_GPUTextureCreateInfo.write({
     type: t.type, /** SDL_GPUTextureType */
     format: t.format, /** SDL_GPUTextureFormat */
@@ -1179,13 +1179,13 @@ export function write_SDL_GPUTextureCreateInfo(t: SDL_GPUTextureCreateInfo, dt: 
  *
  * @from SDL_gpu.h:1694 
  */
-export interface SDL_GPUBufferCreateInfo {
+export interface GPUBufferCreateInfo {
   usage: number; /**< SDL_GPUBufferUsageFlags : How the buffer is intended to be used by the client. */
   size: number; /**< Uint32 : The size in bytes of the buffer. */
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUBufferCreateInfo(dt: DataView): SDL_GPUBufferCreateInfo {
+export function read_GPUBufferCreateInfo(dt: DataView): GPUBufferCreateInfo {
   const t = _b.SDL_GPUBufferCreateInfo.read(dt);
   return {
     usage: t.usage, /** SDL_GPUBufferUsageFlags */
@@ -1194,7 +1194,7 @@ export function read_SDL_GPUBufferCreateInfo(dt: DataView): SDL_GPUBufferCreateI
   };
 }
 
-export function write_SDL_GPUBufferCreateInfo(t: SDL_GPUBufferCreateInfo, dt: DataView) {
+export function write_GPUBufferCreateInfo(t: GPUBufferCreateInfo, dt: DataView) {
   _b.SDL_GPUBufferCreateInfo.write({
     usage: t.usage, /** SDL_GPUBufferUsageFlags */
     size: t.size, /** Uint32 */
@@ -1212,13 +1212,13 @@ export function write_SDL_GPUBufferCreateInfo(t: SDL_GPUBufferCreateInfo, dt: Da
  *
  * @from SDL_gpu.h:1709 
  */
-export interface SDL_GPUTransferBufferCreateInfo {
+export interface GPUTransferBufferCreateInfo {
   usage: number; /**< SDL_GPUTransferBufferUsage : How the transfer buffer is intended to be used by the client. */
   size: number; /**< Uint32 : The size in bytes of the transfer buffer. */
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUTransferBufferCreateInfo(dt: DataView): SDL_GPUTransferBufferCreateInfo {
+export function read_GPUTransferBufferCreateInfo(dt: DataView): GPUTransferBufferCreateInfo {
   const t = _b.SDL_GPUTransferBufferCreateInfo.read(dt);
   return {
     usage: t.usage, /** SDL_GPUTransferBufferUsage */
@@ -1227,7 +1227,7 @@ export function read_SDL_GPUTransferBufferCreateInfo(dt: DataView): SDL_GPUTrans
   };
 }
 
-export function write_SDL_GPUTransferBufferCreateInfo(t: SDL_GPUTransferBufferCreateInfo, dt: DataView) {
+export function write_GPUTransferBufferCreateInfo(t: GPUTransferBufferCreateInfo, dt: DataView) {
   _b.SDL_GPUTransferBufferCreateInfo.write({
     usage: t.usage, /** SDL_GPUTransferBufferUsage */
     size: t.size, /** Uint32 */
@@ -1254,7 +1254,7 @@ export function write_SDL_GPUTransferBufferCreateInfo(t: SDL_GPUTransferBufferCr
  *
  * @from SDL_gpu.h:1735 
  */
-export interface SDL_GPURasterizerState {
+export interface GPURasterizerState {
   fill_mode: number; /**< SDL_GPUFillMode : Whether polygons will be filled in or drawn as lines. */
   cull_mode: number; /**< SDL_GPUCullMode : The facing direction in which triangles will be culled. */
   front_face: number; /**< SDL_GPUFrontFace : The vertex winding that will cause a triangle to be determined as front-facing. */
@@ -1267,7 +1267,7 @@ export interface SDL_GPURasterizerState {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_GPURasterizerState(dt: DataView): SDL_GPURasterizerState {
+export function read_GPURasterizerState(dt: DataView): GPURasterizerState {
   const t = _b.SDL_GPURasterizerState.read(dt);
   return {
     fill_mode: t.fill_mode, /** SDL_GPUFillMode */
@@ -1283,7 +1283,7 @@ export function read_SDL_GPURasterizerState(dt: DataView): SDL_GPURasterizerStat
   };
 }
 
-export function write_SDL_GPURasterizerState(t: SDL_GPURasterizerState, dt: DataView) {
+export function write_GPURasterizerState(t: GPURasterizerState, dt: DataView) {
   _b.SDL_GPURasterizerState.write({
     fill_mode: t.fill_mode, /** SDL_GPUFillMode */
     cull_mode: t.cull_mode, /** SDL_GPUCullMode */
@@ -1309,7 +1309,7 @@ export function write_SDL_GPURasterizerState(t: SDL_GPURasterizerState, dt: Data
  *
  * @from SDL_gpu.h:1757 
  */
-export interface SDL_GPUMultisampleState {
+export interface GPUMultisampleState {
   sample_count: number; /**< SDL_GPUSampleCount : The number of samples to be used in rasterization. */
   sample_mask: number; /**< Uint32 : Reserved for future use. Must be set to 0. */
   enable_mask: boolean; /**< bool : Reserved for future use. Must be set to false. */
@@ -1318,7 +1318,7 @@ export interface SDL_GPUMultisampleState {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUMultisampleState(dt: DataView): SDL_GPUMultisampleState {
+export function read_GPUMultisampleState(dt: DataView): GPUMultisampleState {
   const t = _b.SDL_GPUMultisampleState.read(dt);
   return {
     sample_count: t.sample_count, /** SDL_GPUSampleCount */
@@ -1330,7 +1330,7 @@ export function read_SDL_GPUMultisampleState(dt: DataView): SDL_GPUMultisampleSt
   };
 }
 
-export function write_SDL_GPUMultisampleState(t: SDL_GPUMultisampleState, dt: DataView) {
+export function write_GPUMultisampleState(t: GPUMultisampleState, dt: DataView) {
   _b.SDL_GPUMultisampleState.write({
     sample_count: t.sample_count, /** SDL_GPUSampleCount */
     sample_mask: t.sample_mask, /** Uint32 */
@@ -1352,10 +1352,10 @@ export function write_SDL_GPUMultisampleState(t: SDL_GPUMultisampleState, dt: Da
  *
  * @from SDL_gpu.h:1775 
  */
-export interface SDL_GPUDepthStencilState {
+export interface GPUDepthStencilState {
   compare_op: number; /**< SDL_GPUCompareOp : The comparison operator used for depth testing. */
-  back_stencil_state: SDL_GPUStencilOpState; /**< SDL_GPUStencilOpState : The stencil op state for back-facing triangles. */
-  front_stencil_state: SDL_GPUStencilOpState; /**< SDL_GPUStencilOpState : The stencil op state for front-facing triangles. */
+  back_stencil_state: GPUStencilOpState; /**< SDL_GPUStencilOpState : The stencil op state for back-facing triangles. */
+  front_stencil_state: GPUStencilOpState; /**< SDL_GPUStencilOpState : The stencil op state for front-facing triangles. */
   compare_mask: number; /**< Uint8 : Selects the bits of the stencil values participating in the stencil test. */
   write_mask: number; /**< Uint8 : Selects the bits of the stencil values updated by the stencil test. */
   enable_depth_test: boolean; /**< bool : true enables the depth test. */
@@ -1366,7 +1366,7 @@ export interface SDL_GPUDepthStencilState {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUDepthStencilState(dt: DataView): SDL_GPUDepthStencilState {
+export function read_GPUDepthStencilState(dt: DataView): GPUDepthStencilState {
   const t = _b.SDL_GPUDepthStencilState.read(dt);
   return {
     compare_op: t.compare_op, /** SDL_GPUCompareOp */
@@ -1383,7 +1383,7 @@ export function read_SDL_GPUDepthStencilState(dt: DataView): SDL_GPUDepthStencil
   };
 }
 
-export function write_SDL_GPUDepthStencilState(t: SDL_GPUDepthStencilState, dt: DataView) {
+export function write_GPUDepthStencilState(t: GPUDepthStencilState, dt: DataView) {
   _b.SDL_GPUDepthStencilState.write({
     compare_op: t.compare_op, /** SDL_GPUCompareOp */
     back_stencil_state: t.back_stencil_state, /** SDL_GPUStencilOpState */
@@ -1410,12 +1410,12 @@ export function write_SDL_GPUDepthStencilState(t: SDL_GPUDepthStencilState, dt: 
  *
  * @from SDL_gpu.h:1798 
  */
-export interface SDL_GPUColorTargetDescription {
+export interface GPUColorTargetDescription {
   format: number; /**< SDL_GPUTextureFormat : The pixel format of the texture to be used as a color target. */
-  blend_state: SDL_GPUColorTargetBlendState; /**< SDL_GPUColorTargetBlendState : The blend state to be used for the color target. */
+  blend_state: GPUColorTargetBlendState; /**< SDL_GPUColorTargetBlendState : The blend state to be used for the color target. */
 }
 
-export function read_SDL_GPUColorTargetDescription(dt: DataView): SDL_GPUColorTargetDescription {
+export function read_GPUColorTargetDescription(dt: DataView): GPUColorTargetDescription {
   const t = _b.SDL_GPUColorTargetDescription.read(dt);
   return {
     format: t.format, /** SDL_GPUTextureFormat */
@@ -1423,7 +1423,7 @@ export function read_SDL_GPUColorTargetDescription(dt: DataView): SDL_GPUColorTa
   };
 }
 
-export function write_SDL_GPUColorTargetDescription(t: SDL_GPUColorTargetDescription, dt: DataView) {
+export function write_GPUColorTargetDescription(t: GPUColorTargetDescription, dt: DataView) {
   _b.SDL_GPUColorTargetDescription.write({
     format: t.format, /** SDL_GPUTextureFormat */
     blend_state: t.blend_state, /** SDL_GPUColorTargetBlendState */
@@ -1443,7 +1443,7 @@ export function write_SDL_GPUColorTargetDescription(t: SDL_GPUColorTargetDescrip
  *
  * @from SDL_gpu.h:1814 
  */
-export interface SDL_GPUGraphicsPipelineTargetInfo {
+export interface GPUGraphicsPipelineTargetInfo {
   color_target_descriptions: Deno.PointerValue; /**< const SDL_GPUColorTargetDescription * : A pointer to an array of color target descriptions. */
   num_color_targets: number; /**< Uint32 : The number of color target descriptions in the above array. */
   depth_stencil_format: number; /**< SDL_GPUTextureFormat : The pixel format of the depth-stencil target. Ignored if has_depth_stencil_target is false. */
@@ -1453,7 +1453,7 @@ export interface SDL_GPUGraphicsPipelineTargetInfo {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUGraphicsPipelineTargetInfo(dt: DataView): SDL_GPUGraphicsPipelineTargetInfo {
+export function read_GPUGraphicsPipelineTargetInfo(dt: DataView): GPUGraphicsPipelineTargetInfo {
   const t = _b.SDL_GPUGraphicsPipelineTargetInfo.read(dt);
   return {
     color_target_descriptions: Deno.UnsafePointer.create(t.color_target_descriptions), /** const SDL_GPUColorTargetDescription * */
@@ -1466,7 +1466,7 @@ export function read_SDL_GPUGraphicsPipelineTargetInfo(dt: DataView): SDL_GPUGra
   };
 }
 
-export function write_SDL_GPUGraphicsPipelineTargetInfo(t: SDL_GPUGraphicsPipelineTargetInfo, dt: DataView) {
+export function write_GPUGraphicsPipelineTargetInfo(t: GPUGraphicsPipelineTargetInfo, dt: DataView) {
   _b.SDL_GPUGraphicsPipelineTargetInfo.write({
     color_target_descriptions: Deno.UnsafePointer.value(t.color_target_descriptions), /** const SDL_GPUColorTargetDescription * */
     num_color_targets: t.num_color_targets, /** Uint32 */
@@ -1495,19 +1495,19 @@ export function write_SDL_GPUGraphicsPipelineTargetInfo(t: SDL_GPUGraphicsPipeli
  *
  * @from SDL_gpu.h:1839 
  */
-export interface SDL_GPUGraphicsPipelineCreateInfo {
+export interface GPUGraphicsPipelineCreateInfo {
   vertex_shader: Deno.PointerValue; /**< SDL_GPUShader * : The vertex shader used by the graphics pipeline. */
   fragment_shader: Deno.PointerValue; /**< SDL_GPUShader * : The fragment shader used by the graphics pipeline. */
-  vertex_input_state: SDL_GPUVertexInputState; /**< SDL_GPUVertexInputState : The vertex layout of the graphics pipeline. */
+  vertex_input_state: GPUVertexInputState; /**< SDL_GPUVertexInputState : The vertex layout of the graphics pipeline. */
   primitive_type: number; /**< SDL_GPUPrimitiveType : The primitive topology of the graphics pipeline. */
-  rasterizer_state: SDL_GPURasterizerState; /**< SDL_GPURasterizerState : The rasterizer state of the graphics pipeline. */
-  multisample_state: SDL_GPUMultisampleState; /**< SDL_GPUMultisampleState : The multisample state of the graphics pipeline. */
-  depth_stencil_state: SDL_GPUDepthStencilState; /**< SDL_GPUDepthStencilState : The depth-stencil state of the graphics pipeline. */
-  target_info: SDL_GPUGraphicsPipelineTargetInfo; /**< SDL_GPUGraphicsPipelineTargetInfo : Formats and blend modes for the render targets of the graphics pipeline. */
+  rasterizer_state: GPURasterizerState; /**< SDL_GPURasterizerState : The rasterizer state of the graphics pipeline. */
+  multisample_state: GPUMultisampleState; /**< SDL_GPUMultisampleState : The multisample state of the graphics pipeline. */
+  depth_stencil_state: GPUDepthStencilState; /**< SDL_GPUDepthStencilState : The depth-stencil state of the graphics pipeline. */
+  target_info: GPUGraphicsPipelineTargetInfo; /**< SDL_GPUGraphicsPipelineTargetInfo : Formats and blend modes for the render targets of the graphics pipeline. */
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUGraphicsPipelineCreateInfo(dt: DataView): SDL_GPUGraphicsPipelineCreateInfo {
+export function read_GPUGraphicsPipelineCreateInfo(dt: DataView): GPUGraphicsPipelineCreateInfo {
   const t = _b.SDL_GPUGraphicsPipelineCreateInfo.read(dt);
   return {
     vertex_shader: Deno.UnsafePointer.create(t.vertex_shader), /** SDL_GPUShader * */
@@ -1522,7 +1522,7 @@ export function read_SDL_GPUGraphicsPipelineCreateInfo(dt: DataView): SDL_GPUGra
   };
 }
 
-export function write_SDL_GPUGraphicsPipelineCreateInfo(t: SDL_GPUGraphicsPipelineCreateInfo, dt: DataView) {
+export function write_GPUGraphicsPipelineCreateInfo(t: GPUGraphicsPipelineCreateInfo, dt: DataView) {
   _b.SDL_GPUGraphicsPipelineCreateInfo.write({
     vertex_shader: Deno.UnsafePointer.value(t.vertex_shader), /** SDL_GPUShader * */
     fragment_shader: Deno.UnsafePointer.value(t.fragment_shader), /** SDL_GPUShader * */
@@ -1547,7 +1547,7 @@ export function write_SDL_GPUGraphicsPipelineCreateInfo(t: SDL_GPUGraphicsPipeli
  *
  * @from SDL_gpu.h:1861 
  */
-export interface SDL_GPUComputePipelineCreateInfo {
+export interface GPUComputePipelineCreateInfo {
   code_size: bigint; /**< size_t : The size in bytes of the compute shader code pointed to. */
   code: Deno.PointerValue; /**< const Uint8 * : A pointer to compute shader code. */
   entrypoint: string; /**< const char * : A pointer to a null-terminated UTF-8 string specifying the entry point function name for the shader. */
@@ -1564,7 +1564,7 @@ export interface SDL_GPUComputePipelineCreateInfo {
   props: number; /**< SDL_PropertiesID : A properties ID for extensions. Should be 0 if no extensions are needed. */
 }
 
-export function read_SDL_GPUComputePipelineCreateInfo(dt: DataView): SDL_GPUComputePipelineCreateInfo {
+export function read_GPUComputePipelineCreateInfo(dt: DataView): GPUComputePipelineCreateInfo {
   const t = _b.SDL_GPUComputePipelineCreateInfo.read(dt);
   return {
     code_size: t.code_size, /** size_t */
@@ -1584,7 +1584,7 @@ export function read_SDL_GPUComputePipelineCreateInfo(dt: DataView): SDL_GPUComp
   };
 }
 
-export function write_SDL_GPUComputePipelineCreateInfo(t: SDL_GPUComputePipelineCreateInfo, dt: DataView) {
+export function write_GPUComputePipelineCreateInfo(t: GPUComputePipelineCreateInfo, dt: DataView) {
   _b.SDL_GPUComputePipelineCreateInfo.write({
     code_size: t.code_size, /** size_t */
     code: Deno.UnsafePointer.value(t.code), /** const Uint8 * */
@@ -1641,11 +1641,11 @@ export function write_SDL_GPUComputePipelineCreateInfo(t: SDL_GPUComputePipeline
  *
  * @from SDL_gpu.h:1915 
  */
-export interface SDL_GPUColorTargetInfo {
+export interface GPUColorTargetInfo {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture that will be used as a color target by a render pass. */
   mip_level: number; /**< Uint32 : The mip level to use as a color target. */
   layer_or_depth_plane: number; /**< Uint32 : The layer index or depth plane to use as a color target. This value is treated as a layer index on 2D array and cube textures, and as a depth plane on 3D textures. */
-  clear_color: SDL_FColor; /**< SDL_FColor : The color to clear the color target to at the start of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
+  clear_color: FColor; /**< SDL_FColor : The color to clear the color target to at the start of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
   load_op: number; /**< SDL_GPULoadOp : What is done with the contents of the color target at the beginning of the render pass. */
   store_op: number; /**< SDL_GPUStoreOp : What is done with the results of the render pass. */
   resolve_texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture that will receive the results of a multisample resolve operation. Ignored if a RESOLVE* store_op is not used. */
@@ -1657,7 +1657,7 @@ export interface SDL_GPUColorTargetInfo {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_GPUColorTargetInfo(dt: DataView): SDL_GPUColorTargetInfo {
+export function read_GPUColorTargetInfo(dt: DataView): GPUColorTargetInfo {
   const t = _b.SDL_GPUColorTargetInfo.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -1676,7 +1676,7 @@ export function read_SDL_GPUColorTargetInfo(dt: DataView): SDL_GPUColorTargetInf
   };
 }
 
-export function write_SDL_GPUColorTargetInfo(t: SDL_GPUColorTargetInfo, dt: DataView) {
+export function write_GPUColorTargetInfo(t: GPUColorTargetInfo, dt: DataView) {
   _b.SDL_GPUColorTargetInfo.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     mip_level: t.mip_level, /** Uint32 */
@@ -1741,7 +1741,7 @@ export function write_SDL_GPUColorTargetInfo(t: SDL_GPUColorTargetInfo, dt: Data
  *
  * @from SDL_gpu.h:1976 
  */
-export interface SDL_GPUDepthStencilTargetInfo {
+export interface GPUDepthStencilTargetInfo {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture that will be used as the depth stencil target by the render pass. */
   clear_depth: number; /**< float : The value to clear the depth component to at the beginning of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
   load_op: number; /**< SDL_GPULoadOp : What is done with the depth contents at the beginning of the render pass. */
@@ -1754,7 +1754,7 @@ export interface SDL_GPUDepthStencilTargetInfo {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_GPUDepthStencilTargetInfo(dt: DataView): SDL_GPUDepthStencilTargetInfo {
+export function read_GPUDepthStencilTargetInfo(dt: DataView): GPUDepthStencilTargetInfo {
   const t = _b.SDL_GPUDepthStencilTargetInfo.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -1770,7 +1770,7 @@ export function read_SDL_GPUDepthStencilTargetInfo(dt: DataView): SDL_GPUDepthSt
   };
 }
 
-export function write_SDL_GPUDepthStencilTargetInfo(t: SDL_GPUDepthStencilTargetInfo, dt: DataView) {
+export function write_GPUDepthStencilTargetInfo(t: GPUDepthStencilTargetInfo, dt: DataView) {
   _b.SDL_GPUDepthStencilTargetInfo.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     clear_depth: t.clear_depth, /** float */
@@ -1795,11 +1795,11 @@ export function write_SDL_GPUDepthStencilTargetInfo(t: SDL_GPUDepthStencilTarget
  *
  * @from SDL_gpu.h:1997 
  */
-export interface SDL_GPUBlitInfo {
-  source: SDL_GPUBlitRegion; /**< SDL_GPUBlitRegion : The source region for the blit. */
-  destination: SDL_GPUBlitRegion; /**< SDL_GPUBlitRegion : The destination region for the blit. */
+export interface GPUBlitInfo {
+  source: GPUBlitRegion; /**< SDL_GPUBlitRegion : The source region for the blit. */
+  destination: GPUBlitRegion; /**< SDL_GPUBlitRegion : The destination region for the blit. */
   load_op: number; /**< SDL_GPULoadOp : What is done with the contents of the destination before the blit. */
-  clear_color: SDL_FColor; /**< SDL_FColor : The color to clear the destination region to before the blit. Ignored if load_op is not SDL_GPU_LOADOP_CLEAR. */
+  clear_color: FColor; /**< SDL_FColor : The color to clear the destination region to before the blit. Ignored if load_op is not SDL_GPU_LOADOP_CLEAR. */
   flip_mode: number; /**< SDL_FlipMode : The flip mode for the source region. */
   filter: number; /**< SDL_GPUFilter : The filter mode used when blitting. */
   cycle: boolean; /**< bool : true cycles the destination texture if it is already bound. */
@@ -1808,7 +1808,7 @@ export interface SDL_GPUBlitInfo {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUBlitInfo(dt: DataView): SDL_GPUBlitInfo {
+export function read_GPUBlitInfo(dt: DataView): GPUBlitInfo {
   const t = _b.SDL_GPUBlitInfo.read(dt);
   return {
     source: t.source, /** SDL_GPUBlitRegion */
@@ -1824,7 +1824,7 @@ export function read_SDL_GPUBlitInfo(dt: DataView): SDL_GPUBlitInfo {
   };
 }
 
-export function write_SDL_GPUBlitInfo(t: SDL_GPUBlitInfo, dt: DataView) {
+export function write_GPUBlitInfo(t: GPUBlitInfo, dt: DataView) {
   _b.SDL_GPUBlitInfo.write({
     source: t.source, /** SDL_GPUBlitRegion */
     destination: t.destination, /** SDL_GPUBlitRegion */
@@ -1850,12 +1850,12 @@ export function write_SDL_GPUBlitInfo(t: SDL_GPUBlitInfo, dt: DataView) {
  *
  * @from SDL_gpu.h:2020 
  */
-export interface SDL_GPUBufferBinding {
+export interface GPUBufferBinding {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer to bind. Must have been created with SDL_GPU_BUFFERUSAGE_VERTEX for SDL_BindGPUVertexBuffers, or SDL_GPU_BUFFERUSAGE_INDEX for SDL_BindGPUIndexBuffer. */
   offset: number; /**< Uint32 : The starting byte of the data to bind in the buffer. */
 }
 
-export function read_SDL_GPUBufferBinding(dt: DataView): SDL_GPUBufferBinding {
+export function read_GPUBufferBinding(dt: DataView): GPUBufferBinding {
   const t = _b.SDL_GPUBufferBinding.read(dt);
   return {
     buffer: Deno.UnsafePointer.create(t.buffer), /** SDL_GPUBuffer * */
@@ -1863,7 +1863,7 @@ export function read_SDL_GPUBufferBinding(dt: DataView): SDL_GPUBufferBinding {
   };
 }
 
-export function write_SDL_GPUBufferBinding(t: SDL_GPUBufferBinding, dt: DataView) {
+export function write_GPUBufferBinding(t: GPUBufferBinding, dt: DataView) {
   _b.SDL_GPUBufferBinding.write({
     buffer: Deno.UnsafePointer.value(t.buffer), /** SDL_GPUBuffer * */
     offset: t.offset, /** Uint32 */
@@ -1881,12 +1881,12 @@ export function write_SDL_GPUBufferBinding(t: SDL_GPUBufferBinding, dt: DataView
  *
  * @from SDL_gpu.h:2034 
  */
-export interface SDL_GPUTextureSamplerBinding {
+export interface GPUTextureSamplerBinding {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_SAMPLER. */
   sampler: Deno.PointerValue; /**< SDL_GPUSampler * : The sampler to bind. */
 }
 
-export function read_SDL_GPUTextureSamplerBinding(dt: DataView): SDL_GPUTextureSamplerBinding {
+export function read_GPUTextureSamplerBinding(dt: DataView): GPUTextureSamplerBinding {
   const t = _b.SDL_GPUTextureSamplerBinding.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -1894,7 +1894,7 @@ export function read_SDL_GPUTextureSamplerBinding(dt: DataView): SDL_GPUTextureS
   };
 }
 
-export function write_SDL_GPUTextureSamplerBinding(t: SDL_GPUTextureSamplerBinding, dt: DataView) {
+export function write_GPUTextureSamplerBinding(t: GPUTextureSamplerBinding, dt: DataView) {
   _b.SDL_GPUTextureSamplerBinding.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     sampler: Deno.UnsafePointer.value(t.sampler), /** SDL_GPUSampler * */
@@ -1912,7 +1912,7 @@ export function write_SDL_GPUTextureSamplerBinding(t: SDL_GPUTextureSamplerBindi
  *
  * @from SDL_gpu.h:2048 
  */
-export interface SDL_GPUStorageBufferReadWriteBinding {
+export interface GPUStorageBufferReadWriteBinding {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer to bind. Must have been created with SDL_GPU_BUFFERUSAGE_COMPUTE_STORAGE_WRITE. */
   cycle: boolean; /**< bool : true cycles the buffer if it is already bound. */
   padding1: number; /* Uint8 */
@@ -1920,7 +1920,7 @@ export interface SDL_GPUStorageBufferReadWriteBinding {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUStorageBufferReadWriteBinding(dt: DataView): SDL_GPUStorageBufferReadWriteBinding {
+export function read_GPUStorageBufferReadWriteBinding(dt: DataView): GPUStorageBufferReadWriteBinding {
   const t = _b.SDL_GPUStorageBufferReadWriteBinding.read(dt);
   return {
     buffer: Deno.UnsafePointer.create(t.buffer), /** SDL_GPUBuffer * */
@@ -1931,7 +1931,7 @@ export function read_SDL_GPUStorageBufferReadWriteBinding(dt: DataView): SDL_GPU
   };
 }
 
-export function write_SDL_GPUStorageBufferReadWriteBinding(t: SDL_GPUStorageBufferReadWriteBinding, dt: DataView) {
+export function write_GPUStorageBufferReadWriteBinding(t: GPUStorageBufferReadWriteBinding, dt: DataView) {
   _b.SDL_GPUStorageBufferReadWriteBinding.write({
     buffer: Deno.UnsafePointer.value(t.buffer), /** SDL_GPUBuffer * */
     cycle: t.cycle, /** bool */
@@ -1952,7 +1952,7 @@ export function write_SDL_GPUStorageBufferReadWriteBinding(t: SDL_GPUStorageBuff
  *
  * @from SDL_gpu.h:2065 
  */
-export interface SDL_GPUStorageTextureReadWriteBinding {
+export interface GPUStorageTextureReadWriteBinding {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_WRITE or SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_SIMULTANEOUS_READ_WRITE. */
   mip_level: number; /**< Uint32 : The mip level index to bind. */
   layer: number; /**< Uint32 : The layer index to bind. */
@@ -1962,7 +1962,7 @@ export interface SDL_GPUStorageTextureReadWriteBinding {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_GPUStorageTextureReadWriteBinding(dt: DataView): SDL_GPUStorageTextureReadWriteBinding {
+export function read_GPUStorageTextureReadWriteBinding(dt: DataView): GPUStorageTextureReadWriteBinding {
   const t = _b.SDL_GPUStorageTextureReadWriteBinding.read(dt);
   return {
     texture: Deno.UnsafePointer.create(t.texture), /** SDL_GPUTexture * */
@@ -1975,7 +1975,7 @@ export function read_SDL_GPUStorageTextureReadWriteBinding(dt: DataView): SDL_GP
   };
 }
 
-export function write_SDL_GPUStorageTextureReadWriteBinding(t: SDL_GPUStorageTextureReadWriteBinding, dt: DataView) {
+export function write_GPUStorageTextureReadWriteBinding(t: GPUStorageTextureReadWriteBinding, dt: DataView) {
   _b.SDL_GPUStorageTextureReadWriteBinding.write({
     texture: Deno.UnsafePointer.value(t.texture), /** SDL_GPUTexture * */
     mip_level: t.mip_level, /** Uint32 */

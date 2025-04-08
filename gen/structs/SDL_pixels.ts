@@ -95,14 +95,14 @@ import * as _b from "../_structs/SDL_pixels.ts";
  *
  * @from SDL_pixels.h:1111 
  */
-export interface SDL_Color {
+export interface Color {
   r: number; /* Uint8 */
   g: number; /* Uint8 */
   b: number; /* Uint8 */
   a: number; /* Uint8 */
 }
 
-export function read_SDL_Color(dt: DataView): SDL_Color {
+export function read_Color(dt: DataView): Color {
   const t = _b.SDL_Color.read(dt);
   return {
     r: t.r, /** Uint8 */
@@ -112,7 +112,7 @@ export function read_SDL_Color(dt: DataView): SDL_Color {
   };
 }
 
-export function write_SDL_Color(t: SDL_Color, dt: DataView) {
+export function write_Color(t: Color, dt: DataView) {
   _b.SDL_Color.write({
     r: t.r, /** Uint8 */
     g: t.g, /** Uint8 */
@@ -130,14 +130,14 @@ export function write_SDL_Color(t: SDL_Color, dt: DataView) {
  *
  * @from SDL_pixels.h:1125 
  */
-export interface SDL_FColor {
+export interface FColor {
   r: number; /* float */
   g: number; /* float */
   b: number; /* float */
   a: number; /* float */
 }
 
-export function read_SDL_FColor(dt: DataView): SDL_FColor {
+export function read_FColor(dt: DataView): FColor {
   const t = _b.SDL_FColor.read(dt);
   return {
     r: t.r, /** float */
@@ -147,7 +147,7 @@ export function read_SDL_FColor(dt: DataView): SDL_FColor {
   };
 }
 
-export function write_SDL_FColor(t: SDL_FColor, dt: DataView) {
+export function write_FColor(t: FColor, dt: DataView) {
   _b.SDL_FColor.write({
     r: t.r, /** float */
     g: t.g, /** float */
@@ -166,14 +166,14 @@ export function write_SDL_FColor(t: SDL_FColor, dt: DataView) {
  *
  * @from SDL_pixels.h:1140 
  */
-export interface SDL_Palette {
+export interface Palette {
   ncolors: number; /**< int : number of elements in `colors`. */
   colors: Deno.PointerValue; /**< SDL_Color * : an array of colors, `ncolors` long. */
   version: number; /**< Uint32 : internal use only, do not touch. */
   refcount: number; /**< int : internal use only, do not touch. */
 }
 
-export function read_SDL_Palette(dt: DataView): SDL_Palette {
+export function read_Palette(dt: DataView): Palette {
   const t = _b.SDL_Palette.read(dt);
   return {
     ncolors: t.ncolors, /** int */
@@ -183,7 +183,7 @@ export function read_SDL_Palette(dt: DataView): SDL_Palette {
   };
 }
 
-export function write_SDL_Palette(t: SDL_Palette, dt: DataView) {
+export function write_Palette(t: Palette, dt: DataView) {
   _b.SDL_Palette.write({
     ncolors: t.ncolors, /** int */
     colors: Deno.UnsafePointer.value(t.colors), /** SDL_Color * */
@@ -200,7 +200,7 @@ export function write_SDL_Palette(t: SDL_Palette, dt: DataView) {
  *
  * @from SDL_pixels.h:1153 
  */
-export interface SDL_PixelFormatDetails {
+export interface PixelFormatDetails {
   format: number; /* SDL_PixelFormat */
   bits_per_pixel: number; /* Uint8 */
   bytes_per_pixel: number; /* Uint8 */
@@ -219,7 +219,7 @@ export interface SDL_PixelFormatDetails {
   Ashift: number; /* Uint8 */
 }
 
-export function read_SDL_PixelFormatDetails(dt: DataView): SDL_PixelFormatDetails {
+export function read_PixelFormatDetails(dt: DataView): PixelFormatDetails {
   const t = _b.SDL_PixelFormatDetails.read(dt);
   return {
     format: t.format, /** SDL_PixelFormat */
@@ -241,7 +241,7 @@ export function read_SDL_PixelFormatDetails(dt: DataView): SDL_PixelFormatDetail
   };
 }
 
-export function write_SDL_PixelFormatDetails(t: SDL_PixelFormatDetails, dt: DataView) {
+export function write_PixelFormatDetails(t: PixelFormatDetails, dt: DataView) {
   _b.SDL_PixelFormatDetails.write({
     format: t.format, /** SDL_PixelFormat */
     bits_per_pixel: t.bits_per_pixel, /** Uint8 */

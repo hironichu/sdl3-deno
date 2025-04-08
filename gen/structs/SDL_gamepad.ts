@@ -94,7 +94,7 @@ import * as _b from "../_structs/SDL_gamepad.ts";
  *
  * @from SDL_gamepad.h:261 
  */
-export interface SDL_GamepadBinding {
+export interface GamepadBinding {
   input_type: number; /* SDL_GamepadBindingType */
     union
   button: number; /* int */
@@ -119,7 +119,7 @@ export interface SDL_GamepadBinding {
     } output;
 }
 
-export function read_SDL_GamepadBinding(dt: DataView): SDL_GamepadBinding {
+export function read_GamepadBinding(dt: DataView): GamepadBinding {
   const t = _b.SDL_GamepadBinding.read(dt);
   return {
     input_type: t.input_type, /** SDL_GamepadBindingType */
@@ -147,7 +147,7 @@ export function read_SDL_GamepadBinding(dt: DataView): SDL_GamepadBinding {
   };
 }
 
-export function write_SDL_GamepadBinding(t: SDL_GamepadBinding, dt: DataView) {
+export function write_GamepadBinding(t: GamepadBinding, dt: DataView) {
   _b.SDL_GamepadBinding.write({
     input_type: t.input_type, /** SDL_GamepadBindingType */
     union

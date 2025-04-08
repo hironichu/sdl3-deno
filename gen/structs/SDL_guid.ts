@@ -53,18 +53,18 @@ import * as _b from "../_structs/SDL_guid.ts";
  *
  * @from SDL_guid.h:60 
  */
-export interface SDL_GUID {
+export interface GUID {
   data: number[]; /* Uint8[16] */
 }
 
-export function read_SDL_GUID(dt: DataView): SDL_GUID {
+export function read_GUID(dt: DataView): GUID {
   const t = _b.SDL_GUID.read(dt);
   return {
     data: t.data, /** Uint8 */
   };
 }
 
-export function write_SDL_GUID(t: SDL_GUID, dt: DataView) {
+export function write_GUID(t: GUID, dt: DataView) {
   _b.SDL_GUID.write({
     data: t.data, /** Uint8 */
   }, dt);

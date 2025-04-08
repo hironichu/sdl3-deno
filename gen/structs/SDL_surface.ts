@@ -73,7 +73,7 @@ import * as _b from "../_structs/SDL_surface.ts";
  *
  * @from SDL_surface.h:131 
  */
-export interface SDL_Surface {
+export interface Surface {
   flags: number; /**< SDL_SurfaceFlags : The flags of the surface, read-only */
   format: number; /**< SDL_PixelFormat : The format of the surface, read-only */
   w: number; /**< int : The width of the surface, read-only. */
@@ -84,7 +84,7 @@ export interface SDL_Surface {
   reserved: Deno.PointerValue; /**< void * : Reserved for internal use */
 }
 
-export function read_SDL_Surface(dt: DataView): SDL_Surface {
+export function read_Surface(dt: DataView): Surface {
   const t = _b.SDL_Surface.read(dt);
   return {
     flags: t.flags, /** SDL_SurfaceFlags */
@@ -98,7 +98,7 @@ export function read_SDL_Surface(dt: DataView): SDL_Surface {
   };
 }
 
-export function write_SDL_Surface(t: SDL_Surface, dt: DataView) {
+export function write_Surface(t: Surface, dt: DataView) {
   _b.SDL_Surface.write({
     flags: t.flags, /** SDL_SurfaceFlags */
     format: t.format, /** SDL_PixelFormat */

@@ -264,7 +264,7 @@ import * as _b from "../_structs/SDL_storage.ts";
  *
  * @from SDL_storage.h:273 
  */
-export interface SDL_StorageInterface {
+export interface StorageInterface {
     /* The version of this interface */
   version: number; /* Uint32 */
     /* Called when the storage is closed */
@@ -291,7 +291,7 @@ export interface SDL_StorageInterface {
   space_remaining: Deno.PointerValue; /*     Uint64 (SDLCALL *space_remaining)(void *userdata); */
 }
 
-export function read_SDL_StorageInterface(dt: DataView): SDL_StorageInterface {
+export function read_StorageInterface(dt: DataView): StorageInterface {
   const t = _b.SDL_StorageInterface.read(dt);
   return {
     /* The version of this interface */
@@ -321,7 +321,7 @@ export function read_SDL_StorageInterface(dt: DataView): SDL_StorageInterface {
   };
 }
 
-export function write_SDL_StorageInterface(t: SDL_StorageInterface, dt: DataView) {
+export function write_StorageInterface(t: StorageInterface, dt: DataView) {
   _b.SDL_StorageInterface.write({
     /* The version of this interface */
     version: t.version, /** Uint32 */

@@ -52,7 +52,7 @@ import * as _b from "../_structs/SDL_iostream.ts";
  *
  * @from SDL_iostream.h:91 
  */
-export interface SDL_IOStreamInterface {
+export interface IOStreamInterface {
     /* The version of this interface */
   version: number; /* Uint32 */
     /**
@@ -114,7 +114,7 @@ export interface SDL_IOStreamInterface {
   close: Deno.PointerValue; /*     bool (SDLCALL *close)(void *userdata); */
 }
 
-export function read_SDL_IOStreamInterface(dt: DataView): SDL_IOStreamInterface {
+export function read_IOStreamInterface(dt: DataView): IOStreamInterface {
   const t = _b.SDL_IOStreamInterface.read(dt);
   return {
     /* The version of this interface */
@@ -179,7 +179,7 @@ export function read_SDL_IOStreamInterface(dt: DataView): SDL_IOStreamInterface 
   };
 }
 
-export function write_SDL_IOStreamInterface(t: SDL_IOStreamInterface, dt: DataView) {
+export function write_IOStreamInterface(t: IOStreamInterface, dt: DataView) {
   _b.SDL_IOStreamInterface.write({
     /* The version of this interface */
     version: t.version, /** Uint32 */

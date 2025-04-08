@@ -140,13 +140,13 @@ import * as _b from "../_structs/SDL_audio.ts";
  *
  * @from SDL_audio.h:404 
  */
-export interface SDL_AudioSpec {
+export interface AudioSpec {
   format: number; /**< SDL_AudioFormat : Audio data format */
   channels: number; /**< int : Number of channels: 1 mono, 2 stereo, etc */
   freq: number; /**< int : sample rate: sample frames per second */
 }
 
-export function read_SDL_AudioSpec(dt: DataView): SDL_AudioSpec {
+export function read_AudioSpec(dt: DataView): AudioSpec {
   const t = _b.SDL_AudioSpec.read(dt);
   return {
     format: t.format, /** SDL_AudioFormat */
@@ -155,7 +155,7 @@ export function read_SDL_AudioSpec(dt: DataView): SDL_AudioSpec {
   };
 }
 
-export function write_SDL_AudioSpec(t: SDL_AudioSpec, dt: DataView) {
+export function write_AudioSpec(t: AudioSpec, dt: DataView) {
   _b.SDL_AudioSpec.write({
     format: t.format, /** SDL_AudioFormat */
     channels: t.channels, /** int */

@@ -51,12 +51,12 @@ import * as _b from "../_structs/SDL_locale.ts";
  *
  * @from SDL_locale.h:59 
  */
-export interface SDL_Locale {
+export interface Locale {
   language: string; /**< const char * : A language name, like "en" for English. */
   country: string; /**< const char * : A country, like "US" for America. Can be NULL. */
 }
 
-export function read_SDL_Locale(dt: DataView): SDL_Locale {
+export function read_Locale(dt: DataView): Locale {
   const t = _b.SDL_Locale.read(dt);
   return {
     language: _.read_cstr_v(t.language), /** const char * */
@@ -64,7 +64,7 @@ export function read_SDL_Locale(dt: DataView): SDL_Locale {
   };
 }
 
-export function write_SDL_Locale(t: SDL_Locale, dt: DataView) {
+export function write_Locale(t: Locale, dt: DataView) {
   _b.SDL_Locale.write({
     language: _.cstr_v(t.language), /** const char * */
     country: _.cstr_v(t.country), /** const char * */

@@ -78,7 +78,7 @@ import * as _b from "../_structs/SDL_assert.ts";
  *
  * @from SDL_assert.h:288 
  */
-export interface SDL_AssertData {
+export interface AssertData {
   always_ignore: boolean; /**< bool : true if app should always continue when assertion is triggered. */
   trigger_count: number; /**< unsigned int : Number of times this assertion has been triggered. */
   condition: string; /**< const char * : A string of this assert's test code. */
@@ -88,7 +88,7 @@ export interface SDL_AssertData {
   next: Deno.PointerValue; /**< const struct SDL_AssertData * : next item in the linked list. */
 }
 
-export function read_SDL_AssertData(dt: DataView): SDL_AssertData {
+export function read_AssertData(dt: DataView): AssertData {
   const t = _b.SDL_AssertData.read(dt);
   return {
     always_ignore: t.always_ignore, /** bool */
@@ -101,7 +101,7 @@ export function read_SDL_AssertData(dt: DataView): SDL_AssertData {
   };
 }
 
-export function write_SDL_AssertData(t: SDL_AssertData, dt: DataView) {
+export function write_AssertData(t: AssertData, dt: DataView) {
   _b.SDL_AssertData.write({
     always_ignore: t.always_ignore, /** bool */
     trigger_count: t.trigger_count, /** unsigned int */

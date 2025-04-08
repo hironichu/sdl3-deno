@@ -45,14 +45,14 @@ import * as _b from "../_structs/SDL_ttf.ts";
  *
  * @from SDL_ttf.h:1696 
  */
-export interface TTF_Text {
+export interface Text {
   text: Deno.PointerValue; /**< char * : A copy of the UTF-8 string that this text object represents, useful for layout, debugging and retrieving substring text. This is updated when the text object is modified and will be freed automatically when the object is destroyed. */
   num_lines: number; /**< int : The number of lines in the text, 0 if it's empty */
   refcount: number; /**< int : Application reference count, used when freeing surface */
   internal: Deno.PointerValue; /**< TTF_TextData * : Private */
 }
 
-export function read_TTF_Text(dt: DataView): TTF_Text {
+export function read_Text(dt: DataView): Text {
   const t = _b.TTF_Text.read(dt);
   return {
     text: Deno.UnsafePointer.create(t.text), /** char * */
@@ -62,7 +62,7 @@ export function read_TTF_Text(dt: DataView): TTF_Text {
   };
 }
 
-export function write_TTF_Text(t: TTF_Text, dt: DataView) {
+export function write_Text(t: Text, dt: DataView) {
   _b.TTF_Text.write({
     text: Deno.UnsafePointer.value(t.text), /** char * */
     num_lines: t.num_lines, /** int */
@@ -81,7 +81,7 @@ export function write_TTF_Text(t: TTF_Text, dt: DataView) {
  *
  * @from SDL_ttf.h:1910 
  */
-export interface TTF_GPUAtlasDrawSequence {
+export interface GPUAtlasDrawSequence {
   atlas_texture: Deno.PointerValue; /**< SDL_GPUTexture * : Texture atlas that stores the glyphs */
   xy: Deno.PointerValue; /**< SDL_FPoint * : An array of vertex positions */
   uv: Deno.PointerValue; /**< SDL_FPoint * : An array of normalized texture coordinates for each vertex */
@@ -92,7 +92,7 @@ export interface TTF_GPUAtlasDrawSequence {
   next: Deno.PointerValue; /**< struct TTF_GPUAtlasDrawSequence * : The next sequence (will be NULL in case of the last sequence) */
 }
 
-export function read_TTF_GPUAtlasDrawSequence(dt: DataView): TTF_GPUAtlasDrawSequence {
+export function read_GPUAtlasDrawSequence(dt: DataView): GPUAtlasDrawSequence {
   const t = _b.TTF_GPUAtlasDrawSequence.read(dt);
   return {
     atlas_texture: Deno.UnsafePointer.create(t.atlas_texture), /** SDL_GPUTexture * */
@@ -106,7 +106,7 @@ export function read_TTF_GPUAtlasDrawSequence(dt: DataView): TTF_GPUAtlasDrawSeq
   };
 }
 
-export function write_TTF_GPUAtlasDrawSequence(t: TTF_GPUAtlasDrawSequence, dt: DataView) {
+export function write_GPUAtlasDrawSequence(t: GPUAtlasDrawSequence, dt: DataView) {
   _b.TTF_GPUAtlasDrawSequence.write({
     atlas_texture: Deno.UnsafePointer.value(t.atlas_texture), /** SDL_GPUTexture * */
     xy: Deno.UnsafePointer.value(t.xy), /** SDL_FPoint * */
@@ -134,16 +134,16 @@ export function write_TTF_GPUAtlasDrawSequence(t: TTF_GPUAtlasDrawSequence, dt: 
  *
  * @from SDL_ttf.h:2561 
  */
-export interface TTF_SubString {
+export interface SubString {
   flags: number; /**< TTF_SubStringFlags : The flags for this substring */
   offset: number; /**< int : The byte offset from the beginning of the text */
   length: number; /**< int : The byte length starting at the offset */
   line_index: number; /**< int : The index of the line that contains this substring */
   cluster_index: number; /**< int : The internal cluster index, used for quickly iterating */
-  rect: SDL_Rect; /**< SDL_Rect : The rectangle, relative to the top left of the text, containing the substring */
+  rect: Rect; /**< SDL_Rect : The rectangle, relative to the top left of the text, containing the substring */
 }
 
-export function read_TTF_SubString(dt: DataView): TTF_SubString {
+export function read_SubString(dt: DataView): SubString {
   const t = _b.TTF_SubString.read(dt);
   return {
     flags: t.flags, /** TTF_SubStringFlags */
@@ -155,7 +155,7 @@ export function read_TTF_SubString(dt: DataView): TTF_SubString {
   };
 }
 
-export function write_TTF_SubString(t: TTF_SubString, dt: DataView) {
+export function write_SubString(t: SubString, dt: DataView) {
   _b.TTF_SubString.write({
     flags: t.flags, /** TTF_SubStringFlags */
     offset: t.offset, /** int */

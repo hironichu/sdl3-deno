@@ -62,13 +62,13 @@ import * as _b from "../_structs/SDL_events.ts";
  *
  * @from SDL_events.h:286 
  */
-export interface SDL_CommonEvent {
+export interface CommonEvent {
   type: number; /**< Uint32 : Event type, shared with all events, Uint32 to cover user events which are not in the SDL_EventType enumeration */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
 }
 
-export function read_SDL_CommonEvent(dt: DataView): SDL_CommonEvent {
+export function read_CommonEvent(dt: DataView): CommonEvent {
   const t = _b.SDL_CommonEvent.read(dt);
   return {
     type: t.type, /** Uint32 */
@@ -77,7 +77,7 @@ export function read_SDL_CommonEvent(dt: DataView): SDL_CommonEvent {
   };
 }
 
-export function write_SDL_CommonEvent(t: SDL_CommonEvent, dt: DataView) {
+export function write_CommonEvent(t: CommonEvent, dt: DataView) {
   _b.SDL_CommonEvent.write({
     type: t.type, /** Uint32 */
     reserved: t.reserved, /** Uint32 */
@@ -93,7 +93,7 @@ export function write_SDL_CommonEvent(t: SDL_CommonEvent, dt: DataView) {
  *
  * @from SDL_events.h:298 
  */
-export interface SDL_DisplayEvent {
+export interface DisplayEvent {
   type: number; /**< SDL_EventType : SDL_DISPLAYEVENT_* */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -102,7 +102,7 @@ export interface SDL_DisplayEvent {
   data2: number; /**< Sint32 : event dependent data */
 }
 
-export function read_SDL_DisplayEvent(dt: DataView): SDL_DisplayEvent {
+export function read_DisplayEvent(dt: DataView): DisplayEvent {
   const t = _b.SDL_DisplayEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -114,7 +114,7 @@ export function read_SDL_DisplayEvent(dt: DataView): SDL_DisplayEvent {
   };
 }
 
-export function write_SDL_DisplayEvent(t: SDL_DisplayEvent, dt: DataView) {
+export function write_DisplayEvent(t: DisplayEvent, dt: DataView) {
   _b.SDL_DisplayEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -133,7 +133,7 @@ export function write_SDL_DisplayEvent(t: SDL_DisplayEvent, dt: DataView) {
  *
  * @from SDL_events.h:313 
  */
-export interface SDL_WindowEvent {
+export interface WindowEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_WINDOW_* */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -142,7 +142,7 @@ export interface SDL_WindowEvent {
   data2: number; /**< Sint32 : event dependent data */
 }
 
-export function read_SDL_WindowEvent(dt: DataView): SDL_WindowEvent {
+export function read_WindowEvent(dt: DataView): WindowEvent {
   const t = _b.SDL_WindowEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -154,7 +154,7 @@ export function read_SDL_WindowEvent(dt: DataView): SDL_WindowEvent {
   };
 }
 
-export function write_SDL_WindowEvent(t: SDL_WindowEvent, dt: DataView) {
+export function write_WindowEvent(t: WindowEvent, dt: DataView) {
   _b.SDL_WindowEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -173,14 +173,14 @@ export function write_SDL_WindowEvent(t: SDL_WindowEvent, dt: DataView) {
  *
  * @from SDL_events.h:328 
  */
-export interface SDL_KeyboardDeviceEvent {
+export interface KeyboardDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_KEYBOARD_ADDED or SDL_EVENT_KEYBOARD_REMOVED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   which: number; /**< SDL_KeyboardID : The keyboard instance id */
 }
 
-export function read_SDL_KeyboardDeviceEvent(dt: DataView): SDL_KeyboardDeviceEvent {
+export function read_KeyboardDeviceEvent(dt: DataView): KeyboardDeviceEvent {
   const t = _b.SDL_KeyboardDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -190,7 +190,7 @@ export function read_SDL_KeyboardDeviceEvent(dt: DataView): SDL_KeyboardDeviceEv
   };
 }
 
-export function write_SDL_KeyboardDeviceEvent(t: SDL_KeyboardDeviceEvent, dt: DataView) {
+export function write_KeyboardDeviceEvent(t: KeyboardDeviceEvent, dt: DataView) {
   _b.SDL_KeyboardDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -216,7 +216,7 @@ export function write_SDL_KeyboardDeviceEvent(t: SDL_KeyboardDeviceEvent, dt: Da
  *
  * @from SDL_events.h:350 
  */
-export interface SDL_KeyboardEvent {
+export interface KeyboardEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_KEY_DOWN or SDL_EVENT_KEY_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -230,7 +230,7 @@ export interface SDL_KeyboardEvent {
   repeat: boolean; /**< bool : true if this is a key repeat */
 }
 
-export function read_SDL_KeyboardEvent(dt: DataView): SDL_KeyboardEvent {
+export function read_KeyboardEvent(dt: DataView): KeyboardEvent {
   const t = _b.SDL_KeyboardEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -247,7 +247,7 @@ export function read_SDL_KeyboardEvent(dt: DataView): SDL_KeyboardEvent {
   };
 }
 
-export function write_SDL_KeyboardEvent(t: SDL_KeyboardEvent, dt: DataView) {
+export function write_KeyboardEvent(t: KeyboardEvent, dt: DataView) {
   _b.SDL_KeyboardEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -275,7 +275,7 @@ export function write_SDL_KeyboardEvent(t: SDL_KeyboardEvent, dt: DataView) {
  *
  * @from SDL_events.h:374 
  */
-export interface SDL_TextEditingEvent {
+export interface TextEditingEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_EDITING */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -285,7 +285,7 @@ export interface SDL_TextEditingEvent {
   length: number; /**< Sint32 : The length of selected editing text, or -1 if not set */
 }
 
-export function read_SDL_TextEditingEvent(dt: DataView): SDL_TextEditingEvent {
+export function read_TextEditingEvent(dt: DataView): TextEditingEvent {
   const t = _b.SDL_TextEditingEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -298,7 +298,7 @@ export function read_SDL_TextEditingEvent(dt: DataView): SDL_TextEditingEvent {
   };
 }
 
-export function write_SDL_TextEditingEvent(t: SDL_TextEditingEvent, dt: DataView) {
+export function write_TextEditingEvent(t: TextEditingEvent, dt: DataView) {
   _b.SDL_TextEditingEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -318,7 +318,7 @@ export function write_SDL_TextEditingEvent(t: SDL_TextEditingEvent, dt: DataView
  *
  * @from SDL_events.h:390 
  */
-export interface SDL_TextEditingCandidatesEvent {
+export interface TextEditingCandidatesEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_EDITING_CANDIDATES */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -332,7 +332,7 @@ export interface SDL_TextEditingCandidatesEvent {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_TextEditingCandidatesEvent(dt: DataView): SDL_TextEditingCandidatesEvent {
+export function read_TextEditingCandidatesEvent(dt: DataView): TextEditingCandidatesEvent {
   const t = _b.SDL_TextEditingCandidatesEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -349,7 +349,7 @@ export function read_SDL_TextEditingCandidatesEvent(dt: DataView): SDL_TextEditi
   };
 }
 
-export function write_SDL_TextEditingCandidatesEvent(t: SDL_TextEditingCandidatesEvent, dt: DataView) {
+export function write_TextEditingCandidatesEvent(t: TextEditingCandidatesEvent, dt: DataView) {
   _b.SDL_TextEditingCandidatesEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -379,7 +379,7 @@ export function write_SDL_TextEditingCandidatesEvent(t: SDL_TextEditingCandidate
  *
  * @from SDL_events.h:416 
  */
-export interface SDL_TextInputEvent {
+export interface TextInputEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_INPUT */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -387,7 +387,7 @@ export interface SDL_TextInputEvent {
   text: string; /**< const char * : The input text, UTF-8 encoded */
 }
 
-export function read_SDL_TextInputEvent(dt: DataView): SDL_TextInputEvent {
+export function read_TextInputEvent(dt: DataView): TextInputEvent {
   const t = _b.SDL_TextInputEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -398,7 +398,7 @@ export function read_SDL_TextInputEvent(dt: DataView): SDL_TextInputEvent {
   };
 }
 
-export function write_SDL_TextInputEvent(t: SDL_TextInputEvent, dt: DataView) {
+export function write_TextInputEvent(t: TextInputEvent, dt: DataView) {
   _b.SDL_TextInputEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -416,14 +416,14 @@ export function write_SDL_TextInputEvent(t: SDL_TextInputEvent, dt: DataView) {
  *
  * @from SDL_events.h:430 
  */
-export interface SDL_MouseDeviceEvent {
+export interface MouseDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_ADDED or SDL_EVENT_MOUSE_REMOVED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   which: number; /**< SDL_MouseID : The mouse instance id */
 }
 
-export function read_SDL_MouseDeviceEvent(dt: DataView): SDL_MouseDeviceEvent {
+export function read_MouseDeviceEvent(dt: DataView): MouseDeviceEvent {
   const t = _b.SDL_MouseDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -433,7 +433,7 @@ export function read_SDL_MouseDeviceEvent(dt: DataView): SDL_MouseDeviceEvent {
   };
 }
 
-export function write_SDL_MouseDeviceEvent(t: SDL_MouseDeviceEvent, dt: DataView) {
+export function write_MouseDeviceEvent(t: MouseDeviceEvent, dt: DataView) {
   _b.SDL_MouseDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -450,7 +450,7 @@ export function write_SDL_MouseDeviceEvent(t: SDL_MouseDeviceEvent, dt: DataView
  *
  * @from SDL_events.h:443 
  */
-export interface SDL_MouseMotionEvent {
+export interface MouseMotionEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -463,7 +463,7 @@ export interface SDL_MouseMotionEvent {
   yrel: number; /**< float : The relative motion in the Y direction */
 }
 
-export function read_SDL_MouseMotionEvent(dt: DataView): SDL_MouseMotionEvent {
+export function read_MouseMotionEvent(dt: DataView): MouseMotionEvent {
   const t = _b.SDL_MouseMotionEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -479,7 +479,7 @@ export function read_SDL_MouseMotionEvent(dt: DataView): SDL_MouseMotionEvent {
   };
 }
 
-export function write_SDL_MouseMotionEvent(t: SDL_MouseMotionEvent, dt: DataView) {
+export function write_MouseMotionEvent(t: MouseMotionEvent, dt: DataView) {
   _b.SDL_MouseMotionEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -502,7 +502,7 @@ export function write_SDL_MouseMotionEvent(t: SDL_MouseMotionEvent, dt: DataView
  *
  * @from SDL_events.h:462 
  */
-export interface SDL_MouseButtonEvent {
+export interface MouseButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_BUTTON_DOWN or SDL_EVENT_MOUSE_BUTTON_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -516,7 +516,7 @@ export interface SDL_MouseButtonEvent {
   y: number; /**< float : Y coordinate, relative to window */
 }
 
-export function read_SDL_MouseButtonEvent(dt: DataView): SDL_MouseButtonEvent {
+export function read_MouseButtonEvent(dt: DataView): MouseButtonEvent {
   const t = _b.SDL_MouseButtonEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -533,7 +533,7 @@ export function read_SDL_MouseButtonEvent(dt: DataView): SDL_MouseButtonEvent {
   };
 }
 
-export function write_SDL_MouseButtonEvent(t: SDL_MouseButtonEvent, dt: DataView) {
+export function write_MouseButtonEvent(t: MouseButtonEvent, dt: DataView) {
   _b.SDL_MouseButtonEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -557,7 +557,7 @@ export function write_SDL_MouseButtonEvent(t: SDL_MouseButtonEvent, dt: DataView
  *
  * @from SDL_events.h:482 
  */
-export interface SDL_MouseWheelEvent {
+export interface MouseWheelEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_WHEEL */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -570,7 +570,7 @@ export interface SDL_MouseWheelEvent {
   mouse_y: number; /**< float : Y coordinate, relative to window */
 }
 
-export function read_SDL_MouseWheelEvent(dt: DataView): SDL_MouseWheelEvent {
+export function read_MouseWheelEvent(dt: DataView): MouseWheelEvent {
   const t = _b.SDL_MouseWheelEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -586,7 +586,7 @@ export function read_SDL_MouseWheelEvent(dt: DataView): SDL_MouseWheelEvent {
   };
 }
 
-export function write_SDL_MouseWheelEvent(t: SDL_MouseWheelEvent, dt: DataView) {
+export function write_MouseWheelEvent(t: MouseWheelEvent, dt: DataView) {
   _b.SDL_MouseWheelEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -609,7 +609,7 @@ export function write_SDL_MouseWheelEvent(t: SDL_MouseWheelEvent, dt: DataView) 
  *
  * @from SDL_events.h:501 
  */
-export interface SDL_JoyAxisEvent {
+export interface JoyAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_AXIS_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -622,7 +622,7 @@ export interface SDL_JoyAxisEvent {
   padding4: number; /* Uint16 */
 }
 
-export function read_SDL_JoyAxisEvent(dt: DataView): SDL_JoyAxisEvent {
+export function read_JoyAxisEvent(dt: DataView): JoyAxisEvent {
   const t = _b.SDL_JoyAxisEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -638,7 +638,7 @@ export function read_SDL_JoyAxisEvent(dt: DataView): SDL_JoyAxisEvent {
   };
 }
 
-export function write_SDL_JoyAxisEvent(t: SDL_JoyAxisEvent, dt: DataView) {
+export function write_JoyAxisEvent(t: JoyAxisEvent, dt: DataView) {
   _b.SDL_JoyAxisEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -661,7 +661,7 @@ export function write_SDL_JoyAxisEvent(t: SDL_JoyAxisEvent, dt: DataView) {
  *
  * @from SDL_events.h:520 
  */
-export interface SDL_JoyBallEvent {
+export interface JoyBallEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BALL_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -674,7 +674,7 @@ export interface SDL_JoyBallEvent {
   yrel: number; /**< Sint16 : The relative motion in the Y direction */
 }
 
-export function read_SDL_JoyBallEvent(dt: DataView): SDL_JoyBallEvent {
+export function read_JoyBallEvent(dt: DataView): JoyBallEvent {
   const t = _b.SDL_JoyBallEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -690,7 +690,7 @@ export function read_SDL_JoyBallEvent(dt: DataView): SDL_JoyBallEvent {
   };
 }
 
-export function write_SDL_JoyBallEvent(t: SDL_JoyBallEvent, dt: DataView) {
+export function write_JoyBallEvent(t: JoyBallEvent, dt: DataView) {
   _b.SDL_JoyBallEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -713,7 +713,7 @@ export function write_SDL_JoyBallEvent(t: SDL_JoyBallEvent, dt: DataView) {
  *
  * @from SDL_events.h:539 
  */
-export interface SDL_JoyHatEvent {
+export interface JoyHatEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_HAT_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -730,7 +730,7 @@ export interface SDL_JoyHatEvent {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_JoyHatEvent(dt: DataView): SDL_JoyHatEvent {
+export function read_JoyHatEvent(dt: DataView): JoyHatEvent {
   const t = _b.SDL_JoyHatEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -744,7 +744,7 @@ export function read_SDL_JoyHatEvent(dt: DataView): SDL_JoyHatEvent {
   };
 }
 
-export function write_SDL_JoyHatEvent(t: SDL_JoyHatEvent, dt: DataView) {
+export function write_JoyHatEvent(t: JoyHatEvent, dt: DataView) {
   _b.SDL_JoyHatEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -765,7 +765,7 @@ export function write_SDL_JoyHatEvent(t: SDL_JoyHatEvent, dt: DataView) {
  *
  * @from SDL_events.h:562 
  */
-export interface SDL_JoyButtonEvent {
+export interface JoyButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BUTTON_DOWN or SDL_EVENT_JOYSTICK_BUTTON_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -776,7 +776,7 @@ export interface SDL_JoyButtonEvent {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_JoyButtonEvent(dt: DataView): SDL_JoyButtonEvent {
+export function read_JoyButtonEvent(dt: DataView): JoyButtonEvent {
   const t = _b.SDL_JoyButtonEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -790,7 +790,7 @@ export function read_SDL_JoyButtonEvent(dt: DataView): SDL_JoyButtonEvent {
   };
 }
 
-export function write_SDL_JoyButtonEvent(t: SDL_JoyButtonEvent, dt: DataView) {
+export function write_JoyButtonEvent(t: JoyButtonEvent, dt: DataView) {
   _b.SDL_JoyButtonEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -816,14 +816,14 @@ export function write_SDL_JoyButtonEvent(t: SDL_JoyButtonEvent, dt: DataView) {
  *
  * @from SDL_events.h:584 
  */
-export interface SDL_JoyDeviceEvent {
+export interface JoyDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_ADDED or SDL_EVENT_JOYSTICK_REMOVED or SDL_EVENT_JOYSTICK_UPDATE_COMPLETE */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   which: number; /**< SDL_JoystickID : The joystick instance id */
 }
 
-export function read_SDL_JoyDeviceEvent(dt: DataView): SDL_JoyDeviceEvent {
+export function read_JoyDeviceEvent(dt: DataView): JoyDeviceEvent {
   const t = _b.SDL_JoyDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -833,7 +833,7 @@ export function read_SDL_JoyDeviceEvent(dt: DataView): SDL_JoyDeviceEvent {
   };
 }
 
-export function write_SDL_JoyDeviceEvent(t: SDL_JoyDeviceEvent, dt: DataView) {
+export function write_JoyDeviceEvent(t: JoyDeviceEvent, dt: DataView) {
   _b.SDL_JoyDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -850,7 +850,7 @@ export function write_SDL_JoyDeviceEvent(t: SDL_JoyDeviceEvent, dt: DataView) {
  *
  * @from SDL_events.h:597 
  */
-export interface SDL_JoyBatteryEvent {
+export interface JoyBatteryEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BATTERY_UPDATED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -859,7 +859,7 @@ export interface SDL_JoyBatteryEvent {
   percent: number; /**< int : The joystick battery percent charge remaining */
 }
 
-export function read_SDL_JoyBatteryEvent(dt: DataView): SDL_JoyBatteryEvent {
+export function read_JoyBatteryEvent(dt: DataView): JoyBatteryEvent {
   const t = _b.SDL_JoyBatteryEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -871,7 +871,7 @@ export function read_SDL_JoyBatteryEvent(dt: DataView): SDL_JoyBatteryEvent {
   };
 }
 
-export function write_SDL_JoyBatteryEvent(t: SDL_JoyBatteryEvent, dt: DataView) {
+export function write_JoyBatteryEvent(t: JoyBatteryEvent, dt: DataView) {
   _b.SDL_JoyBatteryEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -890,7 +890,7 @@ export function write_SDL_JoyBatteryEvent(t: SDL_JoyBatteryEvent, dt: DataView) 
  *
  * @from SDL_events.h:612 
  */
-export interface SDL_GamepadAxisEvent {
+export interface GamepadAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_AXIS_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -903,7 +903,7 @@ export interface SDL_GamepadAxisEvent {
   padding4: number; /* Uint16 */
 }
 
-export function read_SDL_GamepadAxisEvent(dt: DataView): SDL_GamepadAxisEvent {
+export function read_GamepadAxisEvent(dt: DataView): GamepadAxisEvent {
   const t = _b.SDL_GamepadAxisEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -919,7 +919,7 @@ export function read_SDL_GamepadAxisEvent(dt: DataView): SDL_GamepadAxisEvent {
   };
 }
 
-export function write_SDL_GamepadAxisEvent(t: SDL_GamepadAxisEvent, dt: DataView) {
+export function write_GamepadAxisEvent(t: GamepadAxisEvent, dt: DataView) {
   _b.SDL_GamepadAxisEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -942,7 +942,7 @@ export function write_SDL_GamepadAxisEvent(t: SDL_GamepadAxisEvent, dt: DataView
  *
  * @from SDL_events.h:632 
  */
-export interface SDL_GamepadButtonEvent {
+export interface GamepadButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_BUTTON_DOWN or SDL_EVENT_GAMEPAD_BUTTON_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -953,7 +953,7 @@ export interface SDL_GamepadButtonEvent {
   padding2: number; /* Uint8 */
 }
 
-export function read_SDL_GamepadButtonEvent(dt: DataView): SDL_GamepadButtonEvent {
+export function read_GamepadButtonEvent(dt: DataView): GamepadButtonEvent {
   const t = _b.SDL_GamepadButtonEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -967,7 +967,7 @@ export function read_SDL_GamepadButtonEvent(dt: DataView): SDL_GamepadButtonEven
   };
 }
 
-export function write_SDL_GamepadButtonEvent(t: SDL_GamepadButtonEvent, dt: DataView) {
+export function write_GamepadButtonEvent(t: GamepadButtonEvent, dt: DataView) {
   _b.SDL_GamepadButtonEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -997,14 +997,14 @@ export function write_SDL_GamepadButtonEvent(t: SDL_GamepadButtonEvent, dt: Data
  *
  * @from SDL_events.h:659 
  */
-export interface SDL_GamepadDeviceEvent {
+export interface GamepadDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_ADDED, SDL_EVENT_GAMEPAD_REMOVED, or SDL_EVENT_GAMEPAD_REMAPPED, SDL_EVENT_GAMEPAD_UPDATE_COMPLETE or SDL_EVENT_GAMEPAD_STEAM_HANDLE_UPDATED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   which: number; /**< SDL_JoystickID : The joystick instance id */
 }
 
-export function read_SDL_GamepadDeviceEvent(dt: DataView): SDL_GamepadDeviceEvent {
+export function read_GamepadDeviceEvent(dt: DataView): GamepadDeviceEvent {
   const t = _b.SDL_GamepadDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1014,7 +1014,7 @@ export function read_SDL_GamepadDeviceEvent(dt: DataView): SDL_GamepadDeviceEven
   };
 }
 
-export function write_SDL_GamepadDeviceEvent(t: SDL_GamepadDeviceEvent, dt: DataView) {
+export function write_GamepadDeviceEvent(t: GamepadDeviceEvent, dt: DataView) {
   _b.SDL_GamepadDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1031,7 +1031,7 @@ export function write_SDL_GamepadDeviceEvent(t: SDL_GamepadDeviceEvent, dt: Data
  *
  * @from SDL_events.h:672 
  */
-export interface SDL_GamepadTouchpadEvent {
+export interface GamepadTouchpadEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_TOUCHPAD_DOWN or SDL_EVENT_GAMEPAD_TOUCHPAD_MOTION or SDL_EVENT_GAMEPAD_TOUCHPAD_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1043,7 +1043,7 @@ export interface SDL_GamepadTouchpadEvent {
   pressure: number; /**< float : Normalized in the range 0...1 */
 }
 
-export function read_SDL_GamepadTouchpadEvent(dt: DataView): SDL_GamepadTouchpadEvent {
+export function read_GamepadTouchpadEvent(dt: DataView): GamepadTouchpadEvent {
   const t = _b.SDL_GamepadTouchpadEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1058,7 +1058,7 @@ export function read_SDL_GamepadTouchpadEvent(dt: DataView): SDL_GamepadTouchpad
   };
 }
 
-export function write_SDL_GamepadTouchpadEvent(t: SDL_GamepadTouchpadEvent, dt: DataView) {
+export function write_GamepadTouchpadEvent(t: GamepadTouchpadEvent, dt: DataView) {
   _b.SDL_GamepadTouchpadEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1080,7 +1080,7 @@ export function write_SDL_GamepadTouchpadEvent(t: SDL_GamepadTouchpadEvent, dt: 
  *
  * @from SDL_events.h:690 
  */
-export interface SDL_GamepadSensorEvent {
+export interface GamepadSensorEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_SENSOR_UPDATE */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1090,7 +1090,7 @@ export interface SDL_GamepadSensorEvent {
   sensor_timestamp: bigint; /**< Uint64 : The timestamp of the sensor reading in nanoseconds, not necessarily synchronized with the system clock */
 }
 
-export function read_SDL_GamepadSensorEvent(dt: DataView): SDL_GamepadSensorEvent {
+export function read_GamepadSensorEvent(dt: DataView): GamepadSensorEvent {
   const t = _b.SDL_GamepadSensorEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1103,7 +1103,7 @@ export function read_SDL_GamepadSensorEvent(dt: DataView): SDL_GamepadSensorEven
   };
 }
 
-export function write_SDL_GamepadSensorEvent(t: SDL_GamepadSensorEvent, dt: DataView) {
+export function write_GamepadSensorEvent(t: GamepadSensorEvent, dt: DataView) {
   _b.SDL_GamepadSensorEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1123,7 +1123,7 @@ export function write_SDL_GamepadSensorEvent(t: SDL_GamepadSensorEvent, dt: Data
  *
  * @from SDL_events.h:706 
  */
-export interface SDL_AudioDeviceEvent {
+export interface AudioDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_AUDIO_DEVICE_ADDED, or SDL_EVENT_AUDIO_DEVICE_REMOVED, or SDL_EVENT_AUDIO_DEVICE_FORMAT_CHANGED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1134,7 +1134,7 @@ export interface SDL_AudioDeviceEvent {
   padding3: number; /* Uint8 */
 }
 
-export function read_SDL_AudioDeviceEvent(dt: DataView): SDL_AudioDeviceEvent {
+export function read_AudioDeviceEvent(dt: DataView): AudioDeviceEvent {
   const t = _b.SDL_AudioDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1148,7 +1148,7 @@ export function read_SDL_AudioDeviceEvent(dt: DataView): SDL_AudioDeviceEvent {
   };
 }
 
-export function write_SDL_AudioDeviceEvent(t: SDL_AudioDeviceEvent, dt: DataView) {
+export function write_AudioDeviceEvent(t: AudioDeviceEvent, dt: DataView) {
   _b.SDL_AudioDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1169,14 +1169,14 @@ export function write_SDL_AudioDeviceEvent(t: SDL_AudioDeviceEvent, dt: DataView
  *
  * @from SDL_events.h:723 
  */
-export interface SDL_CameraDeviceEvent {
+export interface CameraDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_CAMERA_DEVICE_ADDED, SDL_EVENT_CAMERA_DEVICE_REMOVED, SDL_EVENT_CAMERA_DEVICE_APPROVED, SDL_EVENT_CAMERA_DEVICE_DENIED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   which: number; /**< SDL_CameraID : SDL_CameraID for the device being added or removed or changing */
 }
 
-export function read_SDL_CameraDeviceEvent(dt: DataView): SDL_CameraDeviceEvent {
+export function read_CameraDeviceEvent(dt: DataView): CameraDeviceEvent {
   const t = _b.SDL_CameraDeviceEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1186,7 +1186,7 @@ export function read_SDL_CameraDeviceEvent(dt: DataView): SDL_CameraDeviceEvent 
   };
 }
 
-export function write_SDL_CameraDeviceEvent(t: SDL_CameraDeviceEvent, dt: DataView) {
+export function write_CameraDeviceEvent(t: CameraDeviceEvent, dt: DataView) {
   _b.SDL_CameraDeviceEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1203,14 +1203,14 @@ export function write_SDL_CameraDeviceEvent(t: SDL_CameraDeviceEvent, dt: DataVi
  *
  * @from SDL_events.h:737 
  */
-export interface SDL_RenderEvent {
+export interface RenderEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_RENDER_TARGETS_RESET, SDL_EVENT_RENDER_DEVICE_RESET, SDL_EVENT_RENDER_DEVICE_LOST */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
   windowID: number; /**< SDL_WindowID : The window containing the renderer in question. */
 }
 
-export function read_SDL_RenderEvent(dt: DataView): SDL_RenderEvent {
+export function read_RenderEvent(dt: DataView): RenderEvent {
   const t = _b.SDL_RenderEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1220,7 +1220,7 @@ export function read_SDL_RenderEvent(dt: DataView): SDL_RenderEvent {
   };
 }
 
-export function write_SDL_RenderEvent(t: SDL_RenderEvent, dt: DataView) {
+export function write_RenderEvent(t: RenderEvent, dt: DataView) {
   _b.SDL_RenderEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1251,7 +1251,7 @@ export function write_SDL_RenderEvent(t: SDL_RenderEvent, dt: DataView) {
  *
  * @from SDL_events.h:765 
  */
-export interface SDL_TouchFingerEvent {
+export interface TouchFingerEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_FINGER_DOWN, SDL_EVENT_FINGER_UP, SDL_EVENT_FINGER_MOTION, or SDL_EVENT_FINGER_CANCELED */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1265,7 +1265,7 @@ export interface SDL_TouchFingerEvent {
   windowID: number; /**< SDL_WindowID : The window underneath the finger, if any */
 }
 
-export function read_SDL_TouchFingerEvent(dt: DataView): SDL_TouchFingerEvent {
+export function read_TouchFingerEvent(dt: DataView): TouchFingerEvent {
   const t = _b.SDL_TouchFingerEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1282,7 +1282,7 @@ export function read_SDL_TouchFingerEvent(dt: DataView): SDL_TouchFingerEvent {
   };
 }
 
-export function write_SDL_TouchFingerEvent(t: SDL_TouchFingerEvent, dt: DataView) {
+export function write_TouchFingerEvent(t: TouchFingerEvent, dt: DataView) {
   _b.SDL_TouchFingerEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1316,7 +1316,7 @@ export function write_SDL_TouchFingerEvent(t: SDL_TouchFingerEvent, dt: DataView
  *
  * @from SDL_events.h:795 
  */
-export interface SDL_PenProximityEvent {
+export interface PenProximityEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_PROXIMITY_IN or SDL_EVENT_PEN_PROXIMITY_OUT */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1324,7 +1324,7 @@ export interface SDL_PenProximityEvent {
   which: number; /**< SDL_PenID : The pen instance id */
 }
 
-export function read_SDL_PenProximityEvent(dt: DataView): SDL_PenProximityEvent {
+export function read_PenProximityEvent(dt: DataView): PenProximityEvent {
   const t = _b.SDL_PenProximityEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1335,7 +1335,7 @@ export function read_SDL_PenProximityEvent(dt: DataView): SDL_PenProximityEvent 
   };
 }
 
-export function write_SDL_PenProximityEvent(t: SDL_PenProximityEvent, dt: DataView) {
+export function write_PenProximityEvent(t: PenProximityEvent, dt: DataView) {
   _b.SDL_PenProximityEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1359,7 +1359,7 @@ export function write_SDL_PenProximityEvent(t: SDL_PenProximityEvent, dt: DataVi
  *
  * @from SDL_events.h:815 
  */
-export interface SDL_PenMotionEvent {
+export interface PenMotionEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_MOTION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1370,7 +1370,7 @@ export interface SDL_PenMotionEvent {
   y: number; /**< float : Y coordinate, relative to window */
 }
 
-export function read_SDL_PenMotionEvent(dt: DataView): SDL_PenMotionEvent {
+export function read_PenMotionEvent(dt: DataView): PenMotionEvent {
   const t = _b.SDL_PenMotionEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1384,7 +1384,7 @@ export function read_SDL_PenMotionEvent(dt: DataView): SDL_PenMotionEvent {
   };
 }
 
-export function write_SDL_PenMotionEvent(t: SDL_PenMotionEvent, dt: DataView) {
+export function write_PenMotionEvent(t: PenMotionEvent, dt: DataView) {
   _b.SDL_PenMotionEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1408,7 +1408,7 @@ export function write_SDL_PenMotionEvent(t: SDL_PenMotionEvent, dt: DataView) {
  *
  * @from SDL_events.h:835 
  */
-export interface SDL_PenTouchEvent {
+export interface PenTouchEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_DOWN or SDL_EVENT_PEN_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1421,7 +1421,7 @@ export interface SDL_PenTouchEvent {
   down: boolean; /**< bool : true if the pen is touching or false if the pen is lifted off */
 }
 
-export function read_SDL_PenTouchEvent(dt: DataView): SDL_PenTouchEvent {
+export function read_PenTouchEvent(dt: DataView): PenTouchEvent {
   const t = _b.SDL_PenTouchEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1437,7 +1437,7 @@ export function read_SDL_PenTouchEvent(dt: DataView): SDL_PenTouchEvent {
   };
 }
 
-export function write_SDL_PenTouchEvent(t: SDL_PenTouchEvent, dt: DataView) {
+export function write_PenTouchEvent(t: PenTouchEvent, dt: DataView) {
   _b.SDL_PenTouchEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1463,7 +1463,7 @@ export function write_SDL_PenTouchEvent(t: SDL_PenTouchEvent, dt: DataView) {
  *
  * @from SDL_events.h:857 
  */
-export interface SDL_PenButtonEvent {
+export interface PenButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_BUTTON_DOWN or SDL_EVENT_PEN_BUTTON_UP */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1476,7 +1476,7 @@ export interface SDL_PenButtonEvent {
   down: boolean; /**< bool : true if the button is pressed */
 }
 
-export function read_SDL_PenButtonEvent(dt: DataView): SDL_PenButtonEvent {
+export function read_PenButtonEvent(dt: DataView): PenButtonEvent {
   const t = _b.SDL_PenButtonEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1492,7 +1492,7 @@ export function read_SDL_PenButtonEvent(dt: DataView): SDL_PenButtonEvent {
   };
 }
 
-export function write_SDL_PenButtonEvent(t: SDL_PenButtonEvent, dt: DataView) {
+export function write_PenButtonEvent(t: PenButtonEvent, dt: DataView) {
   _b.SDL_PenButtonEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1518,7 +1518,7 @@ export function write_SDL_PenButtonEvent(t: SDL_PenButtonEvent, dt: DataView) {
  *
  * @from SDL_events.h:879 
  */
-export interface SDL_PenAxisEvent {
+export interface PenAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_AXIS */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1531,7 +1531,7 @@ export interface SDL_PenAxisEvent {
   value: number; /**< float : New value of axis */
 }
 
-export function read_SDL_PenAxisEvent(dt: DataView): SDL_PenAxisEvent {
+export function read_PenAxisEvent(dt: DataView): PenAxisEvent {
   const t = _b.SDL_PenAxisEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1547,7 +1547,7 @@ export function read_SDL_PenAxisEvent(dt: DataView): SDL_PenAxisEvent {
   };
 }
 
-export function write_SDL_PenAxisEvent(t: SDL_PenAxisEvent, dt: DataView) {
+export function write_PenAxisEvent(t: PenAxisEvent, dt: DataView) {
   _b.SDL_PenAxisEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1571,7 +1571,7 @@ export function write_SDL_PenAxisEvent(t: SDL_PenAxisEvent, dt: DataView) {
  *
  * @from SDL_events.h:899 
  */
-export interface SDL_DropEvent {
+export interface DropEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_DROP_BEGIN or SDL_EVENT_DROP_FILE or SDL_EVENT_DROP_TEXT or SDL_EVENT_DROP_COMPLETE or SDL_EVENT_DROP_POSITION */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1582,7 +1582,7 @@ export interface SDL_DropEvent {
   data: string; /**< const char * : The text for SDL_EVENT_DROP_TEXT and the file name for SDL_EVENT_DROP_FILE, NULL for other events */
 }
 
-export function read_SDL_DropEvent(dt: DataView): SDL_DropEvent {
+export function read_DropEvent(dt: DataView): DropEvent {
   const t = _b.SDL_DropEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1596,7 +1596,7 @@ export function read_SDL_DropEvent(dt: DataView): SDL_DropEvent {
   };
 }
 
-export function write_SDL_DropEvent(t: SDL_DropEvent, dt: DataView) {
+export function write_DropEvent(t: DropEvent, dt: DataView) {
   _b.SDL_DropEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1618,7 +1618,7 @@ export function write_SDL_DropEvent(t: SDL_DropEvent, dt: DataView) {
  *
  * @from SDL_events.h:917 
  */
-export interface SDL_ClipboardEvent {
+export interface ClipboardEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_CLIPBOARD_UPDATE */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1627,7 +1627,7 @@ export interface SDL_ClipboardEvent {
   mime_types: Deno.PointerValue; /**< const char ** : current mime types */
 }
 
-export function read_SDL_ClipboardEvent(dt: DataView): SDL_ClipboardEvent {
+export function read_ClipboardEvent(dt: DataView): ClipboardEvent {
   const t = _b.SDL_ClipboardEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1639,7 +1639,7 @@ export function read_SDL_ClipboardEvent(dt: DataView): SDL_ClipboardEvent {
   };
 }
 
-export function write_SDL_ClipboardEvent(t: SDL_ClipboardEvent, dt: DataView) {
+export function write_ClipboardEvent(t: ClipboardEvent, dt: DataView) {
   _b.SDL_ClipboardEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1658,7 +1658,7 @@ export function write_SDL_ClipboardEvent(t: SDL_ClipboardEvent, dt: DataView) {
  *
  * @from SDL_events.h:932 
  */
-export interface SDL_SensorEvent {
+export interface SensorEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_SENSOR_UPDATE */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1667,7 +1667,7 @@ export interface SDL_SensorEvent {
   sensor_timestamp: bigint; /**< Uint64 : The timestamp of the sensor reading in nanoseconds, not necessarily synchronized with the system clock */
 }
 
-export function read_SDL_SensorEvent(dt: DataView): SDL_SensorEvent {
+export function read_SensorEvent(dt: DataView): SensorEvent {
   const t = _b.SDL_SensorEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1679,7 +1679,7 @@ export function read_SDL_SensorEvent(dt: DataView): SDL_SensorEvent {
   };
 }
 
-export function write_SDL_SensorEvent(t: SDL_SensorEvent, dt: DataView) {
+export function write_SensorEvent(t: SensorEvent, dt: DataView) {
   _b.SDL_SensorEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1698,13 +1698,13 @@ export function write_SDL_SensorEvent(t: SDL_SensorEvent, dt: DataView) {
  *
  * @from SDL_events.h:947 
  */
-export interface SDL_QuitEvent {
+export interface QuitEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_QUIT */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
 }
 
-export function read_SDL_QuitEvent(dt: DataView): SDL_QuitEvent {
+export function read_QuitEvent(dt: DataView): QuitEvent {
   const t = _b.SDL_QuitEvent.read(dt);
   return {
     type: t.type, /** SDL_EventType */
@@ -1713,7 +1713,7 @@ export function read_SDL_QuitEvent(dt: DataView): SDL_QuitEvent {
   };
 }
 
-export function write_SDL_QuitEvent(t: SDL_QuitEvent, dt: DataView) {
+export function write_QuitEvent(t: QuitEvent, dt: DataView) {
   _b.SDL_QuitEvent.write({
     type: t.type, /** SDL_EventType */
     reserved: t.reserved, /** Uint32 */
@@ -1735,7 +1735,7 @@ export function write_SDL_QuitEvent(t: SDL_QuitEvent, dt: DataView) {
  *
  * @from SDL_events.h:965 
  */
-export interface SDL_UserEvent {
+export interface UserEvent {
   type: number; /**< Uint32 : SDL_EVENT_USER through SDL_EVENT_LAST-1, Uint32 because these are not in the SDL_EventType enumeration */
   reserved: number; /* Uint32 */
   timestamp: bigint; /**< Uint64 : In nanoseconds, populated using SDL_GetTicksNS() */
@@ -1745,7 +1745,7 @@ export interface SDL_UserEvent {
   data2: Deno.PointerValue; /**< void * : User defined data pointer */
 }
 
-export function read_SDL_UserEvent(dt: DataView): SDL_UserEvent {
+export function read_UserEvent(dt: DataView): UserEvent {
   const t = _b.SDL_UserEvent.read(dt);
   return {
     type: t.type, /** Uint32 */
@@ -1758,7 +1758,7 @@ export function read_SDL_UserEvent(dt: DataView): SDL_UserEvent {
   };
 }
 
-export function write_SDL_UserEvent(t: SDL_UserEvent, dt: DataView) {
+export function write_UserEvent(t: UserEvent, dt: DataView) {
   _b.SDL_UserEvent.write({
     type: t.type, /** Uint32 */
     reserved: t.reserved, /** Uint32 */

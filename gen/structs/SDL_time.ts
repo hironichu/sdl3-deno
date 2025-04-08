@@ -47,7 +47,7 @@ import * as _b from "../_structs/SDL_time.ts";
  *
  * @from SDL_time.h:53 
  */
-export interface SDL_DateTime {
+export interface DateTime {
   year: number; /**< int : Year */
   month: number; /**< int : Month [01-12] */
   day: number; /**< int : Day of the month [01-31] */
@@ -59,7 +59,7 @@ export interface SDL_DateTime {
   utc_offset: number; /**< int : Seconds east of UTC */
 }
 
-export function read_SDL_DateTime(dt: DataView): SDL_DateTime {
+export function read_DateTime(dt: DataView): DateTime {
   const t = _b.SDL_DateTime.read(dt);
   return {
     year: t.year, /** int */
@@ -74,7 +74,7 @@ export function read_SDL_DateTime(dt: DataView): SDL_DateTime {
   };
 }
 
-export function write_SDL_DateTime(t: SDL_DateTime, dt: DataView) {
+export function write_DateTime(t: DateTime, dt: DataView) {
   _b.SDL_DateTime.write({
     year: t.year, /** int */
     month: t.month, /** int */

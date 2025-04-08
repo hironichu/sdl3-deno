@@ -55,14 +55,14 @@ import * as _b from "../_structs/SDL_touch.ts";
  *
  * @from SDL_touch.h:101 
  */
-export interface SDL_Finger {
+export interface Finger {
   id: bigint; /**< SDL_FingerID : the finger ID */
   x: number; /**< float : the x-axis location of the touch event, normalized (0...1) */
   y: number; /**< float : the y-axis location of the touch event, normalized (0...1) */
   pressure: number; /**< float : the quantity of pressure applied, normalized (0...1) */
 }
 
-export function read_SDL_Finger(dt: DataView): SDL_Finger {
+export function read_Finger(dt: DataView): Finger {
   const t = _b.SDL_Finger.read(dt);
   return {
     id: t.id, /** SDL_FingerID */
@@ -72,7 +72,7 @@ export function read_SDL_Finger(dt: DataView): SDL_Finger {
   };
 }
 
-export function write_SDL_Finger(t: SDL_Finger, dt: DataView) {
+export function write_Finger(t: Finger, dt: DataView) {
   _b.SDL_Finger.write({
     id: t.id, /** SDL_FingerID */
     x: t.x, /** float */

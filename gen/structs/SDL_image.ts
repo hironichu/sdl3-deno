@@ -40,7 +40,7 @@ import * as _b from "../_structs/SDL_image.ts";
  *
  * @from SDL_image.h:1974 
  */
-export interface IMG_Animation {
+export interface Animation {
   w: number; /* int */
   h: number; /* int */
   count: number; /* int */
@@ -48,7 +48,7 @@ export interface IMG_Animation {
   delays: Deno.PointerValue; /* int * */
 }
 
-export function read_IMG_Animation(dt: DataView): IMG_Animation {
+export function read_Animation(dt: DataView): Animation {
   const t = _b.IMG_Animation.read(dt);
   return {
     w: t.w, /** int */
@@ -59,7 +59,7 @@ export function read_IMG_Animation(dt: DataView): IMG_Animation {
   };
 }
 
-export function write_IMG_Animation(t: IMG_Animation, dt: DataView) {
+export function write_Animation(t: Animation, dt: DataView) {
   _b.IMG_Animation.write({
     w: t.w, /** int */
     h: t.h, /** int */

@@ -60,13 +60,13 @@ import * as _b from "../_structs/SDL_render.ts";
  *
  * @from SDL_render.h:80 
  */
-export interface SDL_Vertex {
-  position: SDL_FPoint; /**< SDL_FPoint : Vertex position, in SDL_Renderer coordinates  */
-  color: SDL_FColor; /**< SDL_FColor : Vertex color */
-  tex_coord: SDL_FPoint; /**< SDL_FPoint : Normalized texture coordinates, if needed */
+export interface Vertex {
+  position: FPoint; /**< SDL_FPoint : Vertex position, in SDL_Renderer coordinates  */
+  color: FColor; /**< SDL_FColor : Vertex color */
+  tex_coord: FPoint; /**< SDL_FPoint : Normalized texture coordinates, if needed */
 }
 
-export function read_SDL_Vertex(dt: DataView): SDL_Vertex {
+export function read_Vertex(dt: DataView): Vertex {
   const t = _b.SDL_Vertex.read(dt);
   return {
     position: t.position, /** SDL_FPoint */
@@ -75,7 +75,7 @@ export function read_SDL_Vertex(dt: DataView): SDL_Vertex {
   };
 }
 
-export function write_SDL_Vertex(t: SDL_Vertex, dt: DataView) {
+export function write_Vertex(t: Vertex, dt: DataView) {
   _b.SDL_Vertex.write({
     position: t.position, /** SDL_FPoint */
     color: t.color, /** SDL_FColor */
@@ -96,14 +96,14 @@ export function write_SDL_Vertex(t: SDL_Vertex, dt: DataView) {
  *
  * @from SDL_render.h:132 
  */
-export interface SDL_Texture {
+export interface Texture {
   format: number; /**< SDL_PixelFormat : The format of the texture, read-only */
   w: number; /**< int : The width of the texture, read-only. */
   h: number; /**< int : The height of the texture, read-only. */
   refcount: number; /**< int : Application reference count, used when freeing texture */
 }
 
-export function read_SDL_Texture(dt: DataView): SDL_Texture {
+export function read_Texture(dt: DataView): Texture {
   const t = _b.SDL_Texture.read(dt);
   return {
     format: t.format, /** SDL_PixelFormat */
@@ -113,7 +113,7 @@ export function read_SDL_Texture(dt: DataView): SDL_Texture {
   };
 }
 
-export function write_SDL_Texture(t: SDL_Texture, dt: DataView) {
+export function write_Texture(t: Texture, dt: DataView) {
   _b.SDL_Texture.write({
     format: t.format, /** SDL_PixelFormat */
     w: t.w, /** int */

@@ -61,7 +61,7 @@ import * as _b from "../_structs/SDL_hidapi.ts";
  *
  * @from SDL_hidapi.h:111 
  */
-export interface SDL_hid_device_info {
+export interface hid_device_info {
     /** Platform-specific device path */
   path: Deno.PointerValue; /* char * */
     /** Device Vendor ID */
@@ -101,7 +101,7 @@ export interface SDL_hid_device_info {
   next: Deno.PointerValue; /* struct SDL_hid_device_info * */
 }
 
-export function read_SDL_hid_device_info(dt: DataView): SDL_hid_device_info {
+export function read_hid_device_info(dt: DataView): hid_device_info {
   const t = _b.SDL_hid_device_info.read(dt);
   return {
     /** Platform-specific device path */
@@ -144,7 +144,7 @@ export function read_SDL_hid_device_info(dt: DataView): SDL_hid_device_info {
   };
 }
 
-export function write_SDL_hid_device_info(t: SDL_hid_device_info, dt: DataView) {
+export function write_hid_device_info(t: hid_device_info, dt: DataView) {
   _b.SDL_hid_device_info.write({
     /** Platform-specific device path */
     path: Deno.UnsafePointer.value(t.path), /** char * */

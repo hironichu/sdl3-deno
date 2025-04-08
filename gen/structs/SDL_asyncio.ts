@@ -111,7 +111,7 @@ import * as _b from "../_structs/SDL_asyncio.ts";
  *
  * @from SDL_asyncio.h:154 
  */
-export interface SDL_AsyncIOOutcome {
+export interface AsyncIOOutcome {
   asyncio: Deno.PointerValue; /**< SDL_AsyncIO * : what generated this task. This pointer will be invalid if it was closed! */
   type: number; /**< SDL_AsyncIOTaskType : What sort of task was this? Read, write, etc? */
   result: number; /**< SDL_AsyncIOResult : the result of the work (success, failure, cancellation). */
@@ -122,7 +122,7 @@ export interface SDL_AsyncIOOutcome {
   userdata: Deno.PointerValue; /**< void * : pointer provided by the app when starting the task */
 }
 
-export function read_SDL_AsyncIOOutcome(dt: DataView): SDL_AsyncIOOutcome {
+export function read_AsyncIOOutcome(dt: DataView): AsyncIOOutcome {
   const t = _b.SDL_AsyncIOOutcome.read(dt);
   return {
     asyncio: Deno.UnsafePointer.create(t.asyncio), /** SDL_AsyncIO * */
@@ -136,7 +136,7 @@ export function read_SDL_AsyncIOOutcome(dt: DataView): SDL_AsyncIOOutcome {
   };
 }
 
-export function write_SDL_AsyncIOOutcome(t: SDL_AsyncIOOutcome, dt: DataView) {
+export function write_AsyncIOOutcome(t: AsyncIOOutcome, dt: DataView) {
   _b.SDL_AsyncIOOutcome.write({
     asyncio: Deno.UnsafePointer.value(t.asyncio), /** SDL_AsyncIO * */
     type: t.type, /** SDL_AsyncIOTaskType */

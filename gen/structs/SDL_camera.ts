@@ -84,7 +84,7 @@ import * as _b from "../_structs/SDL_camera.ts";
  *
  * @from SDL_camera.h:114 
  */
-export interface SDL_CameraSpec {
+export interface CameraSpec {
   format: number; /**< SDL_PixelFormat : Frame format */
   colorspace: number; /**< SDL_Colorspace : Frame colorspace */
   width: number; /**< int : Frame width */
@@ -93,7 +93,7 @@ export interface SDL_CameraSpec {
   framerate_denominator: number; /**< int : Frame rate demoninator ((num / denom) == FPS, (denom / num) == duration in seconds) */
 }
 
-export function read_SDL_CameraSpec(dt: DataView): SDL_CameraSpec {
+export function read_CameraSpec(dt: DataView): CameraSpec {
   const t = _b.SDL_CameraSpec.read(dt);
   return {
     format: t.format, /** SDL_PixelFormat */
@@ -105,7 +105,7 @@ export function read_SDL_CameraSpec(dt: DataView): SDL_CameraSpec {
   };
 }
 
-export function write_SDL_CameraSpec(t: SDL_CameraSpec, dt: DataView) {
+export function write_CameraSpec(t: CameraSpec, dt: DataView) {
   _b.SDL_CameraSpec.write({
     format: t.format, /** SDL_PixelFormat */
     colorspace: t.colorspace, /** SDL_Colorspace */

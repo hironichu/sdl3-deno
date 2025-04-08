@@ -49,13 +49,13 @@ import * as _b from "../_structs/SDL_messagebox.ts";
  *
  * @from SDL_messagebox.h:81 
  */
-export interface SDL_MessageBoxButtonData {
+export interface MessageBoxButtonData {
   flags: number; /* SDL_MessageBoxButtonFlags */
   buttonID: number; /**< int : User defined button id (value returned via SDL_ShowMessageBox) */
   text: string; /**< const char * : The UTF-8 button text */
 }
 
-export function read_SDL_MessageBoxButtonData(dt: DataView): SDL_MessageBoxButtonData {
+export function read_MessageBoxButtonData(dt: DataView): MessageBoxButtonData {
   const t = _b.SDL_MessageBoxButtonData.read(dt);
   return {
     flags: t.flags, /** SDL_MessageBoxButtonFlags */
@@ -64,7 +64,7 @@ export function read_SDL_MessageBoxButtonData(dt: DataView): SDL_MessageBoxButto
   };
 }
 
-export function write_SDL_MessageBoxButtonData(t: SDL_MessageBoxButtonData, dt: DataView) {
+export function write_MessageBoxButtonData(t: MessageBoxButtonData, dt: DataView) {
   _b.SDL_MessageBoxButtonData.write({
     flags: t.flags, /** SDL_MessageBoxButtonFlags */
     buttonID: t.buttonID, /** int */
@@ -80,13 +80,13 @@ export function write_SDL_MessageBoxButtonData(t: SDL_MessageBoxButtonData, dt: 
  *
  * @from SDL_messagebox.h:93 
  */
-export interface SDL_MessageBoxColor {
+export interface MessageBoxColor {
   r: number; /* Uint8 */
   g: number; /* Uint8 */
   b: number; /* Uint8 */
 }
 
-export function read_SDL_MessageBoxColor(dt: DataView): SDL_MessageBoxColor {
+export function read_MessageBoxColor(dt: DataView): MessageBoxColor {
   const t = _b.SDL_MessageBoxColor.read(dt);
   return {
     r: t.r, /** Uint8 */
@@ -95,7 +95,7 @@ export function read_SDL_MessageBoxColor(dt: DataView): SDL_MessageBoxColor {
   };
 }
 
-export function write_SDL_MessageBoxColor(t: SDL_MessageBoxColor, dt: DataView) {
+export function write_MessageBoxColor(t: MessageBoxColor, dt: DataView) {
   _b.SDL_MessageBoxColor.write({
     r: t.r, /** Uint8 */
     g: t.g, /** Uint8 */
@@ -111,18 +111,18 @@ export function write_SDL_MessageBoxColor(t: SDL_MessageBoxColor, dt: DataView) 
  *
  * @from SDL_messagebox.h:117 
  */
-export interface SDL_MessageBoxColorScheme {
-  colors: SDL_MessageBoxColor[]; /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
+export interface MessageBoxColorScheme {
+  colors: MessageBoxColor[]; /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
 }
 
-export function read_SDL_MessageBoxColorScheme(dt: DataView): SDL_MessageBoxColorScheme {
+export function read_MessageBoxColorScheme(dt: DataView): MessageBoxColorScheme {
   const t = _b.SDL_MessageBoxColorScheme.read(dt);
   return {
     colors: t.colors, /** SDL_MessageBoxColor */
   };
 }
 
-export function write_SDL_MessageBoxColorScheme(t: SDL_MessageBoxColorScheme, dt: DataView) {
+export function write_MessageBoxColorScheme(t: MessageBoxColorScheme, dt: DataView) {
   _b.SDL_MessageBoxColorScheme.write({
     colors: t.colors, /** SDL_MessageBoxColor */
   }, dt);
@@ -136,7 +136,7 @@ export function write_SDL_MessageBoxColorScheme(t: SDL_MessageBoxColorScheme, dt
  *
  * @from SDL_messagebox.h:127 
  */
-export interface SDL_MessageBoxData {
+export interface MessageBoxData {
   flags: number; /* SDL_MessageBoxFlags */
   window: Deno.PointerValue; /**< SDL_Window * : Parent window, can be NULL */
   title: string; /**< const char * : UTF-8 title */
@@ -146,7 +146,7 @@ export interface SDL_MessageBoxData {
   colorScheme: Deno.PointerValue; /**< const SDL_MessageBoxColorScheme * : SDL_MessageBoxColorScheme, can be NULL to use system settings */
 }
 
-export function read_SDL_MessageBoxData(dt: DataView): SDL_MessageBoxData {
+export function read_MessageBoxData(dt: DataView): MessageBoxData {
   const t = _b.SDL_MessageBoxData.read(dt);
   return {
     flags: t.flags, /** SDL_MessageBoxFlags */
@@ -159,7 +159,7 @@ export function read_SDL_MessageBoxData(dt: DataView): SDL_MessageBoxData {
   };
 }
 
-export function write_SDL_MessageBoxData(t: SDL_MessageBoxData, dt: DataView) {
+export function write_MessageBoxData(t: MessageBoxData, dt: DataView) {
   _b.SDL_MessageBoxData.write({
     flags: t.flags, /** SDL_MessageBoxFlags */
     window: Deno.UnsafePointer.value(t.window), /** SDL_Window * */

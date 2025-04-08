@@ -224,12 +224,12 @@ import * as _b from "../_structs/SDL_haptic.ts";
  *
  * @from SDL_haptic.h:545 
  */
-export interface SDL_HapticDirection {
+export interface HapticDirection {
   type: number; /**< Uint8 : The type of encoding. */
   dir: number[]; /**< Sint32[3] : The encoded direction. */
 }
 
-export function read_SDL_HapticDirection(dt: DataView): SDL_HapticDirection {
+export function read_HapticDirection(dt: DataView): HapticDirection {
   const t = _b.SDL_HapticDirection.read(dt);
   return {
     type: t.type, /** Uint8 */
@@ -237,7 +237,7 @@ export function read_SDL_HapticDirection(dt: DataView): SDL_HapticDirection {
   };
 }
 
-export function write_SDL_HapticDirection(t: SDL_HapticDirection, dt: DataView) {
+export function write_HapticDirection(t: HapticDirection, dt: DataView) {
   _b.SDL_HapticDirection.write({
     type: t.type, /** Uint8 */
     dir: t.dir, /** Sint32 */
@@ -260,10 +260,10 @@ export function write_SDL_HapticDirection(t: SDL_HapticDirection, dt: DataView) 
  *
  * @from SDL_haptic.h:565 
  */
-export interface SDL_HapticConstant {
+export interface HapticConstant {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_CONSTANT */
-  direction: SDL_HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
+  direction: HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
     /* Replay */
   length: number; /**< Uint32 : Duration of the effect. */
   delay: number; /**< Uint16 : Delay before starting the effect. */
@@ -279,7 +279,7 @@ export interface SDL_HapticConstant {
   fade_level: number; /**< Uint16 : Level at the end of the fade. */
 }
 
-export function read_SDL_HapticConstant(dt: DataView): SDL_HapticConstant {
+export function read_HapticConstant(dt: DataView): HapticConstant {
   const t = _b.SDL_HapticConstant.read(dt);
   return {
     /* Header */
@@ -301,7 +301,7 @@ export function read_SDL_HapticConstant(dt: DataView): SDL_HapticConstant {
   };
 }
 
-export function write_SDL_HapticConstant(t: SDL_HapticConstant, dt: DataView) {
+export function write_HapticConstant(t: HapticConstant, dt: DataView) {
   _b.SDL_HapticConstant.write({
     /* Header */
     type: t.type, /** Uint16 */
@@ -387,12 +387,12 @@ export function write_SDL_HapticConstant(t: SDL_HapticConstant, dt: DataView) {
  *
  * @from SDL_haptic.h:651 
  */
-export interface SDL_HapticPeriodic {
+export interface HapticPeriodic {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE
                              SDL_HAPTIC_TRIANGLE, SDL_HAPTIC_SAWTOOTHUP or
                              SDL_HAPTIC_SAWTOOTHDOWN */
-  direction: SDL_HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
+  direction: HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
     /* Replay */
   length: number; /**< Uint32 : Duration of the effect. */
   delay: number; /**< Uint16 : Delay before starting the effect. */
@@ -411,7 +411,7 @@ export interface SDL_HapticPeriodic {
   fade_level: number; /**< Uint16 : Level at the end of the fade. */
 }
 
-export function read_SDL_HapticPeriodic(dt: DataView): SDL_HapticPeriodic {
+export function read_HapticPeriodic(dt: DataView): HapticPeriodic {
   const t = _b.SDL_HapticPeriodic.read(dt);
   return {
     /* Header */
@@ -436,7 +436,7 @@ export function read_SDL_HapticPeriodic(dt: DataView): SDL_HapticPeriodic {
   };
 }
 
-export function write_SDL_HapticPeriodic(t: SDL_HapticPeriodic, dt: DataView) {
+export function write_HapticPeriodic(t: HapticPeriodic, dt: DataView) {
   _b.SDL_HapticPeriodic.write({
     /* Header */
     type: t.type, /** Uint16 */
@@ -490,11 +490,11 @@ export function write_SDL_HapticPeriodic(t: SDL_HapticPeriodic, dt: DataView) {
  *
  * @from SDL_haptic.h:707 
  */
-export interface SDL_HapticCondition {
+export interface HapticCondition {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
                                  SDL_HAPTIC_INERTIA or SDL_HAPTIC_FRICTION */
-  direction: SDL_HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
+  direction: HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
     /* Replay */
   length: number; /**< Uint32 : Duration of the effect. */
   delay: number; /**< Uint16 : Delay before starting the effect. */
@@ -510,7 +510,7 @@ export interface SDL_HapticCondition {
   center: number[]; /**< Sint16[3] : Position of the dead zone. */
 }
 
-export function read_SDL_HapticCondition(dt: DataView): SDL_HapticCondition {
+export function read_HapticCondition(dt: DataView): HapticCondition {
   const t = _b.SDL_HapticCondition.read(dt);
   return {
     /* Header */
@@ -532,7 +532,7 @@ export function read_SDL_HapticCondition(dt: DataView): SDL_HapticCondition {
   };
 }
 
-export function write_SDL_HapticCondition(t: SDL_HapticCondition, dt: DataView) {
+export function write_HapticCondition(t: HapticCondition, dt: DataView) {
   _b.SDL_HapticCondition.write({
     /* Header */
     type: t.type, /** Uint16 */
@@ -571,10 +571,10 @@ export function write_SDL_HapticCondition(t: SDL_HapticCondition, dt: DataView) 
  *
  * @from SDL_haptic.h:746 
  */
-export interface SDL_HapticRamp {
+export interface HapticRamp {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_RAMP */
-  direction: SDL_HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
+  direction: HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
     /* Replay */
   length: number; /**< Uint32 : Duration of the effect. */
   delay: number; /**< Uint16 : Delay before starting the effect. */
@@ -591,7 +591,7 @@ export interface SDL_HapticRamp {
   fade_level: number; /**< Uint16 : Level at the end of the fade. */
 }
 
-export function read_SDL_HapticRamp(dt: DataView): SDL_HapticRamp {
+export function read_HapticRamp(dt: DataView): HapticRamp {
   const t = _b.SDL_HapticRamp.read(dt);
   return {
     /* Header */
@@ -614,7 +614,7 @@ export function read_SDL_HapticRamp(dt: DataView): SDL_HapticRamp {
   };
 }
 
-export function write_SDL_HapticRamp(t: SDL_HapticRamp, dt: DataView) {
+export function write_HapticRamp(t: HapticRamp, dt: DataView) {
   _b.SDL_HapticRamp.write({
     /* Header */
     type: t.type, /** Uint16 */
@@ -653,7 +653,7 @@ export function write_SDL_HapticRamp(t: SDL_HapticRamp, dt: DataView) {
  *
  * @from SDL_haptic.h:785 
  */
-export interface SDL_HapticLeftRight {
+export interface HapticLeftRight {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_LEFTRIGHT */
     /* Replay */
@@ -663,7 +663,7 @@ export interface SDL_HapticLeftRight {
   small_magnitude: number; /**< Uint16 : Control of the small controller motor. */
 }
 
-export function read_SDL_HapticLeftRight(dt: DataView): SDL_HapticLeftRight {
+export function read_HapticLeftRight(dt: DataView): HapticLeftRight {
   const t = _b.SDL_HapticLeftRight.read(dt);
   return {
     /* Header */
@@ -676,7 +676,7 @@ export function read_SDL_HapticLeftRight(dt: DataView): SDL_HapticLeftRight {
   };
 }
 
-export function write_SDL_HapticLeftRight(t: SDL_HapticLeftRight, dt: DataView) {
+export function write_HapticLeftRight(t: HapticLeftRight, dt: DataView) {
   _b.SDL_HapticLeftRight.write({
     /* Header */
     type: t.type, /** Uint16 */
@@ -708,10 +708,10 @@ export function write_SDL_HapticLeftRight(t: SDL_HapticLeftRight, dt: DataView) 
  *
  * @from SDL_haptic.h:815 
  */
-export interface SDL_HapticCustom {
+export interface HapticCustom {
     /* Header */
   type: number; /**< Uint16 : SDL_HAPTIC_CUSTOM */
-  direction: SDL_HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
+  direction: HapticDirection; /**< SDL_HapticDirection : Direction of the effect. */
     /* Replay */
   length: number; /**< Uint32 : Duration of the effect. */
   delay: number; /**< Uint16 : Delay before starting the effect. */
@@ -730,7 +730,7 @@ export interface SDL_HapticCustom {
   fade_level: number; /**< Uint16 : Level at the end of the fade. */
 }
 
-export function read_SDL_HapticCustom(dt: DataView): SDL_HapticCustom {
+export function read_HapticCustom(dt: DataView): HapticCustom {
   const t = _b.SDL_HapticCustom.read(dt);
   return {
     /* Header */
@@ -755,7 +755,7 @@ export function read_SDL_HapticCustom(dt: DataView): SDL_HapticCustom {
   };
 }
 
-export function write_SDL_HapticCustom(t: SDL_HapticCustom, dt: DataView) {
+export function write_HapticCustom(t: HapticCustom, dt: DataView) {
   _b.SDL_HapticCustom.write({
     /* Header */
     type: t.type, /** Uint16 */

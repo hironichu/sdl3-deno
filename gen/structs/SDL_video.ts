@@ -65,7 +65,7 @@ import * as _b from "../_structs/SDL_video.ts";
  *
  * @from SDL_video.h:136 
  */
-export interface SDL_DisplayMode {
+export interface DisplayMode {
   displayID: number; /**< SDL_DisplayID : the display this mode is associated with */
   format: number; /**< SDL_PixelFormat : pixel format */
   w: number; /**< int : width */
@@ -77,7 +77,7 @@ export interface SDL_DisplayMode {
   internal: Deno.PointerValue; /**< SDL_DisplayModeData * : Private */
 }
 
-export function read_SDL_DisplayMode(dt: DataView): SDL_DisplayMode {
+export function read_DisplayMode(dt: DataView): DisplayMode {
   const t = _b.SDL_DisplayMode.read(dt);
   return {
     displayID: t.displayID, /** SDL_DisplayID */
@@ -92,7 +92,7 @@ export function read_SDL_DisplayMode(dt: DataView): SDL_DisplayMode {
   };
 }
 
-export function write_SDL_DisplayMode(t: SDL_DisplayMode, dt: DataView) {
+export function write_DisplayMode(t: DisplayMode, dt: DataView) {
   _b.SDL_DisplayMode.write({
     displayID: t.displayID, /** SDL_DisplayID */
     format: t.format, /** SDL_PixelFormat */

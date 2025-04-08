@@ -65,12 +65,12 @@ import * as _b from "../_structs/SDL_joystick.ts";
  *
  * @from SDL_joystick.h:389 
  */
-export interface SDL_VirtualJoystickTouchpadDesc {
+export interface VirtualJoystickTouchpadDesc {
   nfingers: number; /**< Uint16 : the number of simultaneous fingers on this touchpad */
   padding: number[]; /* Uint16[3] */
 }
 
-export function read_SDL_VirtualJoystickTouchpadDesc(dt: DataView): SDL_VirtualJoystickTouchpadDesc {
+export function read_VirtualJoystickTouchpadDesc(dt: DataView): VirtualJoystickTouchpadDesc {
   const t = _b.SDL_VirtualJoystickTouchpadDesc.read(dt);
   return {
     nfingers: t.nfingers, /** Uint16 */
@@ -78,7 +78,7 @@ export function read_SDL_VirtualJoystickTouchpadDesc(dt: DataView): SDL_VirtualJ
   };
 }
 
-export function write_SDL_VirtualJoystickTouchpadDesc(t: SDL_VirtualJoystickTouchpadDesc, dt: DataView) {
+export function write_VirtualJoystickTouchpadDesc(t: VirtualJoystickTouchpadDesc, dt: DataView) {
   _b.SDL_VirtualJoystickTouchpadDesc.write({
     nfingers: t.nfingers, /** Uint16 */
     padding: t.padding, /** Uint16 */
@@ -95,12 +95,12 @@ export function write_SDL_VirtualJoystickTouchpadDesc(t: SDL_VirtualJoystickTouc
  *
  * @from SDL_joystick.h:402 
  */
-export interface SDL_VirtualJoystickSensorDesc {
+export interface VirtualJoystickSensorDesc {
   type: number; /**< SDL_SensorType : the type of this sensor */
   rate: number; /**< float : the update frequency of this sensor, may be 0.0f */
 }
 
-export function read_SDL_VirtualJoystickSensorDesc(dt: DataView): SDL_VirtualJoystickSensorDesc {
+export function read_VirtualJoystickSensorDesc(dt: DataView): VirtualJoystickSensorDesc {
   const t = _b.SDL_VirtualJoystickSensorDesc.read(dt);
   return {
     type: t.type, /** SDL_SensorType */
@@ -108,7 +108,7 @@ export function read_SDL_VirtualJoystickSensorDesc(dt: DataView): SDL_VirtualJoy
   };
 }
 
-export function write_SDL_VirtualJoystickSensorDesc(t: SDL_VirtualJoystickSensorDesc, dt: DataView) {
+export function write_VirtualJoystickSensorDesc(t: VirtualJoystickSensorDesc, dt: DataView) {
   _b.SDL_VirtualJoystickSensorDesc.write({
     type: t.type, /** SDL_SensorType */
     rate: t.rate, /** float */
@@ -131,7 +131,7 @@ export function write_SDL_VirtualJoystickSensorDesc(t: SDL_VirtualJoystickSensor
  *
  * @from SDL_joystick.h:421 
  */
-export interface SDL_VirtualJoystickDesc {
+export interface VirtualJoystickDesc {
   version: number; /**< Uint32 : the version of this interface */
   type: number; /**< Uint16 : `SDL_JoystickType` */
   padding: number; /**< Uint16 : unused */
@@ -162,7 +162,7 @@ export interface SDL_VirtualJoystickDesc {
   Cleanup: Deno.PointerValue; /**< void (SDLCALL *Cleanup)(void *userdata); : Cleans up the userdata when the joystick is detached */
 }
 
-export function read_SDL_VirtualJoystickDesc(dt: DataView): SDL_VirtualJoystickDesc {
+export function read_VirtualJoystickDesc(dt: DataView): VirtualJoystickDesc {
   const t = _b.SDL_VirtualJoystickDesc.read(dt);
   return {
     version: t.version, /** Uint32 */
@@ -194,7 +194,7 @@ export function read_SDL_VirtualJoystickDesc(dt: DataView): SDL_VirtualJoystickD
   };
 }
 
-export function write_SDL_VirtualJoystickDesc(t: SDL_VirtualJoystickDesc, dt: DataView) {
+export function write_VirtualJoystickDesc(t: VirtualJoystickDesc, dt: DataView) {
   _b.SDL_VirtualJoystickDesc.write({
     version: t.version, /** Uint32 */
     type: t.type, /** Uint16 */

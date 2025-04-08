@@ -42,12 +42,12 @@ import * as _b from "../_structs/SDL_rect.ts";
  *
  * @from SDL_rect.h:48 
  */
-export interface SDL_Point {
+export interface Point {
   x: number; /* int */
   y: number; /* int */
 }
 
-export function read_SDL_Point(dt: DataView): SDL_Point {
+export function read_Point(dt: DataView): Point {
   const t = _b.SDL_Point.read(dt);
   return {
     x: t.x, /** int */
@@ -55,7 +55,7 @@ export function read_SDL_Point(dt: DataView): SDL_Point {
   };
 }
 
-export function write_SDL_Point(t: SDL_Point, dt: DataView) {
+export function write_Point(t: Point, dt: DataView) {
   _b.SDL_Point.write({
     x: t.x, /** int */
     y: t.y, /** int */
@@ -73,12 +73,12 @@ export function write_SDL_Point(t: SDL_Point, dt: DataView) {
  *
  * @from SDL_rect.h:62 
  */
-export interface SDL_FPoint {
+export interface FPoint {
   x: number; /* float */
   y: number; /* float */
 }
 
-export function read_SDL_FPoint(dt: DataView): SDL_FPoint {
+export function read_FPoint(dt: DataView): FPoint {
   const t = _b.SDL_FPoint.read(dt);
   return {
     x: t.x, /** float */
@@ -86,7 +86,7 @@ export function read_SDL_FPoint(dt: DataView): SDL_FPoint {
   };
 }
 
-export function write_SDL_FPoint(t: SDL_FPoint, dt: DataView) {
+export function write_FPoint(t: FPoint, dt: DataView) {
   _b.SDL_FPoint.write({
     x: t.x, /** float */
     y: t.y, /** float */
@@ -109,14 +109,14 @@ export function write_SDL_FPoint(t: SDL_FPoint, dt: DataView) {
  *
  * @from SDL_rect.h:82 
  */
-export interface SDL_Rect {
+export interface Rect {
   x: number; /* int */
   y: number; /* int */
   w: number; /* int */
   h: number; /* int */
 }
 
-export function read_SDL_Rect(dt: DataView): SDL_Rect {
+export function read_Rect(dt: DataView): Rect {
   const t = _b.SDL_Rect.read(dt);
   return {
     x: t.x, /** int */
@@ -126,7 +126,7 @@ export function read_SDL_Rect(dt: DataView): SDL_Rect {
   };
 }
 
-export function write_SDL_Rect(t: SDL_Rect, dt: DataView) {
+export function write_Rect(t: Rect, dt: DataView) {
   _b.SDL_Rect.write({
     x: t.x, /** int */
     y: t.y, /** int */
@@ -154,14 +154,14 @@ export function write_SDL_Rect(t: SDL_Rect, dt: DataView) {
  *
  * @from SDL_rect.h:105 
  */
-export interface SDL_FRect {
+export interface FRect {
   x: number; /* float */
   y: number; /* float */
   w: number; /* float */
   h: number; /* float */
 }
 
-export function read_SDL_FRect(dt: DataView): SDL_FRect {
+export function read_FRect(dt: DataView): FRect {
   const t = _b.SDL_FRect.read(dt);
   return {
     x: t.x, /** float */
@@ -171,7 +171,7 @@ export function read_SDL_FRect(dt: DataView): SDL_FRect {
   };
 }
 
-export function write_SDL_FRect(t: SDL_FRect, dt: DataView) {
+export function write_FRect(t: FRect, dt: DataView) {
   _b.SDL_FRect.write({
     x: t.x, /** float */
     y: t.y, /** float */

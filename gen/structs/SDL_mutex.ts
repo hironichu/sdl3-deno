@@ -101,13 +101,13 @@ import * as _b from "../_structs/SDL_mutex.ts";
  *
  * @from SDL_mutex.h:994 
  */
-export interface SDL_InitState {
-  status: SDL_AtomicInt; /* SDL_AtomicInt */
+export interface InitState {
+  status: AtomicInt; /* SDL_AtomicInt */
   thread: bigint; /* SDL_ThreadID */
   reserved: Deno.PointerValue; /* void * */
 }
 
-export function read_SDL_InitState(dt: DataView): SDL_InitState {
+export function read_InitState(dt: DataView): InitState {
   const t = _b.SDL_InitState.read(dt);
   return {
     status: t.status, /** SDL_AtomicInt */
@@ -116,7 +116,7 @@ export function read_SDL_InitState(dt: DataView): SDL_InitState {
   };
 }
 
-export function write_SDL_InitState(t: SDL_InitState, dt: DataView) {
+export function write_InitState(t: InitState, dt: DataView) {
   _b.SDL_InitState.write({
     status: t.status, /** SDL_AtomicInt */
     thread: t.thread, /** SDL_ThreadID */

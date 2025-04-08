@@ -11,12 +11,12 @@ import * as _b from "../_structs/SDL_textengine.ts";
  *
  * @from SDL_textengine.h:59 
  */
-export interface TTF_FillOperation {
+export interface FillOperation {
   cmd: number; /**< TTF_DrawCommand : TTF_DRAW_COMMAND_FILL */
-  rect: SDL_Rect; /**< SDL_Rect : The rectangle to fill, in pixels. The x coordinate is relative to the left side of the text area, going right, and the y coordinate is relative to the top side of the text area, going down. */
+  rect: Rect; /**< SDL_Rect : The rectangle to fill, in pixels. The x coordinate is relative to the left side of the text area, going right, and the y coordinate is relative to the top side of the text area, going down. */
 }
 
-export function read_TTF_FillOperation(dt: DataView): TTF_FillOperation {
+export function read_FillOperation(dt: DataView): FillOperation {
   const t = _b.TTF_FillOperation.read(dt);
   return {
     cmd: t.cmd, /** TTF_DrawCommand */
@@ -24,7 +24,7 @@ export function read_TTF_FillOperation(dt: DataView): TTF_FillOperation {
   };
 }
 
-export function write_TTF_FillOperation(t: TTF_FillOperation, dt: DataView) {
+export function write_FillOperation(t: FillOperation, dt: DataView) {
   _b.TTF_FillOperation.write({
     cmd: t.cmd, /** TTF_DrawCommand */
     rect: t.rect, /** SDL_Rect */
@@ -41,7 +41,7 @@ export function write_TTF_FillOperation(t: TTF_FillOperation, dt: DataView) {
  *
  * @from SDL_textengine.h:72 
  */
-export interface TTF_CopyOperation {
+export interface CopyOperation {
   cmd: number; /**< TTF_DrawCommand : TTF_DRAW_COMMAND_COPY */
   text_offset: number; /**< int : The offset in the text corresponding to this glyph.
                                       There may be multiple glyphs with the same text offset
@@ -51,12 +51,12 @@ export interface TTF_CopyOperation {
                                       rectangles for the corresponding glyphs. */
   glyph_font: Deno.PointerValue; /**< TTF_Font * : The font containing the glyph to be drawn, can be passed to TTF_GetGlyphImageForIndex() */
   glyph_index: number; /**< Uint32 : The glyph index of the glyph to be drawn, can be passed to TTF_GetGlyphImageForIndex() */
-  src: SDL_Rect; /**< SDL_Rect : The area within the glyph to be drawn */
-  dst: SDL_Rect; /**< SDL_Rect : The drawing coordinates of the glyph, in pixels. The x coordinate is relative to the left side of the text area, going right, and the y coordinate is relative to the top side of the text area, going down. */
+  src: Rect; /**< SDL_Rect : The area within the glyph to be drawn */
+  dst: Rect; /**< SDL_Rect : The drawing coordinates of the glyph, in pixels. The x coordinate is relative to the left side of the text area, going right, and the y coordinate is relative to the top side of the text area, going down. */
   reserved: Deno.PointerValue; /* void * */
 }
 
-export function read_TTF_CopyOperation(dt: DataView): TTF_CopyOperation {
+export function read_CopyOperation(dt: DataView): CopyOperation {
   const t = _b.TTF_CopyOperation.read(dt);
   return {
     cmd: t.cmd, /** TTF_DrawCommand */
@@ -69,7 +69,7 @@ export function read_TTF_CopyOperation(dt: DataView): TTF_CopyOperation {
   };
 }
 
-export function write_TTF_CopyOperation(t: TTF_CopyOperation, dt: DataView) {
+export function write_CopyOperation(t: CopyOperation, dt: DataView) {
   _b.TTF_CopyOperation.write({
     cmd: t.cmd, /** TTF_DrawCommand */
     text_offset: t.text_offset, /** int */
@@ -83,9 +83,9 @@ export function write_TTF_CopyOperation(t: TTF_CopyOperation, dt: DataView) {
 
 
 /* Private data in TTF_Text, available to implementations */
-export interface TTF_TextData {
+export interface TextData {
   font: Deno.PointerValue; /**< TTF_Font * : The font used by this text, read-only. */
-  color: SDL_FColor; /**< SDL_FColor : The color of the text, read-only. */
+  color: FColor; /**< SDL_FColor : The color of the text, read-only. */
   needs_layout_update: boolean; /**< bool : True if the layout needs to be updated */
   layout: Deno.PointerValue; /**< TTF_TextLayout * : Cached layout information, read-only. */
   x: number; /**< int : The x offset of the upper left corner of this text, in pixels, read-only. */
@@ -102,7 +102,7 @@ export interface TTF_TextData {
   engine_text: Deno.PointerValue; /**< void * : The implementation-specific representation of this text */
 }
 
-export function read_TTF_TextData(dt: DataView): TTF_TextData {
+export function read_TextData(dt: DataView): TextData {
   const t = _b.TTF_TextData.read(dt);
   return {
     font: Deno.UnsafePointer.create(t.font), /** TTF_Font * */
@@ -124,7 +124,7 @@ export function read_TTF_TextData(dt: DataView): TTF_TextData {
   };
 }
 
-export function write_TTF_TextData(t: TTF_TextData, dt: DataView) {
+export function write_TextData(t: TextData, dt: DataView) {
   _b.TTF_TextData.write({
     font: Deno.UnsafePointer.value(t.font), /** TTF_Font * */
     color: t.color, /** SDL_FColor */
@@ -157,7 +157,7 @@ export function write_TTF_TextData(t: TTF_TextData, dt: DataView) {
  *
  * @from SDL_textengine.h:138 
  */
-export interface TTF_TextEngine {
+export interface TextEngine {
   version: number; /**< Uint32 : The version of this interface */
   userdata: Deno.PointerValue; /**< void * : User data pointer passed to callbacks */
     /* Create a text representation from draw instructions.
@@ -176,7 +176,7 @@ export interface TTF_TextEngine {
   DestroyText: Deno.PointerValue; /*     void (SDLCALL *DestroyText)(void *userdata, TTF_Text *text); */
 }
 
-export function read_TTF_TextEngine(dt: DataView): TTF_TextEngine {
+export function read_TextEngine(dt: DataView): TextEngine {
   const t = _b.TTF_TextEngine.read(dt);
   return {
     version: t.version, /** Uint32 */
@@ -198,7 +198,7 @@ export function read_TTF_TextEngine(dt: DataView): TTF_TextEngine {
   };
 }
 
-export function write_TTF_TextEngine(t: TTF_TextEngine, dt: DataView) {
+export function write_TextEngine(t: TextEngine, dt: DataView) {
   _b.TTF_TextEngine.write({
     version: t.version, /** Uint32 */
     userdata: Deno.UnsafePointer.value(t.userdata), /** void * */
