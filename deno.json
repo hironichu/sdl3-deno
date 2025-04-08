@@ -14,8 +14,8 @@
   },
   "publish": {
     "exclude": [
-      "./gen/structs/*",
-      "!./gen/structs/SDL_messagebox.ts",
+      "./gen/_structs/SDL_gamepad.ts",
+      "./gen/structs/SDL_gamepad.ts",
       "./gen/structs/mod.ts",
       "./gen/macros",
       "*.test.ts"
