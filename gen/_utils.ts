@@ -21,3 +21,16 @@ export function libSdlPath(lib: string): string {
     return `${import.meta.dirname}/../sdl3/${lib}`;
   }
 }
+
+export function read_cstr_v(v: bigint): string {
+  const p = Deno.UnsafePointer.create(v);
+  if (!p) return "";
+  return new Deno.UnsafePointerView(p).getCString();
+}
+const enc = new TextEncoder();
+export function cstr_v(s: string): bigint {
+  return Deno.UnsafePointer.value(
+    Deno.UnsafePointer.of(enc.encode(s + "\0")),
+  );
+}
+
