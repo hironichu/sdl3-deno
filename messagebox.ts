@@ -182,13 +182,13 @@ export function show(opt: MsgBoxOption): number | undefined {
   };
 
   const buttonBuf = new Uint32Array(4 * buttons.length);
-  buttons.forEach((button, i) => _.write_SDL_MessageBoxButtonData({
+  buttons.forEach((button, i) =>
+    _.write_MessageBoxButtonData({
       flags: btnFlag(button.flags),
       buttonID: button.id,
       text: button.text,
-    },
-    new DataView(buttonBuf.buffer, 4*4*i),
-  ));
+    }, new DataView(buttonBuf.buffer, 4 * 4 * i))
+  );
 
   let f = 0;
   if (flags) {
@@ -201,13 +201,15 @@ export function show(opt: MsgBoxOption): number | undefined {
 
   const buf = new BigUint64Array(7);
 
-  _.write_SDL_MessageBoxData({
+  _.write_MessageBoxData({
     flags: f,
     window: window ?? null,
     title,
     message,
     numbuttons: buttons.length,
-    buttons: Deno.UnsafePointer.of(buttonBuf), /* const SDL_MessageBoxButtonData * */
+    buttons: Deno.UnsafePointer.of(
+      buttonBuf,
+    ), /* const SDL_MessageBoxButtonData * */
     colorScheme: colorScheme ?? null, // TODO
   }, new DataView(buf.buffer));
 
