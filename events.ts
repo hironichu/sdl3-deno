@@ -31,8 +31,8 @@
  */
 
 import * as S from "./gen/structs/SDL_events.ts";
-import type { SDL_EventType as EventType } from "./gen/enums/SDL_events.ts";
-export type { EventType };
+import { SDL_EventType as EventType } from "./gen/enums/SDL_events.ts";
+export { EventType };
 
 import { SDL } from "./gen/SDL.ts";
 
@@ -69,258 +69,295 @@ export class Event {
     return S.read_CommonEvent(this.dt);
   }
   pushCommon(e: S.CommonEvent) {
-    return S.write_CommonEvent(e, this.dt);
+    S.write_CommonEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get display(): S.DisplayEvent {
     return S.read_DisplayEvent(this.dt);
   }
   pushDisplay(e: S.DisplayEvent) {
-    return S.write_DisplayEvent(e, this.dt);
+    S.write_DisplayEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get window(): S.WindowEvent {
     return S.read_WindowEvent(this.dt);
   }
   pushWindow(e: S.WindowEvent) {
-    return S.write_WindowEvent(e, this.dt);
+    S.write_WindowEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get keyboardDevice(): S.KeyboardDeviceEvent {
     return S.read_KeyboardDeviceEvent(this.dt);
   }
   pushKeyboardDevice(e: S.KeyboardDeviceEvent) {
-    return S.write_KeyboardDeviceEvent(e, this.dt);
+    S.write_KeyboardDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get keyboard(): S.KeyboardEvent {
     return S.read_KeyboardEvent(this.dt);
   }
   pushKeyboard(e: S.KeyboardEvent) {
-    return S.write_KeyboardEvent(e, this.dt);
+    S.write_KeyboardEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get textEditing(): S.TextEditingEvent {
     return S.read_TextEditingEvent(this.dt);
   }
   pushTextEditing(e: S.TextEditingEvent) {
-    return S.write_TextEditingEvent(e, this.dt);
+    S.write_TextEditingEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get textEditingCandidates(): S.TextEditingCandidatesEvent {
     return S.read_TextEditingCandidatesEvent(this.dt);
   }
   pushTextEditingCandidates(e: S.TextEditingCandidatesEvent) {
-    return S.write_TextEditingCandidatesEvent(e, this.dt);
+    S.write_TextEditingCandidatesEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get textInput(): S.TextInputEvent {
     return S.read_TextInputEvent(this.dt);
   }
   pushTextInput(e: S.TextInputEvent) {
-    return S.write_TextInputEvent(e, this.dt);
+    S.write_TextInputEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get mouseDevice(): S.MouseDeviceEvent {
     return S.read_MouseDeviceEvent(this.dt);
   }
   pushMouseDevice(e: S.MouseDeviceEvent) {
-    return S.write_MouseDeviceEvent(e, this.dt);
+    S.write_MouseDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get mouseMotion(): S.MouseMotionEvent {
     return S.read_MouseMotionEvent(this.dt);
   }
   pushMouseMotion(e: S.MouseMotionEvent) {
-    return S.write_MouseMotionEvent(e, this.dt);
+    S.write_MouseMotionEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get mouseButton(): S.MouseButtonEvent {
     return S.read_MouseButtonEvent(this.dt);
   }
   pushMouseButton(e: S.MouseButtonEvent) {
-    return S.write_MouseButtonEvent(e, this.dt);
+    S.write_MouseButtonEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get mouseWheel(): S.MouseWheelEvent {
     return S.read_MouseWheelEvent(this.dt);
   }
   pushMouseWheel(e: S.MouseWheelEvent) {
-    return S.write_MouseWheelEvent(e, this.dt);
+    S.write_MouseWheelEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyAxis(): S.JoyAxisEvent {
     return S.read_JoyAxisEvent(this.dt);
   }
   pushJoyAxis(e: S.JoyAxisEvent) {
-    return S.write_JoyAxisEvent(e, this.dt);
+    S.write_JoyAxisEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyBall(): S.JoyBallEvent {
     return S.read_JoyBallEvent(this.dt);
   }
   pushJoyBall(e: S.JoyBallEvent) {
-    return S.write_JoyBallEvent(e, this.dt);
+    S.write_JoyBallEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyHat(): S.JoyHatEvent {
     return S.read_JoyHatEvent(this.dt);
   }
   pushJoyHat(e: S.JoyHatEvent) {
-    return S.write_JoyHatEvent(e, this.dt);
+    S.write_JoyHatEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyButton(): S.JoyButtonEvent {
     return S.read_JoyButtonEvent(this.dt);
   }
   pushJoyButton(e: S.JoyButtonEvent) {
-    return S.write_JoyButtonEvent(e, this.dt);
+    S.write_JoyButtonEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyDevice(): S.JoyDeviceEvent {
     return S.read_JoyDeviceEvent(this.dt);
   }
   pushJoyDevice(e: S.JoyDeviceEvent) {
-    return S.write_JoyDeviceEvent(e, this.dt);
+    S.write_JoyDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get joyBattery(): S.JoyBatteryEvent {
     return S.read_JoyBatteryEvent(this.dt);
   }
   pushJoyBattery(e: S.JoyBatteryEvent) {
-    return S.write_JoyBatteryEvent(e, this.dt);
+    S.write_JoyBatteryEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get gamepadAxis(): S.GamepadAxisEvent {
     return S.read_GamepadAxisEvent(this.dt);
   }
   pushGamepadAxis(e: S.GamepadAxisEvent) {
-    return S.write_GamepadAxisEvent(e, this.dt);
+    S.write_GamepadAxisEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get gamepadButton(): S.GamepadButtonEvent {
     return S.read_GamepadButtonEvent(this.dt);
   }
   pushGamepadButton(e: S.GamepadButtonEvent) {
-    return S.write_GamepadButtonEvent(e, this.dt);
+    S.write_GamepadButtonEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get gamepadDevice(): S.GamepadDeviceEvent {
     return S.read_GamepadDeviceEvent(this.dt);
   }
   pushGamepadDevice(e: S.GamepadDeviceEvent) {
-    return S.write_GamepadDeviceEvent(e, this.dt);
+    S.write_GamepadDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get gamepadTouchpad(): S.GamepadTouchpadEvent {
     return S.read_GamepadTouchpadEvent(this.dt);
   }
   pushGamepadTouchpad(e: S.GamepadTouchpadEvent) {
-    return S.write_GamepadTouchpadEvent(e, this.dt);
+    S.write_GamepadTouchpadEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get gamepadSensor(): S.GamepadSensorEvent {
     return S.read_GamepadSensorEvent(this.dt);
   }
   pushGamepadSensor(e: S.GamepadSensorEvent) {
-    return S.write_GamepadSensorEvent(e, this.dt);
+    S.write_GamepadSensorEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get audioDevice(): S.AudioDeviceEvent {
     return S.read_AudioDeviceEvent(this.dt);
   }
   pushAudioDevice(e: S.AudioDeviceEvent) {
-    return S.write_AudioDeviceEvent(e, this.dt);
+    S.write_AudioDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get cameraDevice(): S.CameraDeviceEvent {
     return S.read_CameraDeviceEvent(this.dt);
   }
   pushCameraDevice(e: S.CameraDeviceEvent) {
-    return S.write_CameraDeviceEvent(e, this.dt);
+    S.write_CameraDeviceEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get render(): S.RenderEvent {
     return S.read_RenderEvent(this.dt);
   }
   pushRender(e: S.RenderEvent) {
-    return S.write_RenderEvent(e, this.dt);
+    S.write_RenderEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get touchFinger(): S.TouchFingerEvent {
     return S.read_TouchFingerEvent(this.dt);
   }
   pushTouchFinger(e: S.TouchFingerEvent) {
-    return S.write_TouchFingerEvent(e, this.dt);
+    S.write_TouchFingerEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get penProximity(): S.PenProximityEvent {
     return S.read_PenProximityEvent(this.dt);
   }
   pushPenProximity(e: S.PenProximityEvent) {
-    return S.write_PenProximityEvent(e, this.dt);
+    S.write_PenProximityEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get penMotion(): S.PenMotionEvent {
     return S.read_PenMotionEvent(this.dt);
   }
   pushPenMotion(e: S.PenMotionEvent) {
-    return S.write_PenMotionEvent(e, this.dt);
+    S.write_PenMotionEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get penTouch(): S.PenTouchEvent {
     return S.read_PenTouchEvent(this.dt);
   }
   pushPenTouch(e: S.PenTouchEvent) {
-    return S.write_PenTouchEvent(e, this.dt);
+    S.write_PenTouchEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get penButton(): S.PenButtonEvent {
     return S.read_PenButtonEvent(this.dt);
   }
   pushPenButton(e: S.PenButtonEvent) {
-    return S.write_PenButtonEvent(e, this.dt);
+    S.write_PenButtonEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get penAxis(): S.PenAxisEvent {
     return S.read_PenAxisEvent(this.dt);
   }
   pushPenAxis(e: S.PenAxisEvent) {
-    return S.write_PenAxisEvent(e, this.dt);
+    S.write_PenAxisEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get drop(): S.DropEvent {
     return S.read_DropEvent(this.dt);
   }
   pushDrop(e: S.DropEvent) {
-    return S.write_DropEvent(e, this.dt);
+    S.write_DropEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get clipboard(): S.ClipboardEvent {
     return S.read_ClipboardEvent(this.dt);
   }
   pushClipboard(e: S.ClipboardEvent) {
-    return S.write_ClipboardEvent(e, this.dt);
+    S.write_ClipboardEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get sensor(): S.SensorEvent {
     return S.read_SensorEvent(this.dt);
   }
   pushSensor(e: S.SensorEvent) {
-    return S.write_SensorEvent(e, this.dt);
+    S.write_SensorEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get quit(): S.QuitEvent {
     return S.read_QuitEvent(this.dt);
   }
   pushQuit(e: S.QuitEvent) {
-    return S.write_QuitEvent(e, this.dt);
+    S.write_QuitEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 
   get user(): S.UserEvent {
     return S.read_UserEvent(this.dt);
   }
   pushUser(e: S.UserEvent) {
-    return S.write_UserEvent(e, this.dt);
+    S.write_UserEvent(e, this.dt);
+    SDL.pushEvent(this.pointer);
   }
 }
