@@ -7,6 +7,7 @@
     "./tray": "./tray.ts",
     "./dialog": "./dialog.ts",
     "./messagebox": "./messagebox.ts",
+    "./events": "./events.ts",
     "./SDL": "./gen/SDL.ts",
     "./IMG": "./gen/IMG.ts",
     "./TTF": "./gen/TTF.ts",
@@ -16,7 +17,6 @@
     "exclude": [
       "./gen/_structs/SDL_gamepad.ts",
       "./gen/structs/SDL_gamepad.ts",
-      "./gen/structs/mod.ts",
       "./gen/macros",
       "*.test.ts"
     ]
