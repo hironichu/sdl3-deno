@@ -123,14 +123,14 @@ export const SDL_VirtualJoystickDesc = new _.Struct({
   touchpads: _.u64, /**< const SDL_VirtualJoystickTouchpadDesc * : A pointer to an array of touchpad descriptions, required if `ntouchpads` is > 0 */
   sensors: _.u64, /**< const SDL_VirtualJoystickSensorDesc * : A pointer to an array of sensor descriptions, required if `nsensors` is > 0 */
   userdata: _.u64, /**< void * : User data pointer passed to callbacks */
-  Update: _.u64, /*     void (SDLCALL *Update)(void *userdata); /**< Called when the joystick state should be updated */ */
-  SetPlayerIndex: _.u64, /*     void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); /**< Called when the player index is set */ */
-  Rumble: _.u64, /*     bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); /**< Implements SDL_RumbleJoystick() */ */
-  RumbleTriggers: _.u64, /*     bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); /**< Implements SDL_RumbleJoystickTriggers() */ */
-  SetLED: _.u64, /*     bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); /**< Implements SDL_SetJoystickLED() */ */
-  SendEffect: _.u64, /*     bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); /**< Implements SDL_SendJoystickEffect() */ */
-  SetSensorsEnabled: _.u64, /*     bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); /**< Implements SDL_SetGamepadSensorEnabled() */ */
-  Cleanup: _.u64, /*     void (SDLCALL *Cleanup)(void *userdata); /**< Cleans up the userdata when the joystick is detached */ */
+  Update: _.u64, /**< void (SDLCALL *Update)(void *userdata); : Called when the joystick state should be updated */
+  SetPlayerIndex: _.u64, /**< void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); : Called when the player index is set */
+  Rumble: _.u64, /**< bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); : Implements SDL_RumbleJoystick() */
+  RumbleTriggers: _.u64, /**< bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); : Implements SDL_RumbleJoystickTriggers() */
+  SetLED: _.u64, /**< bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); : Implements SDL_SetJoystickLED() */
+  SendEffect: _.u64, /**< bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); : Implements SDL_SendJoystickEffect() */
+  SetSensorsEnabled: _.u64, /**< bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); : Implements SDL_SetGamepadSensorEnabled() */
+  Cleanup: _.u64, /**< void (SDLCALL *Cleanup)(void *userdata); : Cleans up the userdata when the joystick is detached */
 });
 
 

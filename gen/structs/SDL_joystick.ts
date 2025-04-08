@@ -152,14 +152,14 @@ export interface SDL_VirtualJoystickDesc {
   touchpads: Deno.PointerValue; /**< const SDL_VirtualJoystickTouchpadDesc * : A pointer to an array of touchpad descriptions, required if `ntouchpads` is > 0 */
   sensors: Deno.PointerValue; /**< const SDL_VirtualJoystickSensorDesc * : A pointer to an array of sensor descriptions, required if `nsensors` is > 0 */
   userdata: Deno.PointerValue; /**< void * : User data pointer passed to callbacks */
-  Update: Deno.PointerValue; /*     void (SDLCALL *Update)(void *userdata); /**< Called when the joystick state should be updated */ */
-  SetPlayerIndex: Deno.PointerValue; /*     void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); /**< Called when the player index is set */ */
-  Rumble: Deno.PointerValue; /*     bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); /**< Implements SDL_RumbleJoystick() */ */
-  RumbleTriggers: Deno.PointerValue; /*     bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); /**< Implements SDL_RumbleJoystickTriggers() */ */
-  SetLED: Deno.PointerValue; /*     bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); /**< Implements SDL_SetJoystickLED() */ */
-  SendEffect: Deno.PointerValue; /*     bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); /**< Implements SDL_SendJoystickEffect() */ */
-  SetSensorsEnabled: Deno.PointerValue; /*     bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); /**< Implements SDL_SetGamepadSensorEnabled() */ */
-  Cleanup: Deno.PointerValue; /*     void (SDLCALL *Cleanup)(void *userdata); /**< Cleans up the userdata when the joystick is detached */ */
+  Update: Deno.PointerValue; /**< void (SDLCALL *Update)(void *userdata); : Called when the joystick state should be updated */
+  SetPlayerIndex: Deno.PointerValue; /**< void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); : Called when the player index is set */
+  Rumble: Deno.PointerValue; /**< bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); : Implements SDL_RumbleJoystick() */
+  RumbleTriggers: Deno.PointerValue; /**< bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); : Implements SDL_RumbleJoystickTriggers() */
+  SetLED: Deno.PointerValue; /**< bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); : Implements SDL_SetJoystickLED() */
+  SendEffect: Deno.PointerValue; /**< bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); : Implements SDL_SendJoystickEffect() */
+  SetSensorsEnabled: Deno.PointerValue; /**< bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); : Implements SDL_SetGamepadSensorEnabled() */
+  Cleanup: Deno.PointerValue; /**< void (SDLCALL *Cleanup)(void *userdata); : Cleans up the userdata when the joystick is detached */
 }
 
 export function read_SDL_VirtualJoystickDesc(dt: DataView): SDL_VirtualJoystickDesc {
@@ -183,14 +183,14 @@ export function read_SDL_VirtualJoystickDesc(dt: DataView): SDL_VirtualJoystickD
     touchpads: Deno.UnsafePointer.create(t.touchpads), /** const SDL_VirtualJoystickTouchpadDesc * */
     sensors: Deno.UnsafePointer.create(t.sensors), /** const SDL_VirtualJoystickSensorDesc * */
     userdata: Deno.UnsafePointer.create(t.userdata), /** void * */
-    Update: Deno.UnsafePointer.create(t.Update), /**     void (SDLCALL *Update)(void *userdata); /**< Called when the joystick state should be updated */ */
-    SetPlayerIndex: Deno.UnsafePointer.create(t.SetPlayerIndex), /**     void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); /**< Called when the player index is set */ */
-    Rumble: Deno.UnsafePointer.create(t.Rumble), /**     bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); /**< Implements SDL_RumbleJoystick() */ */
-    RumbleTriggers: Deno.UnsafePointer.create(t.RumbleTriggers), /**     bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); /**< Implements SDL_RumbleJoystickTriggers() */ */
-    SetLED: Deno.UnsafePointer.create(t.SetLED), /**     bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); /**< Implements SDL_SetJoystickLED() */ */
-    SendEffect: Deno.UnsafePointer.create(t.SendEffect), /**     bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); /**< Implements SDL_SendJoystickEffect() */ */
-    SetSensorsEnabled: Deno.UnsafePointer.create(t.SetSensorsEnabled), /**     bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); /**< Implements SDL_SetGamepadSensorEnabled() */ */
-    Cleanup: Deno.UnsafePointer.create(t.Cleanup), /**     void (SDLCALL *Cleanup)(void *userdata); /**< Cleans up the userdata when the joystick is detached */ */
+    Update: Deno.UnsafePointer.create(t.Update), /** void (SDLCALL *Update)(void *userdata); */
+    SetPlayerIndex: Deno.UnsafePointer.create(t.SetPlayerIndex), /** void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); */
+    Rumble: Deno.UnsafePointer.create(t.Rumble), /** bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); */
+    RumbleTriggers: Deno.UnsafePointer.create(t.RumbleTriggers), /** bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); */
+    SetLED: Deno.UnsafePointer.create(t.SetLED), /** bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); */
+    SendEffect: Deno.UnsafePointer.create(t.SendEffect), /** bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); */
+    SetSensorsEnabled: Deno.UnsafePointer.create(t.SetSensorsEnabled), /** bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); */
+    Cleanup: Deno.UnsafePointer.create(t.Cleanup), /** void (SDLCALL *Cleanup)(void *userdata); */
   };
 }
 
@@ -214,14 +214,14 @@ export function write_SDL_VirtualJoystickDesc(t: SDL_VirtualJoystickDesc, dt: Da
     touchpads: Deno.UnsafePointer.value(t.touchpads), /** const SDL_VirtualJoystickTouchpadDesc * */
     sensors: Deno.UnsafePointer.value(t.sensors), /** const SDL_VirtualJoystickSensorDesc * */
     userdata: Deno.UnsafePointer.value(t.userdata), /** void * */
-    Update: Deno.UnsafePointer.value(t.Update), /**     void (SDLCALL *Update)(void *userdata); /**< Called when the joystick state should be updated */ */
-    SetPlayerIndex: Deno.UnsafePointer.value(t.SetPlayerIndex), /**     void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); /**< Called when the player index is set */ */
-    Rumble: Deno.UnsafePointer.value(t.Rumble), /**     bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); /**< Implements SDL_RumbleJoystick() */ */
-    RumbleTriggers: Deno.UnsafePointer.value(t.RumbleTriggers), /**     bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); /**< Implements SDL_RumbleJoystickTriggers() */ */
-    SetLED: Deno.UnsafePointer.value(t.SetLED), /**     bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); /**< Implements SDL_SetJoystickLED() */ */
-    SendEffect: Deno.UnsafePointer.value(t.SendEffect), /**     bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); /**< Implements SDL_SendJoystickEffect() */ */
-    SetSensorsEnabled: Deno.UnsafePointer.value(t.SetSensorsEnabled), /**     bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); /**< Implements SDL_SetGamepadSensorEnabled() */ */
-    Cleanup: Deno.UnsafePointer.value(t.Cleanup), /**     void (SDLCALL *Cleanup)(void *userdata); /**< Cleans up the userdata when the joystick is detached */ */
+    Update: Deno.UnsafePointer.value(t.Update), /** void (SDLCALL *Update)(void *userdata); */
+    SetPlayerIndex: Deno.UnsafePointer.value(t.SetPlayerIndex), /** void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); */
+    Rumble: Deno.UnsafePointer.value(t.Rumble), /** bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); */
+    RumbleTriggers: Deno.UnsafePointer.value(t.RumbleTriggers), /** bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); */
+    SetLED: Deno.UnsafePointer.value(t.SetLED), /** bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); */
+    SendEffect: Deno.UnsafePointer.value(t.SendEffect), /** bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); */
+    SetSensorsEnabled: Deno.UnsafePointer.value(t.SetSensorsEnabled), /** bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); */
+    Cleanup: Deno.UnsafePointer.value(t.Cleanup), /** void (SDLCALL *Cleanup)(void *userdata); */
   }, dt);
 }
 
