@@ -36,6 +36,30 @@ export { EventType };
 
 import { SDL } from "./gen/SDL.ts";
 
+/**
+ * Represents an SDL event with methods to poll, push, and access various event types.
+ *
+ * The Event class provides a wrapper around SDL's event system, allowing for
+ * easy polling of events from the queue and pushing new events. It maintains
+ * an internal buffer for event data and provides typed accessors for all
+ * supported SDL event types.
+ *
+ * @example
+ * ```ts
+ * setInterval(() => {
+ *     const event = new Event();
+ *     while (event.poll()) {  // poll until all events are handled!
+ *         // decide what to do with this event.
+ *         if (event.type === EventType.QUIT) {
+ *             handleQuitEvent(event.quit);
+ *         }
+ *     }
+ *
+ *     // update game state, draw the current frame
+ *
+ * }, frameInterval);
+ * ```
+ */
 export class Event {
   #buffer: Uint8Array = new Uint8Array(128);
   type: number = 0;
@@ -49,6 +73,54 @@ export class Event {
     this.pointer = Deno.UnsafePointer.of(this.#buffer)!;
   }
 
+  /**
+   * Poll for currently pending events.
+   *
+   * If `event` is not NULL, the next event is removed from the queue and stored
+   * in the SDL_Event structure pointed to by `event`. The 1 returned refers to
+   * this event, immediately stored in the SDL Event structure -- not an event
+   * to follow.
+   *
+   * If `event` is NULL, it simply returns 1 if there is an event in the queue,
+   * but will not remove it from the queue.
+   *
+   * As this function may implicitly call SDL_PumpEvents(), you can only call
+   * this function in the thread that set the video mode.
+   *
+   * SDL_PollEvent() is the favored way of receiving system events since it can
+   * be done from the main loop and does not suspend the main loop while waiting
+   * on an event to be posted.
+   *
+   * The common practice is to fully process the event queue once every frame,
+   * usually as a first step before updating the game's state:
+   *
+   * ```ts
+   * setInterval(() => {
+   *     const event = new Event();
+   *     while (event.poll()) {  // poll until all events are handled!
+   *         // decide what to do with this event.
+   *         if (event.type === EventType.QUIT) {
+   *             handleQuitEvent(event.quit);
+   *         }
+   *     }
+   *
+   *     // update game state, draw the current frame
+   *
+   * }, frameInterval);
+   * ```
+   *
+   * @returns true if this got an event or false if there are none available.
+   *
+   * @threadsafety This function should only be called on the main thread.
+   *
+   * @since This function is available since SDL 3.2.0.
+   *
+   * @sa SDL_PushEvent
+   * @sa SDL_WaitEvent
+   * @sa SDL_WaitEventTimeout
+   *
+   * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
+   */
   poll(): boolean {
     const r = SDL.pollEvent(this.pointer);
     if (r) {
@@ -59,7 +131,29 @@ export class Event {
     return r;
   }
 
-  pump() {
+  /**
+   * Pump the event loop, gathering events from the input devices.
+   *
+   * This function updates the event queue and internal input device state.
+   *
+   * SDL_PumpEvents() gathers all the pending input information from devices and
+   * places it in the event queue. Without calls to SDL_PumpEvents() no events
+   * would ever be placed on the queue. Often the need for calls to
+   * SDL_PumpEvents() is hidden from the user since SDL_PollEvent() and
+   * SDL_WaitEvent() implicitly call SDL_PumpEvents(). However, if you are not
+   * polling or waiting for events (e.g. you are filtering them), then you must
+   * call SDL_PumpEvents() to force an event queue update.
+   *
+   * @threadsafety This function should only be called on the main thread.
+   *
+   * @since This function is available since SDL 3.2.0.
+   *
+   * @sa SDL_PollEvent
+   * @sa SDL_WaitEvent
+   *
+   * @from SDL_events.h:1068 void SDL_PumpEvents(void);
+   */
+  static pump() {
     SDL.pumpEvents();
   }
 
