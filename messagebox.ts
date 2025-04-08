@@ -255,7 +255,7 @@ export interface MsgBoxOption extends MsgBoxOptionSimple {
  * @from SDL_messagebox.h:81
  */
 export interface ButtonOption {
-  type?: ButtonFlags; /* SDL_MessageBoxButtonFlags */
+  flags?: ButtonFlags; /* SDL_MessageBoxButtonFlags */
   id:
     number; /**< int : User defined button id (value returned via SDL_ShowMessageBox) */
   text: string; /**< const char * : The UTF-8 button text */
