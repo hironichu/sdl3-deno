@@ -53,9 +53,6 @@ export { symbols };
 
 export const lib = Deno.dlopen(libSdlPath("SDL3"), symbols);
 
-export const SDL = {
-  lib,
-
 
 
 /*--- SDL_assert ---*/
@@ -75,7 +72,7 @@ export const SDL = {
  *
  * @from SDL_assert.h:270 SDL_ASSERTION_
  */
-  ASSERTION: SDL_assert_enums.SDL_AssertState,
+export const ASSERTION = SDL_assert_enums.SDL_AssertState;
 
 
 
@@ -96,7 +93,7 @@ export const SDL = {
  *
  * @from SDL_assert.h:314 SDL_AssertState SDL_ReportAssertion(SDL_AssertData *data,                                                            const char *func,                                                            const char *file, int line) SDL_ANALYZER_NORETURN;
  */
-  reportAssertion: lib.symbols.SDL_ReportAssertion,
+  export const reportAssertion = lib.symbols.SDL_ReportAssertion;
 
 /**
  * Get a list of all assertion failures.
@@ -132,7 +129,7 @@ export const SDL = {
  *
  * @from SDL_assert.h:635 const SDL_AssertData * SDL_GetAssertionReport(void);
  */
-  getAssertionReport: lib.symbols.SDL_GetAssertionReport,
+  export const getAssertionReport = lib.symbols.SDL_GetAssertionReport;
 
 /**
  * Clear the list of all assertion failures.
@@ -152,7 +149,7 @@ export const SDL = {
  *
  * @from SDL_assert.h:653 void SDL_ResetAssertionReport(void);
  */
-  resetAssertionReport: lib.symbols.SDL_ResetAssertionReport,
+  export const resetAssertionReport = lib.symbols.SDL_ResetAssertionReport;
 
 
 
@@ -165,7 +162,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:130 SDL_ASYNCIO_TASK_
  */
-  ASYNCIO_TASK: SDL_asyncio_enums.SDL_AsyncIOTaskType,
+export const ASYNCIO_TASK = SDL_asyncio_enums.SDL_AsyncIOTaskType;
 
 /**
  * Possible outcomes of an asynchronous I/O task.
@@ -174,7 +171,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:142 SDL_ASYNCIO_
  */
-  ASYNCIO: SDL_asyncio_enums.SDL_AsyncIOResult,
+export const ASYNCIO = SDL_asyncio_enums.SDL_AsyncIOResult;
 
 
 
@@ -217,7 +214,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:221 SDL_AsyncIO * SDL_AsyncIOFromFile(const char *file, const char *mode);
  */
-  asyncIoFromFile: lib.symbols.SDL_AsyncIOFromFile,
+  export const asyncIoFromFile = lib.symbols.SDL_AsyncIOFromFile;
 
 /**
  * Use this function to get the size of the data stream in an SDL_AsyncIO.
@@ -236,7 +233,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:238 Sint64 SDL_GetAsyncIOSize(SDL_AsyncIO *asyncio);
  */
-  getAsyncIoSize: lib.symbols.SDL_GetAsyncIOSize,
+  export const getAsyncIoSize = lib.symbols.SDL_GetAsyncIOSize;
 
 /**
  * Start an async read.
@@ -276,7 +273,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:276 bool SDL_ReadAsyncIO(SDL_AsyncIO *asyncio, void *ptr, Uint64 offset, Uint64 size, SDL_AsyncIOQueue *queue, void *userdata);
  */
-  readAsyncIo: lib.symbols.SDL_ReadAsyncIO,
+  export const readAsyncIo = lib.symbols.SDL_ReadAsyncIO;
 
 /**
  * Start an async write.
@@ -315,7 +312,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:313 bool SDL_WriteAsyncIO(SDL_AsyncIO *asyncio, void *ptr, Uint64 offset, Uint64 size, SDL_AsyncIOQueue *queue, void *userdata);
  */
-  writeAsyncIo: lib.symbols.SDL_WriteAsyncIO,
+  export const writeAsyncIo = lib.symbols.SDL_WriteAsyncIO;
 
 /**
  * Close and free any allocated resources for an async I/O object.
@@ -366,7 +363,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:362 bool SDL_CloseAsyncIO(SDL_AsyncIO *asyncio, bool flush, SDL_AsyncIOQueue *queue, void *userdata);
  */
-  closeAsyncIo: lib.symbols.SDL_CloseAsyncIO,
+  export const closeAsyncIo = lib.symbols.SDL_CloseAsyncIO;
 
 /**
  * Create a task queue for tracking multiple I/O operations.
@@ -387,7 +384,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:381 SDL_AsyncIOQueue * SDL_CreateAsyncIOQueue(void);
  */
-  createAsyncIoQueue: lib.symbols.SDL_CreateAsyncIOQueue,
+  export const createAsyncIoQueue = lib.symbols.SDL_CreateAsyncIOQueue;
 
 /**
  * Destroy a previously-created async I/O task queue.
@@ -419,7 +416,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:411 void SDL_DestroyAsyncIOQueue(SDL_AsyncIOQueue *queue);
  */
-  destroyAsyncIoQueue: lib.symbols.SDL_DestroyAsyncIOQueue,
+  export const destroyAsyncIoQueue = lib.symbols.SDL_DestroyAsyncIOQueue;
 
 /**
  * Query an async I/O task queue for completed tasks.
@@ -447,7 +444,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:437 bool SDL_GetAsyncIOResult(SDL_AsyncIOQueue *queue, SDL_AsyncIOOutcome *outcome);
  */
-  getAsyncIoResult: lib.symbols.SDL_GetAsyncIOResult,
+  export const getAsyncIoResult = lib.symbols.SDL_GetAsyncIOResult;
 
 /**
  * Block until an async I/O task queue has a completed task.
@@ -493,7 +490,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:481 bool SDL_WaitAsyncIOResult(SDL_AsyncIOQueue *queue, SDL_AsyncIOOutcome *outcome, Sint32 timeoutMS);
  */
-  waitAsyncIoResult: lib.symbols.SDL_WaitAsyncIOResult,
+  export const waitAsyncIoResult = lib.symbols.SDL_WaitAsyncIOResult;
 
 /**
  * Wake up any threads that are blocking in SDL_WaitAsyncIOResult().
@@ -519,7 +516,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:505 void SDL_SignalAsyncIOQueue(SDL_AsyncIOQueue *queue);
  */
-  signalAsyncIoQueue: lib.symbols.SDL_SignalAsyncIOQueue,
+  export const signalAsyncIoQueue = lib.symbols.SDL_SignalAsyncIOQueue;
 
 /**
  * Load all the data from a file path, asynchronously.
@@ -553,7 +550,7 @@ export const SDL = {
  *
  * @from SDL_asyncio.h:537 bool SDL_LoadFileAsync(const char *file, SDL_AsyncIOQueue *queue, void *userdata);
  */
-  loadFileAsync: lib.symbols.SDL_LoadFileAsync,
+  export const loadFileAsync = lib.symbols.SDL_LoadFileAsync;
 
 
 
@@ -577,7 +574,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:99 bool SDL_TryLockSpinlock(SDL_SpinLock *lock);
  */
-  tryLockSpinlock: lib.symbols.SDL_TryLockSpinlock,
+  export const tryLockSpinlock = lib.symbols.SDL_TryLockSpinlock;
 
 /**
  * Lock a spin lock by setting it to a non-zero value.
@@ -596,7 +593,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:116 void SDL_LockSpinlock(SDL_SpinLock *lock);
  */
-  lockSpinlock: lib.symbols.SDL_LockSpinlock,
+  export const lockSpinlock = lib.symbols.SDL_LockSpinlock;
 
 /**
  * Unlock a spin lock by setting it to 0.
@@ -617,7 +614,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:135 void SDL_UnlockSpinlock(SDL_SpinLock *lock);
  */
-  unlockSpinlock: lib.symbols.SDL_UnlockSpinlock,
+  export const unlockSpinlock = lib.symbols.SDL_UnlockSpinlock;
 
 /**
  * Insert a memory release barrier (function version).
@@ -639,7 +636,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:191 void SDL_MemoryBarrierReleaseFunction(void);
  */
-  memoryBarrierReleaseFunction: lib.symbols.SDL_MemoryBarrierReleaseFunction,
+  export const memoryBarrierReleaseFunction = lib.symbols.SDL_MemoryBarrierReleaseFunction;
 
 /**
  * Insert a memory acquire barrier (function version).
@@ -661,7 +658,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:211 void SDL_MemoryBarrierAcquireFunction(void);
  */
-  memoryBarrierAcquireFunction: lib.symbols.SDL_MemoryBarrierAcquireFunction,
+  export const memoryBarrierAcquireFunction = lib.symbols.SDL_MemoryBarrierAcquireFunction;
 
 /**
  * Set an atomic variable to a new value if it is currently an old value.
@@ -683,7 +680,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:414 bool SDL_CompareAndSwapAtomicInt(SDL_AtomicInt *a, int oldval, int newval);
  */
-  compareAndSwapAtomicInt: lib.symbols.SDL_CompareAndSwapAtomicInt,
+  export const compareAndSwapAtomicInt = lib.symbols.SDL_CompareAndSwapAtomicInt;
 
 /**
  * Set an atomic variable to a value.
@@ -705,7 +702,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:434 int SDL_SetAtomicInt(SDL_AtomicInt *a, int v);
  */
-  setAtomicInt: lib.symbols.SDL_SetAtomicInt,
+  export const setAtomicInt = lib.symbols.SDL_SetAtomicInt;
 
 /**
  * Get the value of an atomic variable.
@@ -724,7 +721,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:451 int SDL_GetAtomicInt(SDL_AtomicInt *a);
  */
-  getAtomicInt: lib.symbols.SDL_GetAtomicInt,
+  export const getAtomicInt = lib.symbols.SDL_GetAtomicInt;
 
 /**
  * Add to an atomic variable.
@@ -747,7 +744,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:472 int SDL_AddAtomicInt(SDL_AtomicInt *a, int v);
  */
-  addAtomicInt: lib.symbols.SDL_AddAtomicInt,
+  export const addAtomicInt = lib.symbols.SDL_AddAtomicInt;
 
 /**
  * Set an atomic variable to a new value if it is currently an old value.
@@ -769,7 +766,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:559 bool SDL_CompareAndSwapAtomicU32(SDL_AtomicU32 *a, Uint32 oldval, Uint32 newval);
  */
-  compareAndSwapAtomicU32: lib.symbols.SDL_CompareAndSwapAtomicU32,
+  export const compareAndSwapAtomicU32 = lib.symbols.SDL_CompareAndSwapAtomicU32;
 
 /**
  * Set an atomic variable to a value.
@@ -791,7 +788,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:579 Uint32 SDL_SetAtomicU32(SDL_AtomicU32 *a, Uint32 v);
  */
-  setAtomicU32: lib.symbols.SDL_SetAtomicU32,
+  export const setAtomicU32 = lib.symbols.SDL_SetAtomicU32;
 
 /**
  * Get the value of an atomic variable.
@@ -810,7 +807,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:596 Uint32 SDL_GetAtomicU32(SDL_AtomicU32 *a);
  */
-  getAtomicU32: lib.symbols.SDL_GetAtomicU32,
+  export const getAtomicU32 = lib.symbols.SDL_GetAtomicU32;
 
 /**
  * Set a pointer to a new value if it is currently an old value.
@@ -833,7 +830,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:617 bool SDL_CompareAndSwapAtomicPointer(void **a, void *oldval, void *newval);
  */
-  compareAndSwapAtomicPointer: lib.symbols.SDL_CompareAndSwapAtomicPointer,
+  export const compareAndSwapAtomicPointer = lib.symbols.SDL_CompareAndSwapAtomicPointer;
 
 /**
  * Set a pointer to a value atomically.
@@ -854,7 +851,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:636 void * SDL_SetAtomicPointer(void **a, void *v);
  */
-  setAtomicPointer: lib.symbols.SDL_SetAtomicPointer,
+  export const setAtomicPointer = lib.symbols.SDL_SetAtomicPointer;
 
 /**
  * Get the value of a pointer atomically.
@@ -874,7 +871,7 @@ export const SDL = {
  *
  * @from SDL_atomic.h:654 void * SDL_GetAtomicPointer(void **a);
  */
-  getAtomicPointer: lib.symbols.SDL_GetAtomicPointer,
+  export const getAtomicPointer = lib.symbols.SDL_GetAtomicPointer;
 
 
 
@@ -896,7 +893,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:220 SDL_AUDIO_
  */
-  AUDIO: SDL_audio_enums.SDL_AudioFormat,
+export const AUDIO = SDL_audio_enums.SDL_AudioFormat;
 
 
 
@@ -923,7 +920,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:476 int SDL_GetNumAudioDrivers(void);
  */
-  getNumAudioDrivers: lib.symbols.SDL_GetNumAudioDrivers,
+  export const getNumAudioDrivers = lib.symbols.SDL_GetNumAudioDrivers;
 
 /**
  * Use this function to get the name of a built in audio driver.
@@ -949,7 +946,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:500 const char * SDL_GetAudioDriver(int index);
  */
-  getAudioDriver: lib.symbols.SDL_GetAudioDriver,
+  export const getAudioDriver = lib.symbols.SDL_GetAudioDriver;
 
 /**
  * Get the name of the current audio driver.
@@ -967,7 +964,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:516 const char * SDL_GetCurrentAudioDriver(void);
  */
-  getCurrentAudioDriver: lib.symbols.SDL_GetCurrentAudioDriver,
+  export const getCurrentAudioDriver = lib.symbols.SDL_GetCurrentAudioDriver;
 
 /**
  * Get a list of currently-connected audio playback devices.
@@ -998,7 +995,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:545 SDL_AudioDeviceID * SDL_GetAudioPlaybackDevices(int *count);
  */
-  getAudioPlaybackDevices: lib.symbols.SDL_GetAudioPlaybackDevices,
+  export const getAudioPlaybackDevices = lib.symbols.SDL_GetAudioPlaybackDevices;
 
 /**
  * Get a list of currently-connected audio recording devices.
@@ -1029,7 +1026,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:574 SDL_AudioDeviceID * SDL_GetAudioRecordingDevices(int *count);
  */
-  getAudioRecordingDevices: lib.symbols.SDL_GetAudioRecordingDevices,
+  export const getAudioRecordingDevices = lib.symbols.SDL_GetAudioRecordingDevices;
 
 /**
  * Get the human-readable name of a specific audio device.
@@ -1047,7 +1044,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:590 const char * SDL_GetAudioDeviceName(SDL_AudioDeviceID devid);
  */
-  getAudioDeviceName: lib.symbols.SDL_GetAudioDeviceName,
+  export const getAudioDeviceName = lib.symbols.SDL_GetAudioDeviceName;
 
 /**
  * Get the current audio format of a specific audio device.
@@ -1084,7 +1081,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:625 bool SDL_GetAudioDeviceFormat(SDL_AudioDeviceID devid, SDL_AudioSpec *spec, int *sample_frames);
  */
-  getAudioDeviceFormat: lib.symbols.SDL_GetAudioDeviceFormat,
+  export const getAudioDeviceFormat = lib.symbols.SDL_GetAudioDeviceFormat;
 
 /**
  * Get the current channel map of an audio device.
@@ -1109,7 +1106,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:648 int * SDL_GetAudioDeviceChannelMap(SDL_AudioDeviceID devid, int *count);
  */
-  getAudioDeviceChannelMap: lib.symbols.SDL_GetAudioDeviceChannelMap,
+  export const getAudioDeviceChannelMap = lib.symbols.SDL_GetAudioDeviceChannelMap;
 
 /**
  * Open a specific audio device.
@@ -1187,7 +1184,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:724 SDL_AudioDeviceID SDL_OpenAudioDevice(SDL_AudioDeviceID devid, const SDL_AudioSpec *spec);
  */
-  openAudioDevice: lib.symbols.SDL_OpenAudioDevice,
+  export const openAudioDevice = lib.symbols.SDL_OpenAudioDevice;
 
 /**
  * Determine if an audio device is physical (instead of logical).
@@ -1214,7 +1211,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:749 bool SDL_IsAudioDevicePhysical(SDL_AudioDeviceID devid);
  */
-  isAudioDevicePhysical: lib.symbols.SDL_IsAudioDevicePhysical,
+  export const isAudioDevicePhysical = lib.symbols.SDL_IsAudioDevicePhysical;
 
 /**
  * Determine if an audio device is a playback device (instead of recording).
@@ -1230,7 +1227,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:763 bool SDL_IsAudioDevicePlayback(SDL_AudioDeviceID devid);
  */
-  isAudioDevicePlayback: lib.symbols.SDL_IsAudioDevicePlayback,
+  export const isAudioDevicePlayback = lib.symbols.SDL_IsAudioDevicePlayback;
 
 /**
  * Use this function to pause audio playback on a specified device.
@@ -1263,7 +1260,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:794 bool SDL_PauseAudioDevice(SDL_AudioDeviceID devid);
  */
-  pauseAudioDevice: lib.symbols.SDL_PauseAudioDevice,
+  export const pauseAudioDevice = lib.symbols.SDL_PauseAudioDevice;
 
 /**
  * Use this function to unpause audio playback on a specified device.
@@ -1293,7 +1290,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:822 bool SDL_ResumeAudioDevice(SDL_AudioDeviceID devid);
  */
-  resumeAudioDevice: lib.symbols.SDL_ResumeAudioDevice,
+  export const resumeAudioDevice = lib.symbols.SDL_ResumeAudioDevice;
 
 /**
  * Use this function to query if an audio device is paused.
@@ -1317,7 +1314,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:844 bool SDL_AudioDevicePaused(SDL_AudioDeviceID devid);
  */
-  audioDevicePaused: lib.symbols.SDL_AudioDevicePaused,
+  export const audioDevicePaused = lib.symbols.SDL_AudioDevicePaused;
 
 /**
  * Get the gain of an audio device.
@@ -1342,7 +1339,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:867 float SDL_GetAudioDeviceGain(SDL_AudioDeviceID devid);
  */
-  getAudioDeviceGain: lib.symbols.SDL_GetAudioDeviceGain,
+  export const getAudioDeviceGain = lib.symbols.SDL_GetAudioDeviceGain;
 
 /**
  * Change the gain of an audio device.
@@ -1379,7 +1376,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:902 bool SDL_SetAudioDeviceGain(SDL_AudioDeviceID devid, float gain);
  */
-  setAudioDeviceGain: lib.symbols.SDL_SetAudioDeviceGain,
+  export const setAudioDeviceGain = lib.symbols.SDL_SetAudioDeviceGain;
 
 /**
  * Close a previously-opened audio device.
@@ -1402,7 +1399,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:923 void SDL_CloseAudioDevice(SDL_AudioDeviceID devid);
  */
-  closeAudioDevice: lib.symbols.SDL_CloseAudioDevice,
+  export const closeAudioDevice = lib.symbols.SDL_CloseAudioDevice;
 
 /**
  * Bind a list of audio streams to an audio device.
@@ -1441,7 +1438,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:960 bool SDL_BindAudioStreams(SDL_AudioDeviceID devid, SDL_AudioStream * const *streams, int num_streams);
  */
-  bindAudioStreams: lib.symbols.SDL_BindAudioStreams,
+  export const bindAudioStreams = lib.symbols.SDL_BindAudioStreams;
 
 /**
  * Bind a single audio stream to an audio device.
@@ -1464,7 +1461,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:981 bool SDL_BindAudioStream(SDL_AudioDeviceID devid, SDL_AudioStream *stream);
  */
-  bindAudioStream: lib.symbols.SDL_BindAudioStream,
+  export const bindAudioStream = lib.symbols.SDL_BindAudioStream;
 
 /**
  * Unbind a list of audio streams from their audio devices.
@@ -1487,7 +1484,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1002 void SDL_UnbindAudioStreams(SDL_AudioStream * const *streams, int num_streams);
  */
-  unbindAudioStreams: lib.symbols.SDL_UnbindAudioStreams,
+  export const unbindAudioStreams = lib.symbols.SDL_UnbindAudioStreams;
 
 /**
  * Unbind a single audio stream from its audio device.
@@ -1505,7 +1502,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1018 void SDL_UnbindAudioStream(SDL_AudioStream *stream);
  */
-  unbindAudioStream: lib.symbols.SDL_UnbindAudioStream,
+  export const unbindAudioStream = lib.symbols.SDL_UnbindAudioStream;
 
 /**
  * Query an audio stream for its currently-bound device.
@@ -1527,7 +1524,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1038 SDL_AudioDeviceID SDL_GetAudioStreamDevice(SDL_AudioStream *stream);
  */
-  getAudioStreamDevice: lib.symbols.SDL_GetAudioStreamDevice,
+  export const getAudioStreamDevice = lib.symbols.SDL_GetAudioStreamDevice;
 
 /**
  * Create a new audio stream.
@@ -1551,7 +1548,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1060 SDL_AudioStream * SDL_CreateAudioStream(const SDL_AudioSpec *src_spec, const SDL_AudioSpec *dst_spec);
  */
-  createAudioStream: lib.symbols.SDL_CreateAudioStream,
+  export const createAudioStream = lib.symbols.SDL_CreateAudioStream;
 
 /**
  * Get the properties associated with an audio stream.
@@ -1566,7 +1563,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1073 SDL_PropertiesID SDL_GetAudioStreamProperties(SDL_AudioStream *stream);
  */
-  getAudioStreamProperties: lib.symbols.SDL_GetAudioStreamProperties,
+  export const getAudioStreamProperties = lib.symbols.SDL_GetAudioStreamProperties;
 
 /**
  * Query the current format of an audio stream.
@@ -1586,7 +1583,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1091 bool SDL_GetAudioStreamFormat(SDL_AudioStream *stream, SDL_AudioSpec *src_spec, SDL_AudioSpec *dst_spec);
  */
-  getAudioStreamFormat: lib.symbols.SDL_GetAudioStreamFormat,
+  export const getAudioStreamFormat = lib.symbols.SDL_GetAudioStreamFormat;
 
 /**
  * Change the input and output formats of an audio stream.
@@ -1625,7 +1622,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1128 bool SDL_SetAudioStreamFormat(SDL_AudioStream *stream, const SDL_AudioSpec *src_spec, const SDL_AudioSpec *dst_spec);
  */
-  setAudioStreamFormat: lib.symbols.SDL_SetAudioStreamFormat,
+  export const setAudioStreamFormat = lib.symbols.SDL_SetAudioStreamFormat;
 
 /**
  * Get the frequency ratio of an audio stream.
@@ -1643,7 +1640,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1144 float SDL_GetAudioStreamFrequencyRatio(SDL_AudioStream *stream);
  */
-  getAudioStreamFrequencyRatio: lib.symbols.SDL_GetAudioStreamFrequencyRatio,
+  export const getAudioStreamFrequencyRatio = lib.symbols.SDL_GetAudioStreamFrequencyRatio;
 
 /**
  * Change the frequency ratio of an audio stream.
@@ -1673,7 +1670,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1172 bool SDL_SetAudioStreamFrequencyRatio(SDL_AudioStream *stream, float ratio);
  */
-  setAudioStreamFrequencyRatio: lib.symbols.SDL_SetAudioStreamFrequencyRatio,
+  export const setAudioStreamFrequencyRatio = lib.symbols.SDL_SetAudioStreamFrequencyRatio;
 
 /**
  * Get the gain of an audio stream.
@@ -1696,7 +1693,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1193 float SDL_GetAudioStreamGain(SDL_AudioStream *stream);
  */
-  getAudioStreamGain: lib.symbols.SDL_GetAudioStreamGain,
+  export const getAudioStreamGain = lib.symbols.SDL_GetAudioStreamGain;
 
 /**
  * Change the gain of an audio stream.
@@ -1723,7 +1720,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1218 bool SDL_SetAudioStreamGain(SDL_AudioStream *stream, float gain);
  */
-  setAudioStreamGain: lib.symbols.SDL_SetAudioStreamGain,
+  export const setAudioStreamGain = lib.symbols.SDL_SetAudioStreamGain;
 
 /**
  * Get the current input channel map of an audio stream.
@@ -1749,7 +1746,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1242 int * SDL_GetAudioStreamInputChannelMap(SDL_AudioStream *stream, int *count);
  */
-  getAudioStreamInputChannelMap: lib.symbols.SDL_GetAudioStreamInputChannelMap,
+  export const getAudioStreamInputChannelMap = lib.symbols.SDL_GetAudioStreamInputChannelMap;
 
 /**
  * Get the current output channel map of an audio stream.
@@ -1775,7 +1772,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1266 int * SDL_GetAudioStreamOutputChannelMap(SDL_AudioStream *stream, int *count);
  */
-  getAudioStreamOutputChannelMap: lib.symbols.SDL_GetAudioStreamOutputChannelMap,
+  export const getAudioStreamOutputChannelMap = lib.symbols.SDL_GetAudioStreamOutputChannelMap;
 
 /**
  * Set the current input channel map of an audio stream.
@@ -1837,7 +1834,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1326 bool SDL_SetAudioStreamInputChannelMap(SDL_AudioStream *stream, const int *chmap, int count);
  */
-  setAudioStreamInputChannelMap: lib.symbols.SDL_SetAudioStreamInputChannelMap,
+  export const setAudioStreamInputChannelMap = lib.symbols.SDL_SetAudioStreamInputChannelMap;
 
 /**
  * Set the current output channel map of an audio stream.
@@ -1897,7 +1894,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1384 bool SDL_SetAudioStreamOutputChannelMap(SDL_AudioStream *stream, const int *chmap, int count);
  */
-  setAudioStreamOutputChannelMap: lib.symbols.SDL_SetAudioStreamOutputChannelMap,
+  export const setAudioStreamOutputChannelMap = lib.symbols.SDL_SetAudioStreamOutputChannelMap;
 
 /**
  * Add data to the stream.
@@ -1929,7 +1926,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1414 bool SDL_PutAudioStreamData(SDL_AudioStream *stream, const void *buf, int len);
  */
-  putAudioStreamData: lib.symbols.SDL_PutAudioStreamData,
+  export const putAudioStreamData = lib.symbols.SDL_PutAudioStreamData;
 
 /**
  * Get converted/resampled data from the stream.
@@ -1961,7 +1958,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1444 int SDL_GetAudioStreamData(SDL_AudioStream *stream, void *buf, int len);
  */
-  getAudioStreamData: lib.symbols.SDL_GetAudioStreamData,
+  export const getAudioStreamData = lib.symbols.SDL_GetAudioStreamData;
 
 /**
  * Get the number of converted/resampled bytes available.
@@ -1989,7 +1986,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1470 int SDL_GetAudioStreamAvailable(SDL_AudioStream *stream);
  */
-  getAudioStreamAvailable: lib.symbols.SDL_GetAudioStreamAvailable,
+  export const getAudioStreamAvailable = lib.symbols.SDL_GetAudioStreamAvailable;
 
 /**
  * Get the number of bytes currently queued.
@@ -2029,7 +2026,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1509 int SDL_GetAudioStreamQueued(SDL_AudioStream *stream);
  */
-  getAudioStreamQueued: lib.symbols.SDL_GetAudioStreamQueued,
+  export const getAudioStreamQueued = lib.symbols.SDL_GetAudioStreamQueued;
 
 /**
  * Tell the stream that you're done sending data, and anything being buffered
@@ -2051,7 +2048,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1530 bool SDL_FlushAudioStream(SDL_AudioStream *stream);
  */
-  flushAudioStream: lib.symbols.SDL_FlushAudioStream,
+  export const flushAudioStream = lib.symbols.SDL_FlushAudioStream;
 
 /**
  * Clear any pending data in the stream.
@@ -2074,7 +2071,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1551 bool SDL_ClearAudioStream(SDL_AudioStream *stream);
  */
-  clearAudioStream: lib.symbols.SDL_ClearAudioStream,
+  export const clearAudioStream = lib.symbols.SDL_ClearAudioStream;
 
 /**
  * Use this function to pause audio playback on the audio device associated
@@ -2100,7 +2097,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1575 bool SDL_PauseAudioStreamDevice(SDL_AudioStream *stream);
  */
-  pauseAudioStreamDevice: lib.symbols.SDL_PauseAudioStreamDevice,
+  export const pauseAudioStreamDevice = lib.symbols.SDL_PauseAudioStreamDevice;
 
 /**
  * Use this function to unpause audio playback on the audio device associated
@@ -2125,7 +2122,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1598 bool SDL_ResumeAudioStreamDevice(SDL_AudioStream *stream);
  */
-  resumeAudioStreamDevice: lib.symbols.SDL_ResumeAudioStreamDevice,
+  export const resumeAudioStreamDevice = lib.symbols.SDL_ResumeAudioStreamDevice;
 
 /**
  * Use this function to query if an audio device associated with a stream is
@@ -2146,7 +2143,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1617 bool SDL_AudioStreamDevicePaused(SDL_AudioStream *stream);
  */
-  audioStreamDevicePaused: lib.symbols.SDL_AudioStreamDevicePaused,
+  export const audioStreamDevicePaused = lib.symbols.SDL_AudioStreamDevicePaused;
 
 /**
  * Lock an audio stream for serialized access.
@@ -2176,7 +2173,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1646 bool SDL_LockAudioStream(SDL_AudioStream *stream);
  */
-  lockAudioStream: lib.symbols.SDL_LockAudioStream,
+  export const lockAudioStream = lib.symbols.SDL_LockAudioStream;
 
 /**
  * Unlock an audio stream for serialized access.
@@ -2196,7 +2193,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1665 bool SDL_UnlockAudioStream(SDL_AudioStream *stream);
  */
-  unlockAudioStream: lib.symbols.SDL_UnlockAudioStream,
+  export const unlockAudioStream = lib.symbols.SDL_UnlockAudioStream;
 
 /**
  * Set a callback that runs when data is requested from an audio stream.
@@ -2244,7 +2241,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1753 bool SDL_SetAudioStreamGetCallback(SDL_AudioStream *stream, SDL_AudioStreamCallback callback, void *userdata);
  */
-  setAudioStreamGetCallback: lib.symbols.SDL_SetAudioStreamGetCallback,
+  export const setAudioStreamGetCallback = lib.symbols.SDL_SetAudioStreamGetCallback;
 
 /**
  * Set a callback that runs when data is added to an audio stream.
@@ -2295,7 +2292,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1802 bool SDL_SetAudioStreamPutCallback(SDL_AudioStream *stream, SDL_AudioStreamCallback callback, void *userdata);
  */
-  setAudioStreamPutCallback: lib.symbols.SDL_SetAudioStreamPutCallback,
+  export const setAudioStreamPutCallback = lib.symbols.SDL_SetAudioStreamPutCallback;
 
 /**
  * Free an audio stream.
@@ -2318,7 +2315,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1824 void SDL_DestroyAudioStream(SDL_AudioStream *stream);
  */
-  destroyAudioStream: lib.symbols.SDL_DestroyAudioStream,
+  export const destroyAudioStream = lib.symbols.SDL_DestroyAudioStream;
 
 /**
  * Convenience function for straightforward audio init for the common case.
@@ -2382,7 +2379,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1887 SDL_AudioStream * SDL_OpenAudioDeviceStream(SDL_AudioDeviceID devid, const SDL_AudioSpec *spec, SDL_AudioStreamCallback callback, void *userdata);
  */
-  openAudioDeviceStream: lib.symbols.SDL_OpenAudioDeviceStream,
+  export const openAudioDeviceStream = lib.symbols.SDL_OpenAudioDeviceStream;
 
 /**
  * Set a callback that fires when data is about to be fed to an audio device.
@@ -2438,7 +2435,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:1978 bool SDL_SetAudioPostmixCallback(SDL_AudioDeviceID devid, SDL_AudioPostmixCallback callback, void *userdata);
  */
-  setAudioPostmixCallback: lib.symbols.SDL_SetAudioPostmixCallback,
+  export const setAudioPostmixCallback = lib.symbols.SDL_SetAudioPostmixCallback;
 
 /**
  * Load the audio data of a WAVE file into memory.
@@ -2520,7 +2517,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2059 bool SDL_LoadWAV_IO(SDL_IOStream *src, bool closeio, SDL_AudioSpec *spec, Uint8 **audio_buf, Uint32 *audio_len);
  */
-  loadWavIo: lib.symbols.SDL_LoadWAV_IO,
+  export const loadWavIo = lib.symbols.SDL_LoadWAV_IO;
 
 /**
  * Loads a WAV from a file path.
@@ -2558,7 +2555,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2095 bool SDL_LoadWAV(const char *path, SDL_AudioSpec *spec, Uint8 **audio_buf, Uint32 *audio_len);
  */
-  loadWav: lib.symbols.SDL_LoadWAV,
+  export const loadWav = lib.symbols.SDL_LoadWAV;
 
 /**
  * Mix audio data in a specified format.
@@ -2596,7 +2593,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2131 bool SDL_MixAudio(Uint8 *dst, const Uint8 *src, SDL_AudioFormat format, Uint32 len, float volume);
  */
-  mixAudio: lib.symbols.SDL_MixAudio,
+  export const mixAudio = lib.symbols.SDL_MixAudio;
 
 /**
  * Convert some audio data of one format to another format.
@@ -2628,7 +2625,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2161 bool SDL_ConvertAudioSamples(const SDL_AudioSpec *src_spec, const Uint8 *src_data, int src_len, const SDL_AudioSpec *dst_spec, Uint8 **dst_data, int *dst_len);
  */
-  convertAudioSamples: lib.symbols.SDL_ConvertAudioSamples,
+  export const convertAudioSamples = lib.symbols.SDL_ConvertAudioSamples;
 
 /**
  * Get the human readable name of an audio format.
@@ -2643,7 +2640,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2174 const char * SDL_GetAudioFormatName(SDL_AudioFormat format);
  */
-  getAudioFormatName: lib.symbols.SDL_GetAudioFormatName,
+  export const getAudioFormatName = lib.symbols.SDL_GetAudioFormatName;
 
 /**
  * Get the appropriate memset value for silencing an audio format.
@@ -2661,7 +2658,7 @@ export const SDL = {
  *
  * @from SDL_audio.h:2190 int SDL_GetSilenceValueForFormat(SDL_AudioFormat format);
  */
-  getSilenceValueForFormat: lib.symbols.SDL_GetSilenceValueForFormat,
+  export const getSilenceValueForFormat = lib.symbols.SDL_GetSilenceValueForFormat;
 
 
 
@@ -2670,7 +2667,7 @@ export const SDL = {
 /**
  * @from SDL_blendmode:53 SDL_BLENDMODE_
  */
-  BLENDMODE: SDL_blendmode_enums.BLENDMODE,
+export const BLENDMODE = SDL_blendmode_enums.BLENDMODE;
 
 /**
  * The blend operation used when combining source and destination pixel
@@ -2680,7 +2677,7 @@ export const SDL = {
  *
  * @from SDL_blendmode.h:68 SDL_BLENDOPERATION_
  */
-  BLENDOPERATION: SDL_blendmode_enums.SDL_BlendOperation,
+export const BLENDOPERATION = SDL_blendmode_enums.SDL_BlendOperation;
 
 /**
  * The normalized factor used to multiply pixel components.
@@ -2694,7 +2691,7 @@ export const SDL = {
  *
  * @from SDL_blendmode.h:87 SDL_BLENDFACTOR_
  */
-  BLENDFACTOR: SDL_blendmode_enums.SDL_BlendFactor,
+export const BLENDFACTOR = SDL_blendmode_enums.SDL_BlendFactor;
 
 
 
@@ -2787,7 +2784,7 @@ export const SDL = {
  *
  * @from SDL_blendmode.h:188 SDL_BlendMode SDL_ComposeCustomBlendMode(SDL_BlendFactor srcColorFactor,                                                                 SDL_BlendFactor dstColorFactor,                                                                 SDL_BlendOperation colorOperation,                                                                 SDL_BlendFactor srcAlphaFactor,                                                                 SDL_BlendFactor dstAlphaFactor,                                                                 SDL_BlendOperation alphaOperation);
  */
-  composeCustomBlendMode: lib.symbols.SDL_ComposeCustomBlendMode,
+  export const composeCustomBlendMode = lib.symbols.SDL_ComposeCustomBlendMode;
 
 
 
@@ -2802,7 +2799,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:131 SDL_CAMERA_POSITION_
  */
-  CAMERA_POSITION: SDL_camera_enums.SDL_CameraPosition,
+export const CAMERA_POSITION = SDL_camera_enums.SDL_CameraPosition;
 
 
 
@@ -2829,7 +2826,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:160 int SDL_GetNumCameraDrivers(void);
  */
-  getNumCameraDrivers: lib.symbols.SDL_GetNumCameraDrivers,
+  export const getNumCameraDrivers = lib.symbols.SDL_GetNumCameraDrivers;
 
 /**
  * Use this function to get the name of a built in camera driver.
@@ -2855,7 +2852,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:184 const char * SDL_GetCameraDriver(int index);
  */
-  getCameraDriver: lib.symbols.SDL_GetCameraDriver,
+  export const getCameraDriver = lib.symbols.SDL_GetCameraDriver;
 
 /**
  * Get the name of the current camera driver.
@@ -2873,7 +2870,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:200 const char * SDL_GetCurrentCameraDriver(void);
  */
-  getCurrentCameraDriver: lib.symbols.SDL_GetCurrentCameraDriver,
+  export const getCurrentCameraDriver = lib.symbols.SDL_GetCurrentCameraDriver;
 
 /**
  * Get a list of currently connected camera devices.
@@ -2892,7 +2889,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:217 SDL_CameraID * SDL_GetCameras(int *count);
  */
-  getCameras: lib.symbols.SDL_GetCameras,
+  export const getCameras = lib.symbols.SDL_GetCameras;
 
 /**
  * Get the list of native formats/sizes a camera supports.
@@ -2933,7 +2930,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:256 SDL_CameraSpec ** SDL_GetCameraSupportedFormats(SDL_CameraID instance_id, int *count);
  */
-  getCameraSupportedFormats: lib.symbols.SDL_GetCameraSupportedFormats,
+  export const getCameraSupportedFormats = lib.symbols.SDL_GetCameraSupportedFormats;
 
 /**
  * Get the human-readable device name for a camera.
@@ -2950,7 +2947,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:271 const char * SDL_GetCameraName(SDL_CameraID instance_id);
  */
-  getCameraName: lib.symbols.SDL_GetCameraName,
+  export const getCameraName = lib.symbols.SDL_GetCameraName;
 
 /**
  * Get the position of the camera in relation to the system.
@@ -2971,7 +2968,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:290 SDL_CameraPosition SDL_GetCameraPosition(SDL_CameraID instance_id);
  */
-  getCameraPosition: lib.symbols.SDL_GetCameraPosition,
+  export const getCameraPosition = lib.symbols.SDL_GetCameraPosition;
 
 /**
  * Open a video recording device (a "camera").
@@ -3020,7 +3017,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:337 SDL_Camera * SDL_OpenCamera(SDL_CameraID instance_id, const SDL_CameraSpec *spec);
  */
-  openCamera: lib.symbols.SDL_OpenCamera,
+  export const openCamera = lib.symbols.SDL_OpenCamera;
 
 /**
  * Query if camera access has been approved by the user.
@@ -3055,7 +3052,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:370 int SDL_GetCameraPermissionState(SDL_Camera *camera);
  */
-  getCameraPermissionState: lib.symbols.SDL_GetCameraPermissionState,
+  export const getCameraPermissionState = lib.symbols.SDL_GetCameraPermissionState;
 
 /**
  * Get the instance ID of an opened camera.
@@ -3072,7 +3069,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:385 SDL_CameraID SDL_GetCameraID(SDL_Camera *camera);
  */
-  getCameraId: lib.symbols.SDL_GetCameraID,
+  export const getCameraId = lib.symbols.SDL_GetCameraID;
 
 /**
  * Get the properties associated with an opened camera.
@@ -3087,7 +3084,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:398 SDL_PropertiesID SDL_GetCameraProperties(SDL_Camera *camera);
  */
-  getCameraProperties: lib.symbols.SDL_GetCameraProperties,
+  export const getCameraProperties = lib.symbols.SDL_GetCameraProperties;
 
 /**
  * Get the spec that a camera is using when generating images.
@@ -3115,7 +3112,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:424 bool SDL_GetCameraFormat(SDL_Camera *camera, SDL_CameraSpec *spec);
  */
-  getCameraFormat: lib.symbols.SDL_GetCameraFormat,
+  export const getCameraFormat = lib.symbols.SDL_GetCameraFormat;
 
 /**
  * Acquire a frame.
@@ -3160,7 +3157,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:467 SDL_Surface * SDL_AcquireCameraFrame(SDL_Camera *camera, Uint64 *timestampNS);
  */
-  acquireCameraFrame: lib.symbols.SDL_AcquireCameraFrame,
+  export const acquireCameraFrame = lib.symbols.SDL_AcquireCameraFrame;
 
 /**
  * Release a frame of video acquired from a camera.
@@ -3190,7 +3187,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:495 void SDL_ReleaseCameraFrame(SDL_Camera *camera, SDL_Surface *frame);
  */
-  releaseCameraFrame: lib.symbols.SDL_ReleaseCameraFrame,
+  export const releaseCameraFrame = lib.symbols.SDL_ReleaseCameraFrame;
 
 /**
  * Use this function to shut down camera processing and close the camera
@@ -3207,7 +3204,7 @@ export const SDL = {
  *
  * @from SDL_camera.h:510 void SDL_CloseCamera(SDL_Camera *camera);
  */
-  closeCamera: lib.symbols.SDL_CloseCamera,
+  export const closeCamera = lib.symbols.SDL_CloseCamera;
 
 
 
@@ -3229,7 +3226,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:103 bool SDL_SetClipboardText(const char *text);
  */
-  setClipboardText: lib.symbols.SDL_SetClipboardText,
+  export const setClipboardText = lib.symbols.SDL_SetClipboardText;
 
 /**
  * Get UTF-8 text from the clipboard.
@@ -3250,7 +3247,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:122 char * SDL_GetClipboardText(void);
  */
-  getClipboardText: lib.symbols.SDL_GetClipboardText,
+  export const getClipboardText = lib.symbols.SDL_GetClipboardText;
 
 /**
  * Query whether the clipboard exists and contains a non-empty text string.
@@ -3266,7 +3263,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:136 bool SDL_HasClipboardText(void);
  */
-  hasClipboardText: lib.symbols.SDL_HasClipboardText,
+  export const hasClipboardText = lib.symbols.SDL_HasClipboardText;
 
 /**
  * Put UTF-8 text into the primary selection.
@@ -3284,7 +3281,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:152 bool SDL_SetPrimarySelectionText(const char *text);
  */
-  setPrimarySelectionText: lib.symbols.SDL_SetPrimarySelectionText,
+  export const setPrimarySelectionText = lib.symbols.SDL_SetPrimarySelectionText;
 
 /**
  * Get UTF-8 text from the primary selection.
@@ -3305,7 +3302,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:171 char * SDL_GetPrimarySelectionText(void);
  */
-  getPrimarySelectionText: lib.symbols.SDL_GetPrimarySelectionText,
+  export const getPrimarySelectionText = lib.symbols.SDL_GetPrimarySelectionText;
 
 /**
  * Query whether the primary selection exists and contains a non-empty text
@@ -3322,7 +3319,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:186 bool SDL_HasPrimarySelectionText(void);
  */
-  hasPrimarySelectionText: lib.symbols.SDL_HasPrimarySelectionText,
+  export const hasPrimarySelectionText = lib.symbols.SDL_HasPrimarySelectionText;
 
 /**
  * Offer clipboard data to the OS.
@@ -3356,7 +3353,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:254 bool SDL_SetClipboardData(SDL_ClipboardDataCallback callback, SDL_ClipboardCleanupCallback cleanup, void *userdata, const char **mime_types, size_t num_mime_types);
  */
-  setClipboardData: lib.symbols.SDL_SetClipboardData,
+  export const setClipboardData = lib.symbols.SDL_SetClipboardData;
 
 /**
  * Clear the clipboard data.
@@ -3372,7 +3369,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:268 bool SDL_ClearClipboardData(void);
  */
-  clearClipboardData: lib.symbols.SDL_ClearClipboardData,
+  export const clearClipboardData = lib.symbols.SDL_ClearClipboardData;
 
 /**
  * Get the data from clipboard for a given mime type.
@@ -3395,7 +3392,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:289 void * SDL_GetClipboardData(const char *mime_type, size_t *size);
  */
-  getClipboardData: lib.symbols.SDL_GetClipboardData,
+  export const getClipboardData = lib.symbols.SDL_GetClipboardData;
 
 /**
  * Query whether there is data in the clipboard for the provided mime type.
@@ -3413,7 +3410,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:305 bool SDL_HasClipboardData(const char *mime_type);
  */
-  hasClipboardData: lib.symbols.SDL_HasClipboardData,
+  export const hasClipboardData = lib.symbols.SDL_HasClipboardData;
 
 /**
  * Retrieve the list of mime types available in the clipboard.
@@ -3432,7 +3429,7 @@ export const SDL = {
  *
  * @from SDL_clipboard.h:322 char ** SDL_GetClipboardMimeTypes(size_t *num_mime_types);
  */
-  getClipboardMimeTypes: lib.symbols.SDL_GetClipboardMimeTypes,
+  export const getClipboardMimeTypes = lib.symbols.SDL_GetClipboardMimeTypes;
 
 
 
@@ -3451,7 +3448,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:72 int SDL_GetNumLogicalCPUCores(void);
  */
-  getNumLogicalCpuCores: lib.symbols.SDL_GetNumLogicalCPUCores,
+  export const getNumLogicalCpuCores = lib.symbols.SDL_GetNumLogicalCPUCores;
 
 /**
  * Determine the L1 cache line size of the CPU.
@@ -3467,7 +3464,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:86 int SDL_GetCPUCacheLineSize(void);
  */
-  getCpuCacheLineSize: lib.symbols.SDL_GetCPUCacheLineSize,
+  export const getCpuCacheLineSize = lib.symbols.SDL_GetCPUCacheLineSize;
 
 /**
  * Determine whether the CPU has AltiVec features.
@@ -3483,7 +3480,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:100 bool SDL_HasAltiVec(void);
  */
-  hasAltiVec: lib.symbols.SDL_HasAltiVec,
+  export const hasAltiVec = lib.symbols.SDL_HasAltiVec;
 
 /**
  * Determine whether the CPU has MMX features.
@@ -3498,7 +3495,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:113 bool SDL_HasMMX(void);
  */
-  hasMmx: lib.symbols.SDL_HasMMX,
+  export const hasMmx = lib.symbols.SDL_HasMMX;
 
 /**
  * Determine whether the CPU has SSE features.
@@ -3518,7 +3515,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:131 bool SDL_HasSSE(void);
  */
-  hasSse: lib.symbols.SDL_HasSSE,
+  export const hasSse = lib.symbols.SDL_HasSSE;
 
 /**
  * Determine whether the CPU has SSE2 features.
@@ -3538,7 +3535,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:149 bool SDL_HasSSE2(void);
  */
-  hasSse2: lib.symbols.SDL_HasSSE2,
+  export const hasSse2 = lib.symbols.SDL_HasSSE2;
 
 /**
  * Determine whether the CPU has SSE3 features.
@@ -3558,7 +3555,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:167 bool SDL_HasSSE3(void);
  */
-  hasSse3: lib.symbols.SDL_HasSSE3,
+  export const hasSse3 = lib.symbols.SDL_HasSSE3;
 
 /**
  * Determine whether the CPU has SSE4.1 features.
@@ -3578,7 +3575,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:185 bool SDL_HasSSE41(void);
  */
-  hasSse41: lib.symbols.SDL_HasSSE41,
+  export const hasSse41 = lib.symbols.SDL_HasSSE41;
 
 /**
  * Determine whether the CPU has SSE4.2 features.
@@ -3598,7 +3595,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:203 bool SDL_HasSSE42(void);
  */
-  hasSse42: lib.symbols.SDL_HasSSE42,
+  export const hasSse42 = lib.symbols.SDL_HasSSE42;
 
 /**
  * Determine whether the CPU has AVX features.
@@ -3616,7 +3613,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:219 bool SDL_HasAVX(void);
  */
-  hasAvx: lib.symbols.SDL_HasAVX,
+  export const hasAvx = lib.symbols.SDL_HasAVX;
 
 /**
  * Determine whether the CPU has AVX2 features.
@@ -3634,7 +3631,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:235 bool SDL_HasAVX2(void);
  */
-  hasAvx2: lib.symbols.SDL_HasAVX2,
+  export const hasAvx2 = lib.symbols.SDL_HasAVX2;
 
 /**
  * Determine whether the CPU has AVX-512F (foundation) features.
@@ -3652,7 +3649,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:251 bool SDL_HasAVX512F(void);
  */
-  hasAvx512F: lib.symbols.SDL_HasAVX512F,
+  export const hasAvx512F = lib.symbols.SDL_HasAVX512F;
 
 /**
  * Determine whether the CPU has ARM SIMD (ARMv6) features.
@@ -3671,7 +3668,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:268 bool SDL_HasARMSIMD(void);
  */
-  hasArmsimd: lib.symbols.SDL_HasARMSIMD,
+  export const hasArmsimd = lib.symbols.SDL_HasARMSIMD;
 
 /**
  * Determine whether the CPU has NEON (ARM SIMD) features.
@@ -3686,7 +3683,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:281 bool SDL_HasNEON(void);
  */
-  hasNeon: lib.symbols.SDL_HasNEON,
+  export const hasNeon = lib.symbols.SDL_HasNEON;
 
 /**
  * Determine whether the CPU has LSX (LOONGARCH SIMD) features.
@@ -3702,7 +3699,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:295 bool SDL_HasLSX(void);
  */
-  hasLsx: lib.symbols.SDL_HasLSX,
+  export const hasLsx = lib.symbols.SDL_HasLSX;
 
 /**
  * Determine whether the CPU has LASX (LOONGARCH SIMD) features.
@@ -3718,7 +3715,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:309 bool SDL_HasLASX(void);
  */
-  hasLasx: lib.symbols.SDL_HasLASX,
+  export const hasLasx = lib.symbols.SDL_HasLASX;
 
 /**
  * Get the amount of RAM configured in the system.
@@ -3731,7 +3728,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:320 int SDL_GetSystemRAM(void);
  */
-  getSystemRam: lib.symbols.SDL_GetSystemRAM,
+  export const getSystemRam = lib.symbols.SDL_GetSystemRAM;
 
 /**
  * Report the alignment this system needs for SIMD allocations.
@@ -3757,7 +3754,7 @@ export const SDL = {
  *
  * @from SDL_cpuinfo.h:344 size_t SDL_GetSIMDAlignment(void);
  */
-  getSimdAlignment: lib.symbols.SDL_GetSIMDAlignment,
+  export const getSimdAlignment = lib.symbols.SDL_GetSIMDAlignment;
 
 
 
@@ -3766,7 +3763,7 @@ export const SDL = {
 /**
  * @from SDL_dialog:325 SDL_PROP_FILE_DIALOG_
  */
-  PROP_FILE_DIALOG: SDL_dialog_enums.PROP_FILE_DIALOG,
+export const PROP_FILE_DIALOG = SDL_dialog_enums.PROP_FILE_DIALOG;
 
 /**
  * Various types of file dialogs.
@@ -3780,7 +3777,7 @@ export const SDL = {
  *
  * @from SDL_dialog.h:269 SDL_FILEDIALOG_
  */
-  FILEDIALOG: SDL_dialog_enums.SDL_FileDialogType,
+export const FILEDIALOG = SDL_dialog_enums.SDL_FileDialogType;
 
 
 
@@ -3835,7 +3832,7 @@ export const SDL = {
  *
  * @from SDL_dialog.h:163 void SDL_ShowOpenFileDialog(SDL_DialogFileCallback callback, void *userdata, SDL_Window *window, const SDL_DialogFileFilter *filters, int nfilters, const char *default_location, bool allow_many);
  */
-  showOpenFileDialog: lib.symbols.SDL_ShowOpenFileDialog,
+  export const showOpenFileDialog = lib.symbols.SDL_ShowOpenFileDialog;
 
 /**
  * Displays a dialog that lets the user choose a new or existing file on their
@@ -3886,7 +3883,7 @@ export const SDL = {
  *
  * @from SDL_dialog.h:212 void SDL_ShowSaveFileDialog(SDL_DialogFileCallback callback, void *userdata, SDL_Window *window, const SDL_DialogFileFilter *filters, int nfilters, const char *default_location);
  */
-  showSaveFileDialog: lib.symbols.SDL_ShowSaveFileDialog,
+  export const showSaveFileDialog = lib.symbols.SDL_ShowSaveFileDialog;
 
 /**
  * Displays a dialog that lets the user select a folder on their filesystem.
@@ -3933,7 +3930,7 @@ export const SDL = {
  *
  * @from SDL_dialog.h:257 void SDL_ShowOpenFolderDialog(SDL_DialogFileCallback callback, void *userdata, SDL_Window *window, const char *default_location, bool allow_many);
  */
-  showOpenFolderDialog: lib.symbols.SDL_ShowOpenFolderDialog,
+  export const showOpenFolderDialog = lib.symbols.SDL_ShowOpenFolderDialog;
 
 /**
  * Create and launch a file dialog with the specified properties.
@@ -3984,7 +3981,7 @@ export const SDL = {
  *
  * @from SDL_dialog.h:323 void SDL_ShowFileDialogWithProperties(SDL_FileDialogType type, SDL_DialogFileCallback callback, void *userdata, SDL_PropertiesID props);
  */
-  showFileDialogWithProperties: lib.symbols.SDL_ShowFileDialogWithProperties,
+  export const showFileDialogWithProperties = lib.symbols.SDL_ShowFileDialogWithProperties;
 
 
 
@@ -4003,7 +4000,7 @@ export const SDL = {
  *
  * @from SDL_error.h:120 bool SDL_OutOfMemory(void);
  */
-  outOfMemory: lib.symbols.SDL_OutOfMemory,
+  export const outOfMemory = lib.symbols.SDL_OutOfMemory;
 
 /**
  * Retrieve a message about the last error that occurred on the current
@@ -4042,7 +4039,7 @@ export const SDL = {
  *
  * @from SDL_error.h:157 const char * SDL_GetError(void);
  */
-  getError: lib.symbols.SDL_GetError,
+  export const getError = lib.symbols.SDL_GetError;
 
 /**
  * Clear any previous error message for this thread.
@@ -4058,7 +4055,7 @@ export const SDL = {
  *
  * @from SDL_error.h:171 bool SDL_ClearError(void);
  */
-  clearError: lib.symbols.SDL_ClearError,
+  export const clearError = lib.symbols.SDL_ClearError;
 
 
 
@@ -4071,7 +4068,7 @@ export const SDL = {
  *
  * @from SDL_events.h:83 SDL_EVENT_
  */
-  EVENT: SDL_events_enums.SDL_EventType,
+export const EVENT = SDL_events_enums.SDL_EventType;
 
 /**
  * The type of action to request from SDL_PeepEvents().
@@ -4080,7 +4077,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1077 SDL_
  */
-  SDL_EventAction: SDL_events_enums.SDL_EventAction,
+export const SDL_EventAction = SDL_events_enums.SDL_EventAction;
 
 
 
@@ -4106,7 +4103,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1068 void SDL_PumpEvents(void);
  */
-  pumpEvents: lib.symbols.SDL_PumpEvents,
+  export const pumpEvents = lib.symbols.SDL_PumpEvents;
 
 /**
  * Check the event queue for messages and optionally return them.
@@ -4152,7 +4149,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1126 int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
  */
-  peepEvents: lib.symbols.SDL_PeepEvents,
+  export const peepEvents = lib.symbols.SDL_PeepEvents;
 
 /**
  * Check for the existence of a certain event type in the event queue.
@@ -4172,7 +4169,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1145 bool SDL_HasEvent(Uint32 type);
  */
-  hasEvent: lib.symbols.SDL_HasEvent,
+  export const hasEvent = lib.symbols.SDL_HasEvent;
 
 /**
  * Check for the existence of certain event types in the event queue.
@@ -4194,7 +4191,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1166 bool SDL_HasEvents(Uint32 minType, Uint32 maxType);
  */
-  hasEvents: lib.symbols.SDL_HasEvents,
+  export const hasEvents = lib.symbols.SDL_HasEvents;
 
 /**
  * Clear events of a specific type from the event queue.
@@ -4224,7 +4221,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1194 void SDL_FlushEvent(Uint32 type);
  */
-  flushEvent: lib.symbols.SDL_FlushEvent,
+  export const flushEvent = lib.symbols.SDL_FlushEvent;
 
 /**
  * Clear events of a range of types from the event queue.
@@ -4253,7 +4250,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1221 void SDL_FlushEvents(Uint32 minType, Uint32 maxType);
  */
-  flushEvents: lib.symbols.SDL_FlushEvents,
+  export const flushEvents = lib.symbols.SDL_FlushEvents;
 
 /**
  * Poll for currently pending events.
@@ -4301,7 +4298,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
  */
-  pollEvent: lib.symbols.SDL_PollEvent,
+  export const pollEvent = lib.symbols.SDL_PollEvent;
 
 /**
  * Wait indefinitely for the next available event.
@@ -4327,7 +4324,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
  */
-  waitEvent: lib.symbols.SDL_WaitEvent,
+  export const waitEvent = lib.symbols.SDL_WaitEvent;
 
 /**
  * Wait until the specified timeout (in milliseconds) for the next available
@@ -4359,7 +4356,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
  */
-  waitEventTimeout: lib.symbols.SDL_WaitEventTimeout,
+  export const waitEventTimeout = lib.symbols.SDL_WaitEventTimeout;
 
 /**
  * Add an event to the event queue.
@@ -4395,7 +4392,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1355 bool SDL_PushEvent(SDL_Event *event);
  */
-  pushEvent: lib.symbols.SDL_PushEvent,
+  export const pushEvent = lib.symbols.SDL_PushEvent;
 
 /**
  * Set up a filter to process all events before they are added to the internal
@@ -4438,7 +4435,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1417 void SDL_SetEventFilter(SDL_EventFilter filter, void *userdata);
  */
-  setEventFilter: lib.symbols.SDL_SetEventFilter,
+  export const setEventFilter = lib.symbols.SDL_SetEventFilter;
 
 /**
  * Query the current event filter.
@@ -4459,7 +4456,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1436 bool SDL_GetEventFilter(SDL_EventFilter *filter, void **userdata);
  */
-  getEventFilter: lib.symbols.SDL_GetEventFilter,
+  export const getEventFilter = lib.symbols.SDL_GetEventFilter;
 
 /**
  * Add a callback to be triggered when an event is added to the event queue.
@@ -4493,7 +4490,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1468 bool SDL_AddEventWatch(SDL_EventFilter filter, void *userdata);
  */
-  addEventWatch: lib.symbols.SDL_AddEventWatch,
+  export const addEventWatch = lib.symbols.SDL_AddEventWatch;
 
 /**
  * Remove an event watch callback added with SDL_AddEventWatch().
@@ -4512,7 +4509,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1485 void SDL_RemoveEventWatch(SDL_EventFilter filter, void *userdata);
  */
-  removeEventWatch: lib.symbols.SDL_RemoveEventWatch,
+  export const removeEventWatch = lib.symbols.SDL_RemoveEventWatch;
 
 /**
  * Run a specific filter function on the current event queue, removing any
@@ -4534,7 +4531,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1505 void SDL_FilterEvents(SDL_EventFilter filter, void *userdata);
  */
-  filterEvents: lib.symbols.SDL_FilterEvents,
+  export const filterEvents = lib.symbols.SDL_FilterEvents;
 
 /**
  * Set the state of processing events by type.
@@ -4550,7 +4547,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1519 void SDL_SetEventEnabled(Uint32 type, bool enabled);
  */
-  setEventEnabled: lib.symbols.SDL_SetEventEnabled,
+  export const setEventEnabled = lib.symbols.SDL_SetEventEnabled;
 
 /**
  * Query the state of processing events by type.
@@ -4566,7 +4563,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1533 bool SDL_EventEnabled(Uint32 type);
  */
-  eventEnabled: lib.symbols.SDL_EventEnabled,
+  export const eventEnabled = lib.symbols.SDL_EventEnabled;
 
 /**
  * Allocate a set of user-defined events, and return the beginning event
@@ -4584,7 +4581,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1549 Uint32 SDL_RegisterEvents(int numevents);
  */
-  registerEvents: lib.symbols.SDL_RegisterEvents,
+  export const registerEvents = lib.symbols.SDL_RegisterEvents;
 
 /**
  * Get window associated with an event.
@@ -4602,7 +4599,7 @@ export const SDL = {
  *
  * @from SDL_events.h:1565 SDL_Window * SDL_GetWindowFromEvent(const SDL_Event *event);
  */
-  getWindowFromEvent: lib.symbols.SDL_GetWindowFromEvent,
+  export const getWindowFromEvent = lib.symbols.SDL_GetWindowFromEvent;
 
 
 
@@ -4639,7 +4636,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:181 SDL_FOLDER_
  */
-  FOLDER: SDL_filesystem_enums.SDL_Folder,
+export const FOLDER = SDL_filesystem_enums.SDL_Folder;
 
 /**
  * Types of filesystem entries.
@@ -4654,7 +4651,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:236 SDL_PATHTYPE_
  */
-  PATHTYPE: SDL_filesystem_enums.SDL_PathType,
+export const PATHTYPE = SDL_filesystem_enums.SDL_PathType;
 
 /**
  * Possible results from an enumeration callback.
@@ -4665,7 +4662,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:296 SDL_ENUM_
  */
-  ENUM: SDL_filesystem_enums.SDL_EnumerationResult,
+export const ENUM = SDL_filesystem_enums.SDL_EnumerationResult;
 
 
 
@@ -4710,7 +4707,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:95 const char * SDL_GetBasePath(void);
  */
-  getBasePath: lib.symbols.SDL_GetBasePath,
+  export const getBasePath = lib.symbols.SDL_GetBasePath;
 
 /**
  * Get the user-and-app-specific path where files can be written.
@@ -4767,7 +4764,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:150 char * SDL_GetPrefPath(const char *org, const char *app);
  */
-  getPrefPath: lib.symbols.SDL_GetPrefPath,
+  export const getPrefPath = lib.symbols.SDL_GetPrefPath;
 
 /**
  * Finds the most suitable user folder for a specific purpose.
@@ -4794,7 +4791,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:220 const char * SDL_GetUserFolder(SDL_Folder folder);
  */
-  getUserFolder: lib.symbols.SDL_GetUserFolder,
+  export const getUserFolder = lib.symbols.SDL_GetUserFolder;
 
 /**
  * Create a directory, and any missing parent directories.
@@ -4812,7 +4809,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:287 bool SDL_CreateDirectory(const char *path);
  */
-  createDirectory: lib.symbols.SDL_CreateDirectory,
+  export const createDirectory = lib.symbols.SDL_CreateDirectory;
 
 /**
  * Enumerate a directory through a callback function.
@@ -4837,7 +4834,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:350 bool SDL_EnumerateDirectory(const char *path, SDL_EnumerateDirectoryCallback callback, void *userdata);
  */
-  enumerateDirectory: lib.symbols.SDL_EnumerateDirectory,
+  export const enumerateDirectory = lib.symbols.SDL_EnumerateDirectory;
 
 /**
  * Remove a file or an empty directory.
@@ -4853,7 +4850,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:364 bool SDL_RemovePath(const char *path);
  */
-  removePath: lib.symbols.SDL_RemovePath,
+  export const removePath = lib.symbols.SDL_RemovePath;
 
 /**
  * Rename a file or directory.
@@ -4878,7 +4875,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:387 bool SDL_RenamePath(const char *oldpath, const char *newpath);
  */
-  renamePath: lib.symbols.SDL_RenamePath,
+  export const renamePath = lib.symbols.SDL_RenamePath;
 
 /**
  * Copy a file.
@@ -4920,7 +4917,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:427 bool SDL_CopyFile(const char *oldpath, const char *newpath);
  */
-  copyFile: lib.symbols.SDL_CopyFile,
+  export const copyFile = lib.symbols.SDL_CopyFile;
 
 /**
  * Get information about a filesystem path.
@@ -4935,7 +4932,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:440 bool SDL_GetPathInfo(const char *path, SDL_PathInfo *info);
  */
-  getPathInfo: lib.symbols.SDL_GetPathInfo,
+  export const getPathInfo = lib.symbols.SDL_GetPathInfo;
 
 /**
  * Enumerate a directory tree, filtered by pattern, and return a list.
@@ -4970,7 +4967,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:473 char ** SDL_GlobDirectory(const char *path, const char *pattern, SDL_GlobFlags flags, int *count);
  */
-  globDirectory: lib.symbols.SDL_GlobDirectory,
+  export const globDirectory = lib.symbols.SDL_GlobDirectory;
 
 /**
  * Get what the system believes is the "current working directory."
@@ -4993,7 +4990,7 @@ export const SDL = {
  *
  * @from SDL_filesystem.h:494 char * SDL_GetCurrentDirectory(void);
  */
-  getCurrentDirectory: lib.symbols.SDL_GetCurrentDirectory,
+  export const getCurrentDirectory = lib.symbols.SDL_GetCurrentDirectory;
 
 
 
@@ -5010,7 +5007,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:107 SDL_GAMEPAD_TYPE_
  */
-  GAMEPAD_TYPE: SDL_gamepad_enums.SDL_GamepadType,
+export const GAMEPAD_TYPE = SDL_gamepad_enums.SDL_GamepadType;
 
 /**
  * The list of buttons available on a gamepad
@@ -5037,7 +5034,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:146 SDL_GAMEPAD_BUTTON_
  */
-  GAMEPAD_BUTTON: SDL_gamepad_enums.SDL_GamepadButton,
+export const GAMEPAD_BUTTON = SDL_gamepad_enums.SDL_GamepadButton;
 
 /**
  * The set of gamepad button labels
@@ -5052,7 +5049,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:189 SDL_GAMEPAD_BUTTON_LABEL_
  */
-  GAMEPAD_BUTTON_LABEL: SDL_gamepad_enums.SDL_GamepadButtonLabel,
+export const GAMEPAD_BUTTON_LABEL = SDL_gamepad_enums.SDL_GamepadButtonLabel;
 
 /**
  * The list of axes available on a gamepad
@@ -5070,7 +5067,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:216 SDL_GAMEPAD_AXIS_
  */
-  GAMEPAD_AXIS: SDL_gamepad_enums.SDL_GamepadAxis,
+export const GAMEPAD_AXIS = SDL_gamepad_enums.SDL_GamepadAxis;
 
 /**
  * Types of gamepad control bindings.
@@ -5084,7 +5081,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:238 SDL_GAMEPAD_BINDTYPE_
  */
-  GAMEPAD_BINDTYPE: SDL_gamepad_enums.SDL_GamepadBindingType,
+export const GAMEPAD_BINDTYPE = SDL_gamepad_enums.SDL_GamepadBindingType;
 
 
 
@@ -5131,7 +5128,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:340 int SDL_AddGamepadMapping(const char *mapping);
  */
-  addGamepadMapping: lib.symbols.SDL_AddGamepadMapping,
+  export const addGamepadMapping = lib.symbols.SDL_AddGamepadMapping;
 
 /**
  * Load a set of gamepad mappings from an SDL_IOStream.
@@ -5173,7 +5170,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:380 int SDL_AddGamepadMappingsFromIO(SDL_IOStream *src, bool closeio);
  */
-  addGamepadMappingsFromIo: lib.symbols.SDL_AddGamepadMappingsFromIO,
+  export const addGamepadMappingsFromIo = lib.symbols.SDL_AddGamepadMappingsFromIO;
 
 /**
  * Load a set of gamepad mappings from a file.
@@ -5209,7 +5206,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:414 int SDL_AddGamepadMappingsFromFile(const char *file);
  */
-  addGamepadMappingsFromFile: lib.symbols.SDL_AddGamepadMappingsFromFile,
+  export const addGamepadMappingsFromFile = lib.symbols.SDL_AddGamepadMappingsFromFile;
 
 /**
  * Reinitialize the SDL mapping database to its initial state.
@@ -5223,7 +5220,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:426 bool SDL_ReloadGamepadMappings(void);
  */
-  reloadGamepadMappings: lib.symbols.SDL_ReloadGamepadMappings,
+  export const reloadGamepadMappings = lib.symbols.SDL_ReloadGamepadMappings;
 
 /**
  * Get the current gamepad mappings.
@@ -5239,7 +5236,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:440 char ** SDL_GetGamepadMappings(int *count);
  */
-  getGamepadMappings: lib.symbols.SDL_GetGamepadMappings,
+  export const getGamepadMappings = lib.symbols.SDL_GetGamepadMappings;
 
 /**
  * Get the gamepad mapping string for a given GUID.
@@ -5256,7 +5253,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:455 char * SDL_GetGamepadMappingForGUID(SDL_GUID guid);
  */
-  getGamepadMappingForGuid: lib.symbols.SDL_GetGamepadMappingForGUID,
+  export const getGamepadMappingForGuid = lib.symbols.SDL_GetGamepadMappingForGUID;
 
 /**
  * Get the current mapping of a gamepad.
@@ -5277,7 +5274,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:474 char * SDL_GetGamepadMapping(SDL_Gamepad *gamepad);
  */
-  getGamepadMapping: lib.symbols.SDL_GetGamepadMapping,
+  export const getGamepadMapping = lib.symbols.SDL_GetGamepadMapping;
 
 /**
  * Set the current mapping of a joystick or gamepad.
@@ -5297,7 +5294,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:492 bool SDL_SetGamepadMapping(SDL_JoystickID instance_id, const char *mapping);
  */
-  setGamepadMapping: lib.symbols.SDL_SetGamepadMapping,
+  export const setGamepadMapping = lib.symbols.SDL_SetGamepadMapping;
 
 /**
  * Return whether a gamepad is currently connected.
@@ -5310,7 +5307,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:503 bool SDL_HasGamepad(void);
  */
-  hasGamepad: lib.symbols.SDL_HasGamepad,
+  export const hasGamepad = lib.symbols.SDL_HasGamepad;
 
 /**
  * Get a list of currently connected gamepads.
@@ -5328,7 +5325,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:519 SDL_JoystickID * SDL_GetGamepads(int *count);
  */
-  getGamepads: lib.symbols.SDL_GetGamepads,
+  export const getGamepads = lib.symbols.SDL_GetGamepads;
 
 /**
  * Check if the given joystick is supported by the gamepad interface.
@@ -5344,7 +5341,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:533 bool SDL_IsGamepad(SDL_JoystickID instance_id);
  */
-  isGamepad: lib.symbols.SDL_IsGamepad,
+  export const isGamepad = lib.symbols.SDL_IsGamepad;
 
 /**
  * Get the implementation dependent name of a gamepad.
@@ -5362,7 +5359,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:549 const char * SDL_GetGamepadNameForID(SDL_JoystickID instance_id);
  */
-  getGamepadNameForId: lib.symbols.SDL_GetGamepadNameForID,
+  export const getGamepadNameForId = lib.symbols.SDL_GetGamepadNameForID;
 
 /**
  * Get the implementation dependent path of a gamepad.
@@ -5380,7 +5377,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:565 const char * SDL_GetGamepadPathForID(SDL_JoystickID instance_id);
  */
-  getGamepadPathForId: lib.symbols.SDL_GetGamepadPathForID,
+  export const getGamepadPathForId = lib.symbols.SDL_GetGamepadPathForID;
 
 /**
  * Get the player index of a gamepad.
@@ -5397,7 +5394,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:580 int SDL_GetGamepadPlayerIndexForID(SDL_JoystickID instance_id);
  */
-  getGamepadPlayerIndexForId: lib.symbols.SDL_GetGamepadPlayerIndexForID,
+  export const getGamepadPlayerIndexForId = lib.symbols.SDL_GetGamepadPlayerIndexForID;
 
 /**
  * Get the implementation-dependent GUID of a gamepad.
@@ -5415,7 +5412,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:596 SDL_GUID SDL_GetGamepadGUIDForID(SDL_JoystickID instance_id);
  */
-  getGamepadGuidForId: lib.symbols.SDL_GetGamepadGUIDForID,
+  export const getGamepadGuidForId = lib.symbols.SDL_GetGamepadGUIDForID;
 
 /**
  * Get the USB vendor ID of a gamepad, if available.
@@ -5434,7 +5431,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:613 Uint16 SDL_GetGamepadVendorForID(SDL_JoystickID instance_id);
  */
-  getGamepadVendorForId: lib.symbols.SDL_GetGamepadVendorForID,
+  export const getGamepadVendorForId = lib.symbols.SDL_GetGamepadVendorForID;
 
 /**
  * Get the USB product ID of a gamepad, if available.
@@ -5453,7 +5450,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:630 Uint16 SDL_GetGamepadProductForID(SDL_JoystickID instance_id);
  */
-  getGamepadProductForId: lib.symbols.SDL_GetGamepadProductForID,
+  export const getGamepadProductForId = lib.symbols.SDL_GetGamepadProductForID;
 
 /**
  * Get the product version of a gamepad, if available.
@@ -5472,7 +5469,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:647 Uint16 SDL_GetGamepadProductVersionForID(SDL_JoystickID instance_id);
  */
-  getGamepadProductVersionForId: lib.symbols.SDL_GetGamepadProductVersionForID,
+  export const getGamepadProductVersionForId = lib.symbols.SDL_GetGamepadProductVersionForID;
 
 /**
  * Get the type of a gamepad.
@@ -5490,7 +5487,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:663 SDL_GamepadType SDL_GetGamepadTypeForID(SDL_JoystickID instance_id);
  */
-  getGamepadTypeForId: lib.symbols.SDL_GetGamepadTypeForID,
+  export const getGamepadTypeForId = lib.symbols.SDL_GetGamepadTypeForID;
 
 /**
  * Get the type of a gamepad, ignoring any mapping override.
@@ -5508,7 +5505,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:679 SDL_GamepadType SDL_GetRealGamepadTypeForID(SDL_JoystickID instance_id);
  */
-  getRealGamepadTypeForId: lib.symbols.SDL_GetRealGamepadTypeForID,
+  export const getRealGamepadTypeForId = lib.symbols.SDL_GetRealGamepadTypeForID;
 
 /**
  * Get the mapping of a gamepad.
@@ -5526,7 +5523,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:695 char * SDL_GetGamepadMappingForID(SDL_JoystickID instance_id);
  */
-  getGamepadMappingForId: lib.symbols.SDL_GetGamepadMappingForID,
+  export const getGamepadMappingForId = lib.symbols.SDL_GetGamepadMappingForID;
 
 /**
  * Open a gamepad for use.
@@ -5542,7 +5539,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:709 SDL_Gamepad * SDL_OpenGamepad(SDL_JoystickID instance_id);
  */
-  openGamepad: lib.symbols.SDL_OpenGamepad,
+  export const openGamepad = lib.symbols.SDL_OpenGamepad;
 
 /**
  * Get the SDL_Gamepad associated with a joystick instance ID, if it has been
@@ -5556,7 +5553,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:721 SDL_Gamepad * SDL_GetGamepadFromID(SDL_JoystickID instance_id);
  */
-  getGamepadFromId: lib.symbols.SDL_GetGamepadFromID,
+  export const getGamepadFromId = lib.symbols.SDL_GetGamepadFromID;
 
 /**
  * Get the SDL_Gamepad associated with a player index.
@@ -5571,7 +5568,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:734 SDL_Gamepad * SDL_GetGamepadFromPlayerIndex(int player_index);
  */
-  getGamepadFromPlayerIndex: lib.symbols.SDL_GetGamepadFromPlayerIndex,
+  export const getGamepadFromPlayerIndex = lib.symbols.SDL_GetGamepadFromPlayerIndex;
 
 /**
  * Get the properties associated with an opened gamepad.
@@ -5600,7 +5597,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:761 SDL_PropertiesID SDL_GetGamepadProperties(SDL_Gamepad *gamepad);
  */
-  getGamepadProperties: lib.symbols.SDL_GetGamepadProperties,
+  export const getGamepadProperties = lib.symbols.SDL_GetGamepadProperties;
 
 /**
  * Get the instance ID of an opened gamepad.
@@ -5614,7 +5611,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:779 SDL_JoystickID SDL_GetGamepadID(SDL_Gamepad *gamepad);
  */
-  getGamepadId: lib.symbols.SDL_GetGamepadID,
+  export const getGamepadId = lib.symbols.SDL_GetGamepadID;
 
 /**
  * Get the implementation-dependent name for an opened gamepad.
@@ -5630,7 +5627,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:793 const char * SDL_GetGamepadName(SDL_Gamepad *gamepad);
  */
-  getGamepadName: lib.symbols.SDL_GetGamepadName,
+  export const getGamepadName = lib.symbols.SDL_GetGamepadName;
 
 /**
  * Get the implementation-dependent path for an opened gamepad.
@@ -5646,7 +5643,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:807 const char * SDL_GetGamepadPath(SDL_Gamepad *gamepad);
  */
-  getGamepadPath: lib.symbols.SDL_GetGamepadPath,
+  export const getGamepadPath = lib.symbols.SDL_GetGamepadPath;
 
 /**
  * Get the type of an opened gamepad.
@@ -5661,7 +5658,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:820 SDL_GamepadType SDL_GetGamepadType(SDL_Gamepad *gamepad);
  */
-  getGamepadType: lib.symbols.SDL_GetGamepadType,
+  export const getGamepadType = lib.symbols.SDL_GetGamepadType;
 
 /**
  * Get the type of an opened gamepad, ignoring any mapping override.
@@ -5676,7 +5673,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:833 SDL_GamepadType SDL_GetRealGamepadType(SDL_Gamepad *gamepad);
  */
-  getRealGamepadType: lib.symbols.SDL_GetRealGamepadType,
+  export const getRealGamepadType = lib.symbols.SDL_GetRealGamepadType;
 
 /**
  * Get the player index of an opened gamepad.
@@ -5692,7 +5689,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:847 int SDL_GetGamepadPlayerIndex(SDL_Gamepad *gamepad);
  */
-  getGamepadPlayerIndex: lib.symbols.SDL_GetGamepadPlayerIndex,
+  export const getGamepadPlayerIndex = lib.symbols.SDL_GetGamepadPlayerIndex;
 
 /**
  * Set the player index of an opened gamepad.
@@ -5709,7 +5706,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:862 bool SDL_SetGamepadPlayerIndex(SDL_Gamepad *gamepad, int player_index);
  */
-  setGamepadPlayerIndex: lib.symbols.SDL_SetGamepadPlayerIndex,
+  export const setGamepadPlayerIndex = lib.symbols.SDL_SetGamepadPlayerIndex;
 
 /**
  * Get the USB vendor ID of an opened gamepad, if available.
@@ -5725,7 +5722,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:876 Uint16 SDL_GetGamepadVendor(SDL_Gamepad *gamepad);
  */
-  getGamepadVendor: lib.symbols.SDL_GetGamepadVendor,
+  export const getGamepadVendor = lib.symbols.SDL_GetGamepadVendor;
 
 /**
  * Get the USB product ID of an opened gamepad, if available.
@@ -5741,7 +5738,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:890 Uint16 SDL_GetGamepadProduct(SDL_Gamepad *gamepad);
  */
-  getGamepadProduct: lib.symbols.SDL_GetGamepadProduct,
+  export const getGamepadProduct = lib.symbols.SDL_GetGamepadProduct;
 
 /**
  * Get the product version of an opened gamepad, if available.
@@ -5757,7 +5754,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:904 Uint16 SDL_GetGamepadProductVersion(SDL_Gamepad *gamepad);
  */
-  getGamepadProductVersion: lib.symbols.SDL_GetGamepadProductVersion,
+  export const getGamepadProductVersion = lib.symbols.SDL_GetGamepadProductVersion;
 
 /**
  * Get the firmware version of an opened gamepad, if available.
@@ -5771,7 +5768,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:916 Uint16 SDL_GetGamepadFirmwareVersion(SDL_Gamepad *gamepad);
  */
-  getGamepadFirmwareVersion: lib.symbols.SDL_GetGamepadFirmwareVersion,
+  export const getGamepadFirmwareVersion = lib.symbols.SDL_GetGamepadFirmwareVersion;
 
 /**
  * Get the serial number of an opened gamepad, if available.
@@ -5785,7 +5782,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:928 const char * SDL_GetGamepadSerial(SDL_Gamepad *gamepad);
  */
-  getGamepadSerial: lib.symbols.SDL_GetGamepadSerial,
+  export const getGamepadSerial = lib.symbols.SDL_GetGamepadSerial;
 
 /**
  * Get the Steam Input handle of an opened gamepad, if available.
@@ -5800,7 +5797,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:941 Uint64 SDL_GetGamepadSteamHandle(SDL_Gamepad *gamepad);
  */
-  getGamepadSteamHandle: lib.symbols.SDL_GetGamepadSteamHandle,
+  export const getGamepadSteamHandle = lib.symbols.SDL_GetGamepadSteamHandle;
 
 /**
  * Get the connection state of a gamepad.
@@ -5814,7 +5811,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:953 SDL_JoystickConnectionState SDL_GetGamepadConnectionState(SDL_Gamepad *gamepad);
  */
-  getGamepadConnectionState: lib.symbols.SDL_GetGamepadConnectionState,
+  export const getGamepadConnectionState = lib.symbols.SDL_GetGamepadConnectionState;
 
 /**
  * Get the battery state of a gamepad.
@@ -5836,7 +5833,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:973 SDL_PowerState SDL_GetGamepadPowerInfo(SDL_Gamepad *gamepad, int *percent);
  */
-  getGamepadPowerInfo: lib.symbols.SDL_GetGamepadPowerInfo,
+  export const getGamepadPowerInfo = lib.symbols.SDL_GetGamepadPowerInfo;
 
 /**
  * Check if a gamepad has been opened and is currently connected.
@@ -5850,7 +5847,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:985 bool SDL_GamepadConnected(SDL_Gamepad *gamepad);
  */
-  gamepadConnected: lib.symbols.SDL_GamepadConnected,
+  export const gamepadConnected = lib.symbols.SDL_GamepadConnected;
 
 /**
  * Get the underlying joystick from a gamepad.
@@ -5872,7 +5869,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1005 SDL_Joystick * SDL_GetGamepadJoystick(SDL_Gamepad *gamepad);
  */
-  getGamepadJoystick: lib.symbols.SDL_GetGamepadJoystick,
+  export const getGamepadJoystick = lib.symbols.SDL_GetGamepadJoystick;
 
 /**
  * Set the state of gamepad event processing.
@@ -5889,7 +5886,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1020 void SDL_SetGamepadEventsEnabled(bool enabled);
  */
-  setGamepadEventsEnabled: lib.symbols.SDL_SetGamepadEventsEnabled,
+  export const setGamepadEventsEnabled = lib.symbols.SDL_SetGamepadEventsEnabled;
 
 /**
  * Query the state of gamepad event processing.
@@ -5905,7 +5902,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1034 bool SDL_GamepadEventsEnabled(void);
  */
-  gamepadEventsEnabled: lib.symbols.SDL_GamepadEventsEnabled,
+  export const gamepadEventsEnabled = lib.symbols.SDL_GamepadEventsEnabled;
 
 /**
  * Get the SDL joystick layer bindings for a gamepad.
@@ -5921,7 +5918,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1048 SDL_GamepadBinding ** SDL_GetGamepadBindings(SDL_Gamepad *gamepad, int *count);
  */
-  getGamepadBindings: lib.symbols.SDL_GetGamepadBindings,
+  export const getGamepadBindings = lib.symbols.SDL_GetGamepadBindings;
 
 /**
  * Manually pump gamepad updates if not using the loop.
@@ -5934,7 +5931,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1059 void SDL_UpdateGamepads(void);
  */
-  updateGamepads: lib.symbols.SDL_UpdateGamepads,
+  export const updateGamepads = lib.symbols.SDL_UpdateGamepads;
 
 /**
  * Convert a string into SDL_GamepadType enum.
@@ -5954,7 +5951,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1077 SDL_GamepadType SDL_GetGamepadTypeFromString(const char *str);
  */
-  getGamepadTypeFromString: lib.symbols.SDL_GetGamepadTypeFromString,
+  export const getGamepadTypeFromString = lib.symbols.SDL_GetGamepadTypeFromString;
 
 /**
  * Convert from an SDL_GamepadType enum to a string.
@@ -5970,7 +5967,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1091 const char * SDL_GetGamepadStringForType(SDL_GamepadType type);
  */
-  getGamepadStringForType: lib.symbols.SDL_GetGamepadStringForType,
+  export const getGamepadStringForType = lib.symbols.SDL_GetGamepadStringForType;
 
 /**
  * Convert a string into SDL_GamepadAxis enum.
@@ -5994,7 +5991,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1113 SDL_GamepadAxis SDL_GetGamepadAxisFromString(const char *str);
  */
-  getGamepadAxisFromString: lib.symbols.SDL_GetGamepadAxisFromString,
+  export const getGamepadAxisFromString = lib.symbols.SDL_GetGamepadAxisFromString;
 
 /**
  * Convert from an SDL_GamepadAxis enum to a string.
@@ -6010,7 +6007,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1127 const char * SDL_GetGamepadStringForAxis(SDL_GamepadAxis axis);
  */
-  getGamepadStringForAxis: lib.symbols.SDL_GetGamepadStringForAxis,
+  export const getGamepadStringForAxis = lib.symbols.SDL_GetGamepadStringForAxis;
 
 /**
  * Query whether a gamepad has a given axis.
@@ -6029,7 +6026,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1144 bool SDL_GamepadHasAxis(SDL_Gamepad *gamepad, SDL_GamepadAxis axis);
  */
-  gamepadHasAxis: lib.symbols.SDL_GamepadHasAxis,
+  export const gamepadHasAxis = lib.symbols.SDL_GamepadHasAxis;
 
 /**
  * Get the current state of an axis control on a gamepad.
@@ -6055,7 +6052,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1168 Sint16 SDL_GetGamepadAxis(SDL_Gamepad *gamepad, SDL_GamepadAxis axis);
  */
-  getGamepadAxis: lib.symbols.SDL_GetGamepadAxis,
+  export const getGamepadAxis = lib.symbols.SDL_GetGamepadAxis;
 
 /**
  * Convert a string into an SDL_GamepadButton enum.
@@ -6075,7 +6072,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1186 SDL_GamepadButton SDL_GetGamepadButtonFromString(const char *str);
  */
-  getGamepadButtonFromString: lib.symbols.SDL_GetGamepadButtonFromString,
+  export const getGamepadButtonFromString = lib.symbols.SDL_GetGamepadButtonFromString;
 
 /**
  * Convert from an SDL_GamepadButton enum to a string.
@@ -6091,7 +6088,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1200 const char * SDL_GetGamepadStringForButton(SDL_GamepadButton button);
  */
-  getGamepadStringForButton: lib.symbols.SDL_GetGamepadStringForButton,
+  export const getGamepadStringForButton = lib.symbols.SDL_GetGamepadStringForButton;
 
 /**
  * Query whether a gamepad has a given button.
@@ -6109,7 +6106,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1216 bool SDL_GamepadHasButton(SDL_Gamepad *gamepad, SDL_GamepadButton button);
  */
-  gamepadHasButton: lib.symbols.SDL_GamepadHasButton,
+  export const gamepadHasButton = lib.symbols.SDL_GamepadHasButton;
 
 /**
  * Get the current state of a button on a gamepad.
@@ -6125,7 +6122,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1230 bool SDL_GetGamepadButton(SDL_Gamepad *gamepad, SDL_GamepadButton button);
  */
-  getGamepadButton: lib.symbols.SDL_GetGamepadButton,
+  export const getGamepadButton = lib.symbols.SDL_GetGamepadButton;
 
 /**
  * Get the label of a button on a gamepad.
@@ -6140,7 +6137,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1243 SDL_GamepadButtonLabel SDL_GetGamepadButtonLabelForType(SDL_GamepadType type, SDL_GamepadButton button);
  */
-  getGamepadButtonLabelForType: lib.symbols.SDL_GetGamepadButtonLabelForType,
+  export const getGamepadButtonLabelForType = lib.symbols.SDL_GetGamepadButtonLabelForType;
 
 /**
  * Get the label of a button on a gamepad.
@@ -6155,7 +6152,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1256 SDL_GamepadButtonLabel SDL_GetGamepadButtonLabel(SDL_Gamepad *gamepad, SDL_GamepadButton button);
  */
-  getGamepadButtonLabel: lib.symbols.SDL_GetGamepadButtonLabel,
+  export const getGamepadButtonLabel = lib.symbols.SDL_GetGamepadButtonLabel;
 
 /**
  * Get the number of touchpads on a gamepad.
@@ -6169,7 +6166,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1268 int SDL_GetNumGamepadTouchpads(SDL_Gamepad *gamepad);
  */
-  getNumGamepadTouchpads: lib.symbols.SDL_GetNumGamepadTouchpads,
+  export const getNumGamepadTouchpads = lib.symbols.SDL_GetNumGamepadTouchpads;
 
 /**
  * Get the number of supported simultaneous fingers on a touchpad on a game
@@ -6186,7 +6183,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1283 int SDL_GetNumGamepadTouchpadFingers(SDL_Gamepad *gamepad, int touchpad);
  */
-  getNumGamepadTouchpadFingers: lib.symbols.SDL_GetNumGamepadTouchpadFingers,
+  export const getNumGamepadTouchpadFingers = lib.symbols.SDL_GetNumGamepadTouchpadFingers;
 
 /**
  * Get the current state of a finger on a touchpad on a gamepad.
@@ -6210,7 +6207,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1305 bool SDL_GetGamepadTouchpadFinger(SDL_Gamepad *gamepad, int touchpad, int finger, bool *down, float *x, float *y, float *pressure);
  */
-  getGamepadTouchpadFinger: lib.symbols.SDL_GetGamepadTouchpadFinger,
+  export const getGamepadTouchpadFinger = lib.symbols.SDL_GetGamepadTouchpadFinger;
 
 /**
  * Return whether a gamepad has a particular sensor.
@@ -6227,7 +6224,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1320 bool SDL_GamepadHasSensor(SDL_Gamepad *gamepad, SDL_SensorType type);
  */
-  gamepadHasSensor: lib.symbols.SDL_GamepadHasSensor,
+  export const gamepadHasSensor = lib.symbols.SDL_GamepadHasSensor;
 
 /**
  * Set whether data reporting for a gamepad sensor is enabled.
@@ -6245,7 +6242,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1336 bool SDL_SetGamepadSensorEnabled(SDL_Gamepad *gamepad, SDL_SensorType type, bool enabled);
  */
-  setGamepadSensorEnabled: lib.symbols.SDL_SetGamepadSensorEnabled,
+  export const setGamepadSensorEnabled = lib.symbols.SDL_SetGamepadSensorEnabled;
 
 /**
  * Query whether sensor data reporting is enabled for a gamepad.
@@ -6260,7 +6257,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1349 bool SDL_GamepadSensorEnabled(SDL_Gamepad *gamepad, SDL_SensorType type);
  */
-  gamepadSensorEnabled: lib.symbols.SDL_GamepadSensorEnabled,
+  export const gamepadSensorEnabled = lib.symbols.SDL_GamepadSensorEnabled;
 
 /**
  * Get the data rate (number of events per second) of a gamepad sensor.
@@ -6273,7 +6270,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1360 float SDL_GetGamepadSensorDataRate(SDL_Gamepad *gamepad, SDL_SensorType type);
  */
-  getGamepadSensorDataRate: lib.symbols.SDL_GetGamepadSensorDataRate,
+  export const getGamepadSensorDataRate = lib.symbols.SDL_GetGamepadSensorDataRate;
 
 /**
  * Get the current state of a gamepad sensor.
@@ -6292,7 +6289,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1377 bool SDL_GetGamepadSensorData(SDL_Gamepad *gamepad, SDL_SensorType type, float *data, int num_values);
  */
-  getGamepadSensorData: lib.symbols.SDL_GetGamepadSensorData,
+  export const getGamepadSensorData = lib.symbols.SDL_GetGamepadSensorData;
 
 /**
  * Start a rumble effect on a gamepad.
@@ -6316,7 +6313,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1399 bool SDL_RumbleGamepad(SDL_Gamepad *gamepad, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble, Uint32 duration_ms);
  */
-  rumbleGamepad: lib.symbols.SDL_RumbleGamepad,
+  export const rumbleGamepad = lib.symbols.SDL_RumbleGamepad;
 
 /**
  * Start a rumble effect in the gamepad's triggers.
@@ -6346,7 +6343,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1427 bool SDL_RumbleGamepadTriggers(SDL_Gamepad *gamepad, Uint16 left_rumble, Uint16 right_rumble, Uint32 duration_ms);
  */
-  rumbleGamepadTriggers: lib.symbols.SDL_RumbleGamepadTriggers,
+  export const rumbleGamepadTriggers = lib.symbols.SDL_RumbleGamepadTriggers;
 
 /**
  * Update a gamepad's LED color.
@@ -6368,7 +6365,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1447 bool SDL_SetGamepadLED(SDL_Gamepad *gamepad, Uint8 red, Uint8 green, Uint8 blue);
  */
-  setGamepadLed: lib.symbols.SDL_SetGamepadLED,
+  export const setGamepadLed = lib.symbols.SDL_SetGamepadLED;
 
 /**
  * Send a gamepad specific effect packet.
@@ -6383,7 +6380,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1460 bool SDL_SendGamepadEffect(SDL_Gamepad *gamepad, const void *data, int size);
  */
-  sendGamepadEffect: lib.symbols.SDL_SendGamepadEffect,
+  export const sendGamepadEffect = lib.symbols.SDL_SendGamepadEffect;
 
 /**
  * Close a gamepad previously opened with SDL_OpenGamepad().
@@ -6397,7 +6394,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1472 void SDL_CloseGamepad(SDL_Gamepad *gamepad);
  */
-  closeGamepad: lib.symbols.SDL_CloseGamepad,
+  export const closeGamepad = lib.symbols.SDL_CloseGamepad;
 
 /**
  * Return the sfSymbolsName for a given button on a gamepad on Apple
@@ -6413,7 +6410,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1486 const char * SDL_GetGamepadAppleSFSymbolsNameForButton(SDL_Gamepad *gamepad, SDL_GamepadButton button);
  */
-  getGamepadAppleSfSymbolsNameForButton: lib.symbols.SDL_GetGamepadAppleSFSymbolsNameForButton,
+  export const getGamepadAppleSfSymbolsNameForButton = lib.symbols.SDL_GetGamepadAppleSFSymbolsNameForButton;
 
 /**
  * Return the sfSymbolsName for a given axis on a gamepad on Apple platforms.
@@ -6428,7 +6425,7 @@ export const SDL = {
  *
  * @from SDL_gamepad.h:1499 const char * SDL_GetGamepadAppleSFSymbolsNameForAxis(SDL_Gamepad *gamepad, SDL_GamepadAxis axis);
  */
-  getGamepadAppleSfSymbolsNameForAxis: lib.symbols.SDL_GetGamepadAppleSFSymbolsNameForAxis,
+  export const getGamepadAppleSfSymbolsNameForAxis = lib.symbols.SDL_GetGamepadAppleSFSymbolsNameForAxis;
 
 
 
@@ -6437,32 +6434,32 @@ export const SDL = {
 /**
  * @from SDL_gpu:822 SDL_GPU_TEXTUREUSAGE_
  */
-  GPU_TEXTUREUSAGE: SDL_gpu_enums.GPU_TEXTUREUSAGE,
+export const GPU_TEXTUREUSAGE = SDL_gpu_enums.GPU_TEXTUREUSAGE;
 
 /**
  * @from SDL_gpu:902 SDL_GPU_BUFFERUSAGE_
  */
-  GPU_BUFFERUSAGE: SDL_gpu_enums.GPU_BUFFERUSAGE,
+export const GPU_BUFFERUSAGE = SDL_gpu_enums.GPU_BUFFERUSAGE;
 
 /**
  * @from SDL_gpu:949 SDL_GPU_SHADERFORMAT_
  */
-  GPU_SHADERFORMAT: SDL_gpu_enums.GPU_SHADERFORMAT,
+export const GPU_SHADERFORMAT = SDL_gpu_enums.GPU_SHADERFORMAT;
 
 /**
  * @from SDL_gpu:1177 SDL_GPU_COLORCOMPONENT_
  */
-  GPU_COLORCOMPONENT: SDL_gpu_enums.GPU_COLORCOMPONENT,
+export const GPU_COLORCOMPONENT = SDL_gpu_enums.GPU_COLORCOMPONENT;
 
 /**
  * @from SDL_gpu:2179 SDL_PROP_GPU_DEVICE_CREATE_
  */
-  PROP_GPU_DEVICE_CREATE: SDL_gpu_enums.PROP_GPU_DEVICE_CREATE,
+export const PROP_GPU_DEVICE_CREATE = SDL_gpu_enums.PROP_GPU_DEVICE_CREATE;
 
 /**
  * @from SDL_gpu:2497 SDL_PROP_GPU_TEXTURE_CREATE_
  */
-  PROP_GPU_TEXTURE_CREATE: SDL_gpu_enums.PROP_GPU_TEXTURE_CREATE,
+export const PROP_GPU_TEXTURE_CREATE = SDL_gpu_enums.PROP_GPU_TEXTURE_CREATE;
 
 /**
  * Specifies the primitive topology of a graphics pipeline.
@@ -6487,7 +6484,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:537 SDL_GPU_PRIMITIVETYPE_
  */
-  GPU_PRIMITIVETYPE: SDL_gpu_enums.SDL_GPUPrimitiveType,
+export const GPU_PRIMITIVETYPE = SDL_gpu_enums.SDL_GPUPrimitiveType;
 
 /**
  * Specifies how the contents of a texture attached to a render pass are
@@ -6499,7 +6496,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:554 SDL_GPU_LOADOP_
  */
-  GPU_LOADOP: SDL_gpu_enums.SDL_GPULoadOp,
+export const GPU_LOADOP = SDL_gpu_enums.SDL_GPULoadOp;
 
 /**
  * Specifies how the contents of a texture attached to a render pass are
@@ -6511,7 +6508,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:569 SDL_GPU_STOREOP_
  */
-  GPU_STOREOP: SDL_gpu_enums.SDL_GPUStoreOp,
+export const GPU_STOREOP = SDL_gpu_enums.SDL_GPUStoreOp;
 
 /**
  * Specifies the size of elements in an index buffer.
@@ -6522,7 +6519,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:584 SDL_GPU_INDEXELEMENTSIZE_
  */
-  GPU_INDEXELEMENTSIZE: SDL_gpu_enums.SDL_GPUIndexElementSize,
+export const GPU_INDEXELEMENTSIZE = SDL_gpu_enums.SDL_GPUIndexElementSize;
 
 /**
  * Specifies the pixel format of a texture.
@@ -6611,7 +6608,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:675 SDL_GPU_TEXTUREFORMAT_
  */
-  GPU_TEXTUREFORMAT: SDL_gpu_enums.SDL_GPUTextureFormat,
+export const GPU_TEXTUREFORMAT = SDL_gpu_enums.SDL_GPUTextureFormat;
 
 /**
  * Specifies the type of a texture.
@@ -6622,7 +6619,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:837 SDL_GPU_TEXTURETYPE_
  */
-  GPU_TEXTURETYPE: SDL_gpu_enums.SDL_GPUTextureType,
+export const GPU_TEXTURETYPE = SDL_gpu_enums.SDL_GPUTextureType;
 
 /**
  * Specifies the sample count of a texture.
@@ -6637,7 +6634,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:857 SDL_GPU_SAMPLECOUNT_
  */
-  GPU_SAMPLECOUNT: SDL_gpu_enums.SDL_GPUSampleCount,
+export const GPU_SAMPLECOUNT = SDL_gpu_enums.SDL_GPUSampleCount;
 
 /**
  * Specifies the face of a cube map.
@@ -6648,7 +6645,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:873 SDL_GPU_CUBEMAPFACE_
  */
-  GPU_CUBEMAPFACE: SDL_gpu_enums.SDL_GPUCubeMapFace,
+export const GPU_CUBEMAPFACE = SDL_gpu_enums.SDL_GPUCubeMapFace;
 
 /**
  * Specifies how a transfer buffer is intended to be used by the client.
@@ -6662,7 +6659,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:919 SDL_GPU_TRANSFERBUFFERUSAGE_
  */
-  GPU_TRANSFERBUFFERUSAGE: SDL_gpu_enums.SDL_GPUTransferBufferUsage,
+export const GPU_TRANSFERBUFFERUSAGE = SDL_gpu_enums.SDL_GPUTransferBufferUsage;
 
 /**
  * Specifies which stage a shader program corresponds to.
@@ -6673,7 +6670,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:932 SDL_GPU_SHADERSTAGE_
  */
-  GPU_SHADERSTAGE: SDL_gpu_enums.SDL_GPUShaderStage,
+export const GPU_SHADERSTAGE = SDL_gpu_enums.SDL_GPUShaderStage;
 
 /**
  * Specifies the format of a vertex attribute.
@@ -6684,7 +6681,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:964 SDL_GPU_VERTEXELEMENTFORMAT_
  */
-  GPU_VERTEXELEMENTFORMAT: SDL_gpu_enums.SDL_GPUVertexElementFormat,
+export const GPU_VERTEXELEMENTFORMAT = SDL_gpu_enums.SDL_GPUVertexElementFormat;
 
 /**
  * Specifies the rate at which vertex attributes are pulled from buffers.
@@ -6695,7 +6692,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1030 SDL_GPU_VERTEXINPUTRATE_
  */
-  GPU_VERTEXINPUTRATE: SDL_gpu_enums.SDL_GPUVertexInputRate,
+export const GPU_VERTEXINPUTRATE = SDL_gpu_enums.SDL_GPUVertexInputRate;
 
 /**
  * Specifies the fill mode of the graphics pipeline.
@@ -6706,7 +6703,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1043 SDL_GPU_FILLMODE_
  */
-  GPU_FILLMODE: SDL_gpu_enums.SDL_GPUFillMode,
+export const GPU_FILLMODE = SDL_gpu_enums.SDL_GPUFillMode;
 
 /**
  * Specifies the facing direction in which triangle faces will be culled.
@@ -6717,7 +6714,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1056 SDL_GPU_CULLMODE_
  */
-  GPU_CULLMODE: SDL_gpu_enums.SDL_GPUCullMode,
+export const GPU_CULLMODE = SDL_gpu_enums.SDL_GPUCullMode;
 
 /**
  * Specifies the vertex winding that will cause a triangle to be determined to
@@ -6729,7 +6726,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1071 SDL_GPU_FRONTFACE_
  */
-  GPU_FRONTFACE: SDL_gpu_enums.SDL_GPUFrontFace,
+export const GPU_FRONTFACE = SDL_gpu_enums.SDL_GPUFrontFace;
 
 /**
  * Specifies a comparison operator for depth, stencil and sampler operations.
@@ -6740,7 +6737,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1084 SDL_GPU_COMPAREOP_
  */
-  GPU_COMPAREOP: SDL_gpu_enums.SDL_GPUCompareOp,
+export const GPU_COMPAREOP = SDL_gpu_enums.SDL_GPUCompareOp;
 
 /**
  * Specifies what happens to a stored stencil value if stencil tests fail or
@@ -6752,7 +6749,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1105 SDL_GPU_STENCILOP_
  */
-  GPU_STENCILOP: SDL_gpu_enums.SDL_GPUStencilOp,
+export const GPU_STENCILOP = SDL_gpu_enums.SDL_GPUStencilOp;
 
 /**
  * Specifies the operator to be used when pixels in a render target are
@@ -6767,7 +6764,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1129 SDL_GPU_BLENDOP_
  */
-  GPU_BLENDOP: SDL_gpu_enums.SDL_GPUBlendOp,
+export const GPU_BLENDOP = SDL_gpu_enums.SDL_GPUBlendOp;
 
 /**
  * Specifies a blending factor to be used when pixels in a render target are
@@ -6782,7 +6779,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1150 SDL_GPU_BLENDFACTOR_
  */
-  GPU_BLENDFACTOR: SDL_gpu_enums.SDL_GPUBlendFactor,
+export const GPU_BLENDFACTOR = SDL_gpu_enums.SDL_GPUBlendFactor;
 
 /**
  * Specifies a filter operation used by a sampler.
@@ -6793,7 +6790,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1189 SDL_GPU_FILTER_
  */
-  GPU_FILTER: SDL_gpu_enums.SDL_GPUFilter,
+export const GPU_FILTER = SDL_gpu_enums.SDL_GPUFilter;
 
 /**
  * Specifies a mipmap mode used by a sampler.
@@ -6804,7 +6801,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1202 SDL_GPU_SAMPLERMIPMAPMODE_
  */
-  GPU_SAMPLERMIPMAPMODE: SDL_gpu_enums.SDL_GPUSamplerMipmapMode,
+export const GPU_SAMPLERMIPMAPMODE = SDL_gpu_enums.SDL_GPUSamplerMipmapMode;
 
 /**
  * Specifies behavior of texture sampling when the coordinates exceed the 0-1
@@ -6816,7 +6813,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1216 SDL_GPU_SAMPLERADDRESSMODE_
  */
-  GPU_SAMPLERADDRESSMODE: SDL_gpu_enums.SDL_GPUSamplerAddressMode,
+export const GPU_SAMPLERADDRESSMODE = SDL_gpu_enums.SDL_GPUSamplerAddressMode;
 
 /**
  * Specifies the timing that will be used to present swapchain textures to the
@@ -6845,7 +6842,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1248 SDL_GPU_PRESENTMODE_
  */
-  GPU_PRESENTMODE: SDL_gpu_enums.SDL_GPUPresentMode,
+export const GPU_PRESENTMODE = SDL_gpu_enums.SDL_GPUPresentMode;
 
 /**
  * Specifies the texture format and colorspace of the swapchain textures.
@@ -6875,7 +6872,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:1281 SDL_GPU_SWAPCHAINCOMPOSITION_
  */
-  GPU_SWAPCHAINCOMPOSITION: SDL_gpu_enums.SDL_GPUSwapchainComposition,
+export const GPU_SWAPCHAINCOMPOSITION = SDL_gpu_enums.SDL_GPUSwapchainComposition;
 
 
 
@@ -6894,7 +6891,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2093 bool SDL_GPUSupportsShaderFormats(    SDL_GPUShaderFormat format_flags,    const char *name);
  */
-  gpuSupportsShaderFormats: lib.symbols.SDL_GPUSupportsShaderFormats,
+  export const gpuSupportsShaderFormats = lib.symbols.SDL_GPUSupportsShaderFormats;
 
 /**
  * Checks for GPU runtime support.
@@ -6908,7 +6905,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2107 bool SDL_GPUSupportsProperties(    SDL_PropertiesID props);
  */
-  gpuSupportsProperties: lib.symbols.SDL_GPUSupportsProperties,
+  export const gpuSupportsProperties = lib.symbols.SDL_GPUSupportsProperties;
 
 /**
  * Creates a GPU context.
@@ -6930,7 +6927,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2128 SDL_GPUDevice * SDL_CreateGPUDevice(    SDL_GPUShaderFormat format_flags,    bool debug_mode,    const char *name);
  */
-  createGpuDevice: lib.symbols.SDL_CreateGPUDevice,
+  export const createGpuDevice = lib.symbols.SDL_CreateGPUDevice;
 
 /**
  * Creates a GPU context.
@@ -6977,7 +6974,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2176 SDL_GPUDevice * SDL_CreateGPUDeviceWithProperties(    SDL_PropertiesID props);
  */
-  createGpuDeviceWithProperties: lib.symbols.SDL_CreateGPUDeviceWithProperties,
+  export const createGpuDeviceWithProperties = lib.symbols.SDL_CreateGPUDeviceWithProperties;
 
 /**
  * Destroys a GPU context previously returned by SDL_CreateGPUDevice.
@@ -6990,7 +6987,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2199 void SDL_DestroyGPUDevice(SDL_GPUDevice *device);
  */
-  destroyGpuDevice: lib.symbols.SDL_DestroyGPUDevice,
+  export const destroyGpuDevice = lib.symbols.SDL_DestroyGPUDevice;
 
 /**
  * Get the number of GPU drivers compiled into SDL.
@@ -7003,7 +7000,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2210 int SDL_GetNumGPUDrivers(void);
  */
-  getNumGpuDrivers: lib.symbols.SDL_GetNumGPUDrivers,
+  export const getNumGpuDrivers = lib.symbols.SDL_GetNumGPUDrivers;
 
 /**
  * Get the name of a built in GPU driver.
@@ -7024,7 +7021,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2229 const char * SDL_GetGPUDriver(int index);
  */
-  getGpuDriver: lib.symbols.SDL_GetGPUDriver,
+  export const getGpuDriver = lib.symbols.SDL_GetGPUDriver;
 
 /**
  * Returns the name of the backend used to create this GPU context.
@@ -7036,7 +7033,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2239 const char * SDL_GetGPUDeviceDriver(SDL_GPUDevice *device);
  */
-  getGpuDeviceDriver: lib.symbols.SDL_GetGPUDeviceDriver,
+  export const getGpuDeviceDriver = lib.symbols.SDL_GetGPUDeviceDriver;
 
 /**
  * Returns the supported shader formats for this GPU context.
@@ -7049,7 +7046,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2250 SDL_GPUShaderFormat SDL_GetGPUShaderFormats(SDL_GPUDevice *device);
  */
-  getGpuShaderFormats: lib.symbols.SDL_GetGPUShaderFormats,
+  export const getGpuShaderFormats = lib.symbols.SDL_GetGPUShaderFormats;
 
 /**
  * Creates a pipeline object to be used in a compute workflow.
@@ -7098,7 +7095,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2299 SDL_GPUComputePipeline * SDL_CreateGPUComputePipeline(    SDL_GPUDevice *device,    const SDL_GPUComputePipelineCreateInfo *createinfo);
  */
-  createGpuComputePipeline: lib.symbols.SDL_CreateGPUComputePipeline,
+  export const createGpuComputePipeline = lib.symbols.SDL_CreateGPUComputePipeline;
 
 /**
  * Creates a pipeline object to be used in a graphics workflow.
@@ -7123,7 +7120,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2326 SDL_GPUGraphicsPipeline * SDL_CreateGPUGraphicsPipeline(    SDL_GPUDevice *device,    const SDL_GPUGraphicsPipelineCreateInfo *createinfo);
  */
-  createGpuGraphicsPipeline: lib.symbols.SDL_CreateGPUGraphicsPipeline,
+  export const createGpuGraphicsPipeline = lib.symbols.SDL_CreateGPUGraphicsPipeline;
 
 /**
  * Creates a sampler object to be used when binding textures in a graphics
@@ -7148,7 +7145,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2353 SDL_GPUSampler * SDL_CreateGPUSampler(    SDL_GPUDevice *device,    const SDL_GPUSamplerCreateInfo *createinfo);
  */
-  createGpuSampler: lib.symbols.SDL_CreateGPUSampler,
+  export const createGpuSampler = lib.symbols.SDL_CreateGPUSampler;
 
 /**
  * Creates a shader to be used when creating a graphics pipeline.
@@ -7225,7 +7222,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2432 SDL_GPUShader * SDL_CreateGPUShader(    SDL_GPUDevice *device,    const SDL_GPUShaderCreateInfo *createinfo);
  */
-  createGpuShader: lib.symbols.SDL_CreateGPUShader,
+  export const createGpuShader = lib.symbols.SDL_CreateGPUShader;
 
 /**
  * Creates a texture object to be used in graphics or compute workflows.
@@ -7284,7 +7281,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2493 SDL_GPUTexture * SDL_CreateGPUTexture(    SDL_GPUDevice *device,    const SDL_GPUTextureCreateInfo *createinfo);
  */
-  createGpuTexture: lib.symbols.SDL_CreateGPUTexture,
+  export const createGpuTexture = lib.symbols.SDL_CreateGPUTexture;
 
 /**
  * Creates a buffer object to be used in graphics or compute workflows.
@@ -7332,7 +7329,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2549 SDL_GPUBuffer * SDL_CreateGPUBuffer(    SDL_GPUDevice *device,    const SDL_GPUBufferCreateInfo *createinfo);
  */
-  createGpuBuffer: lib.symbols.SDL_CreateGPUBuffer,
+  export const createGpuBuffer = lib.symbols.SDL_CreateGPUBuffer;
 
 /**
  * Creates a transfer buffer to be used when uploading to or downloading from
@@ -7363,7 +7360,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2582 SDL_GPUTransferBuffer * SDL_CreateGPUTransferBuffer(    SDL_GPUDevice *device,    const SDL_GPUTransferBufferCreateInfo *createinfo);
  */
-  createGpuTransferBuffer: lib.symbols.SDL_CreateGPUTransferBuffer,
+  export const createGpuTransferBuffer = lib.symbols.SDL_CreateGPUTransferBuffer;
 
 /**
  * Sets an arbitrary string constant to label a buffer.
@@ -7384,7 +7381,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2607 void SDL_SetGPUBufferName(    SDL_GPUDevice *device,    SDL_GPUBuffer *buffer,    const char *text);
  */
-  setGpuBufferName: lib.symbols.SDL_SetGPUBufferName,
+  export const setGpuBufferName = lib.symbols.SDL_SetGPUBufferName;
 
 /**
  * Sets an arbitrary string constant to label a texture.
@@ -7406,7 +7403,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2630 void SDL_SetGPUTextureName(    SDL_GPUDevice *device,    SDL_GPUTexture *texture,    const char *text);
  */
-  setGpuTextureName: lib.symbols.SDL_SetGPUTextureName,
+  export const setGpuTextureName = lib.symbols.SDL_SetGPUTextureName;
 
 /**
  * Inserts an arbitrary string label into the command buffer callstream.
@@ -7420,7 +7417,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2645 void SDL_InsertGPUDebugLabel(    SDL_GPUCommandBuffer *command_buffer,    const char *text);
  */
-  insertGpuDebugLabel: lib.symbols.SDL_InsertGPUDebugLabel,
+  export const insertGpuDebugLabel = lib.symbols.SDL_InsertGPUDebugLabel;
 
 /**
  * Begins a debug group with an arbitary name.
@@ -7445,7 +7442,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2670 void SDL_PushGPUDebugGroup(    SDL_GPUCommandBuffer *command_buffer,    const char *name);
  */
-  pushGpuDebugGroup: lib.symbols.SDL_PushGPUDebugGroup,
+  export const pushGpuDebugGroup = lib.symbols.SDL_PushGPUDebugGroup;
 
 /**
  * Ends the most-recently pushed debug group.
@@ -7458,7 +7455,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2683 void SDL_PopGPUDebugGroup(    SDL_GPUCommandBuffer *command_buffer);
  */
-  popGpuDebugGroup: lib.symbols.SDL_PopGPUDebugGroup,
+  export const popGpuDebugGroup = lib.symbols.SDL_PopGPUDebugGroup;
 
 /**
  * Frees the given texture as soon as it is safe to do so.
@@ -7472,7 +7469,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2698 void SDL_ReleaseGPUTexture(    SDL_GPUDevice *device,    SDL_GPUTexture *texture);
  */
-  releaseGpuTexture: lib.symbols.SDL_ReleaseGPUTexture,
+  export const releaseGpuTexture = lib.symbols.SDL_ReleaseGPUTexture;
 
 /**
  * Frees the given sampler as soon as it is safe to do so.
@@ -7486,7 +7483,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2712 void SDL_ReleaseGPUSampler(    SDL_GPUDevice *device,    SDL_GPUSampler *sampler);
  */
-  releaseGpuSampler: lib.symbols.SDL_ReleaseGPUSampler,
+  export const releaseGpuSampler = lib.symbols.SDL_ReleaseGPUSampler;
 
 /**
  * Frees the given buffer as soon as it is safe to do so.
@@ -7500,7 +7497,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2726 void SDL_ReleaseGPUBuffer(    SDL_GPUDevice *device,    SDL_GPUBuffer *buffer);
  */
-  releaseGpuBuffer: lib.symbols.SDL_ReleaseGPUBuffer,
+  export const releaseGpuBuffer = lib.symbols.SDL_ReleaseGPUBuffer;
 
 /**
  * Frees the given transfer buffer as soon as it is safe to do so.
@@ -7514,7 +7511,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2740 void SDL_ReleaseGPUTransferBuffer(    SDL_GPUDevice *device,    SDL_GPUTransferBuffer *transfer_buffer);
  */
-  releaseGpuTransferBuffer: lib.symbols.SDL_ReleaseGPUTransferBuffer,
+  export const releaseGpuTransferBuffer = lib.symbols.SDL_ReleaseGPUTransferBuffer;
 
 /**
  * Frees the given compute pipeline as soon as it is safe to do so.
@@ -7528,7 +7525,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2754 void SDL_ReleaseGPUComputePipeline(    SDL_GPUDevice *device,    SDL_GPUComputePipeline *compute_pipeline);
  */
-  releaseGpuComputePipeline: lib.symbols.SDL_ReleaseGPUComputePipeline,
+  export const releaseGpuComputePipeline = lib.symbols.SDL_ReleaseGPUComputePipeline;
 
 /**
  * Frees the given shader as soon as it is safe to do so.
@@ -7542,7 +7539,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2768 void SDL_ReleaseGPUShader(    SDL_GPUDevice *device,    SDL_GPUShader *shader);
  */
-  releaseGpuShader: lib.symbols.SDL_ReleaseGPUShader,
+  export const releaseGpuShader = lib.symbols.SDL_ReleaseGPUShader;
 
 /**
  * Frees the given graphics pipeline as soon as it is safe to do so.
@@ -7556,7 +7553,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2782 void SDL_ReleaseGPUGraphicsPipeline(    SDL_GPUDevice *device,    SDL_GPUGraphicsPipeline *graphics_pipeline);
  */
-  releaseGpuGraphicsPipeline: lib.symbols.SDL_ReleaseGPUGraphicsPipeline,
+  export const releaseGpuGraphicsPipeline = lib.symbols.SDL_ReleaseGPUGraphicsPipeline;
 
 /**
  * Acquire a command buffer.
@@ -7584,7 +7581,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2810 SDL_GPUCommandBuffer * SDL_AcquireGPUCommandBuffer(    SDL_GPUDevice *device);
  */
-  acquireGpuCommandBuffer: lib.symbols.SDL_AcquireGPUCommandBuffer,
+  export const acquireGpuCommandBuffer = lib.symbols.SDL_AcquireGPUCommandBuffer;
 
 /**
  * Pushes data to a vertex uniform slot on the command buffer.
@@ -7604,7 +7601,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2831 void SDL_PushGPUVertexUniformData(    SDL_GPUCommandBuffer *command_buffer,    Uint32 slot_index,    const void *data,    Uint32 length);
  */
-  pushGpuVertexUniformData: lib.symbols.SDL_PushGPUVertexUniformData,
+  export const pushGpuVertexUniformData = lib.symbols.SDL_PushGPUVertexUniformData;
 
 /**
  * Pushes data to a fragment uniform slot on the command buffer.
@@ -7624,7 +7621,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2853 void SDL_PushGPUFragmentUniformData(    SDL_GPUCommandBuffer *command_buffer,    Uint32 slot_index,    const void *data,    Uint32 length);
  */
-  pushGpuFragmentUniformData: lib.symbols.SDL_PushGPUFragmentUniformData,
+  export const pushGpuFragmentUniformData = lib.symbols.SDL_PushGPUFragmentUniformData;
 
 /**
  * Pushes data to a uniform slot on the command buffer.
@@ -7644,7 +7641,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2875 void SDL_PushGPUComputeUniformData(    SDL_GPUCommandBuffer *command_buffer,    Uint32 slot_index,    const void *data,    Uint32 length);
  */
-  pushGpuComputeUniformData: lib.symbols.SDL_PushGPUComputeUniformData,
+  export const pushGpuComputeUniformData = lib.symbols.SDL_PushGPUComputeUniformData;
 
 /**
  * Begins a render pass on a command buffer.
@@ -7673,7 +7670,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2908 SDL_GPURenderPass * SDL_BeginGPURenderPass(    SDL_GPUCommandBuffer *command_buffer,    const SDL_GPUColorTargetInfo *color_target_infos,    Uint32 num_color_targets,    const SDL_GPUDepthStencilTargetInfo *depth_stencil_target_info);
  */
-  beginGpuRenderPass: lib.symbols.SDL_BeginGPURenderPass,
+  export const beginGpuRenderPass = lib.symbols.SDL_BeginGPURenderPass;
 
 /**
  * Binds a graphics pipeline on a render pass to be used in rendering.
@@ -7687,7 +7684,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2924 void SDL_BindGPUGraphicsPipeline(    SDL_GPURenderPass *render_pass,    SDL_GPUGraphicsPipeline *graphics_pipeline);
  */
-  bindGpuGraphicsPipeline: lib.symbols.SDL_BindGPUGraphicsPipeline,
+  export const bindGpuGraphicsPipeline = lib.symbols.SDL_BindGPUGraphicsPipeline;
 
 /**
  * Sets the current viewport state on a command buffer.
@@ -7699,7 +7696,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2936 void SDL_SetGPUViewport(    SDL_GPURenderPass *render_pass,    const SDL_GPUViewport *viewport);
  */
-  setGpuViewport: lib.symbols.SDL_SetGPUViewport,
+  export const setGpuViewport = lib.symbols.SDL_SetGPUViewport;
 
 /**
  * Sets the current scissor state on a command buffer.
@@ -7711,7 +7708,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2948 void SDL_SetGPUScissor(    SDL_GPURenderPass *render_pass,    const SDL_Rect *scissor);
  */
-  setGpuScissor: lib.symbols.SDL_SetGPUScissor,
+  export const setGpuScissor = lib.symbols.SDL_SetGPUScissor;
 
 /**
  * Sets the current stencil reference value on a command buffer.
@@ -7723,7 +7720,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2975 void SDL_SetGPUStencilReference(    SDL_GPURenderPass *render_pass,    Uint8 reference);
  */
-  setGpuStencilReference: lib.symbols.SDL_SetGPUStencilReference,
+  export const setGpuStencilReference = lib.symbols.SDL_SetGPUStencilReference;
 
 /**
  * Binds vertex buffers on a command buffer for use with subsequent draw
@@ -7739,7 +7736,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:2991 void SDL_BindGPUVertexBuffers(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    const SDL_GPUBufferBinding *bindings,    Uint32 num_bindings);
  */
-  bindGpuVertexBuffers: lib.symbols.SDL_BindGPUVertexBuffers,
+  export const bindGpuVertexBuffers = lib.symbols.SDL_BindGPUVertexBuffers;
 
 /**
  * Binds an index buffer on a command buffer for use with subsequent draw
@@ -7754,7 +7751,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3008 void SDL_BindGPUIndexBuffer(    SDL_GPURenderPass *render_pass,    const SDL_GPUBufferBinding *binding,    SDL_GPUIndexElementSize index_element_size);
  */
-  bindGpuIndexBuffer: lib.symbols.SDL_BindGPUIndexBuffer,
+  export const bindGpuIndexBuffer = lib.symbols.SDL_BindGPUIndexBuffer;
 
 /**
  * Binds texture-sampler pairs for use on the vertex shader.
@@ -7777,7 +7774,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3032 void SDL_BindGPUVertexSamplers(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    const SDL_GPUTextureSamplerBinding *texture_sampler_bindings,    Uint32 num_bindings);
  */
-  bindGpuVertexSamplers: lib.symbols.SDL_BindGPUVertexSamplers,
+  export const bindGpuVertexSamplers = lib.symbols.SDL_BindGPUVertexSamplers;
 
 /**
  * Binds storage textures for use on the vertex shader.
@@ -7799,7 +7796,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3056 void SDL_BindGPUVertexStorageTextures(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    SDL_GPUTexture *const *storage_textures,    Uint32 num_bindings);
  */
-  bindGpuVertexStorageTextures: lib.symbols.SDL_BindGPUVertexStorageTextures,
+  export const bindGpuVertexStorageTextures = lib.symbols.SDL_BindGPUVertexStorageTextures;
 
 /**
  * Binds storage buffers for use on the vertex shader.
@@ -7821,7 +7818,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3080 void SDL_BindGPUVertexStorageBuffers(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    SDL_GPUBuffer *const *storage_buffers,    Uint32 num_bindings);
  */
-  bindGpuVertexStorageBuffers: lib.symbols.SDL_BindGPUVertexStorageBuffers,
+  export const bindGpuVertexStorageBuffers = lib.symbols.SDL_BindGPUVertexStorageBuffers;
 
 /**
  * Binds texture-sampler pairs for use on the fragment shader.
@@ -7844,7 +7841,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3105 void SDL_BindGPUFragmentSamplers(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    const SDL_GPUTextureSamplerBinding *texture_sampler_bindings,    Uint32 num_bindings);
  */
-  bindGpuFragmentSamplers: lib.symbols.SDL_BindGPUFragmentSamplers,
+  export const bindGpuFragmentSamplers = lib.symbols.SDL_BindGPUFragmentSamplers;
 
 /**
  * Binds storage textures for use on the fragment shader.
@@ -7866,7 +7863,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3129 void SDL_BindGPUFragmentStorageTextures(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    SDL_GPUTexture *const *storage_textures,    Uint32 num_bindings);
  */
-  bindGpuFragmentStorageTextures: lib.symbols.SDL_BindGPUFragmentStorageTextures,
+  export const bindGpuFragmentStorageTextures = lib.symbols.SDL_BindGPUFragmentStorageTextures;
 
 /**
  * Binds storage buffers for use on the fragment shader.
@@ -7888,7 +7885,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3153 void SDL_BindGPUFragmentStorageBuffers(    SDL_GPURenderPass *render_pass,    Uint32 first_slot,    SDL_GPUBuffer *const *storage_buffers,    Uint32 num_bindings);
  */
-  bindGpuFragmentStorageBuffers: lib.symbols.SDL_BindGPUFragmentStorageBuffers,
+  export const bindGpuFragmentStorageBuffers = lib.symbols.SDL_BindGPUFragmentStorageBuffers;
 
 /**
  * Draws data using bound graphics state with an index buffer and instancing
@@ -7915,7 +7912,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3184 void SDL_DrawGPUIndexedPrimitives(    SDL_GPURenderPass *render_pass,    Uint32 num_indices,    Uint32 num_instances,    Uint32 first_index,    Sint32 vertex_offset,    Uint32 first_instance);
  */
-  drawGpuIndexedPrimitives: lib.symbols.SDL_DrawGPUIndexedPrimitives,
+  export const drawGpuIndexedPrimitives = lib.symbols.SDL_DrawGPUIndexedPrimitives;
 
 /**
  * Draws data using bound graphics state.
@@ -7939,7 +7936,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3212 void SDL_DrawGPUPrimitives(    SDL_GPURenderPass *render_pass,    Uint32 num_vertices,    Uint32 num_instances,    Uint32 first_vertex,    Uint32 first_instance);
  */
-  drawGpuPrimitives: lib.symbols.SDL_DrawGPUPrimitives,
+  export const drawGpuPrimitives = lib.symbols.SDL_DrawGPUPrimitives;
 
 /**
  * Draws data using bound graphics state and with draw parameters set from a
@@ -7959,7 +7956,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3235 void SDL_DrawGPUPrimitivesIndirect(    SDL_GPURenderPass *render_pass,    SDL_GPUBuffer *buffer,    Uint32 offset,    Uint32 draw_count);
  */
-  drawGpuPrimitivesIndirect: lib.symbols.SDL_DrawGPUPrimitivesIndirect,
+  export const drawGpuPrimitivesIndirect = lib.symbols.SDL_DrawGPUPrimitivesIndirect;
 
 /**
  * Draws data using bound graphics state with an index buffer enabled and with
@@ -7979,7 +7976,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3257 void SDL_DrawGPUIndexedPrimitivesIndirect(    SDL_GPURenderPass *render_pass,    SDL_GPUBuffer *buffer,    Uint32 offset,    Uint32 draw_count);
  */
-  drawGpuIndexedPrimitivesIndirect: lib.symbols.SDL_DrawGPUIndexedPrimitivesIndirect,
+  export const drawGpuIndexedPrimitivesIndirect = lib.symbols.SDL_DrawGPUIndexedPrimitivesIndirect;
 
 /**
  * Ends the given render pass.
@@ -7993,7 +7990,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3273 void SDL_EndGPURenderPass(    SDL_GPURenderPass *render_pass);
  */
-  endGpuRenderPass: lib.symbols.SDL_EndGPURenderPass,
+  export const endGpuRenderPass = lib.symbols.SDL_EndGPURenderPass;
 
 /**
  * Begins a compute pass on a command buffer.
@@ -8034,7 +8031,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3315 SDL_GPUComputePass * SDL_BeginGPUComputePass(    SDL_GPUCommandBuffer *command_buffer,    const SDL_GPUStorageTextureReadWriteBinding *storage_texture_bindings,    Uint32 num_storage_texture_bindings,    const SDL_GPUStorageBufferReadWriteBinding *storage_buffer_bindings,    Uint32 num_storage_buffer_bindings);
  */
-  beginGpuComputePass: lib.symbols.SDL_BeginGPUComputePass,
+  export const beginGpuComputePass = lib.symbols.SDL_BeginGPUComputePass;
 
 /**
  * Binds a compute pipeline on a command buffer for use in compute dispatch.
@@ -8046,7 +8043,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3330 void SDL_BindGPUComputePipeline(    SDL_GPUComputePass *compute_pass,    SDL_GPUComputePipeline *compute_pipeline);
  */
-  bindGpuComputePipeline: lib.symbols.SDL_BindGPUComputePipeline,
+  export const bindGpuComputePipeline = lib.symbols.SDL_BindGPUComputePipeline;
 
 /**
  * Binds texture-sampler pairs for use on the compute shader.
@@ -8069,7 +8066,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3353 void SDL_BindGPUComputeSamplers(    SDL_GPUComputePass *compute_pass,    Uint32 first_slot,    const SDL_GPUTextureSamplerBinding *texture_sampler_bindings,    Uint32 num_bindings);
  */
-  bindGpuComputeSamplers: lib.symbols.SDL_BindGPUComputeSamplers,
+  export const bindGpuComputeSamplers = lib.symbols.SDL_BindGPUComputeSamplers;
 
 /**
  * Binds storage textures as readonly for use on the compute pipeline.
@@ -8091,7 +8088,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3377 void SDL_BindGPUComputeStorageTextures(    SDL_GPUComputePass *compute_pass,    Uint32 first_slot,    SDL_GPUTexture *const *storage_textures,    Uint32 num_bindings);
  */
-  bindGpuComputeStorageTextures: lib.symbols.SDL_BindGPUComputeStorageTextures,
+  export const bindGpuComputeStorageTextures = lib.symbols.SDL_BindGPUComputeStorageTextures;
 
 /**
  * Binds storage buffers as readonly for use on the compute pipeline.
@@ -8113,7 +8110,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3401 void SDL_BindGPUComputeStorageBuffers(    SDL_GPUComputePass *compute_pass,    Uint32 first_slot,    SDL_GPUBuffer *const *storage_buffers,    Uint32 num_bindings);
  */
-  bindGpuComputeStorageBuffers: lib.symbols.SDL_BindGPUComputeStorageBuffers,
+  export const bindGpuComputeStorageBuffers = lib.symbols.SDL_BindGPUComputeStorageBuffers;
 
 /**
  * Dispatches compute work.
@@ -8137,7 +8134,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3427 void SDL_DispatchGPUCompute(    SDL_GPUComputePass *compute_pass,    Uint32 groupcount_x,    Uint32 groupcount_y,    Uint32 groupcount_z);
  */
-  dispatchGpuCompute: lib.symbols.SDL_DispatchGPUCompute,
+  export const dispatchGpuCompute = lib.symbols.SDL_DispatchGPUCompute;
 
 /**
  * Dispatches compute work with parameters set from a buffer.
@@ -8159,7 +8156,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3451 void SDL_DispatchGPUComputeIndirect(    SDL_GPUComputePass *compute_pass,    SDL_GPUBuffer *buffer,    Uint32 offset);
  */
-  dispatchGpuComputeIndirect: lib.symbols.SDL_DispatchGPUComputeIndirect,
+  export const dispatchGpuComputeIndirect = lib.symbols.SDL_DispatchGPUComputeIndirect;
 
 /**
  * Ends the current compute pass.
@@ -8173,7 +8170,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3466 void SDL_EndGPUComputePass(    SDL_GPUComputePass *compute_pass);
  */
-  endGpuComputePass: lib.symbols.SDL_EndGPUComputePass,
+  export const endGpuComputePass = lib.symbols.SDL_EndGPUComputePass;
 
 /**
  * Maps a transfer buffer into application address space.
@@ -8192,7 +8189,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3486 void * SDL_MapGPUTransferBuffer(    SDL_GPUDevice *device,    SDL_GPUTransferBuffer *transfer_buffer,    bool cycle);
  */
-  mapGpuTransferBuffer: lib.symbols.SDL_MapGPUTransferBuffer,
+  export const mapGpuTransferBuffer = lib.symbols.SDL_MapGPUTransferBuffer;
 
 /**
  * Unmaps a previously mapped transfer buffer.
@@ -8204,7 +8201,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3499 void SDL_UnmapGPUTransferBuffer(    SDL_GPUDevice *device,    SDL_GPUTransferBuffer *transfer_buffer);
  */
-  unmapGpuTransferBuffer: lib.symbols.SDL_UnmapGPUTransferBuffer,
+  export const unmapGpuTransferBuffer = lib.symbols.SDL_UnmapGPUTransferBuffer;
 
 /**
  * Begins a copy pass on a command buffer.
@@ -8220,7 +8217,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3517 SDL_GPUCopyPass * SDL_BeginGPUCopyPass(    SDL_GPUCommandBuffer *command_buffer);
  */
-  beginGpuCopyPass: lib.symbols.SDL_BeginGPUCopyPass,
+  export const beginGpuCopyPass = lib.symbols.SDL_BeginGPUCopyPass;
 
 /**
  * Uploads data from a transfer buffer to a texture.
@@ -8241,7 +8238,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3537 void SDL_UploadToGPUTexture(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUTextureTransferInfo *source,    const SDL_GPUTextureRegion *destination,    bool cycle);
  */
-  uploadToGpuTexture: lib.symbols.SDL_UploadToGPUTexture,
+  export const uploadToGpuTexture = lib.symbols.SDL_UploadToGPUTexture;
 
 /**
  * Uploads data from a transfer buffer to a buffer.
@@ -8259,7 +8256,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3557 void SDL_UploadToGPUBuffer(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUTransferBufferLocation *source,    const SDL_GPUBufferRegion *destination,    bool cycle);
  */
-  uploadToGpuBuffer: lib.symbols.SDL_UploadToGPUBuffer,
+  export const uploadToGpuBuffer = lib.symbols.SDL_UploadToGPUBuffer;
 
 /**
  * Performs a texture-to-texture copy.
@@ -8280,7 +8277,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3580 void SDL_CopyGPUTextureToTexture(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUTextureLocation *source,    const SDL_GPUTextureLocation *destination,    Uint32 w,    Uint32 h,    Uint32 d,    bool cycle);
  */
-  copyGpuTextureToTexture: lib.symbols.SDL_CopyGPUTextureToTexture,
+  export const copyGpuTextureToTexture = lib.symbols.SDL_CopyGPUTextureToTexture;
 
 /**
  * Performs a buffer-to-buffer copy.
@@ -8299,7 +8296,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3604 void SDL_CopyGPUBufferToBuffer(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUBufferLocation *source,    const SDL_GPUBufferLocation *destination,    Uint32 size,    bool cycle);
  */
-  copyGpuBufferToBuffer: lib.symbols.SDL_CopyGPUBufferToBuffer,
+  export const copyGpuBufferToBuffer = lib.symbols.SDL_CopyGPUBufferToBuffer;
 
 /**
  * Copies data from a texture to a transfer buffer on the GPU timeline.
@@ -8316,7 +8313,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3624 void SDL_DownloadFromGPUTexture(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUTextureRegion *source,    const SDL_GPUTextureTransferInfo *destination);
  */
-  downloadFromGpuTexture: lib.symbols.SDL_DownloadFromGPUTexture,
+  export const downloadFromGpuTexture = lib.symbols.SDL_DownloadFromGPUTexture;
 
 /**
  * Copies data from a buffer to a transfer buffer on the GPU timeline.
@@ -8332,7 +8329,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3641 void SDL_DownloadFromGPUBuffer(    SDL_GPUCopyPass *copy_pass,    const SDL_GPUBufferRegion *source,    const SDL_GPUTransferBufferLocation *destination);
  */
-  downloadFromGpuBuffer: lib.symbols.SDL_DownloadFromGPUBuffer,
+  export const downloadFromGpuBuffer = lib.symbols.SDL_DownloadFromGPUBuffer;
 
 /**
  * Ends the current copy pass.
@@ -8343,7 +8340,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3653 void SDL_EndGPUCopyPass(    SDL_GPUCopyPass *copy_pass);
  */
-  endGpuCopyPass: lib.symbols.SDL_EndGPUCopyPass,
+  export const endGpuCopyPass = lib.symbols.SDL_EndGPUCopyPass;
 
 /**
  * Generates mipmaps for the given texture.
@@ -8357,7 +8354,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3666 void SDL_GenerateMipmapsForGPUTexture(    SDL_GPUCommandBuffer *command_buffer,    SDL_GPUTexture *texture);
  */
-  generateMipmapsForGpuTexture: lib.symbols.SDL_GenerateMipmapsForGPUTexture,
+  export const generateMipmapsForGpuTexture = lib.symbols.SDL_GenerateMipmapsForGPUTexture;
 
 /**
  * Blits from a source texture region to a destination texture region.
@@ -8371,7 +8368,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3680 void SDL_BlitGPUTexture(    SDL_GPUCommandBuffer *command_buffer,    const SDL_GPUBlitInfo *info);
  */
-  blitGpuTexture: lib.symbols.SDL_BlitGPUTexture,
+  export const blitGpuTexture = lib.symbols.SDL_BlitGPUTexture;
 
 /**
  * Determines whether a swapchain composition is supported by the window.
@@ -8389,7 +8386,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3700 bool SDL_WindowSupportsGPUSwapchainComposition(    SDL_GPUDevice *device,    SDL_Window *window,    SDL_GPUSwapchainComposition swapchain_composition);
  */
-  windowSupportsGpuSwapchainComposition: lib.symbols.SDL_WindowSupportsGPUSwapchainComposition,
+  export const windowSupportsGpuSwapchainComposition = lib.symbols.SDL_WindowSupportsGPUSwapchainComposition;
 
 /**
  * Determines whether a presentation mode is supported by the window.
@@ -8407,7 +8404,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3719 bool SDL_WindowSupportsGPUPresentMode(    SDL_GPUDevice *device,    SDL_Window *window,    SDL_GPUPresentMode present_mode);
  */
-  windowSupportsGpuPresentMode: lib.symbols.SDL_WindowSupportsGPUPresentMode,
+  export const windowSupportsGpuPresentMode = lib.symbols.SDL_WindowSupportsGPUPresentMode;
 
 /**
  * Claims a window, creating a swapchain structure for it.
@@ -8438,7 +8435,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3751 bool SDL_ClaimWindowForGPUDevice(    SDL_GPUDevice *device,    SDL_Window *window);
  */
-  claimWindowForGpuDevice: lib.symbols.SDL_ClaimWindowForGPUDevice,
+  export const claimWindowForGpuDevice = lib.symbols.SDL_ClaimWindowForGPUDevice;
 
 /**
  * Unclaims a window, destroying its swapchain structure.
@@ -8452,7 +8449,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3765 void SDL_ReleaseWindowFromGPUDevice(    SDL_GPUDevice *device,    SDL_Window *window);
  */
-  releaseWindowFromGpuDevice: lib.symbols.SDL_ReleaseWindowFromGPUDevice,
+  export const releaseWindowFromGpuDevice = lib.symbols.SDL_ReleaseWindowFromGPUDevice;
 
 /**
  * Changes the swapchain parameters for the given claimed window.
@@ -8479,7 +8476,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3792 bool SDL_SetGPUSwapchainParameters(    SDL_GPUDevice *device,    SDL_Window *window,    SDL_GPUSwapchainComposition swapchain_composition,    SDL_GPUPresentMode present_mode);
  */
-  setGpuSwapchainParameters: lib.symbols.SDL_SetGPUSwapchainParameters,
+  export const setGpuSwapchainParameters = lib.symbols.SDL_SetGPUSwapchainParameters;
 
 /**
  * Configures the maximum allowed number of frames in flight.
@@ -8508,7 +8505,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3823 bool SDL_SetGPUAllowedFramesInFlight(    SDL_GPUDevice *device,    Uint32 allowed_frames_in_flight);
  */
-  setGpuAllowedFramesInFlight: lib.symbols.SDL_SetGPUAllowedFramesInFlight,
+  export const setGpuAllowedFramesInFlight = lib.symbols.SDL_SetGPUAllowedFramesInFlight;
 
 /**
  * Obtains the texture format of the swapchain for the given window.
@@ -8523,7 +8520,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3838 SDL_GPUTextureFormat SDL_GetGPUSwapchainTextureFormat(    SDL_GPUDevice *device,    SDL_Window *window);
  */
-  getGpuSwapchainTextureFormat: lib.symbols.SDL_GetGPUSwapchainTextureFormat,
+  export const getGpuSwapchainTextureFormat = lib.symbols.SDL_GetGPUSwapchainTextureFormat;
 
 /**
  * Acquire a texture to use in presentation.
@@ -8573,7 +8570,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3888 bool SDL_AcquireGPUSwapchainTexture(    SDL_GPUCommandBuffer *command_buffer,    SDL_Window *window,    SDL_GPUTexture **swapchain_texture,    Uint32 *swapchain_texture_width,    Uint32 *swapchain_texture_height);
  */
-  acquireGpuSwapchainTexture: lib.symbols.SDL_AcquireGPUSwapchainTexture,
+  export const acquireGpuSwapchainTexture = lib.symbols.SDL_AcquireGPUSwapchainTexture;
 
 /**
  * Blocks the thread until a swapchain texture is available to be acquired.
@@ -8594,7 +8591,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3912 bool SDL_WaitForGPUSwapchain(    SDL_GPUDevice *device,    SDL_Window *window);
  */
-  waitForGpuSwapchain: lib.symbols.SDL_WaitForGPUSwapchain,
+  export const waitForGpuSwapchain = lib.symbols.SDL_WaitForGPUSwapchain;
 
 /**
  * Blocks the thread until a swapchain texture is available to be acquired,
@@ -8640,7 +8637,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3958 bool SDL_WaitAndAcquireGPUSwapchainTexture(    SDL_GPUCommandBuffer *command_buffer,    SDL_Window *window,    SDL_GPUTexture **swapchain_texture,    Uint32 *swapchain_texture_width,    Uint32 *swapchain_texture_height);
  */
-  waitAndAcquireGpuSwapchainTexture: lib.symbols.SDL_WaitAndAcquireGPUSwapchainTexture,
+  export const waitAndAcquireGpuSwapchainTexture = lib.symbols.SDL_WaitAndAcquireGPUSwapchainTexture;
 
 /**
  * Submits a command buffer so its commands can be processed on the GPU.
@@ -8665,7 +8662,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:3986 bool SDL_SubmitGPUCommandBuffer(    SDL_GPUCommandBuffer *command_buffer);
  */
-  submitGpuCommandBuffer: lib.symbols.SDL_SubmitGPUCommandBuffer,
+  export const submitGpuCommandBuffer = lib.symbols.SDL_SubmitGPUCommandBuffer;
 
 /**
  * Submits a command buffer so its commands can be processed on the GPU, and
@@ -8693,7 +8690,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4013 SDL_GPUFence * SDL_SubmitGPUCommandBufferAndAcquireFence(    SDL_GPUCommandBuffer *command_buffer);
  */
-  submitGpuCommandBufferAndAcquireFence: lib.symbols.SDL_SubmitGPUCommandBufferAndAcquireFence,
+  export const submitGpuCommandBufferAndAcquireFence = lib.symbols.SDL_SubmitGPUCommandBufferAndAcquireFence;
 
 /**
  * Cancels a command buffer.
@@ -8719,7 +8716,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4038 bool SDL_CancelGPUCommandBuffer(    SDL_GPUCommandBuffer *command_buffer);
  */
-  cancelGpuCommandBuffer: lib.symbols.SDL_CancelGPUCommandBuffer,
+  export const cancelGpuCommandBuffer = lib.symbols.SDL_CancelGPUCommandBuffer;
 
 /**
  * Blocks the thread until the GPU is completely idle.
@@ -8734,7 +8731,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4052 bool SDL_WaitForGPUIdle(    SDL_GPUDevice *device);
  */
-  waitForGpuIdle: lib.symbols.SDL_WaitForGPUIdle,
+  export const waitForGpuIdle = lib.symbols.SDL_WaitForGPUIdle;
 
 /**
  * Blocks the thread until the given fences are signaled.
@@ -8754,7 +8751,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4071 bool SDL_WaitForGPUFences(    SDL_GPUDevice *device,    bool wait_all,    SDL_GPUFence *const *fences,    Uint32 num_fences);
  */
-  waitForGpuFences: lib.symbols.SDL_WaitForGPUFences,
+  export const waitForGpuFences = lib.symbols.SDL_WaitForGPUFences;
 
 /**
  * Checks the status of a fence.
@@ -8769,7 +8766,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4088 bool SDL_QueryGPUFence(    SDL_GPUDevice *device,    SDL_GPUFence *fence);
  */
-  queryGpuFence: lib.symbols.SDL_QueryGPUFence,
+  export const queryGpuFence = lib.symbols.SDL_QueryGPUFence;
 
 /**
  * Releases a fence obtained from SDL_SubmitGPUCommandBufferAndAcquireFence.
@@ -8785,7 +8782,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4104 void SDL_ReleaseGPUFence(    SDL_GPUDevice *device,    SDL_GPUFence *fence);
  */
-  releaseGpuFence: lib.symbols.SDL_ReleaseGPUFence,
+  export const releaseGpuFence = lib.symbols.SDL_ReleaseGPUFence;
 
 /**
  * Obtains the texel block size for a texture format.
@@ -8799,7 +8796,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4120 Uint32 SDL_GPUTextureFormatTexelBlockSize(    SDL_GPUTextureFormat format);
  */
-  gpuTextureFormatTexelBlockSize: lib.symbols.SDL_GPUTextureFormatTexelBlockSize,
+  export const gpuTextureFormatTexelBlockSize = lib.symbols.SDL_GPUTextureFormatTexelBlockSize;
 
 /**
  * Determines whether a texture format is supported for a given type and
@@ -8815,7 +8812,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4135 bool SDL_GPUTextureSupportsFormat(    SDL_GPUDevice *device,    SDL_GPUTextureFormat format,    SDL_GPUTextureType type,    SDL_GPUTextureUsageFlags usage);
  */
-  gpuTextureSupportsFormat: lib.symbols.SDL_GPUTextureSupportsFormat,
+  export const gpuTextureSupportsFormat = lib.symbols.SDL_GPUTextureSupportsFormat;
 
 /**
  * Determines if a sample count for a texture format is supported.
@@ -8829,7 +8826,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4151 bool SDL_GPUTextureSupportsSampleCount(    SDL_GPUDevice *device,    SDL_GPUTextureFormat format,    SDL_GPUSampleCount sample_count);
  */
-  gpuTextureSupportsSampleCount: lib.symbols.SDL_GPUTextureSupportsSampleCount,
+  export const gpuTextureSupportsSampleCount = lib.symbols.SDL_GPUTextureSupportsSampleCount;
 
 /**
  * Calculate the size in bytes of a texture format with dimensions.
@@ -8844,7 +8841,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4167 Uint32 SDL_CalculateGPUTextureFormatSize(    SDL_GPUTextureFormat format,    Uint32 width,    Uint32 height,    Uint32 depth_or_layer_count);
  */
-  calculateGpuTextureFormatSize: lib.symbols.SDL_CalculateGPUTextureFormatSize,
+  export const calculateGpuTextureFormatSize = lib.symbols.SDL_CalculateGPUTextureFormatSize;
 
 /**
  * Call this to suspend GPU operation on Xbox when you receive the
@@ -8861,7 +8858,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4188 void SDL_GDKSuspendGPU(SDL_GPUDevice *device);
  */
-  /* gdkSuspendGpu: lib.symbols.SDL_GDKSuspendGPU, */
+  /* export const gdkSuspendGpu = lib.symbols.SDL_GDKSuspendGPU; */
 
 /**
  * Call this to resume GPU operation on Xbox when you receive the
@@ -8878,7 +8875,7 @@ export const SDL = {
  *
  * @from SDL_gpu.h:4203 void SDL_GDKResumeGPU(SDL_GPUDevice *device);
  */
-  /* gdkResumeGpu: lib.symbols.SDL_GDKResumeGPU, */
+  /* export const gdkResumeGpu = lib.symbols.SDL_GDKResumeGPU; */
 
 
 
@@ -8899,7 +8896,7 @@ export const SDL = {
  *
  * @from SDL_guid.h:79 void SDL_GUIDToString(SDL_GUID guid, char *pszGUID, int cbGUID);
  */
-  guidToString: lib.symbols.SDL_GUIDToString,
+  export const guidToString = lib.symbols.SDL_GUIDToString;
 
 /**
  * Convert a GUID string into a SDL_GUID structure.
@@ -8919,7 +8916,7 @@ export const SDL = {
  *
  * @from SDL_guid.h:97 SDL_GUID SDL_StringToGUID(const char *pchGUID);
  */
-  stringToGuid: lib.symbols.SDL_StringToGUID,
+  export const stringToGuid = lib.symbols.SDL_StringToGUID;
 
 
 
@@ -8940,7 +8937,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:954 SDL_HapticID * SDL_GetHaptics(int *count);
  */
-  getHaptics: lib.symbols.SDL_GetHaptics,
+  export const getHaptics = lib.symbols.SDL_GetHaptics;
 
 /**
  * Get the implementation dependent name of a haptic device.
@@ -8959,7 +8956,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:971 const char * SDL_GetHapticNameForID(SDL_HapticID instance_id);
  */
-  getHapticNameForId: lib.symbols.SDL_GetHapticNameForID,
+  export const getHapticNameForId = lib.symbols.SDL_GetHapticNameForID;
 
 /**
  * Open a haptic device for use.
@@ -8986,7 +8983,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:996 SDL_Haptic * SDL_OpenHaptic(SDL_HapticID instance_id);
  */
-  openHaptic: lib.symbols.SDL_OpenHaptic,
+  export const openHaptic = lib.symbols.SDL_OpenHaptic;
 
 /**
  * Get the SDL_Haptic associated with an instance ID, if it has been opened.
@@ -8999,7 +8996,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1008 SDL_Haptic * SDL_GetHapticFromID(SDL_HapticID instance_id);
  */
-  getHapticFromId: lib.symbols.SDL_GetHapticFromID,
+  export const getHapticFromId = lib.symbols.SDL_GetHapticFromID;
 
 /**
  * Get the instance ID of an opened haptic device.
@@ -9012,7 +9009,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1019 SDL_HapticID SDL_GetHapticID(SDL_Haptic *haptic);
  */
-  getHapticId: lib.symbols.SDL_GetHapticID,
+  export const getHapticId = lib.symbols.SDL_GetHapticID;
 
 /**
  * Get the implementation dependent name of a haptic device.
@@ -9028,7 +9025,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1033 const char * SDL_GetHapticName(SDL_Haptic *haptic);
  */
-  getHapticName: lib.symbols.SDL_GetHapticName,
+  export const getHapticName = lib.symbols.SDL_GetHapticName;
 
 /**
  * Query whether or not the current mouse has haptic capabilities.
@@ -9041,7 +9038,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1044 bool SDL_IsMouseHaptic(void);
  */
-  isMouseHaptic: lib.symbols.SDL_IsMouseHaptic,
+  export const isMouseHaptic = lib.symbols.SDL_IsMouseHaptic;
 
 /**
  * Try to open a haptic device from the current mouse.
@@ -9056,7 +9053,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1057 SDL_Haptic * SDL_OpenHapticFromMouse(void);
  */
-  openHapticFromMouse: lib.symbols.SDL_OpenHapticFromMouse,
+  export const openHapticFromMouse = lib.symbols.SDL_OpenHapticFromMouse;
 
 /**
  * Query if a joystick has haptic features.
@@ -9070,7 +9067,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1069 bool SDL_IsJoystickHaptic(SDL_Joystick *joystick);
  */
-  isJoystickHaptic: lib.symbols.SDL_IsJoystickHaptic,
+  export const isJoystickHaptic = lib.symbols.SDL_IsJoystickHaptic;
 
 /**
  * Open a haptic device for use from a joystick device.
@@ -9094,7 +9091,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1091 SDL_Haptic * SDL_OpenHapticFromJoystick(SDL_Joystick *joystick);
  */
-  openHapticFromJoystick: lib.symbols.SDL_OpenHapticFromJoystick,
+  export const openHapticFromJoystick = lib.symbols.SDL_OpenHapticFromJoystick;
 
 /**
  * Close a haptic device previously opened with SDL_OpenHaptic().
@@ -9107,7 +9104,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1102 void SDL_CloseHaptic(SDL_Haptic *haptic);
  */
-  closeHaptic: lib.symbols.SDL_CloseHaptic,
+  export const closeHaptic = lib.symbols.SDL_CloseHaptic;
 
 /**
  * Get the number of effects a haptic device can store.
@@ -9127,7 +9124,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1120 int SDL_GetMaxHapticEffects(SDL_Haptic *haptic);
  */
-  getMaxHapticEffects: lib.symbols.SDL_GetMaxHapticEffects,
+  export const getMaxHapticEffects = lib.symbols.SDL_GetMaxHapticEffects;
 
 /**
  * Get the number of effects a haptic device can play at the same time.
@@ -9145,7 +9142,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1136 int SDL_GetMaxHapticEffectsPlaying(SDL_Haptic *haptic);
  */
-  getMaxHapticEffectsPlaying: lib.symbols.SDL_GetMaxHapticEffectsPlaying,
+  export const getMaxHapticEffectsPlaying = lib.symbols.SDL_GetMaxHapticEffectsPlaying;
 
 /**
  * Get the haptic device's supported features in bitwise manner.
@@ -9161,7 +9158,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1150 Uint32 SDL_GetHapticFeatures(SDL_Haptic *haptic);
  */
-  getHapticFeatures: lib.symbols.SDL_GetHapticFeatures,
+  export const getHapticFeatures = lib.symbols.SDL_GetHapticFeatures;
 
 /**
  * Get the number of haptic axes the device has.
@@ -9177,7 +9174,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1164 int SDL_GetNumHapticAxes(SDL_Haptic *haptic);
  */
-  getNumHapticAxes: lib.symbols.SDL_GetNumHapticAxes,
+  export const getNumHapticAxes = lib.symbols.SDL_GetNumHapticAxes;
 
 /**
  * Check to see if an effect is supported by a haptic device.
@@ -9193,7 +9190,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1178 bool SDL_HapticEffectSupported(SDL_Haptic *haptic, const SDL_HapticEffect *effect);
  */
-  hapticEffectSupported: lib.symbols.SDL_HapticEffectSupported,
+  export const hapticEffectSupported = lib.symbols.SDL_HapticEffectSupported;
 
 /**
  * Create a new haptic effect on a specified device.
@@ -9212,7 +9209,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1195 int SDL_CreateHapticEffect(SDL_Haptic *haptic, const SDL_HapticEffect *effect);
  */
-  createHapticEffect: lib.symbols.SDL_CreateHapticEffect,
+  export const createHapticEffect = lib.symbols.SDL_CreateHapticEffect;
 
 /**
  * Update the properties of an effect.
@@ -9236,7 +9233,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1217 bool SDL_UpdateHapticEffect(SDL_Haptic *haptic, int effect, const SDL_HapticEffect *data);
  */
-  updateHapticEffect: lib.symbols.SDL_UpdateHapticEffect,
+  export const updateHapticEffect = lib.symbols.SDL_UpdateHapticEffect;
 
 /**
  * Run the haptic effect on its associated haptic device.
@@ -9262,7 +9259,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1241 bool SDL_RunHapticEffect(SDL_Haptic *haptic, int effect, Uint32 iterations);
  */
-  runHapticEffect: lib.symbols.SDL_RunHapticEffect,
+  export const runHapticEffect = lib.symbols.SDL_RunHapticEffect;
 
 /**
  * Stop the haptic effect on its associated haptic device.
@@ -9279,7 +9276,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1256 bool SDL_StopHapticEffect(SDL_Haptic *haptic, int effect);
  */
-  stopHapticEffect: lib.symbols.SDL_StopHapticEffect,
+  export const stopHapticEffect = lib.symbols.SDL_StopHapticEffect;
 
 /**
  * Destroy a haptic effect on the device.
@@ -9296,7 +9293,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1271 void SDL_DestroyHapticEffect(SDL_Haptic *haptic, int effect);
  */
-  destroyHapticEffect: lib.symbols.SDL_DestroyHapticEffect,
+  export const destroyHapticEffect = lib.symbols.SDL_DestroyHapticEffect;
 
 /**
  * Get the status of the current effect on the specified haptic device.
@@ -9314,7 +9311,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1287 bool SDL_GetHapticEffectStatus(SDL_Haptic *haptic, int effect);
  */
-  getHapticEffectStatus: lib.symbols.SDL_GetHapticEffectStatus,
+  export const getHapticEffectStatus = lib.symbols.SDL_GetHapticEffectStatus;
 
 /**
  * Set the global gain of the specified haptic device.
@@ -9338,7 +9335,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1309 bool SDL_SetHapticGain(SDL_Haptic *haptic, int gain);
  */
-  setHapticGain: lib.symbols.SDL_SetHapticGain,
+  export const setHapticGain = lib.symbols.SDL_SetHapticGain;
 
 /**
  * Set the global autocenter of the device.
@@ -9359,7 +9356,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1328 bool SDL_SetHapticAutocenter(SDL_Haptic *haptic, int autocenter);
  */
-  setHapticAutocenter: lib.symbols.SDL_SetHapticAutocenter,
+  export const setHapticAutocenter = lib.symbols.SDL_SetHapticAutocenter;
 
 /**
  * Pause a haptic device.
@@ -9380,7 +9377,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1347 bool SDL_PauseHaptic(SDL_Haptic *haptic);
  */
-  pauseHaptic: lib.symbols.SDL_PauseHaptic,
+  export const pauseHaptic = lib.symbols.SDL_PauseHaptic;
 
 /**
  * Resume a haptic device.
@@ -9397,7 +9394,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1362 bool SDL_ResumeHaptic(SDL_Haptic *haptic);
  */
-  resumeHaptic: lib.symbols.SDL_ResumeHaptic,
+  export const resumeHaptic = lib.symbols.SDL_ResumeHaptic;
 
 /**
  * Stop all the currently playing effects on a haptic device.
@@ -9413,7 +9410,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1376 bool SDL_StopHapticEffects(SDL_Haptic *haptic);
  */
-  stopHapticEffects: lib.symbols.SDL_StopHapticEffects,
+  export const stopHapticEffects = lib.symbols.SDL_StopHapticEffects;
 
 /**
  * Check whether rumble is supported on a haptic device.
@@ -9427,7 +9424,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1388 bool SDL_HapticRumbleSupported(SDL_Haptic *haptic);
  */
-  hapticRumbleSupported: lib.symbols.SDL_HapticRumbleSupported,
+  export const hapticRumbleSupported = lib.symbols.SDL_HapticRumbleSupported;
 
 /**
  * Initialize a haptic device for simple rumble playback.
@@ -9444,7 +9441,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1403 bool SDL_InitHapticRumble(SDL_Haptic *haptic);
  */
-  initHapticRumble: lib.symbols.SDL_InitHapticRumble,
+  export const initHapticRumble = lib.symbols.SDL_InitHapticRumble;
 
 /**
  * Run a simple rumble effect on a haptic device.
@@ -9462,7 +9459,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1419 bool SDL_PlayHapticRumble(SDL_Haptic *haptic, float strength, Uint32 length);
  */
-  playHapticRumble: lib.symbols.SDL_PlayHapticRumble,
+  export const playHapticRumble = lib.symbols.SDL_PlayHapticRumble;
 
 /**
  * Stop the simple rumble on a haptic device.
@@ -9477,7 +9474,7 @@ export const SDL = {
  *
  * @from SDL_haptic.h:1432 bool SDL_StopHapticRumble(SDL_Haptic *haptic);
  */
-  stopHapticRumble: lib.symbols.SDL_StopHapticRumble,
+  export const stopHapticRumble = lib.symbols.SDL_StopHapticRumble;
 
 
 
@@ -9490,7 +9487,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:76 SDL_HID_API_BUS_
  */
-  HID_API_BUS: SDL_hidapi_enums.SDL_hid_bus_type,
+export const HID_API_BUS = SDL_hidapi_enums.SDL_hid_bus_type;
 
 
 
@@ -9514,7 +9511,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:175 int SDL_hid_init(void);
  */
-  hidInit: lib.symbols.SDL_hid_init,
+  export const hidInit = lib.symbols.SDL_hid_init;
 
 /**
  * Finalize the HIDAPI library.
@@ -9531,7 +9528,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:190 int SDL_hid_exit(void);
  */
-  hidExit: lib.symbols.SDL_hid_exit,
+  export const hidExit = lib.symbols.SDL_hid_exit;
 
 /**
  * Check to see if devices may have been added or removed.
@@ -9554,7 +9551,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:211 Uint32 SDL_hid_device_change_count(void);
  */
-  hidDeviceChangeCount: lib.symbols.SDL_hid_device_change_count,
+  export const hidDeviceChangeCount = lib.symbols.SDL_hid_device_change_count;
 
 /**
  * Enumerate the HID Devices.
@@ -9584,7 +9581,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:239 SDL_hid_device_info * SDL_hid_enumerate(unsigned short vendor_id, unsigned short product_id);
  */
-  hidEnumerate: lib.symbols.SDL_hid_enumerate,
+  export const hidEnumerate = lib.symbols.SDL_hid_enumerate;
 
 /**
  * Free an enumeration linked list.
@@ -9598,7 +9595,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:251 void SDL_hid_free_enumeration(SDL_hid_device_info *devs);
  */
-  hidFreeEnumeration: lib.symbols.SDL_hid_free_enumeration,
+  export const hidFreeEnumeration = lib.symbols.SDL_hid_free_enumeration;
 
 /**
  * Open a HID device using a Vendor ID (VID), Product ID (PID) and optionally
@@ -9618,7 +9615,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:269 SDL_hid_device * SDL_hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number);
  */
-  hidOpen: lib.symbols.SDL_hid_open,
+  export const hidOpen = lib.symbols.SDL_hid_open;
 
 /**
  * Open a HID device by its path name.
@@ -9634,7 +9631,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:283 SDL_hid_device * SDL_hid_open_path(const char *path);
  */
-  hidOpenPath: lib.symbols.SDL_hid_open_path,
+  export const hidOpenPath = lib.symbols.SDL_hid_open_path;
 
 /**
  * Write an Output report to a HID device.
@@ -9663,7 +9660,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:310 int SDL_hid_write(SDL_hid_device *dev, const unsigned char *data, size_t length);
  */
-  hidWrite: lib.symbols.SDL_hid_write,
+  export const hidWrite = lib.symbols.SDL_hid_write;
 
 /**
  * Read an Input report from a HID device with timeout.
@@ -9686,7 +9683,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:331 int SDL_hid_read_timeout(SDL_hid_device *dev, unsigned char *data, size_t length, int milliseconds);
  */
-  hidReadTimeout: lib.symbols.SDL_hid_read_timeout,
+  export const hidReadTimeout = lib.symbols.SDL_hid_read_timeout;
 
 /**
  * Read an Input report from a HID device.
@@ -9709,7 +9706,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:352 int SDL_hid_read(SDL_hid_device *dev, unsigned char *data, size_t length);
  */
-  hidRead: lib.symbols.SDL_hid_read,
+  export const hidRead = lib.symbols.SDL_hid_read;
 
 /**
  * Set the device handle to be non-blocking.
@@ -9730,7 +9727,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:371 int SDL_hid_set_nonblocking(SDL_hid_device *dev, int nonblock);
  */
-  hidSetNonblocking: lib.symbols.SDL_hid_set_nonblocking,
+  export const hidSetNonblocking = lib.symbols.SDL_hid_set_nonblocking;
 
 /**
  * Send a Feature report to the device.
@@ -9757,7 +9754,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:396 int SDL_hid_send_feature_report(SDL_hid_device *dev, const unsigned char *data, size_t length);
  */
-  hidSendFeatureReport: lib.symbols.SDL_hid_send_feature_report,
+  export const hidSendFeatureReport = lib.symbols.SDL_hid_send_feature_report;
 
 /**
  * Get a feature report from a HID device.
@@ -9782,7 +9779,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:419 int SDL_hid_get_feature_report(SDL_hid_device *dev, unsigned char *data, size_t length);
  */
-  hidGetFeatureReport: lib.symbols.SDL_hid_get_feature_report,
+  export const hidGetFeatureReport = lib.symbols.SDL_hid_get_feature_report;
 
 /**
  * Get an input report from a HID device.
@@ -9807,7 +9804,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:442 int SDL_hid_get_input_report(SDL_hid_device *dev, unsigned char *data, size_t length);
  */
-  hidGetInputReport: lib.symbols.SDL_hid_get_input_report,
+  export const hidGetInputReport = lib.symbols.SDL_hid_get_input_report;
 
 /**
  * Close a HID device.
@@ -9820,7 +9817,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:453 int SDL_hid_close(SDL_hid_device *dev);
  */
-  hidClose: lib.symbols.SDL_hid_close,
+  export const hidClose = lib.symbols.SDL_hid_close;
 
 /**
  * Get The Manufacturer String from a HID device.
@@ -9835,7 +9832,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:466 int SDL_hid_get_manufacturer_string(SDL_hid_device *dev, wchar_t *string, size_t maxlen);
  */
-  hidGetManufacturerString: lib.symbols.SDL_hid_get_manufacturer_string,
+  export const hidGetManufacturerString = lib.symbols.SDL_hid_get_manufacturer_string;
 
 /**
  * Get The Product String from a HID device.
@@ -9850,7 +9847,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:479 int SDL_hid_get_product_string(SDL_hid_device *dev, wchar_t *string, size_t maxlen);
  */
-  hidGetProductString: lib.symbols.SDL_hid_get_product_string,
+  export const hidGetProductString = lib.symbols.SDL_hid_get_product_string;
 
 /**
  * Get The Serial Number String from a HID device.
@@ -9865,7 +9862,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:492 int SDL_hid_get_serial_number_string(SDL_hid_device *dev, wchar_t *string, size_t maxlen);
  */
-  hidGetSerialNumberString: lib.symbols.SDL_hid_get_serial_number_string,
+  export const hidGetSerialNumberString = lib.symbols.SDL_hid_get_serial_number_string;
 
 /**
  * Get a string from a HID device, based on its string index.
@@ -9881,7 +9878,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:506 int SDL_hid_get_indexed_string(SDL_hid_device *dev, int string_index, wchar_t *string, size_t maxlen);
  */
-  hidGetIndexedString: lib.symbols.SDL_hid_get_indexed_string,
+  export const hidGetIndexedString = lib.symbols.SDL_hid_get_indexed_string;
 
 /**
  * Get the device info from a HID device.
@@ -9895,7 +9892,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:518 SDL_hid_device_info * SDL_hid_get_device_info(SDL_hid_device *dev);
  */
-  hidGetDeviceInfo: lib.symbols.SDL_hid_get_device_info,
+  export const hidGetDeviceInfo = lib.symbols.SDL_hid_get_device_info;
 
 /**
  * Get a report descriptor from a HID device.
@@ -9913,7 +9910,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:534 int SDL_hid_get_report_descriptor(SDL_hid_device *dev, unsigned char *buf, size_t buf_size);
  */
-  hidGetReportDescriptor: lib.symbols.SDL_hid_get_report_descriptor,
+  export const hidGetReportDescriptor = lib.symbols.SDL_hid_get_report_descriptor;
 
 /**
  * Start or stop a BLE scan on iOS and tvOS to pair Steam Controllers.
@@ -9924,7 +9921,7 @@ export const SDL = {
  *
  * @from SDL_hidapi.h:543 void SDL_hid_ble_scan(bool active);
  */
-  hidBleScan: lib.symbols.SDL_hid_ble_scan,
+  export const hidBleScan = lib.symbols.SDL_hid_ble_scan;
 
 
 
@@ -9937,7 +9934,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4295 SDL_HINT_
  */
-  HINT: SDL_hints_enums.SDL_HintPriority,
+export const HINT = SDL_hints_enums.SDL_HintPriority;
 
 
 
@@ -9964,7 +9961,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4323 bool SDL_SetHintWithPriority(const char *name, const char *value, SDL_HintPriority priority);
  */
-  setHintWithPriority: lib.symbols.SDL_SetHintWithPriority,
+  export const setHintWithPriority = lib.symbols.SDL_SetHintWithPriority;
 
 /**
  * Set a hint with normal priority.
@@ -9988,7 +9985,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4345 bool SDL_SetHint(const char *name, const char *value);
  */
-  setHint: lib.symbols.SDL_SetHint,
+  export const setHint = lib.symbols.SDL_SetHint;
 
 /**
  * Reset a hint to the default value.
@@ -10010,7 +10007,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4365 bool SDL_ResetHint(const char *name);
  */
-  resetHint: lib.symbols.SDL_ResetHint,
+  export const resetHint = lib.symbols.SDL_ResetHint;
 
 /**
  * Reset all hints to the default values.
@@ -10027,7 +10024,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4380 void SDL_ResetHints(void);
  */
-  resetHints: lib.symbols.SDL_ResetHints,
+  export const resetHints = lib.symbols.SDL_ResetHints;
 
 /**
  * Get the value of a hint.
@@ -10049,7 +10046,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4400 const char * SDL_GetHint(const char *name);
  */
-  getHint: lib.symbols.SDL_GetHint,
+  export const getHint = lib.symbols.SDL_GetHint;
 
 /**
  * Get the boolean value of a hint variable.
@@ -10068,7 +10065,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4417 bool SDL_GetHintBoolean(const char *name, bool default_value);
  */
-  getHintBoolean: lib.symbols.SDL_GetHintBoolean,
+  export const getHintBoolean = lib.symbols.SDL_GetHintBoolean;
 
 /**
  * Add a function to watch a particular hint.
@@ -10091,7 +10088,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4459 bool SDL_AddHintCallback(const char *name, SDL_HintCallback callback, void *userdata);
  */
-  addHintCallback: lib.symbols.SDL_AddHintCallback,
+  export const addHintCallback = lib.symbols.SDL_AddHintCallback;
 
 /**
  * Remove a function watching a particular hint.
@@ -10109,7 +10106,7 @@ export const SDL = {
  *
  * @from SDL_hints.h:4475 void SDL_RemoveHintCallback(const char *name,                                                     SDL_HintCallback callback,                                                     void *userdata);
  */
-  removeHintCallback: lib.symbols.SDL_RemoveHintCallback,
+  export const removeHintCallback = lib.symbols.SDL_RemoveHintCallback;
 
 
 
@@ -10118,12 +10115,12 @@ export const SDL = {
 /**
  * @from SDL_init:79 SDL_INIT_
  */
-  INIT: SDL_init_enums.INIT,
+export const INIT = SDL_init_enums.INIT;
 
 /**
  * @from SDL_init:459 SDL_PROP_APP_METADATA_
  */
-  PROP_APP_METADATA: SDL_init_enums.PROP_APP_METADATA,
+export const PROP_APP_METADATA = SDL_init_enums.PROP_APP_METADATA;
 
 /**
  * Return values for optional main callbacks.
@@ -10147,7 +10144,7 @@ export const SDL = {
  *
  * @from SDL_init.h:108 SDL_APP_
  */
-  APP: SDL_init_enums.SDL_AppResult,
+export const APP = SDL_init_enums.SDL_AppResult;
 
 
 
@@ -10208,7 +10205,7 @@ export const SDL = {
  *
  * @from SDL_init.h:235 bool SDL_Init(SDL_InitFlags flags);
  */
-  init: lib.symbols.SDL_Init,
+  export const init = lib.symbols.SDL_Init;
 
 /**
  * Compatibility function to initialize the SDL library.
@@ -10227,7 +10224,7 @@ export const SDL = {
  *
  * @from SDL_init.h:252 bool SDL_InitSubSystem(SDL_InitFlags flags);
  */
-  initSubSystem: lib.symbols.SDL_InitSubSystem,
+  export const initSubSystem = lib.symbols.SDL_InitSubSystem;
 
 /**
  * Shut down specific SDL subsystems.
@@ -10244,7 +10241,7 @@ export const SDL = {
  *
  * @from SDL_init.h:267 void SDL_QuitSubSystem(SDL_InitFlags flags);
  */
-  quitSubSystem: lib.symbols.SDL_QuitSubSystem,
+  export const quitSubSystem = lib.symbols.SDL_QuitSubSystem;
 
 /**
  * Get a mask of the specified subsystems which are currently initialized.
@@ -10260,7 +10257,7 @@ export const SDL = {
  *
  * @from SDL_init.h:281 SDL_InitFlags SDL_WasInit(SDL_InitFlags flags);
  */
-  wasInit: lib.symbols.SDL_WasInit,
+  export const wasInit = lib.symbols.SDL_WasInit;
 
 /**
  * Clean up all initialized subsystems.
@@ -10280,7 +10277,7 @@ export const SDL = {
  *
  * @from SDL_init.h:299 void SDL_Quit(void);
  */
-  quit: lib.symbols.SDL_Quit,
+  export const quit = lib.symbols.SDL_Quit;
 
 /**
  * Return whether this is the main thread.
@@ -10302,7 +10299,7 @@ export const SDL = {
  *
  * @from SDL_init.h:319 bool SDL_IsMainThread(void);
  */
-  isMainThread: lib.symbols.SDL_IsMainThread,
+  export const isMainThread = lib.symbols.SDL_IsMainThread;
 
 /**
  * Call a function on the main thread during event processing.
@@ -10330,7 +10327,7 @@ export const SDL = {
  *
  * @from SDL_init.h:356 bool SDL_RunOnMainThread(SDL_MainThreadCallback callback, void *userdata, bool wait_complete);
  */
-  runOnMainThread: lib.symbols.SDL_RunOnMainThread,
+  export const runOnMainThread = lib.symbols.SDL_RunOnMainThread;
 
 /**
  * Specify basic metadata about your app.
@@ -10370,7 +10367,7 @@ export const SDL = {
  *
  * @from SDL_init.h:394 bool SDL_SetAppMetadata(const char *appname, const char *appversion, const char *appidentifier);
  */
-  setAppMetadata: lib.symbols.SDL_SetAppMetadata,
+  export const setAppMetadata = lib.symbols.SDL_SetAppMetadata;
 
 /**
  * Specify metadata about your app through a set of properties.
@@ -10435,7 +10432,7 @@ export const SDL = {
  *
  * @from SDL_init.h:457 bool SDL_SetAppMetadataProperty(const char *name, const char *value);
  */
-  setAppMetadataProperty: lib.symbols.SDL_SetAppMetadataProperty,
+  export const setAppMetadataProperty = lib.symbols.SDL_SetAppMetadataProperty;
 
 /**
  * Get metadata about your app.
@@ -10460,7 +10457,7 @@ export const SDL = {
  *
  * @from SDL_init.h:488 const char * SDL_GetAppMetadataProperty(const char *name);
  */
-  getAppMetadataProperty: lib.symbols.SDL_GetAppMetadataProperty,
+  export const getAppMetadataProperty = lib.symbols.SDL_GetAppMetadataProperty;
 
 
 
@@ -10469,7 +10466,7 @@ export const SDL = {
 /**
  * @from SDL_intrin:262 __ARM_
  */
-  __ARM: SDL_intrin_enums.__ARM,
+export const __ARM = SDL_intrin_enums.__ARM;
 
 
 
@@ -10480,17 +10477,17 @@ export const SDL = {
 /**
  * @from SDL_iostream:275 SDL_PROP_IOSTREAM_
  */
-  PROP_IOSTREAM: SDL_iostream_enums.PROP_IOSTREAM,
+export const PROP_IOSTREAM = SDL_iostream_enums.PROP_IOSTREAM;
 
 /**
  * @from SDL_iostream:321 SDL_PROP_IOSTREAM_MEMORY_
  */
-  PROP_IOSTREAM_MEMORY: SDL_iostream_enums.PROP_IOSTREAM_MEMORY,
+export const PROP_IOSTREAM_MEMORY = SDL_iostream_enums.PROP_IOSTREAM_MEMORY;
 
 /**
  * @from SDL_iostream:395 SDL_PROP_IOSTREAM_DYNAMIC_
  */
-  PROP_IOSTREAM_DYNAMIC: SDL_iostream_enums.PROP_IOSTREAM_DYNAMIC,
+export const PROP_IOSTREAM_DYNAMIC = SDL_iostream_enums.PROP_IOSTREAM_DYNAMIC;
 
 /**
  * SDL_IOStream status, set by a read or write operation.
@@ -10499,7 +10496,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:52 SDL_IO_STATUS_
  */
-  IO_STATUS: SDL_iostream_enums.SDL_IOStatus,
+export const IO_STATUS = SDL_iostream_enums.SDL_IOStatus;
 
 /**
  * Possible `whence` values for SDL_IOStream seeking.
@@ -10511,7 +10508,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:70 SDL_IO_SEEK_
  */
-  IO_SEEK: SDL_iostream_enums.SDL_IOWhence,
+export const IO_SEEK = SDL_iostream_enums.SDL_IOWhence;
 
 
 
@@ -10599,7 +10596,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:273 SDL_IOStream * SDL_IOFromFile(const char *file, const char *mode);
  */
-  ioFromFile: lib.symbols.SDL_IOFromFile,
+  export const ioFromFile = lib.symbols.SDL_IOFromFile;
 
 /**
  * Use this function to prepare a read-write memory buffer for use with
@@ -10642,7 +10639,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:319 SDL_IOStream * SDL_IOFromMem(void *mem, size_t size);
  */
-  ioFromMem: lib.symbols.SDL_IOFromMem,
+  export const ioFromMem = lib.symbols.SDL_IOFromMem;
 
 /**
  * Use this function to prepare a read-only memory buffer for use with
@@ -10685,7 +10682,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:363 SDL_IOStream * SDL_IOFromConstMem(const void *mem, size_t size);
  */
-  ioFromConstMem: lib.symbols.SDL_IOFromConstMem,
+  export const ioFromConstMem = lib.symbols.SDL_IOFromConstMem;
 
 /**
  * Use this function to create an SDL_IOStream that is backed by dynamically
@@ -10717,7 +10714,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:393 SDL_IOStream * SDL_IOFromDynamicMem(void);
  */
-  ioFromDynamicMem: lib.symbols.SDL_IOFromDynamicMem,
+  export const ioFromDynamicMem = lib.symbols.SDL_IOFromDynamicMem;
 
 /**
  * Create a custom SDL_IOStream.
@@ -10748,7 +10745,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:428 SDL_IOStream * SDL_OpenIO(const SDL_IOStreamInterface *iface, void *userdata);
  */
-  openIo: lib.symbols.SDL_OpenIO,
+  export const openIo = lib.symbols.SDL_OpenIO;
 
 /**
  * Close and free an allocated SDL_IOStream structure.
@@ -10782,7 +10779,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:460 bool SDL_CloseIO(SDL_IOStream *context);
  */
-  closeIo: lib.symbols.SDL_CloseIO,
+  export const closeIo = lib.symbols.SDL_CloseIO;
 
 /**
  * Get the properties associated with an SDL_IOStream.
@@ -10797,7 +10794,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:473 SDL_PropertiesID SDL_GetIOProperties(SDL_IOStream *context);
  */
-  getIoProperties: lib.symbols.SDL_GetIOProperties,
+  export const getIoProperties = lib.symbols.SDL_GetIOProperties;
 
 /**
  * Query the stream status of an SDL_IOStream.
@@ -10819,7 +10816,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:493 SDL_IOStatus SDL_GetIOStatus(SDL_IOStream *context);
  */
-  getIoStatus: lib.symbols.SDL_GetIOStatus,
+  export const getIoStatus = lib.symbols.SDL_GetIOStatus;
 
 /**
  * Use this function to get the size of the data stream in an SDL_IOStream.
@@ -10835,7 +10832,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:507 Sint64 SDL_GetIOSize(SDL_IOStream *context);
  */
-  getIoSize: lib.symbols.SDL_GetIOSize,
+  export const getIoSize = lib.symbols.SDL_GetIOSize;
 
 /**
  * Seek within an SDL_IOStream data stream.
@@ -10866,7 +10863,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:536 Sint64 SDL_SeekIO(SDL_IOStream *context, Sint64 offset, SDL_IOWhence whence);
  */
-  seekIo: lib.symbols.SDL_SeekIO,
+  export const seekIo = lib.symbols.SDL_SeekIO;
 
 /**
  * Determine the current read/write offset in an SDL_IOStream data stream.
@@ -10888,7 +10885,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:556 Sint64 SDL_TellIO(SDL_IOStream *context);
  */
-  tellIo: lib.symbols.SDL_TellIO,
+  export const tellIo = lib.symbols.SDL_TellIO;
 
 /**
  * Read from a data source.
@@ -10916,7 +10913,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:582 size_t SDL_ReadIO(SDL_IOStream *context, void *ptr, size_t size);
  */
-  readIo: lib.symbols.SDL_ReadIO,
+  export const readIo = lib.symbols.SDL_ReadIO;
 
 /**
  * Write to an SDL_IOStream data stream.
@@ -10950,7 +10947,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:614 size_t SDL_WriteIO(SDL_IOStream *context, const void *ptr, size_t size);
  */
-  writeIo: lib.symbols.SDL_WriteIO,
+  export const writeIo = lib.symbols.SDL_WriteIO;
 
 /**
  * Flush any buffered data in the stream.
@@ -10972,7 +10969,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:675 bool SDL_FlushIO(SDL_IOStream *context);
  */
-  flushIo: lib.symbols.SDL_FlushIO,
+  export const flushIo = lib.symbols.SDL_FlushIO;
 
 /**
  * Load all the data from an SDL data stream.
@@ -11000,7 +10997,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:701 void * SDL_LoadFile_IO(SDL_IOStream *src, size_t *datasize, bool closeio);
  */
-  loadFileIo: lib.symbols.SDL_LoadFile_IO,
+  export const loadFileIo = lib.symbols.SDL_LoadFile_IO;
 
 /**
  * Load all the data from a file path.
@@ -11025,7 +11022,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:724 void * SDL_LoadFile(const char *file, size_t *datasize);
  */
-  loadFile: lib.symbols.SDL_LoadFile,
+  export const loadFile = lib.symbols.SDL_LoadFile;
 
 /**
  * Save all the data into an SDL data stream.
@@ -11048,7 +11045,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:745 bool SDL_SaveFile_IO(SDL_IOStream *src, const void *data, size_t datasize, bool closeio);
  */
-  saveFileIo: lib.symbols.SDL_SaveFile_IO,
+  export const saveFileIo = lib.symbols.SDL_SaveFile_IO;
 
 /**
  * Save all the data into a file path.
@@ -11069,7 +11066,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:764 bool SDL_SaveFile(const char *file, const void *data, size_t datasize);
  */
-  saveFile: lib.symbols.SDL_SaveFile,
+  export const saveFile = lib.symbols.SDL_SaveFile;
 
 /**
  * Use this function to read a byte from an SDL_IOStream.
@@ -11090,7 +11087,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:790 bool SDL_ReadU8(SDL_IOStream *src, Uint8 *value);
  */
-  readU8: lib.symbols.SDL_ReadU8,
+  export const readU8 = lib.symbols.SDL_ReadU8;
 
 /**
  * Use this function to read a signed byte from an SDL_IOStream.
@@ -11111,7 +11108,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:809 bool SDL_ReadS8(SDL_IOStream *src, Sint8 *value);
  */
-  readS8: lib.symbols.SDL_ReadS8,
+  export const readS8 = lib.symbols.SDL_ReadS8;
 
 /**
  * Use this function to read 16 bits of little-endian data from an
@@ -11136,7 +11133,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:832 bool SDL_ReadU16LE(SDL_IOStream *src, Uint16 *value);
  */
-  readU16Le: lib.symbols.SDL_ReadU16LE,
+  export const readU16Le = lib.symbols.SDL_ReadU16LE;
 
 /**
  * Use this function to read 16 bits of little-endian data from an
@@ -11161,7 +11158,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:855 bool SDL_ReadS16LE(SDL_IOStream *src, Sint16 *value);
  */
-  readS16Le: lib.symbols.SDL_ReadS16LE,
+  export const readS16Le = lib.symbols.SDL_ReadS16LE;
 
 /**
  * Use this function to read 16 bits of big-endian data from an SDL_IOStream
@@ -11186,7 +11183,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:878 bool SDL_ReadU16BE(SDL_IOStream *src, Uint16 *value);
  */
-  readU16Be: lib.symbols.SDL_ReadU16BE,
+  export const readU16Be = lib.symbols.SDL_ReadU16BE;
 
 /**
  * Use this function to read 16 bits of big-endian data from an SDL_IOStream
@@ -11211,7 +11208,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:901 bool SDL_ReadS16BE(SDL_IOStream *src, Sint16 *value);
  */
-  readS16Be: lib.symbols.SDL_ReadS16BE,
+  export const readS16Be = lib.symbols.SDL_ReadS16BE;
 
 /**
  * Use this function to read 32 bits of little-endian data from an
@@ -11236,7 +11233,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:924 bool SDL_ReadU32LE(SDL_IOStream *src, Uint32 *value);
  */
-  readU32Le: lib.symbols.SDL_ReadU32LE,
+  export const readU32Le = lib.symbols.SDL_ReadU32LE;
 
 /**
  * Use this function to read 32 bits of little-endian data from an
@@ -11261,7 +11258,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:947 bool SDL_ReadS32LE(SDL_IOStream *src, Sint32 *value);
  */
-  readS32Le: lib.symbols.SDL_ReadS32LE,
+  export const readS32Le = lib.symbols.SDL_ReadS32LE;
 
 /**
  * Use this function to read 32 bits of big-endian data from an SDL_IOStream
@@ -11286,7 +11283,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:970 bool SDL_ReadU32BE(SDL_IOStream *src, Uint32 *value);
  */
-  readU32Be: lib.symbols.SDL_ReadU32BE,
+  export const readU32Be = lib.symbols.SDL_ReadU32BE;
 
 /**
  * Use this function to read 32 bits of big-endian data from an SDL_IOStream
@@ -11311,7 +11308,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:993 bool SDL_ReadS32BE(SDL_IOStream *src, Sint32 *value);
  */
-  readS32Be: lib.symbols.SDL_ReadS32BE,
+  export const readS32Be = lib.symbols.SDL_ReadS32BE;
 
 /**
  * Use this function to read 64 bits of little-endian data from an
@@ -11336,7 +11333,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1016 bool SDL_ReadU64LE(SDL_IOStream *src, Uint64 *value);
  */
-  readU64Le: lib.symbols.SDL_ReadU64LE,
+  export const readU64Le = lib.symbols.SDL_ReadU64LE;
 
 /**
  * Use this function to read 64 bits of little-endian data from an
@@ -11361,7 +11358,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1039 bool SDL_ReadS64LE(SDL_IOStream *src, Sint64 *value);
  */
-  readS64Le: lib.symbols.SDL_ReadS64LE,
+  export const readS64Le = lib.symbols.SDL_ReadS64LE;
 
 /**
  * Use this function to read 64 bits of big-endian data from an SDL_IOStream
@@ -11386,7 +11383,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1062 bool SDL_ReadU64BE(SDL_IOStream *src, Uint64 *value);
  */
-  readU64Be: lib.symbols.SDL_ReadU64BE,
+  export const readU64Be = lib.symbols.SDL_ReadU64BE;
 
 /**
  * Use this function to read 64 bits of big-endian data from an SDL_IOStream
@@ -11411,7 +11408,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1085 bool SDL_ReadS64BE(SDL_IOStream *src, Sint64 *value);
  */
-  readS64Be: lib.symbols.SDL_ReadS64BE,
+  export const readS64Be = lib.symbols.SDL_ReadS64BE;
 
 /**
  * Use this function to write a byte to an SDL_IOStream.
@@ -11427,7 +11424,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1107 bool SDL_WriteU8(SDL_IOStream *dst, Uint8 value);
  */
-  writeU8: lib.symbols.SDL_WriteU8,
+  export const writeU8 = lib.symbols.SDL_WriteU8;
 
 /**
  * Use this function to write a signed byte to an SDL_IOStream.
@@ -11443,7 +11440,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1121 bool SDL_WriteS8(SDL_IOStream *dst, Sint8 value);
  */
-  writeS8: lib.symbols.SDL_WriteS8,
+  export const writeS8 = lib.symbols.SDL_WriteS8;
 
 /**
  * Use this function to write 16 bits in native format to an SDL_IOStream as
@@ -11464,7 +11461,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1140 bool SDL_WriteU16LE(SDL_IOStream *dst, Uint16 value);
  */
-  writeU16Le: lib.symbols.SDL_WriteU16LE,
+  export const writeU16Le = lib.symbols.SDL_WriteU16LE;
 
 /**
  * Use this function to write 16 bits in native format to an SDL_IOStream as
@@ -11485,7 +11482,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1159 bool SDL_WriteS16LE(SDL_IOStream *dst, Sint16 value);
  */
-  writeS16Le: lib.symbols.SDL_WriteS16LE,
+  export const writeS16Le = lib.symbols.SDL_WriteS16LE;
 
 /**
  * Use this function to write 16 bits in native format to an SDL_IOStream as
@@ -11505,7 +11502,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1177 bool SDL_WriteU16BE(SDL_IOStream *dst, Uint16 value);
  */
-  writeU16Be: lib.symbols.SDL_WriteU16BE,
+  export const writeU16Be = lib.symbols.SDL_WriteU16BE;
 
 /**
  * Use this function to write 16 bits in native format to an SDL_IOStream as
@@ -11525,7 +11522,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1195 bool SDL_WriteS16BE(SDL_IOStream *dst, Sint16 value);
  */
-  writeS16Be: lib.symbols.SDL_WriteS16BE,
+  export const writeS16Be = lib.symbols.SDL_WriteS16BE;
 
 /**
  * Use this function to write 32 bits in native format to an SDL_IOStream as
@@ -11546,7 +11543,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1214 bool SDL_WriteU32LE(SDL_IOStream *dst, Uint32 value);
  */
-  writeU32Le: lib.symbols.SDL_WriteU32LE,
+  export const writeU32Le = lib.symbols.SDL_WriteU32LE;
 
 /**
  * Use this function to write 32 bits in native format to an SDL_IOStream as
@@ -11567,7 +11564,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1233 bool SDL_WriteS32LE(SDL_IOStream *dst, Sint32 value);
  */
-  writeS32Le: lib.symbols.SDL_WriteS32LE,
+  export const writeS32Le = lib.symbols.SDL_WriteS32LE;
 
 /**
  * Use this function to write 32 bits in native format to an SDL_IOStream as
@@ -11587,7 +11584,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1251 bool SDL_WriteU32BE(SDL_IOStream *dst, Uint32 value);
  */
-  writeU32Be: lib.symbols.SDL_WriteU32BE,
+  export const writeU32Be = lib.symbols.SDL_WriteU32BE;
 
 /**
  * Use this function to write 32 bits in native format to an SDL_IOStream as
@@ -11607,7 +11604,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1269 bool SDL_WriteS32BE(SDL_IOStream *dst, Sint32 value);
  */
-  writeS32Be: lib.symbols.SDL_WriteS32BE,
+  export const writeS32Be = lib.symbols.SDL_WriteS32BE;
 
 /**
  * Use this function to write 64 bits in native format to an SDL_IOStream as
@@ -11628,7 +11625,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1288 bool SDL_WriteU64LE(SDL_IOStream *dst, Uint64 value);
  */
-  writeU64Le: lib.symbols.SDL_WriteU64LE,
+  export const writeU64Le = lib.symbols.SDL_WriteU64LE;
 
 /**
  * Use this function to write 64 bits in native format to an SDL_IOStream as
@@ -11649,7 +11646,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1307 bool SDL_WriteS64LE(SDL_IOStream *dst, Sint64 value);
  */
-  writeS64Le: lib.symbols.SDL_WriteS64LE,
+  export const writeS64Le = lib.symbols.SDL_WriteS64LE;
 
 /**
  * Use this function to write 64 bits in native format to an SDL_IOStream as
@@ -11669,7 +11666,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1325 bool SDL_WriteU64BE(SDL_IOStream *dst, Uint64 value);
  */
-  writeU64Be: lib.symbols.SDL_WriteU64BE,
+  export const writeU64Be = lib.symbols.SDL_WriteU64BE;
 
 /**
  * Use this function to write 64 bits in native format to an SDL_IOStream as
@@ -11689,7 +11686,7 @@ export const SDL = {
  *
  * @from SDL_iostream.h:1343 bool SDL_WriteS64BE(SDL_IOStream *dst, Sint64 value);
  */
-  writeS64Be: lib.symbols.SDL_WriteS64BE,
+  export const writeS64Be = lib.symbols.SDL_WriteS64BE;
 
 
 
@@ -11698,12 +11695,12 @@ export const SDL = {
 /**
  * @from SDL_joystick:654 SDL_PROP_JOYSTICK_CAP_
  */
-  PROP_JOYSTICK_CAP: SDL_joystick_enums.PROP_JOYSTICK_CAP,
+export const PROP_JOYSTICK_CAP = SDL_joystick_enums.PROP_JOYSTICK_CAP;
 
 /**
  * @from SDL_joystick:1044 SDL_HAT_
  */
-  HAT: SDL_joystick_enums.HAT,
+export const HAT = SDL_joystick_enums.HAT;
 
 /**
  * An enum of some common joystick types.
@@ -11719,7 +11716,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:111 SDL_JOYSTICK_TYPE_
  */
-  JOYSTICK_TYPE: SDL_joystick_enums.SDL_JoystickType,
+export const JOYSTICK_TYPE = SDL_joystick_enums.SDL_JoystickType;
 
 /**
  * Possible connection states for a joystick device.
@@ -11731,7 +11728,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:134 SDL_JOYSTICK_CONNECTION_
  */
-  JOYSTICK_CONNECTION: SDL_joystick_enums.SDL_JoystickConnectionState,
+export const JOYSTICK_CONNECTION = SDL_joystick_enums.SDL_JoystickConnectionState;
 
 
 
@@ -11746,7 +11743,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:174 void SDL_LockJoysticks(void) SDL_ACQUIRE(SDL_joystick_lock);
  */
-  lockJoysticks: lib.symbols.SDL_LockJoysticks,
+  export const lockJoysticks = lib.symbols.SDL_LockJoysticks;
 
 /**
  * Unlocking for atomic access to the joystick API.
@@ -11755,7 +11752,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:181 void SDL_UnlockJoysticks(void) SDL_RELEASE(SDL_joystick_lock);
  */
-  unlockJoysticks: lib.symbols.SDL_UnlockJoysticks,
+  export const unlockJoysticks = lib.symbols.SDL_UnlockJoysticks;
 
 /**
  * Return whether a joystick is currently connected.
@@ -11768,7 +11765,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:192 bool SDL_HasJoystick(void);
  */
-  hasJoystick: lib.symbols.SDL_HasJoystick,
+  export const hasJoystick = lib.symbols.SDL_HasJoystick;
 
 /**
  * Get a list of currently connected joysticks.
@@ -11786,7 +11783,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:208 SDL_JoystickID * SDL_GetJoysticks(int *count);
  */
-  getJoysticks: lib.symbols.SDL_GetJoysticks,
+  export const getJoysticks = lib.symbols.SDL_GetJoysticks;
 
 /**
  * Get the implementation dependent name of a joystick.
@@ -11804,7 +11801,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:224 const char * SDL_GetJoystickNameForID(SDL_JoystickID instance_id);
  */
-  getJoystickNameForId: lib.symbols.SDL_GetJoystickNameForID,
+  export const getJoystickNameForId = lib.symbols.SDL_GetJoystickNameForID;
 
 /**
  * Get the implementation dependent path of a joystick.
@@ -11822,7 +11819,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:240 const char * SDL_GetJoystickPathForID(SDL_JoystickID instance_id);
  */
-  getJoystickPathForId: lib.symbols.SDL_GetJoystickPathForID,
+  export const getJoystickPathForId = lib.symbols.SDL_GetJoystickPathForID;
 
 /**
  * Get the player index of a joystick.
@@ -11839,7 +11836,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:255 int SDL_GetJoystickPlayerIndexForID(SDL_JoystickID instance_id);
  */
-  getJoystickPlayerIndexForId: lib.symbols.SDL_GetJoystickPlayerIndexForID,
+  export const getJoystickPlayerIndexForId = lib.symbols.SDL_GetJoystickPlayerIndexForID;
 
 /**
  * Get the implementation-dependent GUID of a joystick.
@@ -11857,7 +11854,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:271 SDL_GUID SDL_GetJoystickGUIDForID(SDL_JoystickID instance_id);
  */
-  getJoystickGuidForId: lib.symbols.SDL_GetJoystickGUIDForID,
+  export const getJoystickGuidForId = lib.symbols.SDL_GetJoystickGUIDForID;
 
 /**
  * Get the USB vendor ID of a joystick, if available.
@@ -11876,7 +11873,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:288 Uint16 SDL_GetJoystickVendorForID(SDL_JoystickID instance_id);
  */
-  getJoystickVendorForId: lib.symbols.SDL_GetJoystickVendorForID,
+  export const getJoystickVendorForId = lib.symbols.SDL_GetJoystickVendorForID;
 
 /**
  * Get the USB product ID of a joystick, if available.
@@ -11895,7 +11892,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:305 Uint16 SDL_GetJoystickProductForID(SDL_JoystickID instance_id);
  */
-  getJoystickProductForId: lib.symbols.SDL_GetJoystickProductForID,
+  export const getJoystickProductForId = lib.symbols.SDL_GetJoystickProductForID;
 
 /**
  * Get the product version of a joystick, if available.
@@ -11914,7 +11911,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:322 Uint16 SDL_GetJoystickProductVersionForID(SDL_JoystickID instance_id);
  */
-  getJoystickProductVersionForId: lib.symbols.SDL_GetJoystickProductVersionForID,
+  export const getJoystickProductVersionForId = lib.symbols.SDL_GetJoystickProductVersionForID;
 
 /**
  * Get the type of a joystick, if available.
@@ -11933,7 +11930,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:339 SDL_JoystickType SDL_GetJoystickTypeForID(SDL_JoystickID instance_id);
  */
-  getJoystickTypeForId: lib.symbols.SDL_GetJoystickTypeForID,
+  export const getJoystickTypeForId = lib.symbols.SDL_GetJoystickTypeForID;
 
 /**
  * Open a joystick for use.
@@ -11951,7 +11948,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:355 SDL_Joystick * SDL_OpenJoystick(SDL_JoystickID instance_id);
  */
-  openJoystick: lib.symbols.SDL_OpenJoystick,
+  export const openJoystick = lib.symbols.SDL_OpenJoystick;
 
 /**
  * Get the SDL_Joystick associated with an instance ID, if it has been opened.
@@ -11964,7 +11961,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:366 SDL_Joystick * SDL_GetJoystickFromID(SDL_JoystickID instance_id);
  */
-  getJoystickFromId: lib.symbols.SDL_GetJoystickFromID,
+  export const getJoystickFromId = lib.symbols.SDL_GetJoystickFromID;
 
 /**
  * Get the SDL_Joystick associated with a player index.
@@ -11980,7 +11977,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:380 SDL_Joystick * SDL_GetJoystickFromPlayerIndex(int player_index);
  */
-  getJoystickFromPlayerIndex: lib.symbols.SDL_GetJoystickFromPlayerIndex,
+  export const getJoystickFromPlayerIndex = lib.symbols.SDL_GetJoystickFromPlayerIndex;
 
 /**
  * Attach a new virtual joystick.
@@ -11995,7 +11992,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:475 SDL_JoystickID SDL_AttachVirtualJoystick(const SDL_VirtualJoystickDesc *desc);
  */
-  attachVirtualJoystick: lib.symbols.SDL_AttachVirtualJoystick,
+  export const attachVirtualJoystick = lib.symbols.SDL_AttachVirtualJoystick;
 
 /**
  * Detach a virtual joystick.
@@ -12011,7 +12008,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:489 bool SDL_DetachVirtualJoystick(SDL_JoystickID instance_id);
  */
-  detachVirtualJoystick: lib.symbols.SDL_DetachVirtualJoystick,
+  export const detachVirtualJoystick = lib.symbols.SDL_DetachVirtualJoystick;
 
 /**
  * Query whether or not a joystick is virtual.
@@ -12023,7 +12020,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:499 bool SDL_IsJoystickVirtual(SDL_JoystickID instance_id);
  */
-  isJoystickVirtual: lib.symbols.SDL_IsJoystickVirtual,
+  export const isJoystickVirtual = lib.symbols.SDL_IsJoystickVirtual;
 
 /**
  * Set the state of an axis on an opened virtual joystick.
@@ -12048,7 +12045,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:522 bool SDL_SetJoystickVirtualAxis(SDL_Joystick *joystick, int axis, Sint16 value);
  */
-  setJoystickVirtualAxis: lib.symbols.SDL_SetJoystickVirtualAxis,
+  export const setJoystickVirtualAxis = lib.symbols.SDL_SetJoystickVirtualAxis;
 
 /**
  * Generate ball motion on an opened virtual joystick.
@@ -12070,7 +12067,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:542 bool SDL_SetJoystickVirtualBall(SDL_Joystick *joystick, int ball, Sint16 xrel, Sint16 yrel);
  */
-  setJoystickVirtualBall: lib.symbols.SDL_SetJoystickVirtualBall,
+  export const setJoystickVirtualBall = lib.symbols.SDL_SetJoystickVirtualBall;
 
 /**
  * Set the state of a button on an opened virtual joystick.
@@ -12091,7 +12088,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:561 bool SDL_SetJoystickVirtualButton(SDL_Joystick *joystick, int button, bool down);
  */
-  setJoystickVirtualButton: lib.symbols.SDL_SetJoystickVirtualButton,
+  export const setJoystickVirtualButton = lib.symbols.SDL_SetJoystickVirtualButton;
 
 /**
  * Set the state of a hat on an opened virtual joystick.
@@ -12112,7 +12109,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:580 bool SDL_SetJoystickVirtualHat(SDL_Joystick *joystick, int hat, Uint8 value);
  */
-  setJoystickVirtualHat: lib.symbols.SDL_SetJoystickVirtualHat,
+  export const setJoystickVirtualHat = lib.symbols.SDL_SetJoystickVirtualHat;
 
 /**
  * Set touchpad finger state on an opened virtual joystick.
@@ -12140,7 +12137,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:606 bool SDL_SetJoystickVirtualTouchpad(SDL_Joystick *joystick, int touchpad, int finger, bool down, float x, float y, float pressure);
  */
-  setJoystickVirtualTouchpad: lib.symbols.SDL_SetJoystickVirtualTouchpad,
+  export const setJoystickVirtualTouchpad = lib.symbols.SDL_SetJoystickVirtualTouchpad;
 
 /**
  * Send a sensor update for an opened virtual joystick.
@@ -12164,7 +12161,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:628 bool SDL_SendJoystickVirtualSensorData(SDL_Joystick *joystick, SDL_SensorType type, Uint64 sensor_timestamp, const float *data, int num_values);
  */
-  sendJoystickVirtualSensorData: lib.symbols.SDL_SendJoystickVirtualSensorData,
+  export const sendJoystickVirtualSensorData = lib.symbols.SDL_SendJoystickVirtualSensorData;
 
 /**
  * Get the properties associated with a joystick.
@@ -12190,7 +12187,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:652 SDL_PropertiesID SDL_GetJoystickProperties(SDL_Joystick *joystick);
  */
-  getJoystickProperties: lib.symbols.SDL_GetJoystickProperties,
+  export const getJoystickProperties = lib.symbols.SDL_GetJoystickProperties;
 
 /**
  * Get the implementation dependent name of a joystick.
@@ -12205,7 +12202,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:671 const char * SDL_GetJoystickName(SDL_Joystick *joystick);
  */
-  getJoystickName: lib.symbols.SDL_GetJoystickName,
+  export const getJoystickName = lib.symbols.SDL_GetJoystickName;
 
 /**
  * Get the implementation dependent path of a joystick.
@@ -12220,7 +12217,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:684 const char * SDL_GetJoystickPath(SDL_Joystick *joystick);
  */
-  getJoystickPath: lib.symbols.SDL_GetJoystickPath,
+  export const getJoystickPath = lib.symbols.SDL_GetJoystickPath;
 
 /**
  * Get the player index of an opened joystick.
@@ -12237,7 +12234,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:699 int SDL_GetJoystickPlayerIndex(SDL_Joystick *joystick);
  */
-  getJoystickPlayerIndex: lib.symbols.SDL_GetJoystickPlayerIndex,
+  export const getJoystickPlayerIndex = lib.symbols.SDL_GetJoystickPlayerIndex;
 
 /**
  * Set the player index of an opened joystick.
@@ -12254,7 +12251,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:714 bool SDL_SetJoystickPlayerIndex(SDL_Joystick *joystick, int player_index);
  */
-  setJoystickPlayerIndex: lib.symbols.SDL_SetJoystickPlayerIndex,
+  export const setJoystickPlayerIndex = lib.symbols.SDL_SetJoystickPlayerIndex;
 
 /**
  * Get the implementation-dependent GUID for the joystick.
@@ -12273,7 +12270,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:731 SDL_GUID SDL_GetJoystickGUID(SDL_Joystick *joystick);
  */
-  getJoystickGuid: lib.symbols.SDL_GetJoystickGUID,
+  export const getJoystickGuid = lib.symbols.SDL_GetJoystickGUID;
 
 /**
  * Get the USB vendor ID of an opened joystick, if available.
@@ -12289,7 +12286,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:745 Uint16 SDL_GetJoystickVendor(SDL_Joystick *joystick);
  */
-  getJoystickVendor: lib.symbols.SDL_GetJoystickVendor,
+  export const getJoystickVendor = lib.symbols.SDL_GetJoystickVendor;
 
 /**
  * Get the USB product ID of an opened joystick, if available.
@@ -12305,7 +12302,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:759 Uint16 SDL_GetJoystickProduct(SDL_Joystick *joystick);
  */
-  getJoystickProduct: lib.symbols.SDL_GetJoystickProduct,
+  export const getJoystickProduct = lib.symbols.SDL_GetJoystickProduct;
 
 /**
  * Get the product version of an opened joystick, if available.
@@ -12321,7 +12318,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:773 Uint16 SDL_GetJoystickProductVersion(SDL_Joystick *joystick);
  */
-  getJoystickProductVersion: lib.symbols.SDL_GetJoystickProductVersion,
+  export const getJoystickProductVersion = lib.symbols.SDL_GetJoystickProductVersion;
 
 /**
  * Get the firmware version of an opened joystick, if available.
@@ -12336,7 +12333,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:786 Uint16 SDL_GetJoystickFirmwareVersion(SDL_Joystick *joystick);
  */
-  getJoystickFirmwareVersion: lib.symbols.SDL_GetJoystickFirmwareVersion,
+  export const getJoystickFirmwareVersion = lib.symbols.SDL_GetJoystickFirmwareVersion;
 
 /**
  * Get the serial number of an opened joystick, if available.
@@ -12351,7 +12348,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:799 const char * SDL_GetJoystickSerial(SDL_Joystick *joystick);
  */
-  getJoystickSerial: lib.symbols.SDL_GetJoystickSerial,
+  export const getJoystickSerial = lib.symbols.SDL_GetJoystickSerial;
 
 /**
  * Get the type of an opened joystick.
@@ -12365,7 +12362,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:811 SDL_JoystickType SDL_GetJoystickType(SDL_Joystick *joystick);
  */
-  getJoystickType: lib.symbols.SDL_GetJoystickType,
+  export const getJoystickType = lib.symbols.SDL_GetJoystickType;
 
 /**
  * Get the device information encoded in a SDL_GUID structure.
@@ -12386,7 +12383,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:830 void SDL_GetJoystickGUIDInfo(SDL_GUID guid, Uint16 *vendor, Uint16 *product, Uint16 *version, Uint16 *crc16);
  */
-  getJoystickGuidInfo: lib.symbols.SDL_GetJoystickGUIDInfo,
+  export const getJoystickGuidInfo = lib.symbols.SDL_GetJoystickGUIDInfo;
 
 /**
  * Get the status of a specified joystick.
@@ -12399,7 +12396,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:841 bool SDL_JoystickConnected(SDL_Joystick *joystick);
  */
-  joystickConnected: lib.symbols.SDL_JoystickConnected,
+  export const joystickConnected = lib.symbols.SDL_JoystickConnected;
 
 /**
  * Get the instance ID of an opened joystick.
@@ -12412,7 +12409,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:852 SDL_JoystickID SDL_GetJoystickID(SDL_Joystick *joystick);
  */
-  getJoystickId: lib.symbols.SDL_GetJoystickID,
+  export const getJoystickId = lib.symbols.SDL_GetJoystickID;
 
 /**
  * Get the number of general axis controls on a joystick.
@@ -12434,7 +12431,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:872 int SDL_GetNumJoystickAxes(SDL_Joystick *joystick);
  */
-  getNumJoystickAxes: lib.symbols.SDL_GetNumJoystickAxes,
+  export const getNumJoystickAxes = lib.symbols.SDL_GetNumJoystickAxes;
 
 /**
  * Get the number of trackballs on a joystick.
@@ -12457,7 +12454,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:893 int SDL_GetNumJoystickBalls(SDL_Joystick *joystick);
  */
-  getNumJoystickBalls: lib.symbols.SDL_GetNumJoystickBalls,
+  export const getNumJoystickBalls = lib.symbols.SDL_GetNumJoystickBalls;
 
 /**
  * Get the number of POV hats on a joystick.
@@ -12475,7 +12472,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:909 int SDL_GetNumJoystickHats(SDL_Joystick *joystick);
  */
-  getNumJoystickHats: lib.symbols.SDL_GetNumJoystickHats,
+  export const getNumJoystickHats = lib.symbols.SDL_GetNumJoystickHats;
 
 /**
  * Get the number of buttons on a joystick.
@@ -12493,7 +12490,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:925 int SDL_GetNumJoystickButtons(SDL_Joystick *joystick);
  */
-  getNumJoystickButtons: lib.symbols.SDL_GetNumJoystickButtons,
+  export const getNumJoystickButtons = lib.symbols.SDL_GetNumJoystickButtons;
 
 /**
  * Set the state of joystick event processing.
@@ -12511,7 +12508,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:941 void SDL_SetJoystickEventsEnabled(bool enabled);
  */
-  setJoystickEventsEnabled: lib.symbols.SDL_SetJoystickEventsEnabled,
+  export const setJoystickEventsEnabled = lib.symbols.SDL_SetJoystickEventsEnabled;
 
 /**
  * Query the state of joystick event processing.
@@ -12528,7 +12525,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:956 bool SDL_JoystickEventsEnabled(void);
  */
-  joystickEventsEnabled: lib.symbols.SDL_JoystickEventsEnabled,
+  export const joystickEventsEnabled = lib.symbols.SDL_JoystickEventsEnabled;
 
 /**
  * Update the current state of the open joysticks.
@@ -12540,7 +12537,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:966 void SDL_UpdateJoysticks(void);
  */
-  updateJoysticks: lib.symbols.SDL_UpdateJoysticks,
+  export const updateJoysticks = lib.symbols.SDL_UpdateJoysticks;
 
 /**
  * Get the current state of an axis control on a joystick.
@@ -12566,7 +12563,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:990 Sint16 SDL_GetJoystickAxis(SDL_Joystick *joystick, int axis);
  */
-  getJoystickAxis: lib.symbols.SDL_GetJoystickAxis,
+  export const getJoystickAxis = lib.symbols.SDL_GetJoystickAxis;
 
 /**
  * Get the initial state of an axis control on a joystick.
@@ -12584,7 +12581,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1006 bool SDL_GetJoystickAxisInitialState(SDL_Joystick *joystick, int axis, Sint16 *state);
  */
-  getJoystickAxisInitialState: lib.symbols.SDL_GetJoystickAxisInitialState,
+  export const getJoystickAxisInitialState = lib.symbols.SDL_GetJoystickAxisInitialState;
 
 /**
  * Get the ball axis change since the last poll.
@@ -12607,7 +12604,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1027 bool SDL_GetJoystickBall(SDL_Joystick *joystick, int ball, int *dx, int *dy);
  */
-  getJoystickBall: lib.symbols.SDL_GetJoystickBall,
+  export const getJoystickBall = lib.symbols.SDL_GetJoystickBall;
 
 /**
  * Get the current state of a POV hat on a joystick.
@@ -12624,7 +12621,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1042 Uint8 SDL_GetJoystickHat(SDL_Joystick *joystick, int hat);
  */
-  getJoystickHat: lib.symbols.SDL_GetJoystickHat,
+  export const getJoystickHat = lib.symbols.SDL_GetJoystickHat;
 
 /**
  * Get the current state of a button on a joystick.
@@ -12640,7 +12637,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1066 bool SDL_GetJoystickButton(SDL_Joystick *joystick, int button);
  */
-  getJoystickButton: lib.symbols.SDL_GetJoystickButton,
+  export const getJoystickButton = lib.symbols.SDL_GetJoystickButton;
 
 /**
  * Start a rumble effect.
@@ -12663,7 +12660,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1087 bool SDL_RumbleJoystick(SDL_Joystick *joystick, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble, Uint32 duration_ms);
  */
-  rumbleJoystick: lib.symbols.SDL_RumbleJoystick,
+  export const rumbleJoystick = lib.symbols.SDL_RumbleJoystick;
 
 /**
  * Start a rumble effect in the joystick's triggers.
@@ -12694,7 +12691,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1116 bool SDL_RumbleJoystickTriggers(SDL_Joystick *joystick, Uint16 left_rumble, Uint16 right_rumble, Uint32 duration_ms);
  */
-  rumbleJoystickTriggers: lib.symbols.SDL_RumbleJoystickTriggers,
+  export const rumbleJoystickTriggers = lib.symbols.SDL_RumbleJoystickTriggers;
 
 /**
  * Update a joystick's LED color.
@@ -12716,7 +12713,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1136 bool SDL_SetJoystickLED(SDL_Joystick *joystick, Uint8 red, Uint8 green, Uint8 blue);
  */
-  setJoystickLed: lib.symbols.SDL_SetJoystickLED,
+  export const setJoystickLed = lib.symbols.SDL_SetJoystickLED;
 
 /**
  * Send a joystick specific effect packet.
@@ -12731,7 +12728,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1149 bool SDL_SendJoystickEffect(SDL_Joystick *joystick, const void *data, int size);
  */
-  sendJoystickEffect: lib.symbols.SDL_SendJoystickEffect,
+  export const sendJoystickEffect = lib.symbols.SDL_SendJoystickEffect;
 
 /**
  * Close a joystick previously opened with SDL_OpenJoystick().
@@ -12744,7 +12741,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1160 void SDL_CloseJoystick(SDL_Joystick *joystick);
  */
-  closeJoystick: lib.symbols.SDL_CloseJoystick,
+  export const closeJoystick = lib.symbols.SDL_CloseJoystick;
 
 /**
  * Get the connection state of a joystick.
@@ -12758,7 +12755,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1172 SDL_JoystickConnectionState SDL_GetJoystickConnectionState(SDL_Joystick *joystick);
  */
-  getJoystickConnectionState: lib.symbols.SDL_GetJoystickConnectionState,
+  export const getJoystickConnectionState = lib.symbols.SDL_GetJoystickConnectionState;
 
 /**
  * Get the battery state of a joystick.
@@ -12781,7 +12778,7 @@ export const SDL = {
  *
  * @from SDL_joystick.h:1193 SDL_PowerState SDL_GetJoystickPowerInfo(SDL_Joystick *joystick, int *percent);
  */
-  getJoystickPowerInfo: lib.symbols.SDL_GetJoystickPowerInfo,
+  export const getJoystickPowerInfo = lib.symbols.SDL_GetJoystickPowerInfo;
 
 
 
@@ -12790,7 +12787,7 @@ export const SDL = {
 /**
  * @from SDL_keyboard:475 SDL_PROP_TEXTINPUT_
  */
-  PROP_TEXTINPUT: SDL_keyboard_enums.PROP_TEXTINPUT,
+export const PROP_TEXTINPUT = SDL_keyboard_enums.PROP_TEXTINPUT;
 
 /**
  * Text input type.
@@ -12805,7 +12802,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:391 SDL_TEXTINPUT_TYPE_
  */
-  TEXTINPUT_TYPE: SDL_keyboard_enums.SDL_TextInputType,
+export const TEXTINPUT_TYPE = SDL_keyboard_enums.SDL_TextInputType;
 
 /**
  * Auto capitalization type.
@@ -12820,7 +12817,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:415 SDL_CAPITALIZE_
  */
-  CAPITALIZE: SDL_keyboard_enums.SDL_Capitalization,
+export const CAPITALIZE = SDL_keyboard_enums.SDL_Capitalization;
 
 
 
@@ -12837,7 +12834,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:74 bool SDL_HasKeyboard(void);
  */
-  hasKeyboard: lib.symbols.SDL_HasKeyboard,
+  export const hasKeyboard = lib.symbols.SDL_HasKeyboard;
 
 /**
  * Get a list of currently connected keyboards.
@@ -12862,7 +12859,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:97 SDL_KeyboardID * SDL_GetKeyboards(int *count);
  */
-  getKeyboards: lib.symbols.SDL_GetKeyboards,
+  export const getKeyboards = lib.symbols.SDL_GetKeyboards;
 
 /**
  * Get the name of a keyboard.
@@ -12881,7 +12878,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:114 const char * SDL_GetKeyboardNameForID(SDL_KeyboardID instance_id);
  */
-  getKeyboardNameForId: lib.symbols.SDL_GetKeyboardNameForID,
+  export const getKeyboardNameForId = lib.symbols.SDL_GetKeyboardNameForID;
 
 /**
  * Query the window which currently has keyboard focus.
@@ -12894,7 +12891,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:125 SDL_Window * SDL_GetKeyboardFocus(void);
  */
-  getKeyboardFocus: lib.symbols.SDL_GetKeyboardFocus,
+  export const getKeyboardFocus = lib.symbols.SDL_GetKeyboardFocus;
 
 /**
  * Get a snapshot of the current state of the keyboard.
@@ -12929,7 +12926,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:158 const bool * SDL_GetKeyboardState(int *numkeys);
  */
-  getKeyboardState: lib.symbols.SDL_GetKeyboardState,
+  export const getKeyboardState = lib.symbols.SDL_GetKeyboardState;
 
 /**
  * Clear the state of the keyboard.
@@ -12944,7 +12941,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:171 void SDL_ResetKeyboard(void);
  */
-  resetKeyboard: lib.symbols.SDL_ResetKeyboard,
+  export const resetKeyboard = lib.symbols.SDL_ResetKeyboard;
 
 /**
  * Get the current key modifier state for the keyboard.
@@ -12961,7 +12958,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:186 SDL_Keymod SDL_GetModState(void);
  */
-  getModState: lib.symbols.SDL_GetModState,
+  export const getModState = lib.symbols.SDL_GetModState;
 
 /**
  * Set the current key modifier state for the keyboard.
@@ -12984,7 +12981,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:207 void SDL_SetModState(SDL_Keymod modstate);
  */
-  setModState: lib.symbols.SDL_SetModState,
+  export const setModState = lib.symbols.SDL_SetModState;
 
 /**
  * Get the key code corresponding to the given scancode according to the
@@ -13010,7 +13007,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:231 SDL_Keycode SDL_GetKeyFromScancode(SDL_Scancode scancode, SDL_Keymod modstate, bool key_event);
  */
-  getKeyFromScancode: lib.symbols.SDL_GetKeyFromScancode,
+  export const getKeyFromScancode = lib.symbols.SDL_GetKeyFromScancode;
 
 /**
  * Get the scancode corresponding to the given key code according to the
@@ -13033,7 +13030,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:252 SDL_Scancode SDL_GetScancodeFromKey(SDL_Keycode key, SDL_Keymod *modstate);
  */
-  getScancodeFromKey: lib.symbols.SDL_GetScancodeFromKey,
+  export const getScancodeFromKey = lib.symbols.SDL_GetScancodeFromKey;
 
 /**
  * Set a human-readable name for a scancode.
@@ -13053,7 +13050,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:270 bool SDL_SetScancodeName(SDL_Scancode scancode, const char *name);
  */
-  setScancodeName: lib.symbols.SDL_SetScancodeName,
+  export const setScancodeName = lib.symbols.SDL_SetScancodeName;
 
 /**
  * Get a human-readable name for a scancode.
@@ -13081,7 +13078,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:296 const char * SDL_GetScancodeName(SDL_Scancode scancode);
  */
-  getScancodeName: lib.symbols.SDL_GetScancodeName,
+  export const getScancodeName = lib.symbols.SDL_GetScancodeName;
 
 /**
  * Get a scancode from a human-readable name.
@@ -13100,7 +13097,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:313 SDL_Scancode SDL_GetScancodeFromName(const char *name);
  */
-  getScancodeFromName: lib.symbols.SDL_GetScancodeFromName,
+  export const getScancodeFromName = lib.symbols.SDL_GetScancodeFromName;
 
 /**
  * Get a human-readable name for a key.
@@ -13122,7 +13119,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:333 const char * SDL_GetKeyName(SDL_Keycode key);
  */
-  getKeyName: lib.symbols.SDL_GetKeyName,
+  export const getKeyName = lib.symbols.SDL_GetKeyName;
 
 /**
  * Get a key code from a human-readable name.
@@ -13141,7 +13138,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:350 SDL_Keycode SDL_GetKeyFromName(const char *name);
  */
-  getKeyFromName: lib.symbols.SDL_GetKeyFromName,
+  export const getKeyFromName = lib.symbols.SDL_GetKeyFromName;
 
 /**
  * Start accepting Unicode text input events in a window.
@@ -13171,7 +13168,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:378 bool SDL_StartTextInput(SDL_Window *window);
  */
-  startTextInput: lib.symbols.SDL_StartTextInput,
+  export const startTextInput = lib.symbols.SDL_StartTextInput;
 
 /**
  * Start accepting Unicode text input events in a window, with properties
@@ -13225,7 +13222,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:473 bool SDL_StartTextInputWithProperties(SDL_Window *window, SDL_PropertiesID props);
  */
-  startTextInputWithProperties: lib.symbols.SDL_StartTextInputWithProperties,
+  export const startTextInputWithProperties = lib.symbols.SDL_StartTextInputWithProperties;
 
 /**
  * Check whether or not Unicode text input events are enabled for a window.
@@ -13241,7 +13238,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:493 bool SDL_TextInputActive(SDL_Window *window);
  */
-  textInputActive: lib.symbols.SDL_TextInputActive,
+  export const textInputActive = lib.symbols.SDL_TextInputActive;
 
 /**
  * Stop receiving any text input events in a window.
@@ -13261,7 +13258,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:511 bool SDL_StopTextInput(SDL_Window *window);
  */
-  stopTextInput: lib.symbols.SDL_StopTextInput,
+  export const stopTextInput = lib.symbols.SDL_StopTextInput;
 
 /**
  * Dismiss the composition window/IME without disabling the subsystem.
@@ -13279,7 +13276,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:527 bool SDL_ClearComposition(SDL_Window *window);
  */
-  clearComposition: lib.symbols.SDL_ClearComposition,
+  export const clearComposition = lib.symbols.SDL_ClearComposition;
 
 /**
  * Set the area used to type Unicode text input.
@@ -13304,7 +13301,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:550 bool SDL_SetTextInputArea(SDL_Window *window, const SDL_Rect *rect, int cursor);
  */
-  setTextInputArea: lib.symbols.SDL_SetTextInputArea,
+  export const setTextInputArea = lib.symbols.SDL_SetTextInputArea;
 
 /**
  * Get the area used to type Unicode text input.
@@ -13327,7 +13324,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:571 bool SDL_GetTextInputArea(SDL_Window *window, SDL_Rect *rect, int *cursor);
  */
-  getTextInputArea: lib.symbols.SDL_GetTextInputArea,
+  export const getTextInputArea = lib.symbols.SDL_GetTextInputArea;
 
 /**
  * Check whether the platform has screen keyboard support.
@@ -13344,7 +13341,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:586 bool SDL_HasScreenKeyboardSupport(void);
  */
-  hasScreenKeyboardSupport: lib.symbols.SDL_HasScreenKeyboardSupport,
+  export const hasScreenKeyboardSupport = lib.symbols.SDL_HasScreenKeyboardSupport;
 
 /**
  * Check whether the screen keyboard is shown for given window.
@@ -13360,7 +13357,7 @@ export const SDL = {
  *
  * @from SDL_keyboard.h:600 bool SDL_ScreenKeyboardShown(SDL_Window *window);
  */
-  screenKeyboardShown: lib.symbols.SDL_ScreenKeyboardShown,
+  export const screenKeyboardShown = lib.symbols.SDL_ScreenKeyboardShown;
 
 
 
@@ -13369,12 +13366,12 @@ export const SDL = {
 /**
  * @from SDL_keycode:56 SDLK_
  */
-  SDLK: SDL_keycode_enums.SDLK,
+export const SDLK = SDL_keycode_enums.SDLK;
 
 /**
  * @from SDL_keycode:323 SDL_KMOD_
  */
-  KMOD: SDL_keycode_enums.KMOD,
+export const KMOD = SDL_keycode_enums.KMOD;
 
 
 
@@ -13398,7 +13395,7 @@ export const SDL = {
  *
  * @from SDL_loadso.h:92 SDL_SharedObject * SDL_LoadObject(const char *sofile);
  */
-  loadObject: lib.symbols.SDL_LoadObject,
+  export const loadObject = lib.symbols.SDL_LoadObject;
 
 /**
  * Look up the address of the named function in a shared object.
@@ -13428,7 +13425,7 @@ export const SDL = {
  *
  * @from SDL_loadso.h:120 SDL_FunctionPointer SDL_LoadFunction(SDL_SharedObject *handle, const char *name);
  */
-  loadFunction: lib.symbols.SDL_LoadFunction,
+  export const loadFunction = lib.symbols.SDL_LoadFunction;
 
 /**
  * Unload a shared object from memory.
@@ -13446,7 +13443,7 @@ export const SDL = {
  *
  * @from SDL_loadso.h:136 void SDL_UnloadObject(SDL_SharedObject *handle);
  */
-  unloadObject: lib.symbols.SDL_UnloadObject,
+  export const unloadObject = lib.symbols.SDL_UnloadObject;
 
 
 
@@ -13495,7 +13492,7 @@ export const SDL = {
  *
  * @from SDL_locale.h:106 SDL_Locale ** SDL_GetPreferredLocales(int *count);
  */
-  getPreferredLocales: lib.symbols.SDL_GetPreferredLocales,
+  export const getPreferredLocales = lib.symbols.SDL_GetPreferredLocales;
 
 
 
@@ -13512,7 +13509,7 @@ export const SDL = {
  *
  * @from SDL_log.h:89 SDL_LOG_CATEGORY_
  */
-  LOG_CATEGORY: SDL_log_enums.SDL_LogCategory,
+export const LOG_CATEGORY = SDL_log_enums.SDL_LogCategory;
 
 /**
  * The predefined log priorities
@@ -13521,7 +13518,7 @@ export const SDL = {
  *
  * @from SDL_log.h:129 SDL_LOG_PRIORITY_
  */
-  LOG_PRIORITY: SDL_log_enums.SDL_LogPriority,
+export const LOG_PRIORITY = SDL_log_enums.SDL_LogPriority;
 
 
 
@@ -13539,7 +13536,7 @@ export const SDL = {
  *
  * @from SDL_log.h:155 void SDL_SetLogPriorities(SDL_LogPriority priority);
  */
-  setLogPriorities: lib.symbols.SDL_SetLogPriorities,
+  export const setLogPriorities = lib.symbols.SDL_SetLogPriorities;
 
 /**
  * Set the priority of a particular log category.
@@ -13557,7 +13554,7 @@ export const SDL = {
  *
  * @from SDL_log.h:171 void SDL_SetLogPriority(int category, SDL_LogPriority priority);
  */
-  setLogPriority: lib.symbols.SDL_SetLogPriority,
+  export const setLogPriority = lib.symbols.SDL_SetLogPriority;
 
 /**
  * Get the priority of a particular log category.
@@ -13573,7 +13570,7 @@ export const SDL = {
  *
  * @from SDL_log.h:185 SDL_LogPriority SDL_GetLogPriority(int category);
  */
-  getLogPriority: lib.symbols.SDL_GetLogPriority,
+  export const getLogPriority = lib.symbols.SDL_GetLogPriority;
 
 /**
  * Reset all priorities to default.
@@ -13589,7 +13586,7 @@ export const SDL = {
  *
  * @from SDL_log.h:199 void SDL_ResetLogPriorities(void);
  */
-  resetLogPriorities: lib.symbols.SDL_ResetLogPriorities,
+  export const resetLogPriorities = lib.symbols.SDL_ResetLogPriorities;
 
 /**
  * Set the text prepended to log messages of a given priority.
@@ -13613,7 +13610,7 @@ export const SDL = {
  *
  * @from SDL_log.h:221 bool SDL_SetLogPriorityPrefix(SDL_LogPriority priority, const char *prefix);
  */
-  setLogPriorityPrefix: lib.symbols.SDL_SetLogPriorityPrefix,
+  export const setLogPriorityPrefix = lib.symbols.SDL_SetLogPriorityPrefix;
 
 /**
  * Get the default log output function.
@@ -13629,7 +13626,7 @@ export const SDL = {
  *
  * @from SDL_log.h:496 SDL_LogOutputFunction SDL_GetDefaultLogOutputFunction(void);
  */
-  getDefaultLogOutputFunction: lib.symbols.SDL_GetDefaultLogOutputFunction,
+  export const getDefaultLogOutputFunction = lib.symbols.SDL_GetDefaultLogOutputFunction;
 
 /**
  * Get the current log output function.
@@ -13648,7 +13645,7 @@ export const SDL = {
  *
  * @from SDL_log.h:513 void SDL_GetLogOutputFunction(SDL_LogOutputFunction *callback, void **userdata);
  */
-  getLogOutputFunction: lib.symbols.SDL_GetLogOutputFunction,
+  export const getLogOutputFunction = lib.symbols.SDL_GetLogOutputFunction;
 
 /**
  * Replace the default log output function with one of your own.
@@ -13665,7 +13662,7 @@ export const SDL = {
  *
  * @from SDL_log.h:528 void SDL_SetLogOutputFunction(SDL_LogOutputFunction callback, void *userdata);
  */
-  setLogOutputFunction: lib.symbols.SDL_SetLogOutputFunction,
+  export const setLogOutputFunction = lib.symbols.SDL_SetLogOutputFunction;
 
 
 
@@ -13686,7 +13683,7 @@ export const SDL = {
  *
  * @from SDL_main.h:543 void SDL_SetMainReady(void);
  */
-  setMainReady: lib.symbols.SDL_SetMainReady,
+  export const setMainReady = lib.symbols.SDL_SetMainReady;
 
 /**
  * Initializes and launches an SDL application, by doing platform-specific
@@ -13718,7 +13715,7 @@ export const SDL = {
  *
  * @from SDL_main.h:573 int SDL_RunApp(int argc, char *argv[], SDL_main_func mainFunction, void *reserved);
  */
-  runApp: lib.symbols.SDL_RunApp,
+  export const runApp = lib.symbols.SDL_RunApp;
 
 /**
  * An entry point for SDL's use in SDL_MAIN_USE_CALLBACKS.
@@ -13747,7 +13744,7 @@ export const SDL = {
  *
  * @from SDL_main.h:600 int SDL_EnterAppMainCallbacks(int argc, char *argv[], SDL_AppInit_func appinit, SDL_AppIterate_func appiter, SDL_AppEvent_func appevent, SDL_AppQuit_func appquit);
  */
-  enterAppMainCallbacks: lib.symbols.SDL_EnterAppMainCallbacks,
+  export const enterAppMainCallbacks = lib.symbols.SDL_EnterAppMainCallbacks;
 
 /**
  * Register a win32 window class for SDL's use.
@@ -13775,7 +13772,7 @@ export const SDL = {
  *
  * @from SDL_main.h:629 bool SDL_RegisterApp(const char *name, Uint32 style, void *hInst);
  */
-  registerApp: lib.symbols.SDL_RegisterApp,
+  export const registerApp = lib.symbols.SDL_RegisterApp;
 
 /**
  * Deregister the win32 window class from an SDL_RegisterApp call.
@@ -13794,7 +13791,7 @@ export const SDL = {
  *
  * @from SDL_main.h:646 void SDL_UnregisterApp(void);
  */
-  unregisterApp: lib.symbols.SDL_UnregisterApp,
+  export const unregisterApp = lib.symbols.SDL_UnregisterApp;
 
 /**
  * Callback from the application to let the suspend continue.
@@ -13806,7 +13803,7 @@ export const SDL = {
  *
  * @from SDL_main.h:658 void SDL_GDKSuspendComplete(void);
  */
-  gdkSuspendComplete: lib.symbols.SDL_GDKSuspendComplete,
+  export const gdkSuspendComplete = lib.symbols.SDL_GDKSuspendComplete;
 
 
 
@@ -13815,12 +13812,12 @@ export const SDL = {
 /**
  * @from SDL_messagebox:60 SDL_MESSAGEBOX_
  */
-  MESSAGEBOX: SDL_messagebox_enums.MESSAGEBOX,
+export const MESSAGEBOX = SDL_messagebox_enums.MESSAGEBOX;
 
 /**
  * @from SDL_messagebox:73 SDL_MESSAGEBOX_BUTTON_
  */
-  MESSAGEBOX_BUTTON: SDL_messagebox_enums.MESSAGEBOX_BUTTON,
+export const MESSAGEBOX_BUTTON = SDL_messagebox_enums.MESSAGEBOX_BUTTON;
 
 /**
  * An enumeration of indices inside the colors array of
@@ -13828,7 +13825,7 @@ export const SDL = {
  *
  * @from SDL_messagebox.h:102 SDL_MESSAGEBOX_COLOR_
  */
-  MESSAGEBOX_COLOR: SDL_messagebox_enums.SDL_MessageBoxColorType,
+export const MESSAGEBOX_COLOR = SDL_messagebox_enums.SDL_MessageBoxColorType;
 
 
 
@@ -13868,7 +13865,7 @@ export const SDL = {
  *
  * @from SDL_messagebox.h:174 bool SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid);
  */
-  showMessageBox: lib.symbols.SDL_ShowMessageBox,
+  export const showMessageBox = lib.symbols.SDL_ShowMessageBox;
 
 /**
  * Display a simple modal message box.
@@ -13912,7 +13909,7 @@ export const SDL = {
  *
  * @from SDL_messagebox.h:216 bool SDL_ShowSimpleMessageBox(SDL_MessageBoxFlags flags, const char *title, const char *message, SDL_Window *window);
  */
-  showSimpleMessageBox: lib.symbols.SDL_ShowSimpleMessageBox,
+  export const showSimpleMessageBox = lib.symbols.SDL_ShowSimpleMessageBox;
 
 
 
@@ -13949,7 +13946,7 @@ export const SDL = {
  *
  * @from SDL_misc.h:69 bool SDL_OpenURL(const char *url);
  */
-  openUrl: lib.symbols.SDL_OpenURL,
+  export const openUrl = lib.symbols.SDL_OpenURL;
 
 
 
@@ -13958,7 +13955,7 @@ export const SDL = {
 /**
  * @from SDL_mouse:149 SDL_BUTTON_
  */
-  BUTTON: SDL_mouse_enums.BUTTON,
+export const BUTTON = SDL_mouse_enums.BUTTON;
 
 /**
  * Cursor types for SDL_CreateSystemCursor().
@@ -13967,7 +13964,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:96 SDL_SYSTEM_CURSOR_
  */
-  SYSTEM_CURSOR: SDL_mouse_enums.SDL_SystemCursor,
+export const SYSTEM_CURSOR = SDL_mouse_enums.SDL_SystemCursor;
 
 /**
  * Scroll direction types for the Scroll event
@@ -13976,7 +13973,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:126 SDL_MOUSEWHEEL_
  */
-  MOUSEWHEEL: SDL_mouse_enums.SDL_MouseWheelDirection,
+export const MOUSEWHEEL = SDL_mouse_enums.SDL_MouseWheelDirection;
 
 
 
@@ -13993,7 +13990,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:176 bool SDL_HasMouse(void);
  */
-  hasMouse: lib.symbols.SDL_HasMouse,
+  export const hasMouse = lib.symbols.SDL_HasMouse;
 
 /**
  * Get a list of currently connected mice.
@@ -14018,7 +14015,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:199 SDL_MouseID * SDL_GetMice(int *count);
  */
-  getMice: lib.symbols.SDL_GetMice,
+  export const getMice = lib.symbols.SDL_GetMice;
 
 /**
  * Get the name of a mouse.
@@ -14037,7 +14034,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:216 const char * SDL_GetMouseNameForID(SDL_MouseID instance_id);
  */
-  getMouseNameForId: lib.symbols.SDL_GetMouseNameForID,
+  export const getMouseNameForId = lib.symbols.SDL_GetMouseNameForID;
 
 /**
  * Get the window which currently has mouse focus.
@@ -14050,7 +14047,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:227 SDL_Window * SDL_GetMouseFocus(void);
  */
-  getMouseFocus: lib.symbols.SDL_GetMouseFocus,
+  export const getMouseFocus = lib.symbols.SDL_GetMouseFocus;
 
 /**
  * Query SDL's cache for the synchronous mouse button state and the
@@ -14085,7 +14082,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:260 SDL_MouseButtonFlags SDL_GetMouseState(float *x, float *y);
  */
-  getMouseState: lib.symbols.SDL_GetMouseState,
+  export const getMouseState = lib.symbols.SDL_GetMouseState;
 
 /**
  * Query the platform for the asynchronous mouse button state and the
@@ -14124,7 +14121,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:297 SDL_MouseButtonFlags SDL_GetGlobalMouseState(float *x, float *y);
  */
-  getGlobalMouseState: lib.symbols.SDL_GetGlobalMouseState,
+  export const getGlobalMouseState = lib.symbols.SDL_GetGlobalMouseState;
 
 /**
  * Query SDL's cache for the synchronous mouse button state and accumulated
@@ -14161,7 +14158,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:332 SDL_MouseButtonFlags SDL_GetRelativeMouseState(float *x, float *y);
  */
-  getRelativeMouseState: lib.symbols.SDL_GetRelativeMouseState,
+  export const getRelativeMouseState = lib.symbols.SDL_GetRelativeMouseState;
 
 /**
  * Move the mouse cursor to the given position within the window.
@@ -14186,7 +14183,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:355 void SDL_WarpMouseInWindow(SDL_Window *window,                                                   float x, float y);
  */
-  warpMouseInWindow: lib.symbols.SDL_WarpMouseInWindow,
+  export const warpMouseInWindow = lib.symbols.SDL_WarpMouseInWindow;
 
 /**
  * Move the mouse to the given position in global screen space.
@@ -14212,7 +14209,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:380 bool SDL_WarpMouseGlobal(float x, float y);
  */
-  warpMouseGlobal: lib.symbols.SDL_WarpMouseGlobal,
+  export const warpMouseGlobal = lib.symbols.SDL_WarpMouseGlobal;
 
 /**
  * Set relative mouse mode for a window.
@@ -14242,7 +14239,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:408 bool SDL_SetWindowRelativeMouseMode(SDL_Window *window, bool enabled);
  */
-  setWindowRelativeMouseMode: lib.symbols.SDL_SetWindowRelativeMouseMode,
+  export const setWindowRelativeMouseMode = lib.symbols.SDL_SetWindowRelativeMouseMode;
 
 /**
  * Query whether relative mouse mode is enabled for a window.
@@ -14258,7 +14255,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:422 bool SDL_GetWindowRelativeMouseMode(SDL_Window *window);
  */
-  getWindowRelativeMouseMode: lib.symbols.SDL_GetWindowRelativeMouseMode,
+  export const getWindowRelativeMouseMode = lib.symbols.SDL_GetWindowRelativeMouseMode;
 
 /**
  * Capture the mouse and to track input outside an SDL window.
@@ -14308,7 +14305,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:470 bool SDL_CaptureMouse(bool enabled);
  */
-  captureMouse: lib.symbols.SDL_CaptureMouse,
+  export const captureMouse = lib.symbols.SDL_CaptureMouse;
 
 /**
  * Create a cursor using the specified bitmap data and mask (in MSB format).
@@ -14356,7 +14353,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:516 SDL_Cursor * SDL_CreateCursor(const Uint8 *data,                                                     const Uint8 *mask,                                                     int w, int h, int hot_x,                                                     int hot_y);
  */
-  createCursor: lib.symbols.SDL_CreateCursor,
+  export const createCursor = lib.symbols.SDL_CreateCursor;
 
 /**
  * Create a color cursor.
@@ -14388,7 +14385,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:549 SDL_Cursor * SDL_CreateColorCursor(SDL_Surface *surface,                                                          int hot_x,                                                          int hot_y);
  */
-  createColorCursor: lib.symbols.SDL_CreateColorCursor,
+  export const createColorCursor = lib.symbols.SDL_CreateColorCursor;
 
 /**
  * Create a system cursor.
@@ -14405,7 +14402,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:566 SDL_Cursor * SDL_CreateSystemCursor(SDL_SystemCursor id);
  */
-  createSystemCursor: lib.symbols.SDL_CreateSystemCursor,
+  export const createSystemCursor = lib.symbols.SDL_CreateSystemCursor;
 
 /**
  * Set the active cursor.
@@ -14427,7 +14424,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:586 bool SDL_SetCursor(SDL_Cursor *cursor);
  */
-  setCursor: lib.symbols.SDL_SetCursor,
+  export const setCursor = lib.symbols.SDL_SetCursor;
 
 /**
  * Get the active cursor.
@@ -14445,7 +14442,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:602 SDL_Cursor * SDL_GetCursor(void);
  */
-  getCursor: lib.symbols.SDL_GetCursor,
+  export const getCursor = lib.symbols.SDL_GetCursor;
 
 /**
  * Get the default cursor.
@@ -14462,7 +14459,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:617 SDL_Cursor * SDL_GetDefaultCursor(void);
  */
-  getDefaultCursor: lib.symbols.SDL_GetDefaultCursor,
+  export const getDefaultCursor = lib.symbols.SDL_GetDefaultCursor;
 
 /**
  * Free a previously-created cursor.
@@ -14482,7 +14479,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:635 void SDL_DestroyCursor(SDL_Cursor *cursor);
  */
-  destroyCursor: lib.symbols.SDL_DestroyCursor,
+  export const destroyCursor = lib.symbols.SDL_DestroyCursor;
 
 /**
  * Show the cursor.
@@ -14499,7 +14496,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:650 bool SDL_ShowCursor(void);
  */
-  showCursor: lib.symbols.SDL_ShowCursor,
+  export const showCursor = lib.symbols.SDL_ShowCursor;
 
 /**
  * Hide the cursor.
@@ -14516,7 +14513,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:665 bool SDL_HideCursor(void);
  */
-  hideCursor: lib.symbols.SDL_HideCursor,
+  export const hideCursor = lib.symbols.SDL_HideCursor;
 
 /**
  * Return whether the cursor is currently being shown.
@@ -14533,7 +14530,7 @@ export const SDL = {
  *
  * @from SDL_mouse.h:680 bool SDL_CursorVisible(void);
  */
-  cursorVisible: lib.symbols.SDL_CursorVisible,
+  export const cursorVisible = lib.symbols.SDL_CursorVisible;
 
 
 
@@ -14546,7 +14543,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:930 SDL_INIT_STATUS_
  */
-  INIT_STATUS: SDL_mutex_enums.SDL_InitStatus,
+export const INIT_STATUS = SDL_mutex_enums.SDL_InitStatus;
 
 
 
@@ -14572,7 +14569,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:317 SDL_Mutex * SDL_CreateMutex(void);
  */
-  createMutex: lib.symbols.SDL_CreateMutex,
+  export const createMutex = lib.symbols.SDL_CreateMutex;
 
 /**
  * Lock the mutex.
@@ -14598,7 +14595,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:341 void SDL_LockMutex(SDL_Mutex *mutex) SDL_ACQUIRE(mutex);
  */
-  lockMutex: lib.symbols.SDL_LockMutex,
+  export const lockMutex = lib.symbols.SDL_LockMutex;
 
 /**
  * Try to lock a mutex without blocking.
@@ -14621,7 +14618,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:362 bool SDL_TryLockMutex(SDL_Mutex *mutex) SDL_TRY_ACQUIRE(0, mutex);
  */
-  tryLockMutex: lib.symbols.SDL_TryLockMutex,
+  export const tryLockMutex = lib.symbols.SDL_TryLockMutex;
 
 /**
  * Unlock the mutex.
@@ -14642,7 +14639,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:381 void SDL_UnlockMutex(SDL_Mutex *mutex) SDL_RELEASE(mutex);
  */
-  unlockMutex: lib.symbols.SDL_UnlockMutex,
+  export const unlockMutex = lib.symbols.SDL_UnlockMutex;
 
 /**
  * Destroy a mutex created with SDL_CreateMutex().
@@ -14661,7 +14658,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:398 void SDL_DestroyMutex(SDL_Mutex *mutex);
  */
-  destroyMutex: lib.symbols.SDL_DestroyMutex,
+  export const destroyMutex = lib.symbols.SDL_DestroyMutex;
 
 /**
  * Create a new read/write lock.
@@ -14705,7 +14702,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:468 SDL_RWLock * SDL_CreateRWLock(void);
  */
-  createRwLock: lib.symbols.SDL_CreateRWLock,
+  export const createRwLock = lib.symbols.SDL_CreateRWLock;
 
 /**
  * Lock the read/write lock for _write_ operations.
@@ -14738,7 +14735,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:536 void SDL_LockRWLockForWriting(SDL_RWLock *rwlock) SDL_ACQUIRE(rwlock);
  */
-  lockRwLockForWriting: lib.symbols.SDL_LockRWLockForWriting,
+  export const lockRwLockForWriting = lib.symbols.SDL_LockRWLockForWriting;
 
 /**
  * Try to lock a read/write lock _for writing_ without blocking.
@@ -14770,7 +14767,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:591 bool SDL_TryLockRWLockForWriting(SDL_RWLock *rwlock) SDL_TRY_ACQUIRE(0, rwlock);
  */
-  tryLockRwLockForWriting: lib.symbols.SDL_TryLockRWLockForWriting,
+  export const tryLockRwLockForWriting = lib.symbols.SDL_TryLockRWLockForWriting;
 
 /**
  * Destroy a read/write lock created with SDL_CreateRWLock().
@@ -14789,7 +14786,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:633 void SDL_DestroyRWLock(SDL_RWLock *rwlock);
  */
-  destroyRwLock: lib.symbols.SDL_DestroyRWLock,
+  export const destroyRwLock = lib.symbols.SDL_DestroyRWLock;
 
 /**
  * Create a semaphore.
@@ -14815,7 +14812,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:681 SDL_Semaphore * SDL_CreateSemaphore(Uint32 initial_value);
  */
-  createSemaphore: lib.symbols.SDL_CreateSemaphore,
+  export const createSemaphore = lib.symbols.SDL_CreateSemaphore;
 
 /**
  * Destroy a semaphore.
@@ -14831,7 +14828,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:695 void SDL_DestroySemaphore(SDL_Semaphore *sem);
  */
-  destroySemaphore: lib.symbols.SDL_DestroySemaphore,
+  export const destroySemaphore = lib.symbols.SDL_DestroySemaphore;
 
 /**
  * Wait until a semaphore has a positive value and then decrements it.
@@ -14853,7 +14850,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:715 void SDL_WaitSemaphore(SDL_Semaphore *sem);
  */
-  waitSemaphore: lib.symbols.SDL_WaitSemaphore,
+  export const waitSemaphore = lib.symbols.SDL_WaitSemaphore;
 
 /**
  * See if a semaphore has a positive value and decrement it if it does.
@@ -14874,7 +14871,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:734 bool SDL_TryWaitSemaphore(SDL_Semaphore *sem);
  */
-  tryWaitSemaphore: lib.symbols.SDL_TryWaitSemaphore,
+  export const tryWaitSemaphore = lib.symbols.SDL_TryWaitSemaphore;
 
 /**
  * Wait until a semaphore has a positive value and then decrements it.
@@ -14896,7 +14893,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:754 bool SDL_WaitSemaphoreTimeout(SDL_Semaphore *sem, Sint32 timeoutMS);
  */
-  waitSemaphoreTimeout: lib.symbols.SDL_WaitSemaphoreTimeout,
+  export const waitSemaphoreTimeout = lib.symbols.SDL_WaitSemaphoreTimeout;
 
 /**
  * Atomically increment a semaphore's value and wake waiting threads.
@@ -14911,7 +14908,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:767 void SDL_SignalSemaphore(SDL_Semaphore *sem);
  */
-  signalSemaphore: lib.symbols.SDL_SignalSemaphore,
+  export const signalSemaphore = lib.symbols.SDL_SignalSemaphore;
 
 /**
  * Get the current value of a semaphore.
@@ -14923,7 +14920,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:777 Uint32 SDL_GetSemaphoreValue(SDL_Semaphore *sem);
  */
-  getSemaphoreValue: lib.symbols.SDL_GetSemaphoreValue,
+  export const getSemaphoreValue = lib.symbols.SDL_GetSemaphoreValue;
 
 /**
  * Create a condition variable.
@@ -14941,7 +14938,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:816 SDL_Condition * SDL_CreateCondition(void);
  */
-  createCondition: lib.symbols.SDL_CreateCondition,
+  export const createCondition = lib.symbols.SDL_CreateCondition;
 
 /**
  * Destroy a condition variable.
@@ -14954,7 +14951,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:827 void SDL_DestroyCondition(SDL_Condition *cond);
  */
-  destroyCondition: lib.symbols.SDL_DestroyCondition,
+  export const destroyCondition = lib.symbols.SDL_DestroyCondition;
 
 /**
  * Restart one of the threads that are waiting on the condition variable.
@@ -14971,7 +14968,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:842 void SDL_SignalCondition(SDL_Condition *cond);
  */
-  signalCondition: lib.symbols.SDL_SignalCondition,
+  export const signalCondition = lib.symbols.SDL_SignalCondition;
 
 /**
  * Restart all threads that are waiting on the condition variable.
@@ -14988,7 +14985,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:857 void SDL_BroadcastCondition(SDL_Condition *cond);
  */
-  broadcastCondition: lib.symbols.SDL_BroadcastCondition,
+  export const broadcastCondition = lib.symbols.SDL_BroadcastCondition;
 
 /**
  * Wait until a condition variable is signaled.
@@ -15018,7 +15015,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:885 void SDL_WaitCondition(SDL_Condition *cond, SDL_Mutex *mutex);
  */
-  waitCondition: lib.symbols.SDL_WaitCondition,
+  export const waitCondition = lib.symbols.SDL_WaitCondition;
 
 /**
  * Wait until a condition variable is signaled or a certain time has passed.
@@ -15050,7 +15047,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:915 bool SDL_WaitConditionTimeout(SDL_Condition *cond,                                                SDL_Mutex *mutex, Sint32 timeoutMS);
  */
-  waitConditionTimeout: lib.symbols.SDL_WaitConditionTimeout,
+  export const waitConditionTimeout = lib.symbols.SDL_WaitConditionTimeout;
 
 /**
  * Return whether initialization should be done.
@@ -15075,7 +15072,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:1022 bool SDL_ShouldInit(SDL_InitState *state);
  */
-  shouldInit: lib.symbols.SDL_ShouldInit,
+  export const shouldInit = lib.symbols.SDL_ShouldInit;
 
 /**
  * Return whether cleanup should be done.
@@ -15098,7 +15095,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:1043 bool SDL_ShouldQuit(SDL_InitState *state);
  */
-  shouldQuit: lib.symbols.SDL_ShouldQuit,
+  export const shouldQuit = lib.symbols.SDL_ShouldQuit;
 
 /**
  * Finish an initialization state transition.
@@ -15119,7 +15116,7 @@ export const SDL = {
  *
  * @from SDL_mutex.h:1062 void SDL_SetInitialized(SDL_InitState *state, bool initialized);
  */
-  setInitialized: lib.symbols.SDL_SetInitialized,
+  export const setInitialized = lib.symbols.SDL_SetInitialized;
 
 
 
@@ -15128,7 +15125,7 @@ export const SDL = {
 /**
  * @from SDL_pen:85 SDL_PEN_INPUT_
  */
-  PEN_INPUT: SDL_pen_enums.PEN_INPUT,
+export const PEN_INPUT = SDL_pen_enums.PEN_INPUT;
 
 /**
  * Pen axis indices.
@@ -15147,7 +15144,7 @@ export const SDL = {
  *
  * @from SDL_pen.h:108 SDL_PEN_AXIS_
  */
-  PEN_AXIS: SDL_pen_enums.SDL_PenAxis,
+export const PEN_AXIS = SDL_pen_enums.SDL_PenAxis;
 
 
 
@@ -15162,7 +15159,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:133 SDL_PIXELTYPE_
  */
-  PIXELTYPE: SDL_pixels_enums.SDL_PixelType,
+export const PIXELTYPE = SDL_pixels_enums.SDL_PixelType;
 
 /**
  * Bitmap pixel order, high bit -> low bit.
@@ -15171,7 +15168,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:156 SDL_BITMAPORDER_
  */
-  BITMAPORDER: SDL_pixels_enums.SDL_BitmapOrder,
+export const BITMAPORDER = SDL_pixels_enums.SDL_BitmapOrder;
 
 /**
  * Packed component order, high bit -> low bit.
@@ -15180,7 +15177,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:168 SDL_PACKEDORDER_
  */
-  PACKEDORDER: SDL_pixels_enums.SDL_PackedOrder,
+export const PACKEDORDER = SDL_pixels_enums.SDL_PackedOrder;
 
 /**
  * Array component order, low byte -> high byte.
@@ -15189,7 +15186,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:186 SDL_ARRAYORDER_
  */
-  ARRAYORDER: SDL_pixels_enums.SDL_ArrayOrder,
+export const ARRAYORDER = SDL_pixels_enums.SDL_ArrayOrder;
 
 /**
  * Packed component layout.
@@ -15198,7 +15195,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:202 SDL_PACKEDLAYOUT_
  */
-  PACKEDLAYOUT: SDL_pixels_enums.SDL_PackedLayout,
+export const PACKEDLAYOUT = SDL_pixels_enums.SDL_PackedLayout;
 
 /**
  * Pixel format.
@@ -15239,7 +15236,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:547 SDL_PIXELFORMAT_
  */
-  PIXELFORMAT: SDL_pixels_enums.SDL_PixelFormat,
+export const PIXELFORMAT = SDL_pixels_enums.SDL_PixelFormat;
 
 /**
  * Colorspace color type.
@@ -15248,7 +15245,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:708 SDL_COLOR_TYPE_
  */
-  COLOR_TYPE: SDL_pixels_enums.SDL_ColorType,
+export const COLOR_TYPE = SDL_pixels_enums.SDL_ColorType;
 
 /**
  * Colorspace color range, as described by
@@ -15258,7 +15255,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:721 SDL_COLOR_RANGE_
  */
-  COLOR_RANGE: SDL_pixels_enums.SDL_ColorRange,
+export const COLOR_RANGE = SDL_pixels_enums.SDL_ColorRange;
 
 /**
  * Colorspace color primaries, as described by
@@ -15268,7 +15265,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:734 SDL_COLOR_PRIMARIES_
  */
-  COLOR_PRIMARIES: SDL_pixels_enums.SDL_ColorPrimaries,
+export const COLOR_PRIMARIES = SDL_pixels_enums.SDL_ColorPrimaries;
 
 /**
  * Colorspace transfer characteristics.
@@ -15279,7 +15276,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:759 SDL_TRANSFER_CHARACTERISTICS_
  */
-  TRANSFER_CHARACTERISTICS: SDL_pixels_enums.SDL_TransferCharacteristics,
+export const TRANSFER_CHARACTERISTICS = SDL_pixels_enums.SDL_TransferCharacteristics;
 
 /**
  * Colorspace matrix coefficients.
@@ -15290,7 +15287,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:789 SDL_MATRIX_COEFFICIENTS_
  */
-  MATRIX_COEFFICIENTS: SDL_pixels_enums.SDL_MatrixCoefficients,
+export const MATRIX_COEFFICIENTS = SDL_pixels_enums.SDL_MatrixCoefficients;
 
 /**
  * Colorspace chroma sample location.
@@ -15299,7 +15296,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:813 SDL_CHROMA_LOCATION_
  */
-  CHROMA_LOCATION: SDL_pixels_enums.SDL_ChromaLocation,
+export const CHROMA_LOCATION = SDL_pixels_enums.SDL_ChromaLocation;
 
 /**
  * Colorspace definitions.
@@ -15318,7 +15315,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1010 SDL_COLORSPACE_
  */
-  COLORSPACE: SDL_pixels_enums.SDL_Colorspace,
+export const COLORSPACE = SDL_pixels_enums.SDL_Colorspace;
 
 
 
@@ -15335,7 +15332,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1184 const char * SDL_GetPixelFormatName(SDL_PixelFormat format);
  */
-  getPixelFormatName: lib.symbols.SDL_GetPixelFormatName,
+  export const getPixelFormatName = lib.symbols.SDL_GetPixelFormatName;
 
 /**
  * Convert one of the enumerated pixel formats to a bpp value and RGBA masks.
@@ -15357,7 +15354,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1204 bool SDL_GetMasksForPixelFormat(SDL_PixelFormat format, int *bpp, Uint32 *Rmask, Uint32 *Gmask, Uint32 *Bmask, Uint32 *Amask);
  */
-  getMasksForPixelFormat: lib.symbols.SDL_GetMasksForPixelFormat,
+  export const getMasksForPixelFormat = lib.symbols.SDL_GetMasksForPixelFormat;
 
 /**
  * Convert a bpp value and RGBA masks to an enumerated pixel format.
@@ -15381,7 +15378,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1226 SDL_PixelFormat SDL_GetPixelFormatForMasks(int bpp, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
  */
-  getPixelFormatForMasks: lib.symbols.SDL_GetPixelFormatForMasks,
+  export const getPixelFormatForMasks = lib.symbols.SDL_GetPixelFormatForMasks;
 
 /**
  * Create an SDL_PixelFormatDetails structure corresponding to a pixel format.
@@ -15400,7 +15397,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1243 const SDL_PixelFormatDetails * SDL_GetPixelFormatDetails(SDL_PixelFormat format);
  */
-  getPixelFormatDetails: lib.symbols.SDL_GetPixelFormatDetails,
+  export const getPixelFormatDetails = lib.symbols.SDL_GetPixelFormatDetails;
 
 /**
  * Create a palette structure with the specified number of color entries.
@@ -15422,7 +15419,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1263 SDL_Palette * SDL_CreatePalette(int ncolors);
  */
-  createPalette: lib.symbols.SDL_CreatePalette,
+  export const createPalette = lib.symbols.SDL_CreatePalette;
 
 /**
  * Set a range of colors in a palette.
@@ -15441,7 +15438,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1280 bool SDL_SetPaletteColors(SDL_Palette *palette, const SDL_Color *colors, int firstcolor, int ncolors);
  */
-  setPaletteColors: lib.symbols.SDL_SetPaletteColors,
+  export const setPaletteColors = lib.symbols.SDL_SetPaletteColors;
 
 /**
  * Free a palette created with SDL_CreatePalette().
@@ -15457,7 +15454,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1294 void SDL_DestroyPalette(SDL_Palette *palette);
  */
-  destroyPalette: lib.symbols.SDL_DestroyPalette,
+  export const destroyPalette = lib.symbols.SDL_DestroyPalette;
 
 /**
  * Map an RGB triple to an opaque pixel value for a given pixel format.
@@ -15497,7 +15494,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1332 Uint32 SDL_MapRGB(const SDL_PixelFormatDetails *format, const SDL_Palette *palette, Uint8 r, Uint8 g, Uint8 b);
  */
-  mapRgb: lib.symbols.SDL_MapRGB,
+  export const mapRgb = lib.symbols.SDL_MapRGB;
 
 /**
  * Map an RGBA quadruple to a pixel value for a given pixel format.
@@ -15538,7 +15535,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1371 Uint32 SDL_MapRGBA(const SDL_PixelFormatDetails *format, const SDL_Palette *palette, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
-  mapRgba: lib.symbols.SDL_MapRGBA,
+  export const mapRgba = lib.symbols.SDL_MapRGBA;
 
 /**
  * Get RGB values from a pixel in the specified format.
@@ -15568,7 +15565,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1399 void SDL_GetRGB(Uint32 pixel, const SDL_PixelFormatDetails *format, const SDL_Palette *palette, Uint8 *r, Uint8 *g, Uint8 *b);
  */
-  getRgb: lib.symbols.SDL_GetRGB,
+  export const getRgb = lib.symbols.SDL_GetRGB;
 
 /**
  * Get RGBA values from a pixel in the specified format.
@@ -15602,7 +15599,7 @@ export const SDL = {
  *
  * @from SDL_pixels.h:1431 void SDL_GetRGBA(Uint32 pixel, const SDL_PixelFormatDetails *format, const SDL_Palette *palette, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
-  getRgba: lib.symbols.SDL_GetRGBA,
+  export const getRgba = lib.symbols.SDL_GetRGBA;
 
 
 
@@ -15626,7 +15623,7 @@ export const SDL = {
  *
  * @from SDL_platform.h:55 const char * SDL_GetPlatform(void);
  */
-  getPlatform: lib.symbols.SDL_GetPlatform,
+  export const getPlatform = lib.symbols.SDL_GetPlatform;
 
 
 
@@ -15641,7 +15638,7 @@ export const SDL = {
  *
  * @from SDL_power.h:55 SDL_POWERSTATE_
  */
-  POWERSTATE: SDL_power_enums.SDL_PowerState,
+export const POWERSTATE = SDL_power_enums.SDL_PowerState;
 
 
 
@@ -15679,7 +15676,7 @@ export const SDL = {
  *
  * @from SDL_power.h:97 SDL_PowerState SDL_GetPowerInfo(int *seconds, int *percent);
  */
-  getPowerInfo: lib.symbols.SDL_GetPowerInfo,
+  export const getPowerInfo = lib.symbols.SDL_GetPowerInfo;
 
 
 
@@ -15688,12 +15685,12 @@ export const SDL = {
 /**
  * @from SDL_process:219 SDL_PROP_PROCESS_CREATE_
  */
-  PROP_PROCESS_CREATE: SDL_process_enums.PROP_PROCESS_CREATE,
+export const PROP_PROCESS_CREATE = SDL_process_enums.PROP_PROCESS_CREATE;
 
 /**
  * @from SDL_process:261 SDL_PROP_PROCESS_
  */
-  PROP_PROCESS: SDL_process_enums.PROP_PROCESS,
+export const PROP_PROCESS = SDL_process_enums.PROP_PROCESS;
 
 /**
  * Description of where standard I/O should be directed when creating a
@@ -15739,7 +15736,7 @@ export const SDL = {
  *
  * @from SDL_process.h:149 SDL_PROCESS_STDIO_
  */
-  PROCESS_STDIO: SDL_process_enums.SDL_ProcessIO,
+export const PROCESS_STDIO = SDL_process_enums.SDL_ProcessIO;
 
 
 
@@ -15785,7 +15782,7 @@ export const SDL = {
  *
  * @from SDL_process.h:105 SDL_Process * SDL_CreateProcess(const char * const *args, bool pipe_stdio);
  */
-  createProcess: lib.symbols.SDL_CreateProcess,
+  export const createProcess = lib.symbols.SDL_CreateProcess;
 
 /**
  * Create a new process with the specified properties.
@@ -15849,7 +15846,7 @@ export const SDL = {
  *
  * @from SDL_process.h:217 SDL_Process * SDL_CreateProcessWithProperties(SDL_PropertiesID props);
  */
-  createProcessWithProperties: lib.symbols.SDL_CreateProcessWithProperties,
+  export const createProcessWithProperties = lib.symbols.SDL_CreateProcessWithProperties;
 
 /**
  * Get the properties associated with a process.
@@ -15882,7 +15879,7 @@ export const SDL = {
  *
  * @from SDL_process.h:259 SDL_PropertiesID SDL_GetProcessProperties(SDL_Process *process);
  */
-  getProcessProperties: lib.symbols.SDL_GetProcessProperties,
+  export const getProcessProperties = lib.symbols.SDL_GetProcessProperties;
 
 /**
  * Read all the output from a process.
@@ -15915,7 +15912,7 @@ export const SDL = {
  *
  * @from SDL_process.h:296 void * SDL_ReadProcess(SDL_Process *process, size_t *datasize, int *exitcode);
  */
-  readProcess: lib.symbols.SDL_ReadProcess,
+  export const readProcess = lib.symbols.SDL_ReadProcess;
 
 /**
  * Get the SDL_IOStream associated with process standard input.
@@ -15943,7 +15940,7 @@ export const SDL = {
  *
  * @from SDL_process.h:322 SDL_IOStream * SDL_GetProcessInput(SDL_Process *process);
  */
-  getProcessInput: lib.symbols.SDL_GetProcessInput,
+  export const getProcessInput = lib.symbols.SDL_GetProcessInput;
 
 /**
  * Get the SDL_IOStream associated with process standard output.
@@ -15969,7 +15966,7 @@ export const SDL = {
  *
  * @from SDL_process.h:346 SDL_IOStream * SDL_GetProcessOutput(SDL_Process *process);
  */
-  getProcessOutput: lib.symbols.SDL_GetProcessOutput,
+  export const getProcessOutput = lib.symbols.SDL_GetProcessOutput;
 
 /**
  * Stop a process.
@@ -15994,7 +15991,7 @@ export const SDL = {
  *
  * @from SDL_process.h:369 bool SDL_KillProcess(SDL_Process *process, bool force);
  */
-  killProcess: lib.symbols.SDL_KillProcess,
+  export const killProcess = lib.symbols.SDL_KillProcess;
 
 /**
  * Wait for a process to finish.
@@ -16029,7 +16026,7 @@ export const SDL = {
  *
  * @from SDL_process.h:402 bool SDL_WaitProcess(SDL_Process *process, bool block, int *exitcode);
  */
-  waitProcess: lib.symbols.SDL_WaitProcess,
+  export const waitProcess = lib.symbols.SDL_WaitProcess;
 
 /**
  * Destroy a previously created process object.
@@ -16050,7 +16047,7 @@ export const SDL = {
  *
  * @from SDL_process.h:421 void SDL_DestroyProcess(SDL_Process *process);
  */
-  destroyProcess: lib.symbols.SDL_DestroyProcess,
+  export const destroyProcess = lib.symbols.SDL_DestroyProcess;
 
 
 
@@ -16063,7 +16060,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:72 SDL_PROPERTY_TYPE_
  */
-  PROPERTY_TYPE: SDL_properties_enums.SDL_PropertyType,
+export const PROPERTY_TYPE = SDL_properties_enums.SDL_PropertyType;
 
 
 
@@ -16077,7 +16074,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:90 SDL_PropertiesID SDL_GetGlobalProperties(void);
  */
-  getGlobalProperties: lib.symbols.SDL_GetGlobalProperties,
+  export const getGlobalProperties = lib.symbols.SDL_GetGlobalProperties;
 
 /**
  * Create a group of properties.
@@ -16095,7 +16092,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:106 SDL_PropertiesID SDL_CreateProperties(void);
  */
-  createProperties: lib.symbols.SDL_CreateProperties,
+  export const createProperties = lib.symbols.SDL_CreateProperties;
 
 /**
  * Copy a group of properties.
@@ -16116,7 +16113,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:125 bool SDL_CopyProperties(SDL_PropertiesID src, SDL_PropertiesID dst);
  */
-  copyProperties: lib.symbols.SDL_CopyProperties,
+  export const copyProperties = lib.symbols.SDL_CopyProperties;
 
 /**
  * Lock a group of properties.
@@ -16142,7 +16139,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:149 bool SDL_LockProperties(SDL_PropertiesID props);
  */
-  lockProperties: lib.symbols.SDL_LockProperties,
+  export const lockProperties = lib.symbols.SDL_LockProperties;
 
 /**
  * Unlock a group of properties.
@@ -16157,7 +16154,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:162 void SDL_UnlockProperties(SDL_PropertiesID props);
  */
-  unlockProperties: lib.symbols.SDL_UnlockProperties,
+  export const unlockProperties = lib.symbols.SDL_UnlockProperties;
 
 /**
  * Set a pointer property in a group of properties with a cleanup function
@@ -16190,7 +16187,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:217 bool SDL_SetPointerPropertyWithCleanup(SDL_PropertiesID props, const char *name, void *value, SDL_CleanupPropertyCallback cleanup, void *userdata);
  */
-  setPointerPropertyWithCleanup: lib.symbols.SDL_SetPointerPropertyWithCleanup,
+  export const setPointerPropertyWithCleanup = lib.symbols.SDL_SetPointerPropertyWithCleanup;
 
 /**
  * Set a pointer property in a group of properties.
@@ -16215,7 +16212,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:240 bool SDL_SetPointerProperty(SDL_PropertiesID props, const char *name, void *value);
  */
-  setPointerProperty: lib.symbols.SDL_SetPointerProperty,
+  export const setPointerProperty = lib.symbols.SDL_SetPointerProperty;
 
 /**
  * Set a string property in a group of properties.
@@ -16237,7 +16234,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:260 bool SDL_SetStringProperty(SDL_PropertiesID props, const char *name, const char *value);
  */
-  setStringProperty: lib.symbols.SDL_SetStringProperty,
+  export const setStringProperty = lib.symbols.SDL_SetStringProperty;
 
 /**
  * Set an integer property in a group of properties.
@@ -16256,7 +16253,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:277 bool SDL_SetNumberProperty(SDL_PropertiesID props, const char *name, Sint64 value);
  */
-  setNumberProperty: lib.symbols.SDL_SetNumberProperty,
+  export const setNumberProperty = lib.symbols.SDL_SetNumberProperty;
 
 /**
  * Set a floating point property in a group of properties.
@@ -16275,7 +16272,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:294 bool SDL_SetFloatProperty(SDL_PropertiesID props, const char *name, float value);
  */
-  setFloatProperty: lib.symbols.SDL_SetFloatProperty,
+  export const setFloatProperty = lib.symbols.SDL_SetFloatProperty;
 
 /**
  * Set a boolean property in a group of properties.
@@ -16294,7 +16291,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:311 bool SDL_SetBooleanProperty(SDL_PropertiesID props, const char *name, bool value);
  */
-  setBooleanProperty: lib.symbols.SDL_SetBooleanProperty,
+  export const setBooleanProperty = lib.symbols.SDL_SetBooleanProperty;
 
 /**
  * Return whether a property exists in a group of properties.
@@ -16311,7 +16308,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:326 bool SDL_HasProperty(SDL_PropertiesID props, const char *name);
  */
-  hasProperty: lib.symbols.SDL_HasProperty,
+  export const hasProperty = lib.symbols.SDL_HasProperty;
 
 /**
  * Get the type of a property in a group of properties.
@@ -16329,7 +16326,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:342 SDL_PropertyType SDL_GetPropertyType(SDL_PropertiesID props, const char *name);
  */
-  getPropertyType: lib.symbols.SDL_GetPropertyType,
+  export const getPropertyType = lib.symbols.SDL_GetPropertyType;
 
 /**
  * Get a pointer property from a group of properties.
@@ -16364,7 +16361,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:375 void * SDL_GetPointerProperty(SDL_PropertiesID props, const char *name, void *default_value);
  */
-  getPointerProperty: lib.symbols.SDL_GetPointerProperty,
+  export const getPointerProperty = lib.symbols.SDL_GetPointerProperty;
 
 /**
  * Get a string property from a group of properties.
@@ -16390,7 +16387,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:399 const char * SDL_GetStringProperty(SDL_PropertiesID props, const char *name, const char *default_value);
  */
-  getStringProperty: lib.symbols.SDL_GetStringProperty,
+  export const getStringProperty = lib.symbols.SDL_GetStringProperty;
 
 /**
  * Get a number property from a group of properties.
@@ -16414,7 +16411,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:421 Sint64 SDL_GetNumberProperty(SDL_PropertiesID props, const char *name, Sint64 default_value);
  */
-  getNumberProperty: lib.symbols.SDL_GetNumberProperty,
+  export const getNumberProperty = lib.symbols.SDL_GetNumberProperty;
 
 /**
  * Get a floating point property from a group of properties.
@@ -16438,7 +16435,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:443 float SDL_GetFloatProperty(SDL_PropertiesID props, const char *name, float default_value);
  */
-  getFloatProperty: lib.symbols.SDL_GetFloatProperty,
+  export const getFloatProperty = lib.symbols.SDL_GetFloatProperty;
 
 /**
  * Get a boolean property from a group of properties.
@@ -16462,7 +16459,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:465 bool SDL_GetBooleanProperty(SDL_PropertiesID props, const char *name, bool default_value);
  */
-  getBooleanProperty: lib.symbols.SDL_GetBooleanProperty,
+  export const getBooleanProperty = lib.symbols.SDL_GetBooleanProperty;
 
 /**
  * Clear a property from a group of properties.
@@ -16478,7 +16475,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:479 bool SDL_ClearProperty(SDL_PropertiesID props, const char *name);
  */
-  clearProperty: lib.symbols.SDL_ClearProperty,
+  export const clearProperty = lib.symbols.SDL_ClearProperty;
 
 /**
  * Enumerate the properties contained in a group of properties.
@@ -16498,7 +16495,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:516 bool SDL_EnumerateProperties(SDL_PropertiesID props, SDL_EnumeratePropertiesCallback callback, void *userdata);
  */
-  enumerateProperties: lib.symbols.SDL_EnumerateProperties,
+  export const enumerateProperties = lib.symbols.SDL_EnumerateProperties;
 
 /**
  * Destroy a group of properties.
@@ -16518,7 +16515,7 @@ export const SDL = {
  *
  * @from SDL_properties.h:534 void SDL_DestroyProperties(SDL_PropertiesID props);
  */
-  destroyProperties: lib.symbols.SDL_DestroyProperties,
+  export const destroyProperties = lib.symbols.SDL_DestroyProperties;
 
 
 
@@ -16541,7 +16538,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:223 bool SDL_HasRectIntersection(const SDL_Rect *A, const SDL_Rect *B);
  */
-  hasRectIntersection: lib.symbols.SDL_HasRectIntersection,
+  export const hasRectIntersection = lib.symbols.SDL_HasRectIntersection;
 
 /**
  * Calculate the intersection of two rectangles.
@@ -16560,7 +16557,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:240 bool SDL_GetRectIntersection(const SDL_Rect *A, const SDL_Rect *B, SDL_Rect *result);
  */
-  getRectIntersection: lib.symbols.SDL_GetRectIntersection,
+  export const getRectIntersection = lib.symbols.SDL_GetRectIntersection;
 
 /**
  * Calculate the union of two rectangles.
@@ -16576,7 +16573,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:254 bool SDL_GetRectUnion(const SDL_Rect *A, const SDL_Rect *B, SDL_Rect *result);
  */
-  getRectUnion: lib.symbols.SDL_GetRectUnion,
+  export const getRectUnion = lib.symbols.SDL_GetRectUnion;
 
 /**
  * Calculate a minimal rectangle enclosing a set of points.
@@ -16597,7 +16594,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:273 bool SDL_GetRectEnclosingPoints(const SDL_Point *points, int count, const SDL_Rect *clip, SDL_Rect *result);
  */
-  getRectEnclosingPoints: lib.symbols.SDL_GetRectEnclosingPoints,
+  export const getRectEnclosingPoints = lib.symbols.SDL_GetRectEnclosingPoints;
 
 /**
  * Calculate the intersection of a rectangle and line segment.
@@ -16619,7 +16616,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:293 bool SDL_GetRectAndLineIntersection(const SDL_Rect *rect, int *X1, int *Y1, int *X2, int *Y2);
  */
-  getRectAndLineIntersection: lib.symbols.SDL_GetRectAndLineIntersection,
+  export const getRectAndLineIntersection = lib.symbols.SDL_GetRectAndLineIntersection;
 
 /**
  * Determine whether two rectangles intersect with float precision.
@@ -16636,7 +16633,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:426 bool SDL_HasRectIntersectionFloat(const SDL_FRect *A, const SDL_FRect *B);
  */
-  hasRectIntersectionFloat: lib.symbols.SDL_HasRectIntersectionFloat,
+  export const hasRectIntersectionFloat = lib.symbols.SDL_HasRectIntersectionFloat;
 
 /**
  * Calculate the intersection of two rectangles with float precision.
@@ -16655,7 +16652,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:443 bool SDL_GetRectIntersectionFloat(const SDL_FRect *A, const SDL_FRect *B, SDL_FRect *result);
  */
-  getRectIntersectionFloat: lib.symbols.SDL_GetRectIntersectionFloat,
+  export const getRectIntersectionFloat = lib.symbols.SDL_GetRectIntersectionFloat;
 
 /**
  * Calculate the union of two rectangles with float precision.
@@ -16671,7 +16668,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:457 bool SDL_GetRectUnionFloat(const SDL_FRect *A, const SDL_FRect *B, SDL_FRect *result);
  */
-  getRectUnionFloat: lib.symbols.SDL_GetRectUnionFloat,
+  export const getRectUnionFloat = lib.symbols.SDL_GetRectUnionFloat;
 
 /**
  * Calculate a minimal rectangle enclosing a set of points with float
@@ -16693,7 +16690,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:477 bool SDL_GetRectEnclosingPointsFloat(const SDL_FPoint *points, int count, const SDL_FRect *clip, SDL_FRect *result);
  */
-  getRectEnclosingPointsFloat: lib.symbols.SDL_GetRectEnclosingPointsFloat,
+  export const getRectEnclosingPointsFloat = lib.symbols.SDL_GetRectEnclosingPointsFloat;
 
 /**
  * Calculate the intersection of a rectangle and line segment with float
@@ -16716,7 +16713,7 @@ export const SDL = {
  *
  * @from SDL_rect.h:498 bool SDL_GetRectAndLineIntersectionFloat(const SDL_FRect *rect, float *X1, float *Y1, float *X2, float *Y2);
  */
-  getRectAndLineIntersectionFloat: lib.symbols.SDL_GetRectAndLineIntersectionFloat,
+  export const getRectAndLineIntersectionFloat = lib.symbols.SDL_GetRectAndLineIntersectionFloat;
 
 
 
@@ -16725,27 +16722,27 @@ export const SDL = {
 /**
  * @from SDL_render:300 SDL_PROP_RENDERER_CREATE_
  */
-  PROP_RENDERER_CREATE: SDL_render_enums.PROP_RENDERER_CREATE,
+export const PROP_RENDERER_CREATE = SDL_render_enums.PROP_RENDERER_CREATE;
 
 /**
  * @from SDL_render:461 SDL_PROP_RENDERER_
  */
-  PROP_RENDERER: SDL_render_enums.PROP_RENDERER,
+export const PROP_RENDERER = SDL_render_enums.PROP_RENDERER;
 
 /**
  * @from SDL_render:697 SDL_PROP_TEXTURE_CREATE_
  */
-  PROP_TEXTURE_CREATE: SDL_render_enums.PROP_TEXTURE_CREATE,
+export const PROP_TEXTURE_CREATE = SDL_render_enums.PROP_TEXTURE_CREATE;
 
 /**
  * @from SDL_render:809 SDL_PROP_TEXTURE_
  */
-  PROP_TEXTURE: SDL_render_enums.PROP_TEXTURE,
+export const PROP_TEXTURE = SDL_render_enums.PROP_TEXTURE;
 
 /**
  * @from SDL_render:2539 SDL_RENDERER_VSYNC_
  */
-  RENDERER_VSYNC: SDL_render_enums.RENDERER_VSYNC,
+export const RENDERER_VSYNC = SDL_render_enums.RENDERER_VSYNC;
 
 /**
  * The access pattern allowed for a texture.
@@ -16754,7 +16751,7 @@ export const SDL = {
  *
  * @from SDL_render.h:92 SDL_TEXTUREACCESS_
  */
-  TEXTUREACCESS: SDL_render_enums.SDL_TextureAccess,
+export const TEXTUREACCESS = SDL_render_enums.SDL_TextureAccess;
 
 /**
  * How the logical size is mapped to the output.
@@ -16763,7 +16760,7 @@ export const SDL = {
  *
  * @from SDL_render.h:104 SDL_LOGICAL_PRESENTATION_
  */
-  LOGICAL_PRESENTATION: SDL_render_enums.SDL_RendererLogicalPresentation,
+export const LOGICAL_PRESENTATION = SDL_render_enums.SDL_RendererLogicalPresentation;
 
 
 
@@ -16787,7 +16784,7 @@ export const SDL = {
  *
  * @from SDL_render.h:164 int SDL_GetNumRenderDrivers(void);
  */
-  getNumRenderDrivers: lib.symbols.SDL_GetNumRenderDrivers,
+  export const getNumRenderDrivers = lib.symbols.SDL_GetNumRenderDrivers;
 
 /**
  * Use this function to get the name of a built in 2D rendering driver.
@@ -16813,7 +16810,7 @@ export const SDL = {
  *
  * @from SDL_render.h:188 const char * SDL_GetRenderDriver(int index);
  */
-  getRenderDriver: lib.symbols.SDL_GetRenderDriver,
+  export const getRenderDriver = lib.symbols.SDL_GetRenderDriver;
 
 /**
  * Create a window and default renderer.
@@ -16837,7 +16834,7 @@ export const SDL = {
  *
  * @from SDL_render.h:210 bool SDL_CreateWindowAndRenderer(const char *title, int width, int height, SDL_WindowFlags window_flags, SDL_Window **window, SDL_Renderer **renderer);
  */
-  createWindowAndRenderer: lib.symbols.SDL_CreateWindowAndRenderer,
+  export const createWindowAndRenderer = lib.symbols.SDL_CreateWindowAndRenderer;
 
 /**
  * Create a 2D rendering context for a window.
@@ -16874,7 +16871,7 @@ export const SDL = {
  *
  * @from SDL_render.h:245 SDL_Renderer * SDL_CreateRenderer(SDL_Window *window, const char *name);
  */
-  createRenderer: lib.symbols.SDL_CreateRenderer,
+  export const createRenderer = lib.symbols.SDL_CreateRenderer;
 
 /**
  * Create a 2D rendering context for a window, with the specified properties.
@@ -16929,7 +16926,7 @@ export const SDL = {
  *
  * @from SDL_render.h:298 SDL_Renderer * SDL_CreateRendererWithProperties(SDL_PropertiesID props);
  */
-  createRendererWithProperties: lib.symbols.SDL_CreateRendererWithProperties,
+  export const createRendererWithProperties = lib.symbols.SDL_CreateRendererWithProperties;
 
 /**
  * Create a 2D software rendering context for a surface.
@@ -16952,7 +16949,7 @@ export const SDL = {
  *
  * @from SDL_render.h:331 SDL_Renderer * SDL_CreateSoftwareRenderer(SDL_Surface *surface);
  */
-  createSoftwareRenderer: lib.symbols.SDL_CreateSoftwareRenderer,
+  export const createSoftwareRenderer = lib.symbols.SDL_CreateSoftwareRenderer;
 
 /**
  * Get the renderer associated with a window.
@@ -16967,7 +16964,7 @@ export const SDL = {
  *
  * @from SDL_render.h:344 SDL_Renderer * SDL_GetRenderer(SDL_Window *window);
  */
-  getRenderer: lib.symbols.SDL_GetRenderer,
+  export const getRenderer = lib.symbols.SDL_GetRenderer;
 
 /**
  * Get the window associated with a renderer.
@@ -16982,7 +16979,7 @@ export const SDL = {
  *
  * @from SDL_render.h:357 SDL_Window * SDL_GetRenderWindow(SDL_Renderer *renderer);
  */
-  getRenderWindow: lib.symbols.SDL_GetRenderWindow,
+  export const getRenderWindow = lib.symbols.SDL_GetRenderWindow;
 
 /**
  * Get the name of a renderer.
@@ -17000,7 +16997,7 @@ export const SDL = {
  *
  * @from SDL_render.h:373 const char * SDL_GetRendererName(SDL_Renderer *renderer);
  */
-  getRendererName: lib.symbols.SDL_GetRendererName,
+  export const getRendererName = lib.symbols.SDL_GetRendererName;
 
 /**
  * Get the properties associated with a renderer.
@@ -17088,7 +17085,7 @@ export const SDL = {
  *
  * @from SDL_render.h:459 SDL_PropertiesID SDL_GetRendererProperties(SDL_Renderer *renderer);
  */
-  getRendererProperties: lib.symbols.SDL_GetRendererProperties,
+  export const getRendererProperties = lib.symbols.SDL_GetRendererProperties;
 
 /**
  * Get the output size in pixels of a rendering context.
@@ -17113,7 +17110,7 @@ export const SDL = {
  *
  * @from SDL_render.h:507 bool SDL_GetRenderOutputSize(SDL_Renderer *renderer, int *w, int *h);
  */
-  getRenderOutputSize: lib.symbols.SDL_GetRenderOutputSize,
+  export const getRenderOutputSize = lib.symbols.SDL_GetRenderOutputSize;
 
 /**
  * Get the current output size in pixels of a rendering context.
@@ -17138,7 +17135,7 @@ export const SDL = {
  *
  * @from SDL_render.h:530 bool SDL_GetCurrentRenderOutputSize(SDL_Renderer *renderer, int *w, int *h);
  */
-  getCurrentRenderOutputSize: lib.symbols.SDL_GetCurrentRenderOutputSize,
+  export const getCurrentRenderOutputSize = lib.symbols.SDL_GetCurrentRenderOutputSize;
 
 /**
  * Create a texture for a rendering context.
@@ -17165,7 +17162,7 @@ export const SDL = {
  *
  * @from SDL_render.h:555 SDL_Texture * SDL_CreateTexture(SDL_Renderer *renderer, SDL_PixelFormat format, SDL_TextureAccess access, int w, int h);
  */
-  createTexture: lib.symbols.SDL_CreateTexture,
+  export const createTexture = lib.symbols.SDL_CreateTexture;
 
 /**
  * Create a texture from an existing surface.
@@ -17195,7 +17192,7 @@ export const SDL = {
  *
  * @from SDL_render.h:583 SDL_Texture * SDL_CreateTextureFromSurface(SDL_Renderer *renderer, SDL_Surface *surface);
  */
-  createTextureFromSurface: lib.symbols.SDL_CreateTextureFromSurface,
+  export const createTextureFromSurface = lib.symbols.SDL_CreateTextureFromSurface;
 
 /**
  * Create a texture for a rendering context with the specified properties.
@@ -17309,7 +17306,7 @@ export const SDL = {
  *
  * @from SDL_render.h:695 SDL_Texture * SDL_CreateTextureWithProperties(SDL_Renderer *renderer, SDL_PropertiesID props);
  */
-  createTextureWithProperties: lib.symbols.SDL_CreateTextureWithProperties,
+  export const createTextureWithProperties = lib.symbols.SDL_CreateTextureWithProperties;
 
 /**
  * Get the properties associated with a texture.
@@ -17399,7 +17396,7 @@ export const SDL = {
  *
  * @from SDL_render.h:807 SDL_PropertiesID SDL_GetTextureProperties(SDL_Texture *texture);
  */
-  getTextureProperties: lib.symbols.SDL_GetTextureProperties,
+  export const getTextureProperties = lib.symbols.SDL_GetTextureProperties;
 
 /**
  * Get the renderer that created an SDL_Texture.
@@ -17414,7 +17411,7 @@ export const SDL = {
  *
  * @from SDL_render.h:847 SDL_Renderer * SDL_GetRendererFromTexture(SDL_Texture *texture);
  */
-  getRendererFromTexture: lib.symbols.SDL_GetRendererFromTexture,
+  export const getRendererFromTexture = lib.symbols.SDL_GetRendererFromTexture;
 
 /**
  * Get the size of a texture, as floating point values.
@@ -17433,7 +17430,7 @@ export const SDL = {
  *
  * @from SDL_render.h:864 bool SDL_GetTextureSize(SDL_Texture *texture, float *w, float *h);
  */
-  getTextureSize: lib.symbols.SDL_GetTextureSize,
+  export const getTextureSize = lib.symbols.SDL_GetTextureSize;
 
 /**
  * Set an additional color value multiplied into render copy operations.
@@ -17464,7 +17461,7 @@ export const SDL = {
  *
  * @from SDL_render.h:893 bool SDL_SetTextureColorMod(SDL_Texture *texture, Uint8 r, Uint8 g, Uint8 b);
  */
-  setTextureColorMod: lib.symbols.SDL_SetTextureColorMod,
+  export const setTextureColorMod = lib.symbols.SDL_SetTextureColorMod;
 
 /**
  * Set an additional color value multiplied into render copy operations.
@@ -17495,7 +17492,7 @@ export const SDL = {
  *
  * @from SDL_render.h:923 bool SDL_SetTextureColorModFloat(SDL_Texture *texture, float r, float g, float b);
  */
-  setTextureColorModFloat: lib.symbols.SDL_SetTextureColorModFloat,
+  export const setTextureColorModFloat = lib.symbols.SDL_SetTextureColorModFloat;
 
 /**
  * Get the additional color value multiplied into render copy operations.
@@ -17517,7 +17514,7 @@ export const SDL = {
  *
  * @from SDL_render.h:944 bool SDL_GetTextureColorMod(SDL_Texture *texture, Uint8 *r, Uint8 *g, Uint8 *b);
  */
-  getTextureColorMod: lib.symbols.SDL_GetTextureColorMod,
+  export const getTextureColorMod = lib.symbols.SDL_GetTextureColorMod;
 
 /**
  * Get the additional color value multiplied into render copy operations.
@@ -17539,7 +17536,7 @@ export const SDL = {
  *
  * @from SDL_render.h:964 bool SDL_GetTextureColorModFloat(SDL_Texture *texture, float *r, float *g, float *b);
  */
-  getTextureColorModFloat: lib.symbols.SDL_GetTextureColorModFloat,
+  export const getTextureColorModFloat = lib.symbols.SDL_GetTextureColorModFloat;
 
 /**
  * Set an additional alpha value multiplied into render copy operations.
@@ -17567,7 +17564,7 @@ export const SDL = {
  *
  * @from SDL_render.h:990 bool SDL_SetTextureAlphaMod(SDL_Texture *texture, Uint8 alpha);
  */
-  setTextureAlphaMod: lib.symbols.SDL_SetTextureAlphaMod,
+  export const setTextureAlphaMod = lib.symbols.SDL_SetTextureAlphaMod;
 
 /**
  * Set an additional alpha value multiplied into render copy operations.
@@ -17595,7 +17592,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1016 bool SDL_SetTextureAlphaModFloat(SDL_Texture *texture, float alpha);
  */
-  setTextureAlphaModFloat: lib.symbols.SDL_SetTextureAlphaModFloat,
+  export const setTextureAlphaModFloat = lib.symbols.SDL_SetTextureAlphaModFloat;
 
 /**
  * Get the additional alpha value multiplied into render copy operations.
@@ -17615,7 +17612,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1034 bool SDL_GetTextureAlphaMod(SDL_Texture *texture, Uint8 *alpha);
  */
-  getTextureAlphaMod: lib.symbols.SDL_GetTextureAlphaMod,
+  export const getTextureAlphaMod = lib.symbols.SDL_GetTextureAlphaMod;
 
 /**
  * Get the additional alpha value multiplied into render copy operations.
@@ -17635,7 +17632,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1052 bool SDL_GetTextureAlphaModFloat(SDL_Texture *texture, float *alpha);
  */
-  getTextureAlphaModFloat: lib.symbols.SDL_GetTextureAlphaModFloat,
+  export const getTextureAlphaModFloat = lib.symbols.SDL_GetTextureAlphaModFloat;
 
 /**
  * Set the blend mode for a texture, used by SDL_RenderTexture().
@@ -17656,7 +17653,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1071 bool SDL_SetTextureBlendMode(SDL_Texture *texture, SDL_BlendMode blendMode);
  */
-  setTextureBlendMode: lib.symbols.SDL_SetTextureBlendMode,
+  export const setTextureBlendMode = lib.symbols.SDL_SetTextureBlendMode;
 
 /**
  * Get the blend mode used for texture copy operations.
@@ -17674,7 +17671,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1087 bool SDL_GetTextureBlendMode(SDL_Texture *texture, SDL_BlendMode *blendMode);
  */
-  getTextureBlendMode: lib.symbols.SDL_GetTextureBlendMode,
+  export const getTextureBlendMode = lib.symbols.SDL_GetTextureBlendMode;
 
 /**
  * Set the scale mode used for texture scale operations.
@@ -17696,7 +17693,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1107 bool SDL_SetTextureScaleMode(SDL_Texture *texture, SDL_ScaleMode scaleMode);
  */
-  setTextureScaleMode: lib.symbols.SDL_SetTextureScaleMode,
+  export const setTextureScaleMode = lib.symbols.SDL_SetTextureScaleMode;
 
 /**
  * Get the scale mode used for texture scale operations.
@@ -17714,7 +17711,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1123 bool SDL_GetTextureScaleMode(SDL_Texture *texture, SDL_ScaleMode *scaleMode);
  */
-  getTextureScaleMode: lib.symbols.SDL_GetTextureScaleMode,
+  export const getTextureScaleMode = lib.symbols.SDL_GetTextureScaleMode;
 
 /**
  * Update the given texture rectangle with new pixel data.
@@ -17750,7 +17747,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1157 bool SDL_UpdateTexture(SDL_Texture *texture, const SDL_Rect *rect, const void *pixels, int pitch);
  */
-  updateTexture: lib.symbols.SDL_UpdateTexture,
+  export const updateTexture = lib.symbols.SDL_UpdateTexture;
 
 /**
  * Update a rectangle within a planar YV12 or IYUV texture with new pixel
@@ -17784,7 +17781,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1189 bool SDL_UpdateYUVTexture(SDL_Texture *texture,                                                 const SDL_Rect *rect,                                                 const Uint8 *Yplane, int Ypitch,                                                 const Uint8 *Uplane, int Upitch,                                                 const Uint8 *Vplane, int Vpitch);
  */
-  updateYuvTexture: lib.symbols.SDL_UpdateYUVTexture,
+  export const updateYuvTexture = lib.symbols.SDL_UpdateYUVTexture;
 
 /**
  * Update a rectangle within a planar NV12 or NV21 texture with new pixels.
@@ -17814,7 +17811,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1221 bool SDL_UpdateNVTexture(SDL_Texture *texture,                                                 const SDL_Rect *rect,                                                 const Uint8 *Yplane, int Ypitch,                                                 const Uint8 *UVplane, int UVpitch);
  */
-  updateNvTexture: lib.symbols.SDL_UpdateNVTexture,
+  export const updateNvTexture = lib.symbols.SDL_UpdateNVTexture;
 
 /**
  * Lock a portion of the texture for **write-only** pixel access.
@@ -17848,7 +17845,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1256 bool SDL_LockTexture(SDL_Texture *texture,                                            const SDL_Rect *rect,                                            void **pixels, int *pitch);
  */
-  lockTexture: lib.symbols.SDL_LockTexture,
+  export const lockTexture = lib.symbols.SDL_LockTexture;
 
 /**
  * Lock a portion of the texture for **write-only** pixel access, and expose
@@ -17886,7 +17883,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1294 bool SDL_LockTextureToSurface(SDL_Texture *texture, const SDL_Rect *rect, SDL_Surface **surface);
  */
-  lockTextureToSurface: lib.symbols.SDL_LockTextureToSurface,
+  export const lockTextureToSurface = lib.symbols.SDL_LockTextureToSurface;
 
 /**
  * Unlock a texture, uploading the changes to video memory, if needed.
@@ -17909,7 +17906,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1315 void SDL_UnlockTexture(SDL_Texture *texture);
  */
-  unlockTexture: lib.symbols.SDL_UnlockTexture,
+  export const unlockTexture = lib.symbols.SDL_UnlockTexture;
 
 /**
  * Set a texture as the current rendering target.
@@ -17938,7 +17935,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1342 bool SDL_SetRenderTarget(SDL_Renderer *renderer, SDL_Texture *texture);
  */
-  setRenderTarget: lib.symbols.SDL_SetRenderTarget,
+  export const setRenderTarget = lib.symbols.SDL_SetRenderTarget;
 
 /**
  * Get the current render target.
@@ -17957,7 +17954,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1359 SDL_Texture * SDL_GetRenderTarget(SDL_Renderer *renderer);
  */
-  getRenderTarget: lib.symbols.SDL_GetRenderTarget,
+  export const getRenderTarget = lib.symbols.SDL_GetRenderTarget;
 
 /**
  * Set a device-independent resolution and presentation mode for rendering.
@@ -18014,7 +18011,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1414 bool SDL_SetRenderLogicalPresentation(SDL_Renderer *renderer, int w, int h, SDL_RendererLogicalPresentation mode);
  */
-  setRenderLogicalPresentation: lib.symbols.SDL_SetRenderLogicalPresentation,
+  export const setRenderLogicalPresentation = lib.symbols.SDL_SetRenderLogicalPresentation;
 
 /**
  * Get device independent resolution and presentation mode for rendering.
@@ -18040,7 +18037,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1438 bool SDL_GetRenderLogicalPresentation(SDL_Renderer *renderer, int *w, int *h, SDL_RendererLogicalPresentation *mode);
  */
-  getRenderLogicalPresentation: lib.symbols.SDL_GetRenderLogicalPresentation,
+  export const getRenderLogicalPresentation = lib.symbols.SDL_GetRenderLogicalPresentation;
 
 /**
  * Get the final presentation rectangle for rendering.
@@ -18067,7 +18064,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1463 bool SDL_GetRenderLogicalPresentationRect(SDL_Renderer *renderer, SDL_FRect *rect);
  */
-  getRenderLogicalPresentationRect: lib.symbols.SDL_GetRenderLogicalPresentationRect,
+  export const getRenderLogicalPresentationRect = lib.symbols.SDL_GetRenderLogicalPresentationRect;
 
 /**
  * Get a point in render coordinates when given a point in window coordinates.
@@ -18096,7 +18093,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1490 bool SDL_RenderCoordinatesFromWindow(SDL_Renderer *renderer, float window_x, float window_y, float *x, float *y);
  */
-  renderCoordinatesFromWindow: lib.symbols.SDL_RenderCoordinatesFromWindow,
+  export const renderCoordinatesFromWindow = lib.symbols.SDL_RenderCoordinatesFromWindow;
 
 /**
  * Get a point in window coordinates when given a point in render coordinates.
@@ -18128,7 +18125,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1520 bool SDL_RenderCoordinatesToWindow(SDL_Renderer *renderer, float x, float y, float *window_x, float *window_y);
  */
-  renderCoordinatesToWindow: lib.symbols.SDL_RenderCoordinatesToWindow,
+  export const renderCoordinatesToWindow = lib.symbols.SDL_RenderCoordinatesToWindow;
 
 /**
  * Convert the coordinates in an event to render coordinates.
@@ -18166,7 +18163,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1556 bool SDL_ConvertEventToRenderCoordinates(SDL_Renderer *renderer, SDL_Event *event);
  */
-  convertEventToRenderCoordinates: lib.symbols.SDL_ConvertEventToRenderCoordinates,
+  export const convertEventToRenderCoordinates = lib.symbols.SDL_ConvertEventToRenderCoordinates;
 
 /**
  * Set the drawing area for rendering on the current target.
@@ -18195,7 +18192,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1583 bool SDL_SetRenderViewport(SDL_Renderer *renderer, const SDL_Rect *rect);
  */
-  setRenderViewport: lib.symbols.SDL_SetRenderViewport,
+  export const setRenderViewport = lib.symbols.SDL_SetRenderViewport;
 
 /**
  * Get the drawing area for the current target.
@@ -18217,7 +18214,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1603 bool SDL_GetRenderViewport(SDL_Renderer *renderer, SDL_Rect *rect);
  */
-  getRenderViewport: lib.symbols.SDL_GetRenderViewport,
+  export const getRenderViewport = lib.symbols.SDL_GetRenderViewport;
 
 /**
  * Return whether an explicit rectangle was set as the viewport.
@@ -18242,7 +18239,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1626 bool SDL_RenderViewportSet(SDL_Renderer *renderer);
  */
-  renderViewportSet: lib.symbols.SDL_RenderViewportSet,
+  export const renderViewportSet = lib.symbols.SDL_RenderViewportSet;
 
 /**
  * Get the safe area for rendering within the current viewport.
@@ -18266,7 +18263,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1648 bool SDL_GetRenderSafeArea(SDL_Renderer *renderer, SDL_Rect *rect);
  */
-  getRenderSafeArea: lib.symbols.SDL_GetRenderSafeArea,
+  export const getRenderSafeArea = lib.symbols.SDL_GetRenderSafeArea;
 
 /**
  * Set the clip rectangle for rendering on the specified target.
@@ -18289,7 +18286,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1669 bool SDL_SetRenderClipRect(SDL_Renderer *renderer, const SDL_Rect *rect);
  */
-  setRenderClipRect: lib.symbols.SDL_SetRenderClipRect,
+  export const setRenderClipRect = lib.symbols.SDL_SetRenderClipRect;
 
 /**
  * Get the clip rectangle for the current target.
@@ -18312,7 +18309,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1690 bool SDL_GetRenderClipRect(SDL_Renderer *renderer, SDL_Rect *rect);
  */
-  getRenderClipRect: lib.symbols.SDL_GetRenderClipRect,
+  export const getRenderClipRect = lib.symbols.SDL_GetRenderClipRect;
 
 /**
  * Get whether clipping is enabled on the given render target.
@@ -18333,7 +18330,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1709 bool SDL_RenderClipEnabled(SDL_Renderer *renderer);
  */
-  renderClipEnabled: lib.symbols.SDL_RenderClipEnabled,
+  export const renderClipEnabled = lib.symbols.SDL_RenderClipEnabled;
 
 /**
  * Set the drawing scale for rendering on the current target.
@@ -18363,7 +18360,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1737 bool SDL_SetRenderScale(SDL_Renderer *renderer, float scaleX, float scaleY);
  */
-  setRenderScale: lib.symbols.SDL_SetRenderScale,
+  export const setRenderScale = lib.symbols.SDL_SetRenderScale;
 
 /**
  * Get the drawing scale for the current target.
@@ -18385,7 +18382,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1757 bool SDL_GetRenderScale(SDL_Renderer *renderer, float *scaleX, float *scaleY);
  */
-  getRenderScale: lib.symbols.SDL_GetRenderScale,
+  export const getRenderScale = lib.symbols.SDL_GetRenderScale;
 
 /**
  * Set the color used for drawing operations.
@@ -18412,7 +18409,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1782 bool SDL_SetRenderDrawColor(SDL_Renderer *renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
-  setRenderDrawColor: lib.symbols.SDL_SetRenderDrawColor,
+  export const setRenderDrawColor = lib.symbols.SDL_SetRenderDrawColor;
 
 /**
  * Set the color used for drawing operations (Rect, Line and Clear).
@@ -18439,7 +18436,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1807 bool SDL_SetRenderDrawColorFloat(SDL_Renderer *renderer, float r, float g, float b, float a);
  */
-  setRenderDrawColorFloat: lib.symbols.SDL_SetRenderDrawColorFloat,
+  export const setRenderDrawColorFloat = lib.symbols.SDL_SetRenderDrawColorFloat;
 
 /**
  * Get the color used for drawing operations (Rect, Line and Clear).
@@ -18465,7 +18462,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1831 bool SDL_GetRenderDrawColor(SDL_Renderer *renderer, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
-  getRenderDrawColor: lib.symbols.SDL_GetRenderDrawColor,
+  export const getRenderDrawColor = lib.symbols.SDL_GetRenderDrawColor;
 
 /**
  * Get the color used for drawing operations (Rect, Line and Clear).
@@ -18491,7 +18488,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1855 bool SDL_GetRenderDrawColorFloat(SDL_Renderer *renderer, float *r, float *g, float *b, float *a);
  */
-  getRenderDrawColorFloat: lib.symbols.SDL_GetRenderDrawColorFloat,
+  export const getRenderDrawColorFloat = lib.symbols.SDL_GetRenderDrawColorFloat;
 
 /**
  * Set the color scale used for render operations.
@@ -18517,7 +18514,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1879 bool SDL_SetRenderColorScale(SDL_Renderer *renderer, float scale);
  */
-  setRenderColorScale: lib.symbols.SDL_SetRenderColorScale,
+  export const setRenderColorScale = lib.symbols.SDL_SetRenderColorScale;
 
 /**
  * Get the color scale used for render operations.
@@ -18535,7 +18532,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1895 bool SDL_GetRenderColorScale(SDL_Renderer *renderer, float *scale);
  */
-  getRenderColorScale: lib.symbols.SDL_GetRenderColorScale,
+  export const getRenderColorScale = lib.symbols.SDL_GetRenderColorScale;
 
 /**
  * Set the blend mode used for drawing operations (Fill and Line).
@@ -18555,7 +18552,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1913 bool SDL_SetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode blendMode);
  */
-  setRenderDrawBlendMode: lib.symbols.SDL_SetRenderDrawBlendMode,
+  export const setRenderDrawBlendMode = lib.symbols.SDL_SetRenderDrawBlendMode;
 
 /**
  * Get the blend mode used for drawing operations.
@@ -18573,7 +18570,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1929 bool SDL_GetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode *blendMode);
  */
-  getRenderDrawBlendMode: lib.symbols.SDL_GetRenderDrawBlendMode,
+  export const getRenderDrawBlendMode = lib.symbols.SDL_GetRenderDrawBlendMode;
 
 /**
  * Clear the current rendering target with the drawing color.
@@ -18595,7 +18592,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1949 bool SDL_RenderClear(SDL_Renderer *renderer);
  */
-  renderClear: lib.symbols.SDL_RenderClear,
+  export const renderClear = lib.symbols.SDL_RenderClear;
 
 /**
  * Draw a point on the current rendering target at subpixel precision.
@@ -18614,7 +18611,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1966 bool SDL_RenderPoint(SDL_Renderer *renderer, float x, float y);
  */
-  renderPoint: lib.symbols.SDL_RenderPoint,
+  export const renderPoint = lib.symbols.SDL_RenderPoint;
 
 /**
  * Draw multiple points on the current rendering target at subpixel precision.
@@ -18633,7 +18630,7 @@ export const SDL = {
  *
  * @from SDL_render.h:1983 bool SDL_RenderPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
  */
-  renderPoints: lib.symbols.SDL_RenderPoints,
+  export const renderPoints = lib.symbols.SDL_RenderPoints;
 
 /**
  * Draw a line on the current rendering target at subpixel precision.
@@ -18654,7 +18651,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2002 bool SDL_RenderLine(SDL_Renderer *renderer, float x1, float y1, float x2, float y2);
  */
-  renderLine: lib.symbols.SDL_RenderLine,
+  export const renderLine = lib.symbols.SDL_RenderLine;
 
 /**
  * Draw a series of connected lines on the current rendering target at
@@ -18674,7 +18671,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2020 bool SDL_RenderLines(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
  */
-  renderLines: lib.symbols.SDL_RenderLines,
+  export const renderLines = lib.symbols.SDL_RenderLines;
 
 /**
  * Draw a rectangle on the current rendering target at subpixel precision.
@@ -18693,7 +18690,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2037 bool SDL_RenderRect(SDL_Renderer *renderer, const SDL_FRect *rect);
  */
-  renderRect: lib.symbols.SDL_RenderRect,
+  export const renderRect = lib.symbols.SDL_RenderRect;
 
 /**
  * Draw some number of rectangles on the current rendering target at subpixel
@@ -18713,7 +18710,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2055 bool SDL_RenderRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
  */
-  renderRects: lib.symbols.SDL_RenderRects,
+  export const renderRects = lib.symbols.SDL_RenderRects;
 
 /**
  * Fill a rectangle on the current rendering target with the drawing color at
@@ -18733,7 +18730,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2073 bool SDL_RenderFillRect(SDL_Renderer *renderer, const SDL_FRect *rect);
  */
-  renderFillRect: lib.symbols.SDL_RenderFillRect,
+  export const renderFillRect = lib.symbols.SDL_RenderFillRect;
 
 /**
  * Fill some number of rectangles on the current rendering target with the
@@ -18753,7 +18750,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2091 bool SDL_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
  */
-  renderFillRects: lib.symbols.SDL_RenderFillRects,
+  export const renderFillRects = lib.symbols.SDL_RenderFillRects;
 
 /**
  * Copy a portion of the texture to the current rendering target at subpixel
@@ -18777,7 +18774,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2113 bool SDL_RenderTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, const SDL_FRect *dstrect);
  */
-  renderTexture: lib.symbols.SDL_RenderTexture,
+  export const renderTexture = lib.symbols.SDL_RenderTexture;
 
 /**
  * Copy a portion of the source texture to the current rendering target, with
@@ -18807,7 +18804,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2141 bool SDL_RenderTextureRotated(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FRect *dstrect,                                                     double angle, const SDL_FPoint *center,                                                     SDL_FlipMode flip);
  */
-  renderTextureRotated: lib.symbols.SDL_RenderTextureRotated,
+  export const renderTextureRotated = lib.symbols.SDL_RenderTextureRotated;
 
 /**
  * Copy a portion of the source texture to the current rendering target, with
@@ -18837,7 +18834,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2172 bool SDL_RenderTextureAffine(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FPoint *origin,                                                     const SDL_FPoint *right, const SDL_FPoint *down);
  */
-  renderTextureAffine: lib.symbols.SDL_RenderTextureAffine,
+  export const renderTextureAffine = lib.symbols.SDL_RenderTextureAffine;
 
 /**
  * Tile a portion of the texture to the current rendering target at subpixel
@@ -18866,7 +18863,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2201 bool SDL_RenderTextureTiled(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float scale, const SDL_FRect *dstrect);
  */
-  renderTextureTiled: lib.symbols.SDL_RenderTextureTiled,
+  export const renderTextureTiled = lib.symbols.SDL_RenderTextureTiled;
 
 /**
  * Perform a scaled copy using the 9-grid algorithm to the current rendering
@@ -18902,7 +18899,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2235 bool SDL_RenderTexture9Grid(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float left_width, float right_width, float top_height, float bottom_height, float scale, const SDL_FRect *dstrect);
  */
-  renderTexture9Grid: lib.symbols.SDL_RenderTexture9Grid,
+  export const renderTexture9Grid = lib.symbols.SDL_RenderTexture9Grid;
 
 /**
  * Render a list of triangles, optionally using a texture and indices into the
@@ -18928,7 +18925,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2259 bool SDL_RenderGeometry(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const SDL_Vertex *vertices, int num_vertices,                                               const int *indices, int num_indices);
  */
-  renderGeometry: lib.symbols.SDL_RenderGeometry,
+  export const renderGeometry = lib.symbols.SDL_RenderGeometry;
 
 /**
  * Render a list of triangles, optionally using a texture and indices into the
@@ -18959,7 +18956,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2291 bool SDL_RenderGeometryRaw(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const float *xy, int xy_stride,                                               const SDL_FColor *color, int color_stride,                                               const float *uv, int uv_stride,                                               int num_vertices,                                               const void *indices, int num_indices, int size_indices);
  */
-  renderGeometryRaw: lib.symbols.SDL_RenderGeometryRaw,
+  export const renderGeometryRaw = lib.symbols.SDL_RenderGeometryRaw;
 
 /**
  * Read pixels from the current rendering target.
@@ -18988,7 +18985,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2324 SDL_Surface * SDL_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect);
  */
-  renderReadPixels: lib.symbols.SDL_RenderReadPixels,
+  export const renderReadPixels = lib.symbols.SDL_RenderReadPixels;
 
 /**
  * Update the screen with any rendering performed since the previous call.
@@ -19040,7 +19037,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2374 bool SDL_RenderPresent(SDL_Renderer *renderer);
  */
-  renderPresent: lib.symbols.SDL_RenderPresent,
+  export const renderPresent = lib.symbols.SDL_RenderPresent;
 
 /**
  * Destroy the specified texture.
@@ -19059,7 +19056,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2391 void SDL_DestroyTexture(SDL_Texture *texture);
  */
-  destroyTexture: lib.symbols.SDL_DestroyTexture,
+  export const destroyTexture = lib.symbols.SDL_DestroyTexture;
 
 /**
  * Destroy the rendering context for a window and free all associated
@@ -19077,7 +19074,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2407 void SDL_DestroyRenderer(SDL_Renderer *renderer);
  */
-  destroyRenderer: lib.symbols.SDL_DestroyRenderer,
+  export const destroyRenderer = lib.symbols.SDL_DestroyRenderer;
 
 /**
  * Force the rendering context to flush any pending commands and state.
@@ -19112,7 +19109,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2440 bool SDL_FlushRenderer(SDL_Renderer *renderer);
  */
-  flushRenderer: lib.symbols.SDL_FlushRenderer,
+  export const flushRenderer = lib.symbols.SDL_FlushRenderer;
 
 /**
  * Get the CAMetalLayer associated with the given Metal renderer.
@@ -19132,7 +19129,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2458 void * SDL_GetRenderMetalLayer(SDL_Renderer *renderer);
  */
-  getRenderMetalLayer: lib.symbols.SDL_GetRenderMetalLayer,
+  export const getRenderMetalLayer = lib.symbols.SDL_GetRenderMetalLayer;
 
 /**
  * Get the Metal command encoder for the current frame.
@@ -19157,7 +19154,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2481 void * SDL_GetRenderMetalCommandEncoder(SDL_Renderer *renderer);
  */
-  getRenderMetalCommandEncoder: lib.symbols.SDL_GetRenderMetalCommandEncoder,
+  export const getRenderMetalCommandEncoder = lib.symbols.SDL_GetRenderMetalCommandEncoder;
 
 /**
  * Add a set of synchronization semaphores for the current frame.
@@ -19189,7 +19186,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2512 bool SDL_AddVulkanRenderSemaphores(SDL_Renderer *renderer, Uint32 wait_stage_mask, Sint64 wait_semaphore, Sint64 signal_semaphore);
  */
-  addVulkanRenderSemaphores: lib.symbols.SDL_AddVulkanRenderSemaphores,
+  export const addVulkanRenderSemaphores = lib.symbols.SDL_AddVulkanRenderSemaphores;
 
 /**
  * Toggle VSync of the given renderer.
@@ -19216,7 +19213,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2537 bool SDL_SetRenderVSync(SDL_Renderer *renderer, int vsync);
  */
-  setRenderVSync: lib.symbols.SDL_SetRenderVSync,
+  export const setRenderVSync = lib.symbols.SDL_SetRenderVSync;
 
 /**
  * Get VSync of the given renderer.
@@ -19235,7 +19232,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2557 bool SDL_GetRenderVSync(SDL_Renderer *renderer, int *vsync);
  */
-  getRenderVSync: lib.symbols.SDL_GetRenderVSync,
+  export const getRenderVSync = lib.symbols.SDL_GetRenderVSync;
 
 /**
  * Draw debug text to an SDL_Renderer.
@@ -19278,7 +19275,7 @@ export const SDL = {
  *
  * @from SDL_render.h:2609 bool SDL_RenderDebugText(SDL_Renderer *renderer, float x, float y, const char *str);
  */
-  renderDebugText: lib.symbols.SDL_RenderDebugText,
+  export const renderDebugText = lib.symbols.SDL_RenderDebugText;
 
 
 
@@ -19300,7 +19297,7 @@ export const SDL = {
  *
  * @from SDL_scancode.h:51 SDL_SCANCODE_
  */
-  SCANCODE: SDL_scancode_enums.SDL_Scancode,
+export const SCANCODE = SDL_scancode_enums.SDL_Scancode;
 
 
 
@@ -19364,7 +19361,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:131 SDL_SENSOR_
  */
-  SENSOR: SDL_sensor_enums.SDL_SensorType,
+export const SENSOR = SDL_sensor_enums.SDL_SensorType;
 
 
 
@@ -19381,7 +19378,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:157 SDL_SensorID * SDL_GetSensors(int *count);
  */
-  getSensors: lib.symbols.SDL_GetSensors,
+  export const getSensors = lib.symbols.SDL_GetSensors;
 
 /**
  * Get the implementation dependent name of a sensor.
@@ -19395,7 +19392,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:169 const char * SDL_GetSensorNameForID(SDL_SensorID instance_id);
  */
-  getSensorNameForId: lib.symbols.SDL_GetSensorNameForID,
+  export const getSensorNameForId = lib.symbols.SDL_GetSensorNameForID;
 
 /**
  * Get the type of a sensor.
@@ -19410,7 +19407,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:182 SDL_SensorType SDL_GetSensorTypeForID(SDL_SensorID instance_id);
  */
-  getSensorTypeForId: lib.symbols.SDL_GetSensorTypeForID,
+  export const getSensorTypeForId = lib.symbols.SDL_GetSensorTypeForID;
 
 /**
  * Get the platform dependent type of a sensor.
@@ -19425,7 +19422,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:195 int SDL_GetSensorNonPortableTypeForID(SDL_SensorID instance_id);
  */
-  getSensorNonPortableTypeForId: lib.symbols.SDL_GetSensorNonPortableTypeForID,
+  export const getSensorNonPortableTypeForId = lib.symbols.SDL_GetSensorNonPortableTypeForID;
 
 /**
  * Open a sensor for use.
@@ -19438,7 +19435,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:206 SDL_Sensor * SDL_OpenSensor(SDL_SensorID instance_id);
  */
-  openSensor: lib.symbols.SDL_OpenSensor,
+  export const openSensor = lib.symbols.SDL_OpenSensor;
 
 /**
  * Return the SDL_Sensor associated with an instance ID.
@@ -19451,7 +19448,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:217 SDL_Sensor * SDL_GetSensorFromID(SDL_SensorID instance_id);
  */
-  getSensorFromId: lib.symbols.SDL_GetSensorFromID,
+  export const getSensorFromId = lib.symbols.SDL_GetSensorFromID;
 
 /**
  * Get the properties associated with a sensor.
@@ -19464,7 +19461,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:228 SDL_PropertiesID SDL_GetSensorProperties(SDL_Sensor *sensor);
  */
-  getSensorProperties: lib.symbols.SDL_GetSensorProperties,
+  export const getSensorProperties = lib.symbols.SDL_GetSensorProperties;
 
 /**
  * Get the implementation dependent name of a sensor.
@@ -19477,7 +19474,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:239 const char * SDL_GetSensorName(SDL_Sensor *sensor);
  */
-  getSensorName: lib.symbols.SDL_GetSensorName,
+  export const getSensorName = lib.symbols.SDL_GetSensorName;
 
 /**
  * Get the type of a sensor.
@@ -19490,7 +19487,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:250 SDL_SensorType SDL_GetSensorType(SDL_Sensor *sensor);
  */
-  getSensorType: lib.symbols.SDL_GetSensorType,
+  export const getSensorType = lib.symbols.SDL_GetSensorType;
 
 /**
  * Get the platform dependent type of a sensor.
@@ -19502,7 +19499,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:260 int SDL_GetSensorNonPortableType(SDL_Sensor *sensor);
  */
-  getSensorNonPortableType: lib.symbols.SDL_GetSensorNonPortableType,
+  export const getSensorNonPortableType = lib.symbols.SDL_GetSensorNonPortableType;
 
 /**
  * Get the instance ID of a sensor.
@@ -19515,7 +19512,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:271 SDL_SensorID SDL_GetSensorID(SDL_Sensor *sensor);
  */
-  getSensorId: lib.symbols.SDL_GetSensorID,
+  export const getSensorId = lib.symbols.SDL_GetSensorID;
 
 /**
  * Get the current state of an opened sensor.
@@ -19532,7 +19529,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:286 bool SDL_GetSensorData(SDL_Sensor *sensor, float *data, int num_values);
  */
-  getSensorData: lib.symbols.SDL_GetSensorData,
+  export const getSensorData = lib.symbols.SDL_GetSensorData;
 
 /**
  * Close a sensor previously opened with SDL_OpenSensor().
@@ -19543,7 +19540,7 @@ export const SDL = {
  *
  * @from SDL_sensor.h:295 void SDL_CloseSensor(SDL_Sensor *sensor);
  */
-  closeSensor: lib.symbols.SDL_CloseSensor,
+  export const closeSensor = lib.symbols.SDL_CloseSensor;
 
 /**
  * Update the current state of the open sensors.
@@ -19558,14 +19555,14 @@ export const SDL = {
  *
  * @from SDL_sensor.h:308 void SDL_UpdateSensors(void);
  */
-  updateSensors: lib.symbols.SDL_UpdateSensors,
+  export const updateSensors = lib.symbols.SDL_UpdateSensors;
 
 
 
 /*--- SDL_stdinc ---*/
 
 /* TODO: include/SDL_stdinc.h:390: error: size of array 'SDL_dummy_enum' is negative */
-  DUMMY_ENUM: SDL_stdinc_enums.SDL_DUMMY_ENUM,
+export const DUMMY_ENUM = SDL_stdinc_enums.SDL_DUMMY_ENUM;
 
 
 
@@ -19588,7 +19585,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1502 void SDL_GetOriginalMemoryFunctions(SDL_malloc_func *malloc_func,                                                            SDL_calloc_func *calloc_func,                                                            SDL_realloc_func *realloc_func,                                                            SDL_free_func *free_func);
  */
-  getOriginalMemoryFunctions: lib.symbols.SDL_GetOriginalMemoryFunctions,
+  export const getOriginalMemoryFunctions = lib.symbols.SDL_GetOriginalMemoryFunctions;
 
 /**
  * Get the current set of SDL memory functions.
@@ -19609,7 +19606,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1524 void SDL_GetMemoryFunctions(SDL_malloc_func *malloc_func,                                                    SDL_calloc_func *calloc_func,                                                    SDL_realloc_func *realloc_func,                                                    SDL_free_func *free_func);
  */
-  getMemoryFunctions: lib.symbols.SDL_GetMemoryFunctions,
+  export const getMemoryFunctions = lib.symbols.SDL_GetMemoryFunctions;
 
 /**
  * Replace SDL's memory allocation functions with a custom set.
@@ -19639,7 +19636,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1555 bool SDL_SetMemoryFunctions(SDL_malloc_func malloc_func,                                                            SDL_calloc_func calloc_func,                                                            SDL_realloc_func realloc_func,                                                            SDL_free_func free_func);
  */
-  setMemoryFunctions: lib.symbols.SDL_SetMemoryFunctions,
+  export const setMemoryFunctions = lib.symbols.SDL_SetMemoryFunctions;
 
 /**
  * Allocate memory aligned to a specific alignment.
@@ -19665,7 +19662,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1582 SDL_MALLOC void * SDL_aligned_alloc(size_t alignment, size_t size);
  */
-  alignedAlloc: lib.symbols.SDL_aligned_alloc,
+  export const alignedAlloc = lib.symbols.SDL_aligned_alloc;
 
 /**
  * Free memory allocated by SDL_aligned_alloc().
@@ -19685,7 +19682,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1600 void SDL_aligned_free(void *mem);
  */
-  alignedFree: lib.symbols.SDL_aligned_free,
+  export const alignedFree = lib.symbols.SDL_aligned_free;
 
 /**
  * Get the number of outstanding (unfreed) allocations.
@@ -19699,7 +19696,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1612 int SDL_GetNumAllocations(void);
  */
-  getNumAllocations: lib.symbols.SDL_GetNumAllocations,
+  export const getNumAllocations = lib.symbols.SDL_GetNumAllocations;
 
 /**
  * Get the process environment.
@@ -19724,7 +19721,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1650 SDL_Environment * SDL_GetEnvironment(void);
  */
-  getEnvironment: lib.symbols.SDL_GetEnvironment,
+  export const getEnvironment = lib.symbols.SDL_GetEnvironment;
 
 /**
  * Create a set of environment variables
@@ -19748,7 +19745,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1672 SDL_Environment * SDL_CreateEnvironment(bool populated);
  */
-  createEnvironment: lib.symbols.SDL_CreateEnvironment,
+  export const createEnvironment = lib.symbols.SDL_CreateEnvironment;
 
 /**
  * Get the value of a variable in the environment.
@@ -19770,7 +19767,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1692 const char * SDL_GetEnvironmentVariable(SDL_Environment *env, const char *name);
  */
-  getEnvironmentVariable: lib.symbols.SDL_GetEnvironmentVariable,
+  export const getEnvironmentVariable = lib.symbols.SDL_GetEnvironmentVariable;
 
 /**
  * Get all variables in the environment.
@@ -19793,7 +19790,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1713 char ** SDL_GetEnvironmentVariables(SDL_Environment *env);
  */
-  getEnvironmentVariables: lib.symbols.SDL_GetEnvironmentVariables,
+  export const getEnvironmentVariables = lib.symbols.SDL_GetEnvironmentVariables;
 
 /**
  * Set the value of a variable in the environment.
@@ -19819,7 +19816,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1737 bool SDL_SetEnvironmentVariable(SDL_Environment *env, const char *name, const char *value, bool overwrite);
  */
-  setEnvironmentVariable: lib.symbols.SDL_SetEnvironmentVariable,
+  export const setEnvironmentVariable = lib.symbols.SDL_SetEnvironmentVariable;
 
 /**
  * Clear a variable from the environment.
@@ -19842,7 +19839,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1758 bool SDL_UnsetEnvironmentVariable(SDL_Environment *env, const char *name);
  */
-  unsetEnvironmentVariable: lib.symbols.SDL_UnsetEnvironmentVariable,
+  export const unsetEnvironmentVariable = lib.symbols.SDL_UnsetEnvironmentVariable;
 
 /**
  * Destroy a set of environment variables.
@@ -19858,7 +19855,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1772 void SDL_DestroyEnvironment(SDL_Environment *env);
  */
-  destroyEnvironment: lib.symbols.SDL_DestroyEnvironment,
+  export const destroyEnvironment = lib.symbols.SDL_DestroyEnvironment;
 
 /**
  * Get the value of a variable in the environment.
@@ -19875,7 +19872,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1787 const char * SDL_getenv(const char *name);
  */
-  getenv: lib.symbols.SDL_getenv,
+  export const getenv = lib.symbols.SDL_getenv;
 
 /**
  * Get the value of a variable in the environment.
@@ -19896,7 +19893,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1806 const char * SDL_getenv_unsafe(const char *name);
  */
-  getenvUnsafe: lib.symbols.SDL_getenv_unsafe,
+  export const getenvUnsafe = lib.symbols.SDL_getenv_unsafe;
 
 /**
  * Set the value of a variable in the environment.
@@ -19916,7 +19913,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1824 int SDL_setenv_unsafe(const char *name, const char *value, int overwrite);
  */
-  setenvUnsafe: lib.symbols.SDL_setenv_unsafe,
+  export const setenvUnsafe = lib.symbols.SDL_setenv_unsafe;
 
 /**
  * Clear a variable from the environment.
@@ -19933,7 +19930,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1839 int SDL_unsetenv_unsafe(const char *name);
  */
-  unsetenvUnsafe: lib.symbols.SDL_unsetenv_unsafe,
+  export const unsetenvUnsafe = lib.symbols.SDL_unsetenv_unsafe;
 
 /**
  * Sort an array.
@@ -19981,7 +19978,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1901 void SDL_qsort(void *base, size_t nmemb, size_t size, SDL_CompareCallback compare);
  */
-  qsort: lib.symbols.SDL_qsort,
+  export const qsort = lib.symbols.SDL_qsort;
 
 /**
  * Perform a binary search on a previously sorted array.
@@ -20033,7 +20030,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:1951 void * SDL_bsearch(const void *key, const void *base, size_t nmemb, size_t size, SDL_CompareCallback compare);
  */
-  bsearch: lib.symbols.SDL_bsearch,
+  export const bsearch = lib.symbols.SDL_bsearch;
 
 /**
  * Sort an array, passing a userdata pointer to the compare function.
@@ -20088,7 +20085,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2021 void SDL_qsort_r(void *base, size_t nmemb, size_t size, SDL_CompareCallback_r compare, void *userdata);
  */
-  qsortR: lib.symbols.SDL_qsort_r,
+  export const qsortR = lib.symbols.SDL_qsort_r;
 
 /**
  * Perform a binary search on a previously sorted array, passing a userdata
@@ -20148,7 +20145,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2079 void * SDL_bsearch_r(const void *key, const void *base, size_t nmemb, size_t size, SDL_CompareCallback_r compare, void *userdata);
  */
-  bsearchR: lib.symbols.SDL_bsearch_r,
+  export const bsearchR = lib.symbols.SDL_bsearch_r;
 
 /**
  * Compute the absolute value of `x`.
@@ -20162,7 +20159,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2091 int SDL_abs(int x);
  */
-  abs: lib.symbols.SDL_abs,
+  export const abs = lib.symbols.SDL_abs;
 
 /**
  * Query if a character is alphabetic (a letter).
@@ -20179,7 +20176,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2166 int SDL_isalpha(int x);
  */
-  isalpha: lib.symbols.SDL_isalpha,
+  export const isalpha = lib.symbols.SDL_isalpha;
 
 /**
  * Query if a character is alphabetic (a letter) or a number.
@@ -20196,7 +20193,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2181 int SDL_isalnum(int x);
  */
-  isalnum: lib.symbols.SDL_isalnum,
+  export const isalnum = lib.symbols.SDL_isalnum;
 
 /**
  * Report if a character is blank (a space or tab).
@@ -20213,7 +20210,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2196 int SDL_isblank(int x);
  */
-  isblank: lib.symbols.SDL_isblank,
+  export const isblank = lib.symbols.SDL_isblank;
 
 /**
  * Report if a character is a control character.
@@ -20230,7 +20227,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2211 int SDL_iscntrl(int x);
  */
-  iscntrl: lib.symbols.SDL_iscntrl,
+  export const iscntrl = lib.symbols.SDL_iscntrl;
 
 /**
  * Report if a character is a numeric digit.
@@ -20247,7 +20244,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2226 int SDL_isdigit(int x);
  */
-  isdigit: lib.symbols.SDL_isdigit,
+  export const isdigit = lib.symbols.SDL_isdigit;
 
 /**
  * Report if a character is a hexadecimal digit.
@@ -20264,7 +20261,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2241 int SDL_isxdigit(int x);
  */
-  isxdigit: lib.symbols.SDL_isxdigit,
+  export const isxdigit = lib.symbols.SDL_isxdigit;
 
 /**
  * Report if a character is a punctuation mark.
@@ -20284,7 +20281,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2259 int SDL_ispunct(int x);
  */
-  ispunct: lib.symbols.SDL_ispunct,
+  export const ispunct = lib.symbols.SDL_ispunct;
 
 /**
  * Report if a character is whitespace.
@@ -20308,7 +20305,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2281 int SDL_isspace(int x);
  */
-  isspace: lib.symbols.SDL_isspace,
+  export const isspace = lib.symbols.SDL_isspace;
 
 /**
  * Report if a character is upper case.
@@ -20325,7 +20322,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2296 int SDL_isupper(int x);
  */
-  isupper: lib.symbols.SDL_isupper,
+  export const isupper = lib.symbols.SDL_isupper;
 
 /**
  * Report if a character is lower case.
@@ -20342,7 +20339,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2311 int SDL_islower(int x);
  */
-  islower: lib.symbols.SDL_islower,
+  export const islower = lib.symbols.SDL_islower;
 
 /**
  * Report if a character is "printable".
@@ -20363,7 +20360,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2330 int SDL_isprint(int x);
  */
-  isprint: lib.symbols.SDL_isprint,
+  export const isprint = lib.symbols.SDL_isprint;
 
 /**
  * Report if a character is any "printable" except space.
@@ -20386,7 +20383,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2351 int SDL_isgraph(int x);
  */
-  isgraph: lib.symbols.SDL_isgraph,
+  export const isgraph = lib.symbols.SDL_isgraph;
 
 /**
  * Convert low-ASCII English letters to uppercase.
@@ -20406,7 +20403,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2369 int SDL_toupper(int x);
  */
-  toupper: lib.symbols.SDL_toupper,
+  export const toupper = lib.symbols.SDL_toupper;
 
 /**
  * Convert low-ASCII English letters to lowercase.
@@ -20426,7 +20423,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2387 int SDL_tolower(int x);
  */
-  tolower: lib.symbols.SDL_tolower,
+  export const tolower = lib.symbols.SDL_tolower;
 
 /**
  * Calculate a CRC-16 value.
@@ -20449,7 +20446,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2408 Uint16 SDL_crc16(Uint16 crc, const void *data, size_t len);
  */
-  crc16: lib.symbols.SDL_crc16,
+  export const crc16 = lib.symbols.SDL_crc16;
 
 /**
  * Calculate a CRC-32 value.
@@ -20472,7 +20469,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2429 Uint32 SDL_crc32(Uint32 crc, const void *data, size_t len);
  */
-  crc32: lib.symbols.SDL_crc32,
+  export const crc32 = lib.symbols.SDL_crc32;
 
 /**
  * Calculate a 32-bit MurmurHash3 value for a block of data.
@@ -20500,7 +20497,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2455 Uint32 SDL_murmur3_32(const void *data, size_t len, Uint32 seed);
  */
-  murmur332: lib.symbols.SDL_murmur3_32,
+  export const murmur332 = lib.symbols.SDL_murmur3_32;
 
 /**
  * Initialize all 32-bit words of buffer of memory to a specific value.
@@ -20522,7 +20519,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2579 void * SDL_memset4(void *dst, Uint32 val, size_t dwords);
  */
-  memset4: lib.symbols.SDL_memset4,
+  export const memset4 = lib.symbols.SDL_memset4;
 
 /**
  * This works exactly like wcsnlen() but doesn't require access to a C
@@ -20555,7 +20552,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2719 size_t SDL_wcsnlen(const wchar_t *wstr, size_t maxlen);
  */
-  wcsnlen: lib.symbols.SDL_wcsnlen,
+  export const wcsnlen = lib.symbols.SDL_wcsnlen;
 
 /**
  * Search a wide string, up to n wide chars, for the first instance of a
@@ -20582,7 +20579,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2838 wchar_t * SDL_wcsnstr(const wchar_t *haystack, const wchar_t *needle, size_t maxlen);
  */
-  wcsnstr: lib.symbols.SDL_wcsnstr,
+  export const wcsnstr = lib.symbols.SDL_wcsnstr;
 
 /**
  * Compare two null-terminated wide strings, case-insensitively.
@@ -20614,7 +20611,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2918 int SDL_wcscasecmp(const wchar_t *str1, const wchar_t *str2);
  */
-  wcscasecmp: lib.symbols.SDL_wcscasecmp,
+  export const wcscasecmp = lib.symbols.SDL_wcscasecmp;
 
 /**
  * Compare two wide strings, case-insensitively, up to a number of wchar_t.
@@ -20658,7 +20655,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2960 int SDL_wcsncasecmp(const wchar_t *str1, const wchar_t *str2, size_t maxlen);
  */
-  wcsncasecmp: lib.symbols.SDL_wcsncasecmp,
+  export const wcsncasecmp = lib.symbols.SDL_wcsncasecmp;
 
 /**
  * Parse a `long` from a wide string.
@@ -20687,7 +20684,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:2987 long SDL_wcstol(const wchar_t *str, wchar_t **endp, int base);
  */
-  wcstol: lib.symbols.SDL_wcstol,
+  export const wcstol = lib.symbols.SDL_wcstol;
 
 /**
  * This works exactly like strnlen() but doesn't require access to a C
@@ -20713,7 +20710,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3031 size_t SDL_strnlen(const char *str, size_t maxlen);
  */
-  strnlen: lib.symbols.SDL_strnlen,
+  export const strnlen = lib.symbols.SDL_strnlen;
 
 /**
  * Copy an UTF-8 string.
@@ -20743,7 +20740,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3088 size_t SDL_utf8strlcpy(SDL_OUT_Z_CAP(dst_bytes) char *dst, const char *src, size_t dst_bytes);
  */
-  utf8Strlcpy: lib.symbols.SDL_utf8strlcpy,
+  export const utf8Strlcpy = lib.symbols.SDL_utf8strlcpy;
 
 /**
  * Allocate a copy of a string, up to n characters.
@@ -20770,7 +20767,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3159 SDL_MALLOC char * SDL_strndup(const char *str, size_t maxlen);
  */
-  strndup: lib.symbols.SDL_strndup,
+  export const strndup = lib.symbols.SDL_strndup;
 
 /**
  * Reverse a string's contents.
@@ -20793,7 +20790,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3180 char * SDL_strrev(char *str);
  */
-  strrev: lib.symbols.SDL_strrev,
+  export const strrev = lib.symbols.SDL_strrev;
 
 /**
  * Convert a string to uppercase.
@@ -20816,7 +20813,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3201 char * SDL_strupr(char *str);
  */
-  strupr: lib.symbols.SDL_strupr,
+  export const strupr = lib.symbols.SDL_strupr;
 
 /**
  * Convert a string to lowercase.
@@ -20839,7 +20836,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3222 char * SDL_strlwr(char *str);
  */
-  strlwr: lib.symbols.SDL_strlwr,
+  export const strlwr = lib.symbols.SDL_strlwr;
 
 /**
  * Search a string, up to n bytes, for the first instance of a specific
@@ -20864,7 +20861,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3304 char * SDL_strnstr(const char *haystack, const char *needle, size_t maxlen);
  */
-  strnstr: lib.symbols.SDL_strnstr,
+  export const strnstr = lib.symbols.SDL_strnstr;
 
 /**
  * Search a UTF-8 string for the first instance of a specific substring,
@@ -20894,7 +20891,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3332 char * SDL_strcasestr(const char *haystack, const char *needle);
  */
-  strcasestr: lib.symbols.SDL_strcasestr,
+  export const strcasestr = lib.symbols.SDL_strcasestr;
 
 /**
  * Count the number of codepoints in a UTF-8 string.
@@ -20924,7 +20921,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3389 size_t SDL_utf8strlen(const char *str);
  */
-  utf8Strlen: lib.symbols.SDL_utf8strlen,
+  export const utf8Strlen = lib.symbols.SDL_utf8strlen;
 
 /**
  * Count the number of codepoints in a UTF-8 string, up to n bytes.
@@ -20959,7 +20956,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3422 size_t SDL_utf8strnlen(const char *str, size_t bytes);
  */
-  utf8Strnlen: lib.symbols.SDL_utf8strnlen,
+  export const utf8Strnlen = lib.symbols.SDL_utf8strnlen;
 
 /**
  * Convert an integer into a string.
@@ -20989,7 +20986,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3450 char * SDL_itoa(int value, char *str, int radix);
  */
-  itoa: lib.symbols.SDL_itoa,
+  export const itoa = lib.symbols.SDL_itoa;
 
 /**
  * Convert an unsigned integer into a string.
@@ -21019,7 +21016,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3478 char * SDL_uitoa(unsigned int value, char *str, int radix);
  */
-  uitoa: lib.symbols.SDL_uitoa,
+  export const uitoa = lib.symbols.SDL_uitoa;
 
 /**
  * Convert a long integer into a string.
@@ -21049,7 +21046,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3506 char * SDL_ltoa(long value, char *str, int radix);
  */
-  ltoa: lib.symbols.SDL_ltoa,
+  export const ltoa = lib.symbols.SDL_ltoa;
 
 /**
  * Convert an unsigned long integer into a string.
@@ -21079,7 +21076,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3534 char * SDL_ultoa(unsigned long value, char *str, int radix);
  */
-  ultoa: lib.symbols.SDL_ultoa,
+  export const ultoa = lib.symbols.SDL_ultoa;
 
 /**
  * Convert a long long integer into a string.
@@ -21109,7 +21106,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3564 char * SDL_lltoa(long long value, char *str, int radix);
  */
-  lltoa: lib.symbols.SDL_lltoa,
+  export const lltoa = lib.symbols.SDL_lltoa;
 
 /**
  * Convert an unsigned long long integer into a string.
@@ -21139,7 +21136,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3592 char * SDL_ulltoa(unsigned long long value, char *str, int radix);
  */
-  ulltoa: lib.symbols.SDL_ulltoa,
+  export const ulltoa = lib.symbols.SDL_ulltoa;
 
 /**
  * Parse an `int` from a string.
@@ -21164,7 +21161,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3616 int SDL_atoi(const char *str);
  */
-  atoi: lib.symbols.SDL_atoi,
+  export const atoi = lib.symbols.SDL_atoi;
 
 /**
  * Parse a `double` from a string.
@@ -21188,7 +21185,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3638 double SDL_atof(const char *str);
  */
-  atof: lib.symbols.SDL_atof,
+  export const atof = lib.symbols.SDL_atof;
 
 /**
  * Parse a `long` from a string.
@@ -21224,7 +21221,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3672 long SDL_strtol(const char *str, char **endp, int base);
  */
-  strtol: lib.symbols.SDL_strtol,
+  export const strtol = lib.symbols.SDL_strtol;
 
 /**
  * Parse an `unsigned long` from a string.
@@ -21259,7 +21256,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3705 unsigned long SDL_strtoul(const char *str, char **endp, int base);
  */
-  strtoul: lib.symbols.SDL_strtoul,
+  export const strtoul = lib.symbols.SDL_strtoul;
 
 /**
  * Parse a `long long` from a string.
@@ -21294,7 +21291,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3740 long long SDL_strtoll(const char *str, char **endp, int base);
  */
-  strtoll: lib.symbols.SDL_strtoll,
+  export const strtoll = lib.symbols.SDL_strtoll;
 
 /**
  * Parse an `unsigned long long` from a string.
@@ -21330,7 +21327,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3774 unsigned long long SDL_strtoull(const char *str, char **endp, int base);
  */
-  strtoull: lib.symbols.SDL_strtoull,
+  export const strtoull = lib.symbols.SDL_strtoull;
 
 /**
  * Parse a `double` from a string.
@@ -21361,7 +21358,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:3804 double SDL_strtod(const char *str, char **endp);
  */
-  strtod: lib.symbols.SDL_strtod,
+  export const strtod = lib.symbols.SDL_strtod;
 
 /**
  * Decode a UTF-8 string, one Unicode codepoint at a time.
@@ -21408,7 +21405,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4000 Uint32 SDL_StepUTF8(const char **pstr, size_t *pslen);
  */
-  stepUtf8: lib.symbols.SDL_StepUTF8,
+  export const stepUtf8 = lib.symbols.SDL_StepUTF8;
 
 /**
  * Decode a UTF-8 string in reverse, one Unicode codepoint at a time.
@@ -21441,7 +21438,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4031 Uint32 SDL_StepBackUTF8(const char *start, const char **pstr);
  */
-  stepBackUtf8: lib.symbols.SDL_StepBackUTF8,
+  export const stepBackUtf8 = lib.symbols.SDL_StepBackUTF8;
 
 /**
  * Convert a single Unicode codepoint to UTF-8.
@@ -21472,7 +21469,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4060 char * SDL_UCS4ToUTF8(Uint32 codepoint, char *dst);
  */
-  ucs4ToUtf8: lib.symbols.SDL_UCS4ToUTF8,
+  export const ucs4ToUtf8 = lib.symbols.SDL_UCS4ToUTF8;
 
 /**
  * Seeds the pseudo-random number generator.
@@ -21494,7 +21491,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4272 void SDL_srand(Uint64 seed);
  */
-  srand: lib.symbols.SDL_srand,
+  export const srand = lib.symbols.SDL_srand;
 
 /**
  * Generate a pseudo-random number less than n for positive n
@@ -21530,7 +21527,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4306 Sint32 SDL_rand(Sint32 n);
  */
-  rand: lib.symbols.SDL_rand,
+  export const rand = lib.symbols.SDL_rand;
 
 /**
  * Generate a uniform pseudo-random floating point number less than 1.0
@@ -21555,7 +21552,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4329 float SDL_randf(void);
  */
-  randf: lib.symbols.SDL_randf,
+  export const randf = lib.symbols.SDL_randf;
 
 /**
  * Generate 32 pseudo-random bits.
@@ -21580,7 +21577,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4352 Uint32 SDL_rand_bits(void);
  */
-  randBits: lib.symbols.SDL_rand_bits,
+  export const randBits = lib.symbols.SDL_rand_bits;
 
 /**
  * Generate a pseudo-random number less than n for positive n
@@ -21617,7 +21614,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4387 Sint32 SDL_rand_r(Uint64 *state, Sint32 n);
  */
-  randR: lib.symbols.SDL_rand_r,
+  export const randR = lib.symbols.SDL_rand_r;
 
 /**
  * Generate a uniform pseudo-random floating point number less than 1.0
@@ -21646,7 +21643,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4414 float SDL_randf_r(Uint64 *state);
  */
-  randfR: lib.symbols.SDL_randf_r,
+  export const randfR = lib.symbols.SDL_randf_r;
 
 /**
  * Generate 32 pseudo-random bits.
@@ -21673,7 +21670,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4439 Uint32 SDL_rand_bits_r(Uint64 *state);
  */
-  randBitsR: lib.symbols.SDL_rand_bits_r,
+  export const randBitsR = lib.symbols.SDL_rand_bits_r;
 
 /**
  * Compute the arc cosine of `x`.
@@ -21705,7 +21702,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4493 double SDL_acos(double x);
  */
-  acos: lib.symbols.SDL_acos,
+  export const acos = lib.symbols.SDL_acos;
 
 /**
  * Compute the arc cosine of `x`.
@@ -21737,7 +21734,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4523 float SDL_acosf(float x);
  */
-  acosf: lib.symbols.SDL_acosf,
+  export const acosf = lib.symbols.SDL_acosf;
 
 /**
  * Compute the arc sine of `x`.
@@ -21769,7 +21766,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4553 double SDL_asin(double x);
  */
-  asin: lib.symbols.SDL_asin,
+  export const asin = lib.symbols.SDL_asin;
 
 /**
  * Compute the arc sine of `x`.
@@ -21801,7 +21798,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4583 float SDL_asinf(float x);
  */
-  asinf: lib.symbols.SDL_asinf,
+  export const asinf = lib.symbols.SDL_asinf;
 
 /**
  * Compute the arc tangent of `x`.
@@ -21835,7 +21832,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4615 double SDL_atan(double x);
  */
-  atan: lib.symbols.SDL_atan,
+  export const atan = lib.symbols.SDL_atan;
 
 /**
  * Compute the arc tangent of `x`.
@@ -21869,7 +21866,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4647 float SDL_atanf(float x);
  */
-  atanf: lib.symbols.SDL_atanf,
+  export const atanf = lib.symbols.SDL_atanf;
 
 /**
  * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
@@ -21907,7 +21904,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4683 double SDL_atan2(double y, double x);
  */
-  atan2: lib.symbols.SDL_atan2,
+  export const atan2 = lib.symbols.SDL_atan2;
 
 /**
  * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
@@ -21945,7 +21942,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4719 float SDL_atan2f(float y, float x);
  */
-  atan2F: lib.symbols.SDL_atan2f,
+  export const atan2F = lib.symbols.SDL_atan2f;
 
 /**
  * Compute the ceiling of `x`.
@@ -21975,7 +21972,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4747 double SDL_ceil(double x);
  */
-  ceil: lib.symbols.SDL_ceil,
+  export const ceil = lib.symbols.SDL_ceil;
 
 /**
  * Compute the ceiling of `x`.
@@ -22005,7 +22002,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4775 float SDL_ceilf(float x);
  */
-  ceilf: lib.symbols.SDL_ceilf,
+  export const ceilf = lib.symbols.SDL_ceilf;
 
 /**
  * Copy the sign of one floating-point value to another.
@@ -22033,7 +22030,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4801 double SDL_copysign(double x, double y);
  */
-  copysign: lib.symbols.SDL_copysign,
+  export const copysign = lib.symbols.SDL_copysign;
 
 /**
  * Copy the sign of one floating-point value to another.
@@ -22061,7 +22058,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4827 float SDL_copysignf(float x, float y);
  */
-  copysignf: lib.symbols.SDL_copysignf,
+  export const copysignf = lib.symbols.SDL_copysignf;
 
 /**
  * Compute the cosine of `x`.
@@ -22091,7 +22088,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4855 double SDL_cos(double x);
  */
-  cos: lib.symbols.SDL_cos,
+  export const cos = lib.symbols.SDL_cos;
 
 /**
  * Compute the cosine of `x`.
@@ -22121,7 +22118,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4883 float SDL_cosf(float x);
  */
-  cosf: lib.symbols.SDL_cosf,
+  export const cosf = lib.symbols.SDL_cosf;
 
 /**
  * Compute the exponential of `x`.
@@ -22155,7 +22152,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4915 double SDL_exp(double x);
  */
-  exp: lib.symbols.SDL_exp,
+  export const exp = lib.symbols.SDL_exp;
 
 /**
  * Compute the exponential of `x`.
@@ -22189,7 +22186,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4947 float SDL_expf(float x);
  */
-  expf: lib.symbols.SDL_expf,
+  export const expf = lib.symbols.SDL_expf;
 
 /**
  * Compute the absolute value of `x`
@@ -22212,7 +22209,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4968 double SDL_fabs(double x);
  */
-  fabs: lib.symbols.SDL_fabs,
+  export const fabs = lib.symbols.SDL_fabs;
 
 /**
  * Compute the absolute value of `x`
@@ -22235,7 +22232,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:4989 float SDL_fabsf(float x);
  */
-  fabsf: lib.symbols.SDL_fabsf,
+  export const fabsf = lib.symbols.SDL_fabsf;
 
 /**
  * Compute the floor of `x`.
@@ -22265,7 +22262,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5017 double SDL_floor(double x);
  */
-  floor: lib.symbols.SDL_floor,
+  export const floor = lib.symbols.SDL_floor;
 
 /**
  * Compute the floor of `x`.
@@ -22295,7 +22292,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5045 float SDL_floorf(float x);
  */
-  floorf: lib.symbols.SDL_floorf,
+  export const floorf = lib.symbols.SDL_floorf;
 
 /**
  * Truncate `x` to an integer.
@@ -22326,7 +22323,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5074 double SDL_trunc(double x);
  */
-  trunc: lib.symbols.SDL_trunc,
+  export const trunc = lib.symbols.SDL_trunc;
 
 /**
  * Truncate `x` to an integer.
@@ -22357,7 +22354,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5103 float SDL_truncf(float x);
  */
-  truncf: lib.symbols.SDL_truncf,
+  export const truncf = lib.symbols.SDL_truncf;
 
 /**
  * Return the floating-point remainder of `x / y`
@@ -22389,7 +22386,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5133 double SDL_fmod(double x, double y);
  */
-  fmod: lib.symbols.SDL_fmod,
+  export const fmod = lib.symbols.SDL_fmod;
 
 /**
  * Return the floating-point remainder of `x / y`
@@ -22421,7 +22418,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5163 float SDL_fmodf(float x, float y);
  */
-  fmodf: lib.symbols.SDL_fmodf,
+  export const fmodf = lib.symbols.SDL_fmodf;
 
 /**
  * Return whether the value is infinity.
@@ -22437,7 +22434,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5177 int SDL_isinf(double x);
  */
-  isinf: lib.symbols.SDL_isinf,
+  export const isinf = lib.symbols.SDL_isinf;
 
 /**
  * Return whether the value is infinity.
@@ -22453,7 +22450,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5191 int SDL_isinff(float x);
  */
-  isinff: lib.symbols.SDL_isinff,
+  export const isinff = lib.symbols.SDL_isinff;
 
 /**
  * Return whether the value is NaN.
@@ -22469,7 +22466,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5205 int SDL_isnan(double x);
  */
-  isnan: lib.symbols.SDL_isnan,
+  export const isnan = lib.symbols.SDL_isnan;
 
 /**
  * Return whether the value is NaN.
@@ -22485,7 +22482,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5219 int SDL_isnanf(float x);
  */
-  isnanf: lib.symbols.SDL_isnanf,
+  export const isnanf = lib.symbols.SDL_isnanf;
 
 /**
  * Compute the natural logarithm of `x`.
@@ -22517,7 +22514,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5249 double SDL_log(double x);
  */
-  log: lib.symbols.SDL_log,
+  export const log = lib.symbols.SDL_log;
 
 /**
  * Compute the natural logarithm of `x`.
@@ -22548,7 +22545,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5278 float SDL_logf(float x);
  */
-  logf: lib.symbols.SDL_logf,
+  export const logf = lib.symbols.SDL_logf;
 
 /**
  * Compute the base-10 logarithm of `x`.
@@ -22580,7 +22577,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5308 double SDL_log10(double x);
  */
-  log10: lib.symbols.SDL_log10,
+  export const log10 = lib.symbols.SDL_log10;
 
 /**
  * Compute the base-10 logarithm of `x`.
@@ -22612,7 +22609,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5338 float SDL_log10f(float x);
  */
-  log10F: lib.symbols.SDL_log10f,
+  export const log10F = lib.symbols.SDL_log10f;
 
 /**
  * Split `x` into integer and fractional parts
@@ -22634,7 +22631,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5358 double SDL_modf(double x, double *y);
  */
-  modf: lib.symbols.SDL_modf,
+  export const modf = lib.symbols.SDL_modf;
 
 /**
  * Split `x` into integer and fractional parts
@@ -22656,7 +22653,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5378 float SDL_modff(float x, float *y);
  */
-  modff: lib.symbols.SDL_modff,
+  export const modff = lib.symbols.SDL_modff;
 
 /**
  * Raise `x` to the power `y`
@@ -22690,7 +22687,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5410 double SDL_pow(double x, double y);
  */
-  pow: lib.symbols.SDL_pow,
+  export const pow = lib.symbols.SDL_pow;
 
 /**
  * Raise `x` to the power `y`
@@ -22724,7 +22721,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5442 float SDL_powf(float x, float y);
  */
-  powf: lib.symbols.SDL_powf,
+  export const powf = lib.symbols.SDL_powf;
 
 /**
  * Round `x` to the nearest integer.
@@ -22755,7 +22752,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5471 double SDL_round(double x);
  */
-  round: lib.symbols.SDL_round,
+  export const round = lib.symbols.SDL_round;
 
 /**
  * Round `x` to the nearest integer.
@@ -22786,7 +22783,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5500 float SDL_roundf(float x);
  */
-  roundf: lib.symbols.SDL_roundf,
+  export const roundf = lib.symbols.SDL_roundf;
 
 /**
  * Round `x` to the nearest integer representable as a long
@@ -22817,7 +22814,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5529 long SDL_lround(double x);
  */
-  lround: lib.symbols.SDL_lround,
+  export const lround = lib.symbols.SDL_lround;
 
 /**
  * Round `x` to the nearest integer representable as a long
@@ -22848,7 +22845,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5558 long SDL_lroundf(float x);
  */
-  lroundf: lib.symbols.SDL_lroundf,
+  export const lroundf = lib.symbols.SDL_lroundf;
 
 /**
  * Scale `x` by an integer power of two.
@@ -22875,7 +22872,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5583 double SDL_scalbn(double x, int n);
  */
-  scalbn: lib.symbols.SDL_scalbn,
+  export const scalbn = lib.symbols.SDL_scalbn;
 
 /**
  * Scale `x` by an integer power of two.
@@ -22902,7 +22899,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5608 float SDL_scalbnf(float x, int n);
  */
-  scalbnf: lib.symbols.SDL_scalbnf,
+  export const scalbnf = lib.symbols.SDL_scalbnf;
 
 /**
  * Compute the sine of `x`.
@@ -22932,7 +22929,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5636 double SDL_sin(double x);
  */
-  sin: lib.symbols.SDL_sin,
+  export const sin = lib.symbols.SDL_sin;
 
 /**
  * Compute the sine of `x`.
@@ -22962,7 +22959,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5664 float SDL_sinf(float x);
  */
-  sinf: lib.symbols.SDL_sinf,
+  export const sinf = lib.symbols.SDL_sinf;
 
 /**
  * Compute the square root of `x`.
@@ -22990,7 +22987,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5690 double SDL_sqrt(double x);
  */
-  sqrt: lib.symbols.SDL_sqrt,
+  export const sqrt = lib.symbols.SDL_sqrt;
 
 /**
  * Compute the square root of `x`.
@@ -23018,7 +23015,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5716 float SDL_sqrtf(float x);
  */
-  sqrtf: lib.symbols.SDL_sqrtf,
+  export const sqrtf = lib.symbols.SDL_sqrtf;
 
 /**
  * Compute the tangent of `x`.
@@ -23050,7 +23047,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5746 double SDL_tan(double x);
  */
-  tan: lib.symbols.SDL_tan,
+  export const tan = lib.symbols.SDL_tan;
 
 /**
  * Compute the tangent of `x`.
@@ -23082,7 +23079,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5776 float SDL_tanf(float x);
  */
-  tanf: lib.symbols.SDL_tanf,
+  export const tanf = lib.symbols.SDL_tanf;
 
 /**
  * Helper function to convert a string's encoding in one call.
@@ -23111,7 +23108,7 @@ export const SDL = {
  *
  * @from SDL_stdinc.h:5890 char * SDL_iconv_string(const char *tocode,                                               const char *fromcode,                                               const char *inbuf,                                               size_t inbytesleft);
  */
-  iconvString: lib.symbols.SDL_iconv_string,
+  export const iconvString = lib.symbols.SDL_iconv_string;
 
 
 
@@ -23134,7 +23131,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:348 SDL_Storage * SDL_OpenTitleStorage(const char *override, SDL_PropertiesID props);
  */
-  openTitleStorage: lib.symbols.SDL_OpenTitleStorage,
+  export const openTitleStorage = lib.symbols.SDL_OpenTitleStorage;
 
 /**
  * Opens up a container for a user's unique read/write filesystem.
@@ -23162,7 +23159,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:374 SDL_Storage * SDL_OpenUserStorage(const char *org, const char *app, SDL_PropertiesID props);
  */
-  openUserStorage: lib.symbols.SDL_OpenUserStorage,
+  export const openUserStorage = lib.symbols.SDL_OpenUserStorage;
 
 /**
  * Opens up a container for local filesystem storage.
@@ -23188,7 +23185,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:398 SDL_Storage * SDL_OpenFileStorage(const char *path);
  */
-  openFileStorage: lib.symbols.SDL_OpenFileStorage,
+  export const openFileStorage = lib.symbols.SDL_OpenFileStorage;
 
 /**
  * Opens up a container using a client-provided storage interface.
@@ -23219,7 +23216,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:427 SDL_Storage * SDL_OpenStorage(const SDL_StorageInterface *iface, void *userdata);
  */
-  openStorage: lib.symbols.SDL_OpenStorage,
+  export const openStorage = lib.symbols.SDL_OpenStorage;
 
 /**
  * Closes and frees a storage container.
@@ -23239,7 +23236,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:445 bool SDL_CloseStorage(SDL_Storage *storage);
  */
-  closeStorage: lib.symbols.SDL_CloseStorage,
+  export const closeStorage = lib.symbols.SDL_CloseStorage;
 
 /**
  * Checks if the storage container is ready to use.
@@ -23256,7 +23253,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:460 bool SDL_StorageReady(SDL_Storage *storage);
  */
-  storageReady: lib.symbols.SDL_StorageReady,
+  export const storageReady = lib.symbols.SDL_StorageReady;
 
 /**
  * Query the size of a file within a storage container.
@@ -23274,7 +23271,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:476 bool SDL_GetStorageFileSize(SDL_Storage *storage, const char *path, Uint64 *length);
  */
-  getStorageFileSize: lib.symbols.SDL_GetStorageFileSize,
+  export const getStorageFileSize = lib.symbols.SDL_GetStorageFileSize;
 
 /**
  * Synchronously read a file from a storage container into a client-provided
@@ -23299,7 +23296,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:499 bool SDL_ReadStorageFile(SDL_Storage *storage, const char *path, void *destination, Uint64 length);
  */
-  readStorageFile: lib.symbols.SDL_ReadStorageFile,
+  export const readStorageFile = lib.symbols.SDL_ReadStorageFile;
 
 /**
  * Synchronously write a file from client memory into a storage container.
@@ -23319,7 +23316,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:517 bool SDL_WriteStorageFile(SDL_Storage *storage, const char *path, const void *source, Uint64 length);
  */
-  writeStorageFile: lib.symbols.SDL_WriteStorageFile,
+  export const writeStorageFile = lib.symbols.SDL_WriteStorageFile;
 
 /**
  * Create a directory in a writable storage container.
@@ -23335,7 +23332,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:531 bool SDL_CreateStorageDirectory(SDL_Storage *storage, const char *path);
  */
-  createStorageDirectory: lib.symbols.SDL_CreateStorageDirectory,
+  export const createStorageDirectory = lib.symbols.SDL_CreateStorageDirectory;
 
 /**
  * Enumerate a directory in a storage container through a callback function.
@@ -23366,7 +23363,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:560 bool SDL_EnumerateStorageDirectory(SDL_Storage *storage, const char *path, SDL_EnumerateDirectoryCallback callback, void *userdata);
  */
-  enumerateStorageDirectory: lib.symbols.SDL_EnumerateStorageDirectory,
+  export const enumerateStorageDirectory = lib.symbols.SDL_EnumerateStorageDirectory;
 
 /**
  * Remove a file or an empty directory in a writable storage container.
@@ -23382,7 +23379,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:574 bool SDL_RemoveStoragePath(SDL_Storage *storage, const char *path);
  */
-  removeStoragePath: lib.symbols.SDL_RemoveStoragePath,
+  export const removeStoragePath = lib.symbols.SDL_RemoveStoragePath;
 
 /**
  * Rename a file or directory in a writable storage container.
@@ -23399,7 +23396,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:589 bool SDL_RenameStoragePath(SDL_Storage *storage, const char *oldpath, const char *newpath);
  */
-  renameStoragePath: lib.symbols.SDL_RenameStoragePath,
+  export const renameStoragePath = lib.symbols.SDL_RenameStoragePath;
 
 /**
  * Copy a file in a writable storage container.
@@ -23416,7 +23413,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:604 bool SDL_CopyStorageFile(SDL_Storage *storage, const char *oldpath, const char *newpath);
  */
-  copyStorageFile: lib.symbols.SDL_CopyStorageFile,
+  export const copyStorageFile = lib.symbols.SDL_CopyStorageFile;
 
 /**
  * Get information about a filesystem path in a storage container.
@@ -23434,7 +23431,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:620 bool SDL_GetStoragePathInfo(SDL_Storage *storage, const char *path, SDL_PathInfo *info);
  */
-  getStoragePathInfo: lib.symbols.SDL_GetStoragePathInfo,
+  export const getStoragePathInfo = lib.symbols.SDL_GetStoragePathInfo;
 
 /**
  * Queries the remaining space in a storage container.
@@ -23449,7 +23446,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:633 Uint64 SDL_GetStorageSpaceRemaining(SDL_Storage *storage);
  */
-  getStorageSpaceRemaining: lib.symbols.SDL_GetStorageSpaceRemaining,
+  export const getStorageSpaceRemaining = lib.symbols.SDL_GetStorageSpaceRemaining;
 
 /**
  * Enumerate a directory tree, filtered by pattern, and return a list.
@@ -23491,7 +23488,7 @@ export const SDL = {
  *
  * @from SDL_storage.h:673 char ** SDL_GlobStorageDirectory(SDL_Storage *storage, const char *path, const char *pattern, SDL_GlobFlags flags, int *count);
  */
-  globStorageDirectory: lib.symbols.SDL_GlobStorageDirectory,
+  export const globStorageDirectory = lib.symbols.SDL_GlobStorageDirectory;
 
 
 
@@ -23500,12 +23497,12 @@ export const SDL = {
 /**
  * @from SDL_surface:65 SDL_SURFACE_
  */
-  SURFACE: SDL_surface_enums.SURFACE,
+export const SURFACE = SDL_surface_enums.SURFACE;
 
 /**
  * @from SDL_surface:248 SDL_PROP_SURFACE_
  */
-  PROP_SURFACE: SDL_surface_enums.PROP_SURFACE,
+export const PROP_SURFACE = SDL_surface_enums.PROP_SURFACE;
 
 /**
  * The scaling mode.
@@ -23514,7 +23511,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:82 SDL_SCALEMODE_
  */
-  SCALEMODE: SDL_surface_enums.SDL_ScaleMode,
+export const SCALEMODE = SDL_surface_enums.SDL_ScaleMode;
 
 /**
  * The flip mode.
@@ -23523,7 +23520,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:94 SDL_FLIP_
  */
-  FLIP: SDL_surface_enums.SDL_FlipMode,
+export const FLIP = SDL_surface_enums.SDL_FlipMode;
 
 
 
@@ -23547,7 +23544,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:166 SDL_Surface * SDL_CreateSurface(int width, int height, SDL_PixelFormat format);
  */
-  createSurface: lib.symbols.SDL_CreateSurface,
+  export const createSurface = lib.symbols.SDL_CreateSurface;
 
 /**
  * Allocate a new surface with a specific pixel format and existing pixel
@@ -23579,7 +23576,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:196 SDL_Surface * SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format, void *pixels, int pitch);
  */
-  createSurfaceFrom: lib.symbols.SDL_CreateSurfaceFrom,
+  export const createSurfaceFrom = lib.symbols.SDL_CreateSurfaceFrom;
 
 /**
  * Free a surface.
@@ -23597,7 +23594,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:212 void SDL_DestroySurface(SDL_Surface *surface);
  */
-  destroySurface: lib.symbols.SDL_DestroySurface,
+  export const destroySurface = lib.symbols.SDL_DestroySurface;
 
 /**
  * Get the properties associated with a surface.
@@ -23633,7 +23630,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:246 SDL_PropertiesID SDL_GetSurfaceProperties(SDL_Surface *surface);
  */
-  getSurfaceProperties: lib.symbols.SDL_GetSurfaceProperties,
+  export const getSurfaceProperties = lib.symbols.SDL_GetSurfaceProperties;
 
 /**
  * Set the colorspace used by a surface.
@@ -23655,7 +23652,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:272 bool SDL_SetSurfaceColorspace(SDL_Surface *surface, SDL_Colorspace colorspace);
  */
-  setSurfaceColorspace: lib.symbols.SDL_SetSurfaceColorspace,
+  export const setSurfaceColorspace = lib.symbols.SDL_SetSurfaceColorspace;
 
 /**
  * Get the colorspace used by a surface.
@@ -23676,7 +23673,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:291 SDL_Colorspace SDL_GetSurfaceColorspace(SDL_Surface *surface);
  */
-  getSurfaceColorspace: lib.symbols.SDL_GetSurfaceColorspace,
+  export const getSurfaceColorspace = lib.symbols.SDL_GetSurfaceColorspace;
 
 /**
  * Create a palette and associate it with a surface.
@@ -23708,7 +23705,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:321 SDL_Palette * SDL_CreateSurfacePalette(SDL_Surface *surface);
  */
-  createSurfacePalette: lib.symbols.SDL_CreateSurfacePalette,
+  export const createSurfacePalette = lib.symbols.SDL_CreateSurfacePalette;
 
 /**
  * Set the palette used by a surface.
@@ -23729,7 +23726,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:340 bool SDL_SetSurfacePalette(SDL_Surface *surface, SDL_Palette *palette);
  */
-  setSurfacePalette: lib.symbols.SDL_SetSurfacePalette,
+  export const setSurfacePalette = lib.symbols.SDL_SetSurfacePalette;
 
 /**
  * Get the palette used by a surface.
@@ -23746,7 +23743,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:355 SDL_Palette * SDL_GetSurfacePalette(SDL_Surface *surface);
  */
-  getSurfacePalette: lib.symbols.SDL_GetSurfacePalette,
+  export const getSurfacePalette = lib.symbols.SDL_GetSurfacePalette;
 
 /**
  * Add an alternate version of a surface.
@@ -23775,7 +23772,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:382 bool SDL_AddSurfaceAlternateImage(SDL_Surface *surface, SDL_Surface *image);
  */
-  addSurfaceAlternateImage: lib.symbols.SDL_AddSurfaceAlternateImage,
+  export const addSurfaceAlternateImage = lib.symbols.SDL_AddSurfaceAlternateImage;
 
 /**
  * Return whether a surface has alternate versions available.
@@ -23793,7 +23790,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:398 bool SDL_SurfaceHasAlternateImages(SDL_Surface *surface);
  */
-  surfaceHasAlternateImages: lib.symbols.SDL_SurfaceHasAlternateImages,
+  export const surfaceHasAlternateImages = lib.symbols.SDL_SurfaceHasAlternateImages;
 
 /**
  * Get an array including all versions of a surface.
@@ -23822,7 +23819,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:425 SDL_Surface ** SDL_GetSurfaceImages(SDL_Surface *surface, int *count);
  */
-  getSurfaceImages: lib.symbols.SDL_GetSurfaceImages,
+  export const getSurfaceImages = lib.symbols.SDL_GetSurfaceImages;
 
 /**
  * Remove all alternate versions of a surface.
@@ -23842,7 +23839,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:443 void SDL_RemoveSurfaceAlternateImages(SDL_Surface *surface);
  */
-  removeSurfaceAlternateImages: lib.symbols.SDL_RemoveSurfaceAlternateImages,
+  export const removeSurfaceAlternateImages = lib.symbols.SDL_RemoveSurfaceAlternateImages;
 
 /**
  * Set up a surface for directly accessing the pixels.
@@ -23871,7 +23868,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:470 bool SDL_LockSurface(SDL_Surface *surface);
  */
-  lockSurface: lib.symbols.SDL_LockSurface,
+  export const lockSurface = lib.symbols.SDL_LockSurface;
 
 /**
  * Release a surface after directly accessing the pixels.
@@ -23888,7 +23885,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:485 void SDL_UnlockSurface(SDL_Surface *surface);
  */
-  unlockSurface: lib.symbols.SDL_UnlockSurface,
+  export const unlockSurface = lib.symbols.SDL_UnlockSurface;
 
 /**
  * Load a BMP image from a seekable SDL data stream.
@@ -23912,7 +23909,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:507 SDL_Surface * SDL_LoadBMP_IO(SDL_IOStream *src, bool closeio);
  */
-  loadBmpIo: lib.symbols.SDL_LoadBMP_IO,
+  export const loadBmpIo = lib.symbols.SDL_LoadBMP_IO;
 
 /**
  * Load a BMP image from a file.
@@ -23934,7 +23931,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:527 SDL_Surface * SDL_LoadBMP(const char *file);
  */
-  loadBmp: lib.symbols.SDL_LoadBMP,
+  export const loadBmp = lib.symbols.SDL_LoadBMP;
 
 /**
  * Save a surface to a seekable SDL data stream in BMP format.
@@ -23961,7 +23958,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:552 bool SDL_SaveBMP_IO(SDL_Surface *surface, SDL_IOStream *dst, bool closeio);
  */
-  saveBmpIo: lib.symbols.SDL_SaveBMP_IO,
+  export const saveBmpIo = lib.symbols.SDL_SaveBMP_IO;
 
 /**
  * Save a surface to a file.
@@ -23986,7 +23983,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:575 bool SDL_SaveBMP(SDL_Surface *surface, const char *file);
  */
-  saveBmp: lib.symbols.SDL_SaveBMP,
+  export const saveBmp = lib.symbols.SDL_SaveBMP;
 
 /**
  * Set the RLE acceleration hint for a surface.
@@ -24009,7 +24006,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:596 bool SDL_SetSurfaceRLE(SDL_Surface *surface, bool enabled);
  */
-  setSurfaceRle: lib.symbols.SDL_SetSurfaceRLE,
+  export const setSurfaceRle = lib.symbols.SDL_SetSurfaceRLE;
 
 /**
  * Returns whether the surface is RLE enabled.
@@ -24027,7 +24024,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:612 bool SDL_SurfaceHasRLE(SDL_Surface *surface);
  */
-  surfaceHasRle: lib.symbols.SDL_SurfaceHasRLE,
+  export const surfaceHasRle = lib.symbols.SDL_SurfaceHasRLE;
 
 /**
  * Set the color key (transparent pixel) in a surface.
@@ -24055,7 +24052,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:638 bool SDL_SetSurfaceColorKey(SDL_Surface *surface, bool enabled, Uint32 key);
  */
-  setSurfaceColorKey: lib.symbols.SDL_SetSurfaceColorKey,
+  export const setSurfaceColorKey = lib.symbols.SDL_SetSurfaceColorKey;
 
 /**
  * Returns whether the surface has a color key.
@@ -24074,7 +24071,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:655 bool SDL_SurfaceHasColorKey(SDL_Surface *surface);
  */
-  surfaceHasColorKey: lib.symbols.SDL_SurfaceHasColorKey,
+  export const surfaceHasColorKey = lib.symbols.SDL_SurfaceHasColorKey;
 
 /**
  * Get the color key (transparent pixel) for a surface.
@@ -24098,7 +24095,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:677 bool SDL_GetSurfaceColorKey(SDL_Surface *surface, Uint32 *key);
  */
-  getSurfaceColorKey: lib.symbols.SDL_GetSurfaceColorKey,
+  export const getSurfaceColorKey = lib.symbols.SDL_GetSurfaceColorKey;
 
 /**
  * Set an additional color value multiplied into blit operations.
@@ -24125,7 +24122,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:702 bool SDL_SetSurfaceColorMod(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b);
  */
-  setSurfaceColorMod: lib.symbols.SDL_SetSurfaceColorMod,
+  export const setSurfaceColorMod = lib.symbols.SDL_SetSurfaceColorMod;
 
 /**
  * Get the additional color value multiplied into blit operations.
@@ -24146,7 +24143,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:722 bool SDL_GetSurfaceColorMod(SDL_Surface *surface, Uint8 *r, Uint8 *g, Uint8 *b);
  */
-  getSurfaceColorMod: lib.symbols.SDL_GetSurfaceColorMod,
+  export const getSurfaceColorMod = lib.symbols.SDL_GetSurfaceColorMod;
 
 /**
  * Set an additional alpha value used in blit operations.
@@ -24170,7 +24167,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:744 bool SDL_SetSurfaceAlphaMod(SDL_Surface *surface, Uint8 alpha);
  */
-  setSurfaceAlphaMod: lib.symbols.SDL_SetSurfaceAlphaMod,
+  export const setSurfaceAlphaMod = lib.symbols.SDL_SetSurfaceAlphaMod;
 
 /**
  * Get the additional alpha value used in blit operations.
@@ -24189,7 +24186,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:761 bool SDL_GetSurfaceAlphaMod(SDL_Surface *surface, Uint8 *alpha);
  */
-  getSurfaceAlphaMod: lib.symbols.SDL_GetSurfaceAlphaMod,
+  export const getSurfaceAlphaMod = lib.symbols.SDL_GetSurfaceAlphaMod;
 
 /**
  * Set the blend mode used for blit operations.
@@ -24211,7 +24208,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:781 bool SDL_SetSurfaceBlendMode(SDL_Surface *surface, SDL_BlendMode blendMode);
  */
-  setSurfaceBlendMode: lib.symbols.SDL_SetSurfaceBlendMode,
+  export const setSurfaceBlendMode = lib.symbols.SDL_SetSurfaceBlendMode;
 
 /**
  * Get the blend mode used for blit operations.
@@ -24229,7 +24226,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:797 bool SDL_GetSurfaceBlendMode(SDL_Surface *surface, SDL_BlendMode *blendMode);
  */
-  getSurfaceBlendMode: lib.symbols.SDL_GetSurfaceBlendMode,
+  export const getSurfaceBlendMode = lib.symbols.SDL_GetSurfaceBlendMode;
 
 /**
  * Set the clipping rectangle for a surface.
@@ -24254,7 +24251,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:820 bool SDL_SetSurfaceClipRect(SDL_Surface *surface, const SDL_Rect *rect);
  */
-  setSurfaceClipRect: lib.symbols.SDL_SetSurfaceClipRect,
+  export const setSurfaceClipRect = lib.symbols.SDL_SetSurfaceClipRect;
 
 /**
  * Get the clipping rectangle for a surface.
@@ -24277,7 +24274,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:841 bool SDL_GetSurfaceClipRect(SDL_Surface *surface, SDL_Rect *rect);
  */
-  getSurfaceClipRect: lib.symbols.SDL_GetSurfaceClipRect,
+  export const getSurfaceClipRect = lib.symbols.SDL_GetSurfaceClipRect;
 
 /**
  * Flip a surface vertically or horizontally.
@@ -24293,7 +24290,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:855 bool SDL_FlipSurface(SDL_Surface *surface, SDL_FlipMode flip);
  */
-  flipSurface: lib.symbols.SDL_FlipSurface,
+  export const flipSurface = lib.symbols.SDL_FlipSurface;
 
 /**
  * Creates a new surface identical to the existing surface.
@@ -24315,7 +24312,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:875 SDL_Surface * SDL_DuplicateSurface(SDL_Surface *surface);
  */
-  duplicateSurface: lib.symbols.SDL_DuplicateSurface,
+  export const duplicateSurface = lib.symbols.SDL_DuplicateSurface;
 
 /**
  * Creates a new surface identical to the existing surface, scaled to the
@@ -24338,7 +24335,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:896 SDL_Surface * SDL_ScaleSurface(SDL_Surface *surface, int width, int height, SDL_ScaleMode scaleMode);
  */
-  scaleSurface: lib.symbols.SDL_ScaleSurface,
+  export const scaleSurface = lib.symbols.SDL_ScaleSurface;
 
 /**
  * Copy an existing surface to a new surface of the specified format.
@@ -24368,7 +24365,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:924 SDL_Surface * SDL_ConvertSurface(SDL_Surface *surface, SDL_PixelFormat format);
  */
-  convertSurface: lib.symbols.SDL_ConvertSurface,
+  export const convertSurface = lib.symbols.SDL_ConvertSurface;
 
 /**
  * Copy an existing surface to a new surface of the specified format and
@@ -24398,7 +24395,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:952 SDL_Surface * SDL_ConvertSurfaceAndColorspace(SDL_Surface *surface, SDL_PixelFormat format, SDL_Palette *palette, SDL_Colorspace colorspace, SDL_PropertiesID props);
  */
-  convertSurfaceAndColorspace: lib.symbols.SDL_ConvertSurfaceAndColorspace,
+  export const convertSurfaceAndColorspace = lib.symbols.SDL_ConvertSurfaceAndColorspace;
 
 /**
  * Copy a block of pixels of one format to another format.
@@ -24424,7 +24421,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:976 bool SDL_ConvertPixels(int width, int height, SDL_PixelFormat src_format, const void *src, int src_pitch, SDL_PixelFormat dst_format, void *dst, int dst_pitch);
  */
-  convertPixels: lib.symbols.SDL_ConvertPixels,
+  export const convertPixels = lib.symbols.SDL_ConvertPixels;
 
 /**
  * Copy a block of pixels of one format and colorspace to another format and
@@ -24459,7 +24456,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1009 bool SDL_ConvertPixelsAndColorspace(int width, int height, SDL_PixelFormat src_format, SDL_Colorspace src_colorspace, SDL_PropertiesID src_properties, const void *src, int src_pitch, SDL_PixelFormat dst_format, SDL_Colorspace dst_colorspace, SDL_PropertiesID dst_properties, void *dst, int dst_pitch);
  */
-  convertPixelsAndColorspace: lib.symbols.SDL_ConvertPixelsAndColorspace,
+  export const convertPixelsAndColorspace = lib.symbols.SDL_ConvertPixelsAndColorspace;
 
 /**
  * Premultiply the alpha on a block of pixels.
@@ -24487,7 +24484,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1035 bool SDL_PremultiplyAlpha(int width, int height, SDL_PixelFormat src_format, const void *src, int src_pitch, SDL_PixelFormat dst_format, void *dst, int dst_pitch, bool linear);
  */
-  premultiplyAlpha: lib.symbols.SDL_PremultiplyAlpha,
+  export const premultiplyAlpha = lib.symbols.SDL_PremultiplyAlpha;
 
 /**
  * Premultiply the alpha in a surface.
@@ -24506,7 +24503,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1052 bool SDL_PremultiplySurfaceAlpha(SDL_Surface *surface, bool linear);
  */
-  premultiplySurfaceAlpha: lib.symbols.SDL_PremultiplySurfaceAlpha,
+  export const premultiplySurfaceAlpha = lib.symbols.SDL_PremultiplySurfaceAlpha;
 
 /**
  * Clear a surface with a specific color, with floating point precision.
@@ -24530,7 +24527,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1074 bool SDL_ClearSurface(SDL_Surface *surface, float r, float g, float b, float a);
  */
-  clearSurface: lib.symbols.SDL_ClearSurface,
+  export const clearSurface = lib.symbols.SDL_ClearSurface;
 
 /**
  * Perform a fast fill of a rectangle with a specific color.
@@ -24559,7 +24556,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1101 bool SDL_FillSurfaceRect(SDL_Surface *dst, const SDL_Rect *rect, Uint32 color);
  */
-  fillSurfaceRect: lib.symbols.SDL_FillSurfaceRect,
+  export const fillSurfaceRect = lib.symbols.SDL_FillSurfaceRect;
 
 /**
  * Perform a fast fill of a set of rectangles with a specific color.
@@ -24588,7 +24585,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1128 bool SDL_FillSurfaceRects(SDL_Surface *dst, const SDL_Rect *rects, int count, Uint32 color);
  */
-  fillSurfaceRects: lib.symbols.SDL_FillSurfaceRects,
+  export const fillSurfaceRects = lib.symbols.SDL_FillSurfaceRects;
 
 /**
  * Performs a fast blit from the source surface to the destination surface
@@ -24666,7 +24663,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1204 bool SDL_BlitSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
-  blitSurface: lib.symbols.SDL_BlitSurface,
+  export const blitSurface = lib.symbols.SDL_BlitSurface;
 
 /**
  * Perform low-level surface blitting only.
@@ -24692,7 +24689,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1228 bool SDL_BlitSurfaceUnchecked(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
-  blitSurfaceUnchecked: lib.symbols.SDL_BlitSurfaceUnchecked,
+  export const blitSurfaceUnchecked = lib.symbols.SDL_BlitSurfaceUnchecked;
 
 /**
  * Perform a scaled blit to a destination surface, which may be of a different
@@ -24718,7 +24715,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1252 bool SDL_BlitSurfaceScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
-  blitSurfaceScaled: lib.symbols.SDL_BlitSurfaceScaled,
+  export const blitSurfaceScaled = lib.symbols.SDL_BlitSurfaceScaled;
 
 /**
  * Perform low-level surface scaled blitting only.
@@ -24745,7 +24742,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1277 bool SDL_BlitSurfaceUncheckedScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
-  blitSurfaceUncheckedScaled: lib.symbols.SDL_BlitSurfaceUncheckedScaled,
+  export const blitSurfaceUncheckedScaled = lib.symbols.SDL_BlitSurfaceUncheckedScaled;
 
 /**
  * Perform a stretched pixel copy from one surface to another.
@@ -24769,7 +24766,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1299 bool SDL_StretchSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
-  stretchSurface: lib.symbols.SDL_StretchSurface,
+  export const stretchSurface = lib.symbols.SDL_StretchSurface;
 
 /**
  * Perform a tiled blit to a destination surface, which may be of a different
@@ -24796,7 +24793,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1324 bool SDL_BlitSurfaceTiled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
-  blitSurfaceTiled: lib.symbols.SDL_BlitSurfaceTiled,
+  export const blitSurfaceTiled = lib.symbols.SDL_BlitSurfaceTiled;
 
 /**
  * Perform a scaled and tiled blit to a destination surface, which may be of a
@@ -24827,7 +24824,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1353 bool SDL_BlitSurfaceTiledWithScale(SDL_Surface *src, const SDL_Rect *srcrect, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
-  blitSurfaceTiledWithScale: lib.symbols.SDL_BlitSurfaceTiledWithScale,
+  export const blitSurfaceTiledWithScale = lib.symbols.SDL_BlitSurfaceTiledWithScale;
 
 /**
  * Perform a scaled blit using the 9-grid algorithm to a destination surface,
@@ -24865,7 +24862,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1389 bool SDL_BlitSurface9Grid(SDL_Surface *src, const SDL_Rect *srcrect, int left_width, int right_width, int top_height, int bottom_height, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
-  blitSurface9Grid: lib.symbols.SDL_BlitSurface9Grid,
+  export const blitSurface9Grid = lib.symbols.SDL_BlitSurface9Grid;
 
 /**
  * Map an RGB triple to an opaque pixel value for a surface.
@@ -24899,7 +24896,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1421 Uint32 SDL_MapSurfaceRGB(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b);
  */
-  mapSurfaceRgb: lib.symbols.SDL_MapSurfaceRGB,
+  export const mapSurfaceRgb = lib.symbols.SDL_MapSurfaceRGB;
 
 /**
  * Map an RGBA quadruple to a pixel value for a surface.
@@ -24934,7 +24931,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1454 Uint32 SDL_MapSurfaceRGBA(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
-  mapSurfaceRgba: lib.symbols.SDL_MapSurfaceRGBA,
+  export const mapSurfaceRgba = lib.symbols.SDL_MapSurfaceRGBA;
 
 /**
  * Retrieves a single pixel from a surface.
@@ -24965,7 +24962,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1483 bool SDL_ReadSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
-  readSurfacePixel: lib.symbols.SDL_ReadSurfacePixel,
+  export const readSurfacePixel = lib.symbols.SDL_ReadSurfacePixel;
 
 /**
  * Retrieves a single pixel from a surface.
@@ -24993,7 +24990,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1509 bool SDL_ReadSurfacePixelFloat(SDL_Surface *surface, int x, int y, float *r, float *g, float *b, float *a);
  */
-  readSurfacePixelFloat: lib.symbols.SDL_ReadSurfacePixelFloat,
+  export const readSurfacePixelFloat = lib.symbols.SDL_ReadSurfacePixelFloat;
 
 /**
  * Writes a single pixel to a surface.
@@ -25020,7 +25017,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1534 bool SDL_WriteSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
-  writeSurfacePixel: lib.symbols.SDL_WriteSurfacePixel,
+  export const writeSurfacePixel = lib.symbols.SDL_WriteSurfacePixel;
 
 /**
  * Writes a single pixel to a surface.
@@ -25044,7 +25041,7 @@ export const SDL = {
  *
  * @from SDL_surface.h:1556 bool SDL_WriteSurfacePixelFloat(SDL_Surface *surface, int x, int y, float r, float g, float b, float a);
  */
-  writeSurfacePixelFloat: lib.symbols.SDL_WriteSurfacePixelFloat,
+  export const writeSurfacePixelFloat = lib.symbols.SDL_WriteSurfacePixelFloat;
 
 
 
@@ -25057,7 +25054,7 @@ export const SDL = {
  *
  * @from SDL_system.h:627 SDL_SANDBOX_
  */
-  SANDBOX: SDL_system_enums.SDL_Sandbox,
+export const SANDBOX = SDL_system_enums.SDL_Sandbox;
 
 
 
@@ -25077,7 +25074,7 @@ export const SDL = {
  *
  * @from SDL_system.h:93 void SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata);
  */
-  setWindowsMessageHook: lib.symbols.SDL_SetWindowsMessageHook,
+  export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
 
 /**
  * Get the D3D9 adapter index that matches the specified display.
@@ -25093,7 +25090,7 @@ export const SDL = {
  *
  * @from SDL_system.h:111 int SDL_GetDirect3D9AdapterIndex(SDL_DisplayID displayID);
  */
-  getDirect3D9AdapterIndex: lib.symbols.SDL_GetDirect3D9AdapterIndex,
+  export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex;
 
 /**
  * Get the DXGI Adapter and Output indices for the specified display.
@@ -25112,7 +25109,7 @@ export const SDL = {
  *
  * @from SDL_system.h:128 bool SDL_GetDXGIOutputInfo(SDL_DisplayID displayID, int *adapterIndex, int *outputIndex);
  */
-  getDxgiOutputInfo: lib.symbols.SDL_GetDXGIOutputInfo,
+  export const getDxgiOutputInfo = lib.symbols.SDL_GetDXGIOutputInfo;
 
 /**
  * Set a callback for every X11 event.
@@ -25127,7 +25124,7 @@ export const SDL = {
  *
  * @from SDL_system.h:173 void SDL_SetX11EventHook(SDL_X11EventHook callback, void *userdata);
  */
-  setX11EventHook: lib.symbols.SDL_SetX11EventHook,
+  export const setX11EventHook = lib.symbols.SDL_SetX11EventHook;
 
 /**
  * Sets the UNIX nice value for a thread.
@@ -25143,7 +25140,7 @@ export const SDL = {
  *
  * @from SDL_system.h:190 bool SDL_SetLinuxThreadPriority(Sint64 threadID, int priority);
  */
-  /* setLinuxThreadPriority: lib.symbols.SDL_SetLinuxThreadPriority, */
+  /* export const setLinuxThreadPriority = lib.symbols.SDL_SetLinuxThreadPriority; */
 
 /**
  * Sets the priority (not nice level) and scheduling policy for a thread.
@@ -25161,7 +25158,7 @@ export const SDL = {
  *
  * @from SDL_system.h:206 bool SDL_SetLinuxThreadPriorityAndPolicy(Sint64 threadID, int sdlPriority, int schedPolicy);
  */
-  /* setLinuxThreadPriorityAndPolicy: lib.symbols.SDL_SetLinuxThreadPriorityAndPolicy, */
+  /* export const setLinuxThreadPriorityAndPolicy = lib.symbols.SDL_SetLinuxThreadPriorityAndPolicy; */
 
 /**
  * Use this function to set the animation callback on Apple iOS.
@@ -25202,7 +25199,7 @@ export const SDL = {
  *
  * @from SDL_system.h:270 bool SDL_SetiOSAnimationCallback(SDL_Window *window, int interval, SDL_iOSAnimationCallback callback, void *callbackParam);
  */
-  /* setiOsAnimationCallback: lib.symbols.SDL_SetiOSAnimationCallback, */
+  /* export const setiOsAnimationCallback = lib.symbols.SDL_SetiOSAnimationCallback; */
 
 /**
  * Use this function to enable or disable the SDL event pump on Apple iOS.
@@ -25217,7 +25214,7 @@ export const SDL = {
  *
  * @from SDL_system.h:283 void SDL_SetiOSEventPump(bool enabled);
  */
-  /* setiOsEventPump: lib.symbols.SDL_SetiOSEventPump, */
+  /* export const setiOsEventPump = lib.symbols.SDL_SetiOSEventPump; */
 
 /**
  * Get the Android Java Native Interface Environment of the current thread.
@@ -25241,7 +25238,7 @@ export const SDL = {
  *
  * @from SDL_system.h:313 void * SDL_GetAndroidJNIEnv(void);
  */
-  /* getAndroidJniEnv: lib.symbols.SDL_GetAndroidJNIEnv, */
+  /* export const getAndroidJniEnv = lib.symbols.SDL_GetAndroidJNIEnv; */
 
 /**
  * Retrieve the Java instance of the Android activity class.
@@ -25268,7 +25265,7 @@ export const SDL = {
  *
  * @from SDL_system.h:338 void * SDL_GetAndroidActivity(void);
  */
-  /* getAndroidActivity: lib.symbols.SDL_GetAndroidActivity, */
+  /* export const getAndroidActivity = lib.symbols.SDL_GetAndroidActivity; */
 
 /**
  * Query Android API level of the current device.
@@ -25306,7 +25303,7 @@ export const SDL = {
  *
  * @from SDL_system.h:374 int SDL_GetAndroidSDKVersion(void);
  */
-  /* getAndroidSdkVersion: lib.symbols.SDL_GetAndroidSDKVersion, */
+  /* export const getAndroidSdkVersion = lib.symbols.SDL_GetAndroidSDKVersion; */
 
 /**
  * Query if the application is running on a Chromebook.
@@ -25317,7 +25314,7 @@ export const SDL = {
  *
  * @from SDL_system.h:383 bool SDL_IsChromebook(void);
  */
-  /* isChromebook: lib.symbols.SDL_IsChromebook, */
+  /* export const isChromebook = lib.symbols.SDL_IsChromebook; */
 
 /**
  * Query if the application is running on a Samsung DeX docking station.
@@ -25328,7 +25325,7 @@ export const SDL = {
  *
  * @from SDL_system.h:392 bool SDL_IsDeXMode(void);
  */
-  /* isDeXMode: lib.symbols.SDL_IsDeXMode, */
+  /* export const isDeXMode = lib.symbols.SDL_IsDeXMode; */
 
 /**
  * Trigger the Android system back button behavior.
@@ -25339,7 +25336,7 @@ export const SDL = {
  *
  * @from SDL_system.h:401 void SDL_SendAndroidBackButton(void);
  */
-  /* sendAndroidBackButton: lib.symbols.SDL_SendAndroidBackButton, */
+  /* export const sendAndroidBackButton = lib.symbols.SDL_SendAndroidBackButton; */
 
 /**
  * Get the path used for internal storage for this Android application.
@@ -25364,7 +25361,7 @@ export const SDL = {
  *
  * @from SDL_system.h:440 const char * SDL_GetAndroidInternalStoragePath(void);
  */
-  /* getAndroidInternalStoragePath: lib.symbols.SDL_GetAndroidInternalStoragePath, */
+  /* export const getAndroidInternalStoragePath = lib.symbols.SDL_GetAndroidInternalStoragePath; */
 
 /**
  * Get the current state of external storage for this Android application.
@@ -25383,7 +25380,7 @@ export const SDL = {
  *
  * @from SDL_system.h:457 Uint32 SDL_GetAndroidExternalStorageState(void);
  */
-  /* getAndroidExternalStorageState: lib.symbols.SDL_GetAndroidExternalStorageState, */
+  /* export const getAndroidExternalStorageState = lib.symbols.SDL_GetAndroidExternalStorageState; */
 
 /**
  * Get the path used for external storage for this Android application.
@@ -25409,7 +25406,7 @@ export const SDL = {
  *
  * @from SDL_system.h:481 const char * SDL_GetAndroidExternalStoragePath(void);
  */
-  /* getAndroidExternalStoragePath: lib.symbols.SDL_GetAndroidExternalStoragePath, */
+  /* export const getAndroidExternalStoragePath = lib.symbols.SDL_GetAndroidExternalStoragePath; */
 
 /**
  * Get the path used for caching data for this Android application.
@@ -25433,7 +25430,7 @@ export const SDL = {
  *
  * @from SDL_system.h:503 const char * SDL_GetAndroidCachePath(void);
  */
-  /* getAndroidCachePath: lib.symbols.SDL_GetAndroidCachePath, */
+  /* export const getAndroidCachePath = lib.symbols.SDL_GetAndroidCachePath; */
 
 /**
  * Request permissions at runtime, asynchronously.
@@ -25471,7 +25468,7 @@ export const SDL = {
  *
  * @from SDL_system.h:552 bool SDL_RequestAndroidPermission(const char *permission, SDL_RequestAndroidPermissionCallback cb, void *userdata);
  */
-  /* requestAndroidPermission: lib.symbols.SDL_RequestAndroidPermission, */
+  /* export const requestAndroidPermission = lib.symbols.SDL_RequestAndroidPermission; */
 
 /**
  * Shows an Android toast notification.
@@ -25501,7 +25498,7 @@ export const SDL = {
  *
  * @from SDL_system.h:580 bool SDL_ShowAndroidToast(const char *message, int duration, int gravity, int xoffset, int yoffset);
  */
-  /* showAndroidToast: lib.symbols.SDL_ShowAndroidToast, */
+  /* export const showAndroidToast = lib.symbols.SDL_ShowAndroidToast; */
 
 /**
  * Send a user command to SDLActivity.
@@ -25519,7 +25516,7 @@ export const SDL = {
  *
  * @from SDL_system.h:596 bool SDL_SendAndroidMessage(Uint32 command, int param);
  */
-  /* sendAndroidMessage: lib.symbols.SDL_SendAndroidMessage, */
+  /* export const sendAndroidMessage = lib.symbols.SDL_SendAndroidMessage; */
 
 /**
  * Query if the current device is a tablet.
@@ -25532,7 +25529,7 @@ export const SDL = {
  *
  * @from SDL_system.h:609 bool SDL_IsTablet(void);
  */
-  isTablet: lib.symbols.SDL_IsTablet,
+  export const isTablet = lib.symbols.SDL_IsTablet;
 
 /**
  * Query if the current device is a TV.
@@ -25545,7 +25542,7 @@ export const SDL = {
  *
  * @from SDL_system.h:620 bool SDL_IsTV(void);
  */
-  isTv: lib.symbols.SDL_IsTV,
+  export const isTv = lib.symbols.SDL_IsTV;
 
 /**
  * Get the application sandbox environment, if any.
@@ -25557,7 +25554,7 @@ export const SDL = {
  *
  * @from SDL_system.h:644 SDL_Sandbox SDL_GetSandbox(void);
  */
-  getSandbox: lib.symbols.SDL_GetSandbox,
+  export const getSandbox = lib.symbols.SDL_GetSandbox;
 
 /**
  * Let iOS apps with external event handling report
@@ -25576,7 +25573,7 @@ export const SDL = {
  *
  * @from SDL_system.h:664 void SDL_OnApplicationWillTerminate(void);
  */
-  onApplicationWillTerminate: lib.symbols.SDL_OnApplicationWillTerminate,
+  export const onApplicationWillTerminate = lib.symbols.SDL_OnApplicationWillTerminate;
 
 /**
  * Let iOS apps with external event handling report
@@ -25595,7 +25592,7 @@ export const SDL = {
  *
  * @from SDL_system.h:681 void SDL_OnApplicationDidReceiveMemoryWarning(void);
  */
-  onApplicationDidReceiveMemoryWarning: lib.symbols.SDL_OnApplicationDidReceiveMemoryWarning,
+  export const onApplicationDidReceiveMemoryWarning = lib.symbols.SDL_OnApplicationDidReceiveMemoryWarning;
 
 /**
  * Let iOS apps with external event handling report
@@ -25614,7 +25611,7 @@ export const SDL = {
  *
  * @from SDL_system.h:698 void SDL_OnApplicationWillEnterBackground(void);
  */
-  onApplicationWillEnterBackground: lib.symbols.SDL_OnApplicationWillEnterBackground,
+  export const onApplicationWillEnterBackground = lib.symbols.SDL_OnApplicationWillEnterBackground;
 
 /**
  * Let iOS apps with external event handling report
@@ -25633,7 +25630,7 @@ export const SDL = {
  *
  * @from SDL_system.h:715 void SDL_OnApplicationDidEnterBackground(void);
  */
-  onApplicationDidEnterBackground: lib.symbols.SDL_OnApplicationDidEnterBackground,
+  export const onApplicationDidEnterBackground = lib.symbols.SDL_OnApplicationDidEnterBackground;
 
 /**
  * Let iOS apps with external event handling report
@@ -25652,7 +25649,7 @@ export const SDL = {
  *
  * @from SDL_system.h:732 void SDL_OnApplicationWillEnterForeground(void);
  */
-  onApplicationWillEnterForeground: lib.symbols.SDL_OnApplicationWillEnterForeground,
+  export const onApplicationWillEnterForeground = lib.symbols.SDL_OnApplicationWillEnterForeground;
 
 /**
  * Let iOS apps with external event handling report
@@ -25671,7 +25668,7 @@ export const SDL = {
  *
  * @from SDL_system.h:749 void SDL_OnApplicationDidEnterForeground(void);
  */
-  onApplicationDidEnterForeground: lib.symbols.SDL_OnApplicationDidEnterForeground,
+  export const onApplicationDidEnterForeground = lib.symbols.SDL_OnApplicationDidEnterForeground;
 
 /**
  * Let iOS apps with external event handling report
@@ -25690,7 +25687,7 @@ export const SDL = {
  *
  * @from SDL_system.h:768 void SDL_OnApplicationDidChangeStatusBarOrientation(void);
  */
-  /* onApplicationDidChangeStatusBarOrientation: lib.symbols.SDL_OnApplicationDidChangeStatusBarOrientation, */
+  /* export const onApplicationDidChangeStatusBarOrientation = lib.symbols.SDL_OnApplicationDidChangeStatusBarOrientation; */
 
 /**
  * Gets a reference to the global async task queue handle for GDK,
@@ -25708,7 +25705,7 @@ export const SDL = {
  *
  * @from SDL_system.h:792 bool SDL_GetGDKTaskQueue(XTaskQueueHandle *outTaskQueue);
  */
-  /* getGdkTaskQueue: lib.symbols.SDL_GetGDKTaskQueue, */
+  /* export const getGdkTaskQueue = lib.symbols.SDL_GetGDKTaskQueue; */
 
 /**
  * Gets a reference to the default user handle for GDK.
@@ -25725,7 +25722,7 @@ export const SDL = {
  *
  * @from SDL_system.h:807 bool SDL_GetGDKDefaultUser(XUserHandle *outUserHandle);
  */
-  /* getGdkDefaultUser: lib.symbols.SDL_GetGDKDefaultUser, */
+  /* export const getGdkDefaultUser = lib.symbols.SDL_GetGDKDefaultUser; */
 
 
 
@@ -25734,7 +25731,7 @@ export const SDL = {
 /**
  * @from SDL_thread:282 SDL_PROP_THREAD_CREATE_
  */
-  PROP_THREAD_CREATE: SDL_thread_enums.PROP_THREAD_CREATE,
+export const PROP_THREAD_CREATE = SDL_thread_enums.PROP_THREAD_CREATE;
 
 /**
  * The SDL thread priority.
@@ -25749,7 +25746,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:109 SDL_THREAD_PRIORITY_
  */
-  THREAD_PRIORITY: SDL_thread_enums.SDL_ThreadPriority,
+export const THREAD_PRIORITY = SDL_thread_enums.SDL_ThreadPriority;
 
 /**
  * The SDL thread state.
@@ -25762,7 +25759,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:125 SDL_THREAD_
  */
-  THREAD: SDL_thread_enums.SDL_ThreadState,
+export const THREAD = SDL_thread_enums.SDL_ThreadState;
 
 
 
@@ -25832,7 +25829,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:280 SDL_Thread * SDL_CreateThreadWithProperties(SDL_PropertiesID props);
  */
-  /* createThreadWithProperties: lib.symbols.SDL_CreateThreadWithProperties, */
+  /* export const createThreadWithProperties = lib.symbols.SDL_CreateThreadWithProperties; */
 
 /**
  * The actual entry point for SDL_CreateThreadWithProperties.
@@ -25848,7 +25845,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:346 SDL_Thread * SDL_CreateThreadWithPropertiesRuntime(SDL_PropertiesID props, SDL_FunctionPointer pfnBeginThread, SDL_FunctionPointer pfnEndThread);
  */
-  createThreadWithPropertiesRuntime: lib.symbols.SDL_CreateThreadWithPropertiesRuntime,
+  export const createThreadWithPropertiesRuntime = lib.symbols.SDL_CreateThreadWithPropertiesRuntime;
 
 /**
  * Get the thread name as it was specified in SDL_CreateThread().
@@ -25861,7 +25858,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:366 const char * SDL_GetThreadName(SDL_Thread *thread);
  */
-  getThreadName: lib.symbols.SDL_GetThreadName,
+  export const getThreadName = lib.symbols.SDL_GetThreadName;
 
 /**
  * Get the thread identifier for the current thread.
@@ -25881,7 +25878,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:384 SDL_ThreadID SDL_GetCurrentThreadID(void);
  */
-  getCurrentThreadId: lib.symbols.SDL_GetCurrentThreadID,
+  export const getCurrentThreadId = lib.symbols.SDL_GetCurrentThreadID;
 
 /**
  * Get the thread identifier for the specified thread.
@@ -25900,7 +25897,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:401 SDL_ThreadID SDL_GetThreadID(SDL_Thread *thread);
  */
-  getThreadId: lib.symbols.SDL_GetThreadID,
+  export const getThreadId = lib.symbols.SDL_GetThreadID;
 
 /**
  * Set the priority for the current thread.
@@ -25917,7 +25914,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:416 bool SDL_SetCurrentThreadPriority(SDL_ThreadPriority priority);
  */
-  setCurrentThreadPriority: lib.symbols.SDL_SetCurrentThreadPriority,
+  export const setCurrentThreadPriority = lib.symbols.SDL_SetCurrentThreadPriority;
 
 /**
  * Wait for a thread to finish.
@@ -25954,7 +25951,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:451 void SDL_WaitThread(SDL_Thread *thread, int *status);
  */
-  waitThread: lib.symbols.SDL_WaitThread,
+  export const waitThread = lib.symbols.SDL_WaitThread;
 
 /**
  * Get the current state of a thread.
@@ -25969,7 +25966,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:464 SDL_ThreadState SDL_GetThreadState(SDL_Thread *thread);
  */
-  getThreadState: lib.symbols.SDL_GetThreadState,
+  export const getThreadState = lib.symbols.SDL_GetThreadState;
 
 /**
  * Let a thread clean up on exit without intervention.
@@ -26007,7 +26004,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:500 void SDL_DetachThread(SDL_Thread *thread);
  */
-  detachThread: lib.symbols.SDL_DetachThread,
+  export const detachThread = lib.symbols.SDL_DetachThread;
 
 /**
  * Get the current thread's value associated with a thread local storage ID.
@@ -26024,7 +26021,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:515 void * SDL_GetTLS(SDL_TLSID *id);
  */
-  getTls: lib.symbols.SDL_GetTLS,
+  export const getTls = lib.symbols.SDL_GetTLS;
 
 /**
  * Set the current thread's value associated with a thread local storage ID.
@@ -26054,7 +26051,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:556 bool SDL_SetTLS(SDL_TLSID *id, const void *value, SDL_TLSDestructorCallback destructor);
  */
-  setTls: lib.symbols.SDL_SetTLS,
+  export const setTls = lib.symbols.SDL_SetTLS;
 
 /**
  * Cleanup all TLS data for this thread.
@@ -26069,7 +26066,7 @@ export const SDL = {
  *
  * @from SDL_thread.h:569 void SDL_CleanupTLS(void);
  */
-  cleanupTls: lib.symbols.SDL_CleanupTLS,
+  export const cleanupTls = lib.symbols.SDL_CleanupTLS;
 
 
 
@@ -26084,7 +26081,7 @@ export const SDL = {
  *
  * @from SDL_time.h:73 SDL_DATE_FORMAT_
  */
-  DATE_FORMAT: SDL_time_enums.SDL_DateFormat,
+export const DATE_FORMAT = SDL_time_enums.SDL_DateFormat;
 
 /**
  * The preferred time format of the current system locale.
@@ -26095,7 +26092,7 @@ export const SDL = {
  *
  * @from SDL_time.h:87 SDL_TIME_FORMAT_
  */
-  TIME_FORMAT: SDL_time_enums.SDL_TimeFormat,
+export const TIME_FORMAT = SDL_time_enums.SDL_TimeFormat;
 
 
 
@@ -26118,7 +26115,7 @@ export const SDL = {
  *
  * @from SDL_time.h:110 bool SDL_GetDateTimeLocalePreferences(SDL_DateFormat *dateFormat, SDL_TimeFormat *timeFormat);
  */
-  getDateTimeLocalePreferences: lib.symbols.SDL_GetDateTimeLocalePreferences,
+  export const getDateTimeLocalePreferences = lib.symbols.SDL_GetDateTimeLocalePreferences;
 
 /**
  * Gets the current value of the system realtime clock in nanoseconds since
@@ -26132,7 +26129,7 @@ export const SDL = {
  *
  * @from SDL_time.h:122 bool SDL_GetCurrentTime(SDL_Time *ticks);
  */
-  getCurrentTime: lib.symbols.SDL_GetCurrentTime,
+  export const getCurrentTime = lib.symbols.SDL_GetCurrentTime;
 
 /**
  * Converts an SDL_Time in nanoseconds since the epoch to a calendar time in
@@ -26150,7 +26147,7 @@ export const SDL = {
  *
  * @from SDL_time.h:138 bool SDL_TimeToDateTime(SDL_Time ticks, SDL_DateTime *dt, bool localTime);
  */
-  timeToDateTime: lib.symbols.SDL_TimeToDateTime,
+  export const timeToDateTime = lib.symbols.SDL_TimeToDateTime;
 
 /**
  * Converts a calendar time to an SDL_Time in nanoseconds since the epoch.
@@ -26167,7 +26164,7 @@ export const SDL = {
  *
  * @from SDL_time.h:153 bool SDL_DateTimeToTime(const SDL_DateTime *dt, SDL_Time *ticks);
  */
-  dateTimeToTime: lib.symbols.SDL_DateTimeToTime,
+  export const dateTimeToTime = lib.symbols.SDL_DateTimeToTime;
 
 /**
  * Converts an SDL time into a Windows FILETIME (100-nanosecond intervals
@@ -26185,7 +26182,7 @@ export const SDL = {
  *
  * @from SDL_time.h:169 void SDL_TimeToWindows(SDL_Time ticks, Uint32 *dwLowDateTime, Uint32 *dwHighDateTime);
  */
-  timeToWindows: lib.symbols.SDL_TimeToWindows,
+  export const timeToWindows = lib.symbols.SDL_TimeToWindows;
 
 /**
  * Converts a Windows FILETIME (100-nanosecond intervals since January 1,
@@ -26202,7 +26199,7 @@ export const SDL = {
  *
  * @from SDL_time.h:184 SDL_Time SDL_TimeFromWindows(Uint32 dwLowDateTime, Uint32 dwHighDateTime);
  */
-  timeFromWindows: lib.symbols.SDL_TimeFromWindows,
+  export const timeFromWindows = lib.symbols.SDL_TimeFromWindows;
 
 /**
  * Get the number of days in a month for a given year.
@@ -26216,7 +26213,7 @@ export const SDL = {
  *
  * @from SDL_time.h:196 int SDL_GetDaysInMonth(int year, int month);
  */
-  getDaysInMonth: lib.symbols.SDL_GetDaysInMonth,
+  export const getDaysInMonth = lib.symbols.SDL_GetDaysInMonth;
 
 /**
  * Get the day of year for a calendar date.
@@ -26231,7 +26228,7 @@ export const SDL = {
  *
  * @from SDL_time.h:209 int SDL_GetDayOfYear(int year, int month, int day);
  */
-  getDayOfYear: lib.symbols.SDL_GetDayOfYear,
+  export const getDayOfYear = lib.symbols.SDL_GetDayOfYear;
 
 /**
  * Get the day of week for a calendar date.
@@ -26246,7 +26243,7 @@ export const SDL = {
  *
  * @from SDL_time.h:222 int SDL_GetDayOfWeek(int year, int month, int day);
  */
-  getDayOfWeek: lib.symbols.SDL_GetDayOfWeek,
+  export const getDayOfWeek = lib.symbols.SDL_GetDayOfWeek;
 
 
 
@@ -26264,7 +26261,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:196 Uint64 SDL_GetTicks(void);
  */
-  getTicks: lib.symbols.SDL_GetTicks,
+  export const getTicks = lib.symbols.SDL_GetTicks;
 
 /**
  * Get the number of nanoseconds since SDL library initialization.
@@ -26278,7 +26275,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:208 Uint64 SDL_GetTicksNS(void);
  */
-  getTicksNs: lib.symbols.SDL_GetTicksNS,
+  export const getTicksNs = lib.symbols.SDL_GetTicksNS;
 
 /**
  * Get the current value of the high resolution counter.
@@ -26299,7 +26296,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:227 Uint64 SDL_GetPerformanceCounter(void);
  */
-  getPerformanceCounter: lib.symbols.SDL_GetPerformanceCounter,
+  export const getPerformanceCounter = lib.symbols.SDL_GetPerformanceCounter;
 
 /**
  * Get the count per second of the high resolution counter.
@@ -26314,7 +26311,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:240 Uint64 SDL_GetPerformanceFrequency(void);
  */
-  getPerformanceFrequency: lib.symbols.SDL_GetPerformanceFrequency,
+  export const getPerformanceFrequency = lib.symbols.SDL_GetPerformanceFrequency;
 
 /**
  * Wait a specified number of milliseconds before returning.
@@ -26334,7 +26331,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:258 void SDL_Delay(Uint32 ms);
  */
-  delay: lib.symbols.SDL_Delay,
+  export const delay = lib.symbols.SDL_Delay;
 
 /**
  * Wait a specified number of nanoseconds before returning.
@@ -26354,7 +26351,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:276 void SDL_DelayNS(Uint64 ns);
  */
-  delayNs: lib.symbols.SDL_DelayNS,
+  export const delayNs = lib.symbols.SDL_DelayNS;
 
 /**
  * Wait a specified number of nanoseconds before returning.
@@ -26374,7 +26371,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:294 void SDL_DelayPrecise(Uint64 ns);
  */
-  delayPrecise: lib.symbols.SDL_DelayPrecise,
+  export const delayPrecise = lib.symbols.SDL_DelayPrecise;
 
 /**
  * Call a callback function at a future time.
@@ -26412,7 +26409,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:363 SDL_TimerID SDL_AddTimer(Uint32 interval, SDL_TimerCallback callback, void *userdata);
  */
-  addTimer: lib.symbols.SDL_AddTimer,
+  export const addTimer = lib.symbols.SDL_AddTimer;
 
 /**
  * Call a callback function at a future time.
@@ -26450,7 +26447,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:425 SDL_TimerID SDL_AddTimerNS(Uint64 interval, SDL_NSTimerCallback callback, void *userdata);
  */
-  addTimerNs: lib.symbols.SDL_AddTimerNS,
+  export const addTimerNs = lib.symbols.SDL_AddTimerNS;
 
 /**
  * Remove a timer created with SDL_AddTimer().
@@ -26467,7 +26464,7 @@ export const SDL = {
  *
  * @from SDL_timer.h:440 bool SDL_RemoveTimer(SDL_TimerID id);
  */
-  removeTimer: lib.symbols.SDL_RemoveTimer,
+  export const removeTimer = lib.symbols.SDL_RemoveTimer;
 
 
 
@@ -26480,7 +26477,7 @@ export const SDL = {
  *
  * @from SDL_touch.h:82 SDL_TOUCH_DEVICE_
  */
-  TOUCH_DEVICE: SDL_touch_enums.SDL_TouchDeviceType,
+export const TOUCH_DEVICE = SDL_touch_enums.SDL_TouchDeviceType;
 
 
 
@@ -26501,7 +26498,7 @@ export const SDL = {
  *
  * @from SDL_touch.h:139 SDL_TouchID * SDL_GetTouchDevices(int *count);
  */
-  getTouchDevices: lib.symbols.SDL_GetTouchDevices,
+  export const getTouchDevices = lib.symbols.SDL_GetTouchDevices;
 
 /**
  * Get the touch device name as reported from the driver.
@@ -26514,7 +26511,7 @@ export const SDL = {
  *
  * @from SDL_touch.h:150 const char * SDL_GetTouchDeviceName(SDL_TouchID touchID);
  */
-  getTouchDeviceName: lib.symbols.SDL_GetTouchDeviceName,
+  export const getTouchDeviceName = lib.symbols.SDL_GetTouchDeviceName;
 
 /**
  * Get the type of the given touch device.
@@ -26526,7 +26523,7 @@ export const SDL = {
  *
  * @from SDL_touch.h:160 SDL_TouchDeviceType SDL_GetTouchDeviceType(SDL_TouchID touchID);
  */
-  getTouchDeviceType: lib.symbols.SDL_GetTouchDeviceType,
+  export const getTouchDeviceType = lib.symbols.SDL_GetTouchDeviceType;
 
 /**
  * Get a list of active fingers for a given touch device.
@@ -26543,7 +26540,7 @@ export const SDL = {
  *
  * @from SDL_touch.h:175 SDL_Finger ** SDL_GetTouchFingers(SDL_TouchID touchID, int *count);
  */
-  getTouchFingers: lib.symbols.SDL_GetTouchFingers,
+  export const getTouchFingers = lib.symbols.SDL_GetTouchFingers;
 
 
 
@@ -26552,7 +26549,7 @@ export const SDL = {
 /**
  * @from SDL_tray:79 SDL_TRAYENTRY_
  */
-  TRAYENTRY: SDL_tray_enums.TRAYENTRY,
+export const TRAYENTRY = SDL_tray_enums.TRAYENTRY;
 
 
 
@@ -26580,7 +26577,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:120 SDL_Tray * SDL_CreateTray(SDL_Surface *icon, const char *tooltip);
  */
-  createTray: lib.symbols.SDL_CreateTray,
+  export const createTray = lib.symbols.SDL_CreateTray;
 
 /**
  * Updates the system tray icon's icon.
@@ -26597,7 +26594,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:135 void SDL_SetTrayIcon(SDL_Tray *tray, SDL_Surface *icon);
  */
-  setTrayIcon: lib.symbols.SDL_SetTrayIcon,
+  export const setTrayIcon = lib.symbols.SDL_SetTrayIcon;
 
 /**
  * Updates the system tray icon's tooltip.
@@ -26614,7 +26611,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:150 void SDL_SetTrayTooltip(SDL_Tray *tray, const char *tooltip);
  */
-  setTrayTooltip: lib.symbols.SDL_SetTrayTooltip,
+  export const setTrayTooltip = lib.symbols.SDL_SetTrayTooltip;
 
 /**
  * Create a menu for a system tray.
@@ -26640,7 +26637,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:174 SDL_TrayMenu * SDL_CreateTrayMenu(SDL_Tray *tray);
  */
-  createTrayMenu: lib.symbols.SDL_CreateTrayMenu,
+  export const createTrayMenu = lib.symbols.SDL_CreateTrayMenu;
 
 /**
  * Create a submenu for a system tray entry.
@@ -26666,7 +26663,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:198 SDL_TrayMenu * SDL_CreateTraySubmenu(SDL_TrayEntry *entry);
  */
-  createTraySubmenu: lib.symbols.SDL_CreateTraySubmenu,
+  export const createTraySubmenu = lib.symbols.SDL_CreateTraySubmenu;
 
 /**
  * Gets a previously created tray menu.
@@ -26692,7 +26689,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:222 SDL_TrayMenu * SDL_GetTrayMenu(SDL_Tray *tray);
  */
-  getTrayMenu: lib.symbols.SDL_GetTrayMenu,
+  export const getTrayMenu = lib.symbols.SDL_GetTrayMenu;
 
 /**
  * Gets a previously created tray entry submenu.
@@ -26718,7 +26715,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:246 SDL_TrayMenu * SDL_GetTraySubmenu(SDL_TrayEntry *entry);
  */
-  getTraySubmenu: lib.symbols.SDL_GetTraySubmenu,
+  export const getTraySubmenu = lib.symbols.SDL_GetTraySubmenu;
 
 /**
  * Returns a list of entries in the menu, in order.
@@ -26740,7 +26737,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:266 const SDL_TrayEntry ** SDL_GetTrayEntries(SDL_TrayMenu *menu, int *count);
  */
-  getTrayEntries: lib.symbols.SDL_GetTrayEntries,
+  export const getTrayEntries = lib.symbols.SDL_GetTrayEntries;
 
 /**
  * Removes a tray entry.
@@ -26757,7 +26754,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:281 void SDL_RemoveTrayEntry(SDL_TrayEntry *entry);
  */
-  removeTrayEntry: lib.symbols.SDL_RemoveTrayEntry,
+  export const removeTrayEntry = lib.symbols.SDL_RemoveTrayEntry;
 
 /**
  * Insert a tray entry at a given position.
@@ -26787,7 +26784,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:309 SDL_TrayEntry * SDL_InsertTrayEntryAt(SDL_TrayMenu *menu, int pos, const char *label, SDL_TrayEntryFlags flags);
  */
-  insertTrayEntryAt: lib.symbols.SDL_InsertTrayEntryAt,
+  export const insertTrayEntryAt = lib.symbols.SDL_InsertTrayEntryAt;
 
 /**
  * Sets the label of an entry.
@@ -26811,7 +26808,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:331 void SDL_SetTrayEntryLabel(SDL_TrayEntry *entry, const char *label);
  */
-  setTrayEntryLabel: lib.symbols.SDL_SetTrayEntryLabel,
+  export const setTrayEntryLabel = lib.symbols.SDL_SetTrayEntryLabel;
 
 /**
  * Gets the label of an entry.
@@ -26832,7 +26829,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:350 const char * SDL_GetTrayEntryLabel(SDL_TrayEntry *entry);
  */
-  getTrayEntryLabel: lib.symbols.SDL_GetTrayEntryLabel,
+  export const getTrayEntryLabel = lib.symbols.SDL_GetTrayEntryLabel;
 
 /**
  * Sets whether or not an entry is checked.
@@ -26853,7 +26850,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:369 void SDL_SetTrayEntryChecked(SDL_TrayEntry *entry, bool checked);
  */
-  setTrayEntryChecked: lib.symbols.SDL_SetTrayEntryChecked,
+  export const setTrayEntryChecked = lib.symbols.SDL_SetTrayEntryChecked;
 
 /**
  * Gets whether or not an entry is checked.
@@ -26874,7 +26871,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:388 bool SDL_GetTrayEntryChecked(SDL_TrayEntry *entry);
  */
-  getTrayEntryChecked: lib.symbols.SDL_GetTrayEntryChecked,
+  export const getTrayEntryChecked = lib.symbols.SDL_GetTrayEntryChecked;
 
 /**
  * Sets whether or not an entry is enabled.
@@ -26893,7 +26890,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:405 void SDL_SetTrayEntryEnabled(SDL_TrayEntry *entry, bool enabled);
  */
-  setTrayEntryEnabled: lib.symbols.SDL_SetTrayEntryEnabled,
+  export const setTrayEntryEnabled = lib.symbols.SDL_SetTrayEntryEnabled;
 
 /**
  * Gets whether or not an entry is enabled.
@@ -26912,7 +26909,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:422 bool SDL_GetTrayEntryEnabled(SDL_TrayEntry *entry);
  */
-  getTrayEntryEnabled: lib.symbols.SDL_GetTrayEntryEnabled,
+  export const getTrayEntryEnabled = lib.symbols.SDL_GetTrayEntryEnabled;
 
 /**
  * Sets a callback to be invoked when the entry is selected.
@@ -26932,7 +26929,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:440 void SDL_SetTrayEntryCallback(SDL_TrayEntry *entry, SDL_TrayCallback callback, void *userdata);
  */
-  setTrayEntryCallback: lib.symbols.SDL_SetTrayEntryCallback,
+  export const setTrayEntryCallback = lib.symbols.SDL_SetTrayEntryCallback;
 
 /**
  * Simulate a click on a tray entry.
@@ -26946,7 +26943,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:452 void SDL_ClickTrayEntry(SDL_TrayEntry *entry);
  */
-  clickTrayEntry: lib.symbols.SDL_ClickTrayEntry,
+  export const clickTrayEntry = lib.symbols.SDL_ClickTrayEntry;
 
 /**
  * Destroys a tray object.
@@ -26964,7 +26961,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:468 void SDL_DestroyTray(SDL_Tray *tray);
  */
-  destroyTray: lib.symbols.SDL_DestroyTray,
+  export const destroyTray = lib.symbols.SDL_DestroyTray;
 
 /**
  * Gets the menu containing a certain tray entry.
@@ -26981,7 +26978,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:483 SDL_TrayMenu * SDL_GetTrayEntryParent(SDL_TrayEntry *entry);
  */
-  getTrayEntryParent: lib.symbols.SDL_GetTrayEntryParent,
+  export const getTrayEntryParent = lib.symbols.SDL_GetTrayEntryParent;
 
 /**
  * Gets the entry for which the menu is a submenu, if the current menu is a
@@ -27003,7 +27000,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:503 SDL_TrayEntry * SDL_GetTrayMenuParentEntry(SDL_TrayMenu *menu);
  */
-  getTrayMenuParentEntry: lib.symbols.SDL_GetTrayMenuParentEntry,
+  export const getTrayMenuParentEntry = lib.symbols.SDL_GetTrayMenuParentEntry;
 
 /**
  * Gets the tray for which this menu is the first-level menu, if the current
@@ -27025,7 +27022,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:523 SDL_Tray * SDL_GetTrayMenuParentTray(SDL_TrayMenu *menu);
  */
-  getTrayMenuParentTray: lib.symbols.SDL_GetTrayMenuParentTray,
+  export const getTrayMenuParentTray = lib.symbols.SDL_GetTrayMenuParentTray;
 
 /**
  * Update the trays.
@@ -27039,7 +27036,7 @@ export const SDL = {
  *
  * @from SDL_tray.h:535 void SDL_UpdateTrays(void);
  */
-  updateTrays: lib.symbols.SDL_UpdateTrays,
+  export const updateTrays = lib.symbols.SDL_UpdateTrays;
 
 
 
@@ -27063,7 +27060,7 @@ export const SDL = {
  *
  * @from SDL_version.h:147 int SDL_GetVersion(void);
  */
-  getVersion: lib.symbols.SDL_GetVersion,
+  export const getVersion = lib.symbols.SDL_GetVersion;
 
 /**
  * Get the code revision of SDL that is linked against your program.
@@ -27091,7 +27088,7 @@ export const SDL = {
  *
  * @from SDL_version.h:173 const char * SDL_GetRevision(void);
  */
-  getRevision: lib.symbols.SDL_GetRevision,
+  export const getRevision = lib.symbols.SDL_GetRevision;
 
 
 
@@ -27100,47 +27097,47 @@ export const SDL = {
 /**
  * @from SDL_video:188 SDL_WINDOW_
  */
-  WINDOW: SDL_video_enums.WINDOW,
+export const WINDOW = SDL_video_enums.WINDOW;
 
 /**
  * @from SDL_video:465 SDL_GL_CONTEXT_PROFILE_
  */
-  GL_CONTEXT_PROFILE: SDL_video_enums.GL_CONTEXT_PROFILE,
+export const GL_CONTEXT_PROFILE = SDL_video_enums.GL_CONTEXT_PROFILE;
 
 /**
  * @from SDL_video:477 SDL_GL_CONTEXT_
  */
-  GL_CONTEXT: SDL_video_enums.GL_CONTEXT,
+export const GL_CONTEXT = SDL_video_enums.GL_CONTEXT;
 
 /**
  * @from SDL_video:491 SDL_GL_CONTEXT_RELEASE_BEHAVIOR_
  */
-  GL_CONTEXT_RELEASE_BEHAVIOR: SDL_video_enums.GL_CONTEXT_RELEASE_BEHAVIOR,
+export const GL_CONTEXT_RELEASE_BEHAVIOR = SDL_video_enums.GL_CONTEXT_RELEASE_BEHAVIOR;
 
 /**
  * @from SDL_video:502 SDL_GL_CONTEXT_RESET_
  */
-  GL_CONTEXT_RESET: SDL_video_enums.GL_CONTEXT_RESET,
+export const GL_CONTEXT_RESET = SDL_video_enums.GL_CONTEXT_RESET;
 
 /**
  * @from SDL_video:629 SDL_PROP_DISPLAY_
  */
-  PROP_DISPLAY: SDL_video_enums.PROP_DISPLAY,
+export const PROP_DISPLAY = SDL_video_enums.PROP_DISPLAY;
 
 /**
  * @from SDL_video:1309 SDL_PROP_WINDOW_CREATE_
  */
-  PROP_WINDOW_CREATE: SDL_video_enums.PROP_WINDOW_CREATE,
+export const PROP_WINDOW_CREATE = SDL_video_enums.PROP_WINDOW_CREATE;
 
 /**
  * @from SDL_video:1517 SDL_PROP_WINDOW_
  */
-  PROP_WINDOW: SDL_video_enums.PROP_WINDOW,
+export const PROP_WINDOW = SDL_video_enums.PROP_WINDOW;
 
 /**
  * @from SDL_video:2312 SDL_WINDOW_SURFACE_VSYNC_
  */
-  WINDOW_SURFACE_VSYNC: SDL_video_enums.WINDOW_SURFACE_VSYNC,
+export const WINDOW_SURFACE_VSYNC = SDL_video_enums.WINDOW_SURFACE_VSYNC;
 
 /**
  * System theme.
@@ -27149,7 +27146,7 @@ export const SDL = {
  *
  * @from SDL_video.h:107 SDL_SYSTEM_THEME_
  */
-  SYSTEM_THEME: SDL_video_enums.SDL_SystemTheme,
+export const SYSTEM_THEME = SDL_video_enums.SDL_SystemTheme;
 
 /**
  * Display orientation values; the way a display is rotated.
@@ -27158,7 +27155,7 @@ export const SDL = {
  *
  * @from SDL_video.h:156 SDL_ORIENTATION_
  */
-  ORIENTATION: SDL_video_enums.SDL_DisplayOrientation,
+export const ORIENTATION = SDL_video_enums.SDL_DisplayOrientation;
 
 /**
  * Window flash operation.
@@ -27167,7 +27164,7 @@ export const SDL = {
  *
  * @from SDL_video.h:302 SDL_FLASH_
  */
-  FLASH: SDL_video_enums.SDL_FlashOperation,
+export const FLASH = SDL_video_enums.SDL_FlashOperation;
 
 /**
  * An enumeration of OpenGL configuration attributes.
@@ -27188,7 +27185,7 @@ export const SDL = {
  *
  * @from SDL_video.h:426 SDL_GL_
  */
-  GL: SDL_video_enums.SDL_GLAttr,
+export const GL = SDL_video_enums.SDL_GLAttr;
 
 /**
  * Possible return values from the SDL_HitTest callback.
@@ -27201,7 +27198,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2678 SDL_HITTEST_
  */
-  HITTEST: SDL_video_enums.SDL_HitTestResult,
+export const HITTEST = SDL_video_enums.SDL_HitTestResult;
 
 
 
@@ -27218,7 +27215,7 @@ export const SDL = {
  *
  * @from SDL_video.h:519 int SDL_GetNumVideoDrivers(void);
  */
-  getNumVideoDrivers: lib.symbols.SDL_GetNumVideoDrivers,
+  export const getNumVideoDrivers = lib.symbols.SDL_GetNumVideoDrivers;
 
 /**
  * Get the name of a built in video driver.
@@ -27241,7 +27238,7 @@ export const SDL = {
  *
  * @from SDL_video.h:540 const char * SDL_GetVideoDriver(int index);
  */
-  getVideoDriver: lib.symbols.SDL_GetVideoDriver,
+  export const getVideoDriver = lib.symbols.SDL_GetVideoDriver;
 
 /**
  * Get the name of the currently initialized video driver.
@@ -27262,7 +27259,7 @@ export const SDL = {
  *
  * @from SDL_video.h:559 const char * SDL_GetCurrentVideoDriver(void);
  */
-  getCurrentVideoDriver: lib.symbols.SDL_GetCurrentVideoDriver,
+  export const getCurrentVideoDriver = lib.symbols.SDL_GetCurrentVideoDriver;
 
 /**
  * Get the current system theme.
@@ -27275,7 +27272,7 @@ export const SDL = {
  *
  * @from SDL_video.h:570 SDL_SystemTheme SDL_GetSystemTheme(void);
  */
-  getSystemTheme: lib.symbols.SDL_GetSystemTheme,
+  export const getSystemTheme = lib.symbols.SDL_GetSystemTheme;
 
 /**
  * Get a list of currently connected displays.
@@ -27292,7 +27289,7 @@ export const SDL = {
  *
  * @from SDL_video.h:585 SDL_DisplayID * SDL_GetDisplays(int *count);
  */
-  getDisplays: lib.symbols.SDL_GetDisplays,
+  export const getDisplays = lib.symbols.SDL_GetDisplays;
 
 /**
  * Return the primary display.
@@ -27308,7 +27305,7 @@ export const SDL = {
  *
  * @from SDL_video.h:599 SDL_DisplayID SDL_GetPrimaryDisplay(void);
  */
-  getPrimaryDisplay: lib.symbols.SDL_GetPrimaryDisplay,
+  export const getPrimaryDisplay = lib.symbols.SDL_GetPrimaryDisplay;
 
 /**
  * Get the properties associated with a display.
@@ -27338,7 +27335,7 @@ export const SDL = {
  *
  * @from SDL_video.h:627 SDL_PropertiesID SDL_GetDisplayProperties(SDL_DisplayID displayID);
  */
-  getDisplayProperties: lib.symbols.SDL_GetDisplayProperties,
+  export const getDisplayProperties = lib.symbols.SDL_GetDisplayProperties;
 
 /**
  * Get the name of a display in UTF-8 encoding.
@@ -27355,7 +27352,7 @@ export const SDL = {
  *
  * @from SDL_video.h:645 const char * SDL_GetDisplayName(SDL_DisplayID displayID);
  */
-  getDisplayName: lib.symbols.SDL_GetDisplayName,
+  export const getDisplayName = lib.symbols.SDL_GetDisplayName;
 
 /**
  * Get the desktop area represented by a display.
@@ -27377,7 +27374,7 @@ export const SDL = {
  *
  * @from SDL_video.h:665 bool SDL_GetDisplayBounds(SDL_DisplayID displayID, SDL_Rect *rect);
  */
-  getDisplayBounds: lib.symbols.SDL_GetDisplayBounds,
+  export const getDisplayBounds = lib.symbols.SDL_GetDisplayBounds;
 
 /**
  * Get the usable desktop area represented by a display, in screen
@@ -27405,7 +27402,7 @@ export const SDL = {
  *
  * @from SDL_video.h:691 bool SDL_GetDisplayUsableBounds(SDL_DisplayID displayID, SDL_Rect *rect);
  */
-  getDisplayUsableBounds: lib.symbols.SDL_GetDisplayUsableBounds,
+  export const getDisplayUsableBounds = lib.symbols.SDL_GetDisplayUsableBounds;
 
 /**
  * Get the orientation of a display when it is unrotated.
@@ -27422,7 +27419,7 @@ export const SDL = {
  *
  * @from SDL_video.h:706 SDL_DisplayOrientation SDL_GetNaturalDisplayOrientation(SDL_DisplayID displayID);
  */
-  getNaturalDisplayOrientation: lib.symbols.SDL_GetNaturalDisplayOrientation,
+  export const getNaturalDisplayOrientation = lib.symbols.SDL_GetNaturalDisplayOrientation;
 
 /**
  * Get the orientation of a display.
@@ -27439,7 +27436,7 @@ export const SDL = {
  *
  * @from SDL_video.h:721 SDL_DisplayOrientation SDL_GetCurrentDisplayOrientation(SDL_DisplayID displayID);
  */
-  getCurrentDisplayOrientation: lib.symbols.SDL_GetCurrentDisplayOrientation,
+  export const getCurrentDisplayOrientation = lib.symbols.SDL_GetCurrentDisplayOrientation;
 
 /**
  * Get the content scale of a display.
@@ -27468,7 +27465,7 @@ export const SDL = {
  *
  * @from SDL_video.h:748 float SDL_GetDisplayContentScale(SDL_DisplayID displayID);
  */
-  getDisplayContentScale: lib.symbols.SDL_GetDisplayContentScale,
+  export const getDisplayContentScale = lib.symbols.SDL_GetDisplayContentScale;
 
 /**
  * Get a list of fullscreen display modes available on a display.
@@ -27498,7 +27495,7 @@ export const SDL = {
  *
  * @from SDL_video.h:776 SDL_DisplayMode ** SDL_GetFullscreenDisplayModes(SDL_DisplayID displayID, int *count);
  */
-  getFullscreenDisplayModes: lib.symbols.SDL_GetFullscreenDisplayModes,
+  export const getFullscreenDisplayModes = lib.symbols.SDL_GetFullscreenDisplayModes;
 
 /**
  * Get the closest match to the requested display mode.
@@ -27531,7 +27528,7 @@ export const SDL = {
  *
  * @from SDL_video.h:807 bool SDL_GetClosestFullscreenDisplayMode(SDL_DisplayID displayID, int w, int h, float refresh_rate, bool include_high_density_modes, SDL_DisplayMode *closest);
  */
-  getClosestFullscreenDisplayMode: lib.symbols.SDL_GetClosestFullscreenDisplayMode,
+  export const getClosestFullscreenDisplayMode = lib.symbols.SDL_GetClosestFullscreenDisplayMode;
 
 /**
  * Get information about the desktop's display mode.
@@ -27554,7 +27551,7 @@ export const SDL = {
  *
  * @from SDL_video.h:828 const SDL_DisplayMode * SDL_GetDesktopDisplayMode(SDL_DisplayID displayID);
  */
-  getDesktopDisplayMode: lib.symbols.SDL_GetDesktopDisplayMode,
+  export const getDesktopDisplayMode = lib.symbols.SDL_GetDesktopDisplayMode;
 
 /**
  * Get information about the current display mode.
@@ -27577,7 +27574,7 @@ export const SDL = {
  *
  * @from SDL_video.h:849 const SDL_DisplayMode * SDL_GetCurrentDisplayMode(SDL_DisplayID displayID);
  */
-  getCurrentDisplayMode: lib.symbols.SDL_GetCurrentDisplayMode,
+  export const getCurrentDisplayMode = lib.symbols.SDL_GetCurrentDisplayMode;
 
 /**
  * Get the display containing a point.
@@ -27595,7 +27592,7 @@ export const SDL = {
  *
  * @from SDL_video.h:865 SDL_DisplayID SDL_GetDisplayForPoint(const SDL_Point *point);
  */
-  getDisplayForPoint: lib.symbols.SDL_GetDisplayForPoint,
+  export const getDisplayForPoint = lib.symbols.SDL_GetDisplayForPoint;
 
 /**
  * Get the display primarily containing a rect.
@@ -27614,7 +27611,7 @@ export const SDL = {
  *
  * @from SDL_video.h:882 SDL_DisplayID SDL_GetDisplayForRect(const SDL_Rect *rect);
  */
-  getDisplayForRect: lib.symbols.SDL_GetDisplayForRect,
+  export const getDisplayForRect = lib.symbols.SDL_GetDisplayForRect;
 
 /**
  * Get the display associated with a window.
@@ -27633,7 +27630,7 @@ export const SDL = {
  *
  * @from SDL_video.h:899 SDL_DisplayID SDL_GetDisplayForWindow(SDL_Window *window);
  */
-  getDisplayForWindow: lib.symbols.SDL_GetDisplayForWindow,
+  export const getDisplayForWindow = lib.symbols.SDL_GetDisplayForWindow;
 
 /**
  * Get the pixel density of a window.
@@ -27654,7 +27651,7 @@ export const SDL = {
  *
  * @from SDL_video.h:918 float SDL_GetWindowPixelDensity(SDL_Window *window);
  */
-  getWindowPixelDensity: lib.symbols.SDL_GetWindowPixelDensity,
+  export const getWindowPixelDensity = lib.symbols.SDL_GetWindowPixelDensity;
 
 /**
  * Get the content display scale relative to a window's pixel size.
@@ -27680,7 +27677,7 @@ export const SDL = {
  *
  * @from SDL_video.h:942 float SDL_GetWindowDisplayScale(SDL_Window *window);
  */
-  getWindowDisplayScale: lib.symbols.SDL_GetWindowDisplayScale,
+  export const getWindowDisplayScale = lib.symbols.SDL_GetWindowDisplayScale;
 
 /**
  * Set the display mode to use when a window is visible and fullscreen.
@@ -27717,7 +27714,7 @@ export const SDL = {
  *
  * @from SDL_video.h:977 bool SDL_SetWindowFullscreenMode(SDL_Window *window, const SDL_DisplayMode *mode);
  */
-  setWindowFullscreenMode: lib.symbols.SDL_SetWindowFullscreenMode,
+  export const setWindowFullscreenMode = lib.symbols.SDL_SetWindowFullscreenMode;
 
 /**
  * Query the display mode to use when a window is visible at fullscreen.
@@ -27735,7 +27732,7 @@ export const SDL = {
  *
  * @from SDL_video.h:993 const SDL_DisplayMode * SDL_GetWindowFullscreenMode(SDL_Window *window);
  */
-  getWindowFullscreenMode: lib.symbols.SDL_GetWindowFullscreenMode,
+  export const getWindowFullscreenMode = lib.symbols.SDL_GetWindowFullscreenMode;
 
 /**
  * Get the raw ICC profile data for the screen the window is currently on.
@@ -27752,7 +27749,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1008 void * SDL_GetWindowICCProfile(SDL_Window *window, size_t *size);
  */
-  getWindowIccProfile: lib.symbols.SDL_GetWindowICCProfile,
+  export const getWindowIccProfile = lib.symbols.SDL_GetWindowICCProfile;
 
 /**
  * Get the pixel format associated with the window.
@@ -27768,7 +27765,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1022 SDL_PixelFormat SDL_GetWindowPixelFormat(SDL_Window *window);
  */
-  getWindowPixelFormat: lib.symbols.SDL_GetWindowPixelFormat,
+  export const getWindowPixelFormat = lib.symbols.SDL_GetWindowPixelFormat;
 
 /**
  * Get a list of valid windows.
@@ -27786,7 +27783,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1038 SDL_Window ** SDL_GetWindows(int *count);
  */
-  getWindows: lib.symbols.SDL_GetWindows,
+  export const getWindows = lib.symbols.SDL_GetWindows;
 
 /**
  * Create a window with the specified dimensions and flags.
@@ -27874,7 +27871,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1124 SDL_Window * SDL_CreateWindow(const char *title, int w, int h, SDL_WindowFlags flags);
  */
-  createWindow: lib.symbols.SDL_CreateWindow,
+  export const createWindow = lib.symbols.SDL_CreateWindow;
 
 /**
  * Create a child popup window of the specified parent window.
@@ -27938,7 +27935,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1186 SDL_Window * SDL_CreatePopupWindow(SDL_Window *parent, int offset_x, int offset_y, int w, int h, SDL_WindowFlags flags);
  */
-  createPopupWindow: lib.symbols.SDL_CreatePopupWindow,
+  export const createPopupWindow = lib.symbols.SDL_CreatePopupWindow;
 
 /**
  * Create a window with the specified properties.
@@ -28061,7 +28058,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1307 SDL_Window * SDL_CreateWindowWithProperties(SDL_PropertiesID props);
  */
-  createWindowWithProperties: lib.symbols.SDL_CreateWindowWithProperties,
+  export const createWindowWithProperties = lib.symbols.SDL_CreateWindowWithProperties;
 
 /**
  * Get the numeric ID of a window.
@@ -28081,7 +28078,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1360 SDL_WindowID SDL_GetWindowID(SDL_Window *window);
  */
-  getWindowId: lib.symbols.SDL_GetWindowID,
+  export const getWindowId = lib.symbols.SDL_GetWindowID;
 
 /**
  * Get a window from a stored ID.
@@ -28101,7 +28098,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1378 SDL_Window * SDL_GetWindowFromID(SDL_WindowID id);
  */
-  getWindowFromId: lib.symbols.SDL_GetWindowFromID,
+  export const getWindowFromId = lib.symbols.SDL_GetWindowFromID;
 
 /**
  * Get parent of a window.
@@ -28118,7 +28115,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1393 SDL_Window * SDL_GetWindowParent(SDL_Window *window);
  */
-  getWindowParent: lib.symbols.SDL_GetWindowParent,
+  export const getWindowParent = lib.symbols.SDL_GetWindowParent;
 
 /**
  * Get the properties associated with a window.
@@ -28242,7 +28239,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1515 SDL_PropertiesID SDL_GetWindowProperties(SDL_Window *window);
  */
-  getWindowProperties: lib.symbols.SDL_GetWindowProperties,
+  export const getWindowProperties = lib.symbols.SDL_GetWindowProperties;
 
 /**
  * Get the window flags.
@@ -28264,7 +28261,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1571 SDL_WindowFlags SDL_GetWindowFlags(SDL_Window *window);
  */
-  getWindowFlags: lib.symbols.SDL_GetWindowFlags,
+  export const getWindowFlags = lib.symbols.SDL_GetWindowFlags;
 
 /**
  * Set the title of a window.
@@ -28284,7 +28281,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1589 bool SDL_SetWindowTitle(SDL_Window *window, const char *title);
  */
-  setWindowTitle: lib.symbols.SDL_SetWindowTitle,
+  export const setWindowTitle = lib.symbols.SDL_SetWindowTitle;
 
 /**
  * Get the title of a window.
@@ -28301,7 +28298,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1604 const char * SDL_GetWindowTitle(SDL_Window *window);
  */
-  getWindowTitle: lib.symbols.SDL_GetWindowTitle,
+  export const getWindowTitle = lib.symbols.SDL_GetWindowTitle;
 
 /**
  * Set the icon for a window.
@@ -28327,7 +28324,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1628 bool SDL_SetWindowIcon(SDL_Window *window, SDL_Surface *icon);
  */
-  setWindowIcon: lib.symbols.SDL_SetWindowIcon,
+  export const setWindowIcon = lib.symbols.SDL_SetWindowIcon;
 
 /**
  * Request that the window's position be set.
@@ -28370,7 +28367,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1669 bool SDL_SetWindowPosition(SDL_Window *window, int x, int y);
  */
-  setWindowPosition: lib.symbols.SDL_SetWindowPosition,
+  export const setWindowPosition = lib.symbols.SDL_SetWindowPosition;
 
 /**
  * Get the position of a window.
@@ -28397,7 +28394,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1694 bool SDL_GetWindowPosition(SDL_Window *window, int *x, int *y);
  */
-  getWindowPosition: lib.symbols.SDL_GetWindowPosition,
+  export const getWindowPosition = lib.symbols.SDL_GetWindowPosition;
 
 /**
  * Request that the size of a window's client area be set.
@@ -28436,7 +28433,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1731 bool SDL_SetWindowSize(SDL_Window *window, int w, int h);
  */
-  setWindowSize: lib.symbols.SDL_SetWindowSize,
+  export const setWindowSize = lib.symbols.SDL_SetWindowSize;
 
 /**
  * Get the size of a window's client area.
@@ -28461,7 +28458,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1754 bool SDL_GetWindowSize(SDL_Window *window, int *w, int *h);
  */
-  getWindowSize: lib.symbols.SDL_GetWindowSize,
+  export const getWindowSize = lib.symbols.SDL_GetWindowSize;
 
 /**
  * Get the safe area for this window.
@@ -28485,7 +28482,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1776 bool SDL_GetWindowSafeArea(SDL_Window *window, SDL_Rect *rect);
  */
-  getWindowSafeArea: lib.symbols.SDL_GetWindowSafeArea,
+  export const getWindowSafeArea = lib.symbols.SDL_GetWindowSafeArea;
 
 /**
  * Request that the aspect ratio of a window's client area be set.
@@ -28528,7 +28525,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1817 bool SDL_SetWindowAspectRatio(SDL_Window *window, float min_aspect, float max_aspect);
  */
-  setWindowAspectRatio: lib.symbols.SDL_SetWindowAspectRatio,
+  export const setWindowAspectRatio = lib.symbols.SDL_SetWindowAspectRatio;
 
 /**
  * Get the size of a window's client area.
@@ -28549,7 +28546,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1836 bool SDL_GetWindowAspectRatio(SDL_Window *window, float *min_aspect, float *max_aspect);
  */
-  getWindowAspectRatio: lib.symbols.SDL_GetWindowAspectRatio,
+  export const getWindowAspectRatio = lib.symbols.SDL_GetWindowAspectRatio;
 
 /**
  * Get the size of a window's borders (decorations) around the client area.
@@ -28588,7 +28585,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1873 bool SDL_GetWindowBordersSize(SDL_Window *window, int *top, int *left, int *bottom, int *right);
  */
-  getWindowBordersSize: lib.symbols.SDL_GetWindowBordersSize,
+  export const getWindowBordersSize = lib.symbols.SDL_GetWindowBordersSize;
 
 /**
  * Get the size of a window's client area, in pixels.
@@ -28610,7 +28607,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1893 bool SDL_GetWindowSizeInPixels(SDL_Window *window, int *w, int *h);
  */
-  getWindowSizeInPixels: lib.symbols.SDL_GetWindowSizeInPixels,
+  export const getWindowSizeInPixels = lib.symbols.SDL_GetWindowSizeInPixels;
 
 /**
  * Set the minimum size of a window's client area.
@@ -28630,7 +28627,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1911 bool SDL_SetWindowMinimumSize(SDL_Window *window, int min_w, int min_h);
  */
-  setWindowMinimumSize: lib.symbols.SDL_SetWindowMinimumSize,
+  export const setWindowMinimumSize = lib.symbols.SDL_SetWindowMinimumSize;
 
 /**
  * Get the minimum size of a window's client area.
@@ -28652,7 +28649,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1931 bool SDL_GetWindowMinimumSize(SDL_Window *window, int *w, int *h);
  */
-  getWindowMinimumSize: lib.symbols.SDL_GetWindowMinimumSize,
+  export const getWindowMinimumSize = lib.symbols.SDL_GetWindowMinimumSize;
 
 /**
  * Set the maximum size of a window's client area.
@@ -28672,7 +28669,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1949 bool SDL_SetWindowMaximumSize(SDL_Window *window, int max_w, int max_h);
  */
-  setWindowMaximumSize: lib.symbols.SDL_SetWindowMaximumSize,
+  export const setWindowMaximumSize = lib.symbols.SDL_SetWindowMaximumSize;
 
 /**
  * Get the maximum size of a window's client area.
@@ -28694,7 +28691,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1969 bool SDL_GetWindowMaximumSize(SDL_Window *window, int *w, int *h);
  */
-  getWindowMaximumSize: lib.symbols.SDL_GetWindowMaximumSize,
+  export const getWindowMaximumSize = lib.symbols.SDL_GetWindowMaximumSize;
 
 /**
  * Set the border state of a window.
@@ -28718,7 +28715,7 @@ export const SDL = {
  *
  * @from SDL_video.h:1991 bool SDL_SetWindowBordered(SDL_Window *window, bool bordered);
  */
-  setWindowBordered: lib.symbols.SDL_SetWindowBordered,
+  export const setWindowBordered = lib.symbols.SDL_SetWindowBordered;
 
 /**
  * Set the user-resizable state of a window.
@@ -28742,7 +28739,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2013 bool SDL_SetWindowResizable(SDL_Window *window, bool resizable);
  */
-  setWindowResizable: lib.symbols.SDL_SetWindowResizable,
+  export const setWindowResizable = lib.symbols.SDL_SetWindowResizable;
 
 /**
  * Set the window to always be above the others.
@@ -28763,7 +28760,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2032 bool SDL_SetWindowAlwaysOnTop(SDL_Window *window, bool on_top);
  */
-  setWindowAlwaysOnTop: lib.symbols.SDL_SetWindowAlwaysOnTop,
+  export const setWindowAlwaysOnTop = lib.symbols.SDL_SetWindowAlwaysOnTop;
 
 /**
  * Show a window.
@@ -28781,7 +28778,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2048 bool SDL_ShowWindow(SDL_Window *window);
  */
-  showWindow: lib.symbols.SDL_ShowWindow,
+  export const showWindow = lib.symbols.SDL_ShowWindow;
 
 /**
  * Hide a window.
@@ -28799,7 +28796,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2064 bool SDL_HideWindow(SDL_Window *window);
  */
-  hideWindow: lib.symbols.SDL_HideWindow,
+  export const hideWindow = lib.symbols.SDL_HideWindow;
 
 /**
  * Request that a window be raised above other windows and gain the input
@@ -28821,7 +28818,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2084 bool SDL_RaiseWindow(SDL_Window *window);
  */
-  raiseWindow: lib.symbols.SDL_RaiseWindow,
+  export const raiseWindow = lib.symbols.SDL_RaiseWindow;
 
 /**
  * Request that the window be made as large as possible.
@@ -28857,7 +28854,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2118 bool SDL_MaximizeWindow(SDL_Window *window);
  */
-  maximizeWindow: lib.symbols.SDL_MaximizeWindow,
+  export const maximizeWindow = lib.symbols.SDL_MaximizeWindow;
 
 /**
  * Request that the window be minimized to an iconic representation.
@@ -28888,7 +28885,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2147 bool SDL_MinimizeWindow(SDL_Window *window);
  */
-  minimizeWindow: lib.symbols.SDL_MinimizeWindow,
+  export const minimizeWindow = lib.symbols.SDL_MinimizeWindow;
 
 /**
  * Request that the size and position of a minimized or maximized window be
@@ -28920,7 +28917,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2177 bool SDL_RestoreWindow(SDL_Window *window);
  */
-  restoreWindow: lib.symbols.SDL_RestoreWindow,
+  export const restoreWindow = lib.symbols.SDL_RestoreWindow;
 
 /**
  * Request that the window's fullscreen state be changed.
@@ -28954,7 +28951,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2209 bool SDL_SetWindowFullscreen(SDL_Window *window, bool fullscreen);
  */
-  setWindowFullscreen: lib.symbols.SDL_SetWindowFullscreen,
+  export const setWindowFullscreen = lib.symbols.SDL_SetWindowFullscreen;
 
 /**
  * Block until any pending window state is finalized.
@@ -28987,7 +28984,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2240 bool SDL_SyncWindow(SDL_Window *window);
  */
-  syncWindow: lib.symbols.SDL_SyncWindow,
+  export const syncWindow = lib.symbols.SDL_SyncWindow;
 
 /**
  * Return whether the window has a surface associated with it.
@@ -29004,7 +29001,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2255 bool SDL_WindowHasSurface(SDL_Window *window);
  */
-  windowHasSurface: lib.symbols.SDL_WindowHasSurface,
+  export const windowHasSurface = lib.symbols.SDL_WindowHasSurface;
 
 /**
  * Get the SDL surface associated with the window.
@@ -29035,7 +29032,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2284 SDL_Surface * SDL_GetWindowSurface(SDL_Window *window);
  */
-  getWindowSurface: lib.symbols.SDL_GetWindowSurface,
+  export const getWindowSurface = lib.symbols.SDL_GetWindowSurface;
 
 /**
  * Toggle VSync for the window surface.
@@ -29063,7 +29060,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2310 bool SDL_SetWindowSurfaceVSync(SDL_Window *window, int vsync);
  */
-  setWindowSurfaceVSync: lib.symbols.SDL_SetWindowSurfaceVSync,
+  export const setWindowSurfaceVSync = lib.symbols.SDL_SetWindowSurfaceVSync;
 
 /**
  * Get VSync for the window surface.
@@ -29082,7 +29079,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2330 bool SDL_GetWindowSurfaceVSync(SDL_Window *window, int *vsync);
  */
-  getWindowSurfaceVSync: lib.symbols.SDL_GetWindowSurfaceVSync,
+  export const getWindowSurfaceVSync = lib.symbols.SDL_GetWindowSurfaceVSync;
 
 /**
  * Copy the window surface to the screen.
@@ -29105,7 +29102,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2351 bool SDL_UpdateWindowSurface(SDL_Window *window);
  */
-  updateWindowSurface: lib.symbols.SDL_UpdateWindowSurface,
+  export const updateWindowSurface = lib.symbols.SDL_UpdateWindowSurface;
 
 /**
  * Copy areas of the window surface to the screen.
@@ -29136,7 +29133,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2380 bool SDL_UpdateWindowSurfaceRects(SDL_Window *window, const SDL_Rect *rects, int numrects);
  */
-  updateWindowSurfaceRects: lib.symbols.SDL_UpdateWindowSurfaceRects,
+  export const updateWindowSurfaceRects = lib.symbols.SDL_UpdateWindowSurfaceRects;
 
 /**
  * Destroy the surface associated with the window.
@@ -29154,7 +29151,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2396 bool SDL_DestroyWindowSurface(SDL_Window *window);
  */
-  destroyWindowSurface: lib.symbols.SDL_DestroyWindowSurface,
+  export const destroyWindowSurface = lib.symbols.SDL_DestroyWindowSurface;
 
 /**
  * Set a window's keyboard grab mode.
@@ -29189,7 +29186,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2429 bool SDL_SetWindowKeyboardGrab(SDL_Window *window, bool grabbed);
  */
-  setWindowKeyboardGrab: lib.symbols.SDL_SetWindowKeyboardGrab,
+  export const setWindowKeyboardGrab = lib.symbols.SDL_SetWindowKeyboardGrab;
 
 /**
  * Set a window's mouse grab mode.
@@ -29212,7 +29209,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2450 bool SDL_SetWindowMouseGrab(SDL_Window *window, bool grabbed);
  */
-  setWindowMouseGrab: lib.symbols.SDL_SetWindowMouseGrab,
+  export const setWindowMouseGrab = lib.symbols.SDL_SetWindowMouseGrab;
 
 /**
  * Get a window's keyboard grab mode.
@@ -29228,7 +29225,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2464 bool SDL_GetWindowKeyboardGrab(SDL_Window *window);
  */
-  getWindowKeyboardGrab: lib.symbols.SDL_GetWindowKeyboardGrab,
+  export const getWindowKeyboardGrab = lib.symbols.SDL_GetWindowKeyboardGrab;
 
 /**
  * Get a window's mouse grab mode.
@@ -29247,7 +29244,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2481 bool SDL_GetWindowMouseGrab(SDL_Window *window);
  */
-  getWindowMouseGrab: lib.symbols.SDL_GetWindowMouseGrab,
+  export const getWindowMouseGrab = lib.symbols.SDL_GetWindowMouseGrab;
 
 /**
  * Get the window that currently has an input grab enabled.
@@ -29263,7 +29260,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2495 SDL_Window * SDL_GetGrabbedWindow(void);
  */
-  getGrabbedWindow: lib.symbols.SDL_GetGrabbedWindow,
+  export const getGrabbedWindow = lib.symbols.SDL_GetGrabbedWindow;
 
 /**
  * Confines the cursor to the specified area of a window.
@@ -29287,7 +29284,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2517 bool SDL_SetWindowMouseRect(SDL_Window *window, const SDL_Rect *rect);
  */
-  setWindowMouseRect: lib.symbols.SDL_SetWindowMouseRect,
+  export const setWindowMouseRect = lib.symbols.SDL_SetWindowMouseRect;
 
 /**
  * Get the mouse confinement rectangle of a window.
@@ -29306,7 +29303,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2534 const SDL_Rect * SDL_GetWindowMouseRect(SDL_Window *window);
  */
-  getWindowMouseRect: lib.symbols.SDL_GetWindowMouseRect,
+  export const getWindowMouseRect = lib.symbols.SDL_GetWindowMouseRect;
 
 /**
  * Set the opacity for a window.
@@ -29329,7 +29326,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2555 bool SDL_SetWindowOpacity(SDL_Window *window, float opacity);
  */
-  setWindowOpacity: lib.symbols.SDL_SetWindowOpacity,
+  export const setWindowOpacity = lib.symbols.SDL_SetWindowOpacity;
 
 /**
  * Get the opacity of a window.
@@ -29349,7 +29346,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2573 float SDL_GetWindowOpacity(SDL_Window *window);
  */
-  getWindowOpacity: lib.symbols.SDL_GetWindowOpacity,
+  export const getWindowOpacity = lib.symbols.SDL_GetWindowOpacity;
 
 /**
  * Set the window as a child of a parent window.
@@ -29385,7 +29382,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2607 bool SDL_SetWindowParent(SDL_Window *window, SDL_Window *parent);
  */
-  setWindowParent: lib.symbols.SDL_SetWindowParent,
+  export const setWindowParent = lib.symbols.SDL_SetWindowParent;
 
 /**
  * Toggle the state of the window as modal.
@@ -29407,7 +29404,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2627 bool SDL_SetWindowModal(SDL_Window *window, bool modal);
  */
-  setWindowModal: lib.symbols.SDL_SetWindowModal,
+  export const setWindowModal = lib.symbols.SDL_SetWindowModal;
 
 /**
  * Set whether the window may have input focus.
@@ -29423,7 +29420,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2641 bool SDL_SetWindowFocusable(SDL_Window *window, bool focusable);
  */
-  setWindowFocusable: lib.symbols.SDL_SetWindowFocusable,
+  export const setWindowFocusable = lib.symbols.SDL_SetWindowFocusable;
 
 /**
  * Display the system-level window menu.
@@ -29450,7 +29447,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2667 bool SDL_ShowWindowSystemMenu(SDL_Window *window, int x, int y);
  */
-  showWindowSystemMenu: lib.symbols.SDL_ShowWindowSystemMenu,
+  export const showWindowSystemMenu = lib.symbols.SDL_ShowWindowSystemMenu;
 
 /**
  * Set the shape of a transparent window.
@@ -29480,7 +29477,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2776 bool SDL_SetWindowShape(SDL_Window *window, SDL_Surface *shape);
  */
-  setWindowShape: lib.symbols.SDL_SetWindowShape,
+  export const setWindowShape = lib.symbols.SDL_SetWindowShape;
 
 /**
  * Request a window to demand attention from the user.
@@ -29496,7 +29493,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2790 bool SDL_FlashWindow(SDL_Window *window, SDL_FlashOperation operation);
  */
-  flashWindow: lib.symbols.SDL_FlashWindow,
+  export const flashWindow = lib.symbols.SDL_FlashWindow;
 
 /**
  * Destroy a window.
@@ -29520,7 +29517,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2812 void SDL_DestroyWindow(SDL_Window *window);
  */
-  destroyWindow: lib.symbols.SDL_DestroyWindow,
+  export const destroyWindow = lib.symbols.SDL_DestroyWindow;
 
 /**
  * Check whether the screensaver is currently enabled.
@@ -29540,7 +29537,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2831 bool SDL_ScreenSaverEnabled(void);
  */
-  screenSaverEnabled: lib.symbols.SDL_ScreenSaverEnabled,
+  export const screenSaverEnabled = lib.symbols.SDL_ScreenSaverEnabled;
 
 /**
  * Allow the screen to be blanked by a screen saver.
@@ -29557,7 +29554,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2846 bool SDL_EnableScreenSaver(void);
  */
-  enableScreenSaver: lib.symbols.SDL_EnableScreenSaver,
+  export const enableScreenSaver = lib.symbols.SDL_EnableScreenSaver;
 
 /**
  * Prevent the screen from being blanked by a screen saver.
@@ -29580,7 +29577,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2867 bool SDL_DisableScreenSaver(void);
  */
-  disableScreenSaver: lib.symbols.SDL_DisableScreenSaver,
+  export const disableScreenSaver = lib.symbols.SDL_DisableScreenSaver;
 
 /**
  * Dynamically load an OpenGL library.
@@ -29606,7 +29603,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2897 bool SDL_GL_LoadLibrary(const char *path);
  */
-  glLoadLibrary: lib.symbols.SDL_GL_LoadLibrary,
+  export const glLoadLibrary = lib.symbols.SDL_GL_LoadLibrary;
 
 /**
  * Get an OpenGL function by name.
@@ -29663,7 +29660,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2952 SDL_FunctionPointer SDL_GL_GetProcAddress(const char *proc);
  */
-  glGetProcAddress: lib.symbols.SDL_GL_GetProcAddress,
+  export const glGetProcAddress = lib.symbols.SDL_GL_GetProcAddress;
 
 /**
  * Get an EGL library function by name.
@@ -29684,7 +29681,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2971 SDL_FunctionPointer SDL_EGL_GetProcAddress(const char *proc);
  */
-  eglGetProcAddress: lib.symbols.SDL_EGL_GetProcAddress,
+  export const eglGetProcAddress = lib.symbols.SDL_EGL_GetProcAddress;
 
 /**
  * Unload the OpenGL library previously loaded by SDL_GL_LoadLibrary().
@@ -29697,7 +29694,7 @@ export const SDL = {
  *
  * @from SDL_video.h:2982 void SDL_GL_UnloadLibrary(void);
  */
-  glUnloadLibrary: lib.symbols.SDL_GL_UnloadLibrary,
+  export const glUnloadLibrary = lib.symbols.SDL_GL_UnloadLibrary;
 
 /**
  * Check if an OpenGL extension is supported for the current context.
@@ -29722,7 +29719,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3005 bool SDL_GL_ExtensionSupported(const char *extension);
  */
-  glExtensionSupported: lib.symbols.SDL_GL_ExtensionSupported,
+  export const glExtensionSupported = lib.symbols.SDL_GL_ExtensionSupported;
 
 /**
  * Reset all previously set OpenGL context attributes to their default values.
@@ -29736,7 +29733,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3017 void SDL_GL_ResetAttributes(void);
  */
-  glResetAttributes: lib.symbols.SDL_GL_ResetAttributes,
+  export const glResetAttributes = lib.symbols.SDL_GL_ResetAttributes;
 
 /**
  * Set an OpenGL window attribute before window creation.
@@ -29761,7 +29758,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3040 bool SDL_GL_SetAttribute(SDL_GLAttr attr, int value);
  */
-  glSetAttribute: lib.symbols.SDL_GL_SetAttribute,
+  export const glSetAttribute = lib.symbols.SDL_GL_SetAttribute;
 
 /**
  * Get the actual value for an attribute from the current context.
@@ -29781,7 +29778,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3058 bool SDL_GL_GetAttribute(SDL_GLAttr attr, int *value);
  */
-  glGetAttribute: lib.symbols.SDL_GL_GetAttribute,
+  export const glGetAttribute = lib.symbols.SDL_GL_GetAttribute;
 
 /**
  * Get the currently active OpenGL window.
@@ -29795,7 +29792,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3112 SDL_Window * SDL_GL_GetCurrentWindow(void);
  */
-  glGetCurrentWindow: lib.symbols.SDL_GL_GetCurrentWindow,
+  export const glGetCurrentWindow = lib.symbols.SDL_GL_GetCurrentWindow;
 
 /**
  * Sets the callbacks for defining custom EGLAttrib arrays for EGL
@@ -29819,7 +29816,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3185 void SDL_EGL_SetAttributeCallbacks(SDL_EGLAttribArrayCallback platformAttribCallback,                                                               SDL_EGLIntArrayCallback surfaceAttribCallback,                                                               SDL_EGLIntArrayCallback contextAttribCallback, void *userdata);
  */
-  eglSetAttributeCallbacks: lib.symbols.SDL_EGL_SetAttributeCallbacks,
+  export const eglSetAttributeCallbacks = lib.symbols.SDL_EGL_SetAttributeCallbacks;
 
 /**
  * Set the swap interval for the current OpenGL context.
@@ -29852,7 +29849,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3218 bool SDL_GL_SetSwapInterval(int interval);
  */
-  glSetSwapInterval: lib.symbols.SDL_GL_SetSwapInterval,
+  export const glSetSwapInterval = lib.symbols.SDL_GL_SetSwapInterval;
 
 /**
  * Get the swap interval for the current OpenGL context.
@@ -29875,7 +29872,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3239 bool SDL_GL_GetSwapInterval(int *interval);
  */
-  glGetSwapInterval: lib.symbols.SDL_GL_GetSwapInterval,
+  export const glGetSwapInterval = lib.symbols.SDL_GL_GetSwapInterval;
 
 /**
  * Update a window with OpenGL rendering.
@@ -29897,7 +29894,7 @@ export const SDL = {
  *
  * @from SDL_video.h:3259 bool SDL_GL_SwapWindow(SDL_Window *window);
  */
-  glSwapWindow: lib.symbols.SDL_GL_SwapWindow,
+  export const glSwapWindow = lib.symbols.SDL_GL_SwapWindow;
 
 
 
@@ -29955,7 +29952,7 @@ export const SDL = {
  *
  * @from SDL_vulkan.h:132 bool SDL_Vulkan_LoadLibrary(const char *path);
  */
-  vulkanLoadLibrary: lib.symbols.SDL_Vulkan_LoadLibrary,
+  export const vulkanLoadLibrary = lib.symbols.SDL_Vulkan_LoadLibrary;
 
 /**
  * Get the address of the `vkGetInstanceProcAddr` function.
@@ -29978,7 +29975,7 @@ export const SDL = {
  *
  * @from SDL_vulkan.h:153 SDL_FunctionPointer SDL_Vulkan_GetVkGetInstanceProcAddr(void);
  */
-  vulkanGetVkGetInstanceProcAddr: lib.symbols.SDL_Vulkan_GetVkGetInstanceProcAddr,
+  export const vulkanGetVkGetInstanceProcAddr = lib.symbols.SDL_Vulkan_GetVkGetInstanceProcAddr;
 
 /**
  * Unload the Vulkan library previously loaded by SDL_Vulkan_LoadLibrary().
@@ -30002,7 +29999,7 @@ export const SDL = {
  *
  * @from SDL_vulkan.h:175 void SDL_Vulkan_UnloadLibrary(void);
  */
-  vulkanUnloadLibrary: lib.symbols.SDL_Vulkan_UnloadLibrary,
+  export const vulkanUnloadLibrary = lib.symbols.SDL_Vulkan_UnloadLibrary;
 
 /**
  * Get the Vulkan instance extensions needed for vkCreateInstance.
@@ -30028,6 +30025,5 @@ export const SDL = {
  *
  * @from SDL_vulkan.h:199 char const * const * SDL_Vulkan_GetInstanceExtensions(Uint32 *count);
  */
-  vulkanGetInstanceExtensions: lib.symbols.SDL_Vulkan_GetInstanceExtensions,
+  export const vulkanGetInstanceExtensions = lib.symbols.SDL_Vulkan_GetInstanceExtensions;
 
-};
