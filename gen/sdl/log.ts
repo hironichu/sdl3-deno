@@ -69,32 +69,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_log_enums from "../enums/SDL_log.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The predefined log categories
- *
- * By default the application and gpu categories are enabled at the INFO
- * level, the assert category is enabled at the WARN level, test is enabled at
- * the VERBOSE level and all other categories are enabled at the ERROR level.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_log.h:89 SDL_LOG_CATEGORY_
- */
-export const LOG_CATEGORY = SDL_log_enums.SDL_LogCategory;
-
-/**
- * The predefined log priorities
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_log.h:129 SDL_LOG_PRIORITY_
- */
-export const LOG_PRIORITY = SDL_log_enums.SDL_LogPriority;
-
-
+export {
+  SDL_LogCategory as LOG_CATEGORY,
+  SDL_LogPriority as LOG_PRIORITY,
+} from "../enums/SDL_log.ts"
 
 /**
  * Set the priority of all log categories.

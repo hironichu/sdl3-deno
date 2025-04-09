@@ -35,32 +35,12 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_time_enums from "../enums/SDL_time.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The preferred date format of the current system locale.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetDateTimeLocalePreferences
- *
- * @from SDL_time.h:73 SDL_DATE_FORMAT_
- */
-export const DATE_FORMAT = SDL_time_enums.SDL_DateFormat;
-
-/**
- * The preferred time format of the current system locale.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetDateTimeLocalePreferences
- *
- * @from SDL_time.h:87 SDL_TIME_FORMAT_
- */
-export const TIME_FORMAT = SDL_time_enums.SDL_TimeFormat;
-
-
+export {
+  SDL_DateFormat as DATE_FORMAT,
+  SDL_TimeFormat as TIME_FORMAT,
+} from "../enums/SDL_time.ts"
 
 /**
  * Gets the current preferred date and time format for the system locale.

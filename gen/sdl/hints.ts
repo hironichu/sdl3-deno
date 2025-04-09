@@ -36,19 +36,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_hints_enums from "../enums/SDL_hints.ts";
 import { lib } from "./lib.ts";
 
-/**
- * An enumeration of hint priorities.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_hints.h:4295 SDL_HINT_
- */
-export const HINT = SDL_hints_enums.SDL_HintPriority;
-
-
+export {
+  SDL_HintPriority as HINT,
+} from "../enums/SDL_hints.ts"
 
 /**
  * Set a hint with a specific priority.

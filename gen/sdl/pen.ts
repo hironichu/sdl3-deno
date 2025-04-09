@@ -38,30 +38,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_pen_enums from "../enums/SDL_pen.ts";
-/**
- * @from SDL_pen:85 SDL_PEN_INPUT_
- */
-export const PEN_INPUT = SDL_pen_enums.PEN_INPUT;
-
-/**
- * Pen axis indices.
- *
- * These are the valid values for the `axis` field in SDL_PenAxisEvent. All
- * axes are either normalised to 0..1 or report a (positive or negative) angle
- * in degrees, with 0.0 representing the centre. Not all pens/backends support
- * all axes: unsupported axes are always zero.
- *
- * To convert angles for tilt and rotation into vector representation, use
- * SDL_sinf on the XTILT, YTILT, or ROTATION component, for example:
- *
- * `SDL_sinf(xtilt * SDL_PI_F / 180.0)`.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pen.h:108 SDL_PEN_AXIS_
- */
-export const PEN_AXIS = SDL_pen_enums.SDL_PenAxis;
-
-
+export {
+  PEN_INPUT as PEN_INPUT,
+  SDL_PenAxis as PEN_AXIS,
+} from "../enums/SDL_pen.ts"
 

@@ -36,29 +36,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_dialog_enums from "../enums/SDL_dialog.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_dialog:325 SDL_PROP_FILE_DIALOG_
- */
-export const PROP_FILE_DIALOG = SDL_dialog_enums.PROP_FILE_DIALOG;
-
-/**
- * Various types of file dialogs.
- *
- * This is used by SDL_ShowFileDialogWithProperties() to decide what kind of
- * dialog to present to the user.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_ShowFileDialogWithProperties
- *
- * @from SDL_dialog.h:269 SDL_FILEDIALOG_
- */
-export const FILEDIALOG = SDL_dialog_enums.SDL_FileDialogType;
-
-
+export {
+  PROP_FILE_DIALOG as PROP_FILE_DIALOG,
+  SDL_FileDialogType as FILEDIALOG,
+} from "../enums/SDL_dialog.ts"
 
 /**
  * Displays a dialog that lets the user select a file on their filesystem.

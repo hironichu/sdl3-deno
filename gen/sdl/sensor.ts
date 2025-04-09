@@ -33,68 +33,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_sensor_enums from "../enums/SDL_sensor.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The different sensors defined by SDL.
- *
- * Additional sensors may be available, using platform dependent semantics.
- *
- * Here are the additional Android sensors:
- *
- * https://developer.android.com/reference/android/hardware/SensorEvent.html#values
- *
- * Accelerometer sensor notes:
- *
- * The accelerometer returns the current acceleration in SI meters per second
- * squared. This measurement includes the force of gravity, so a device at
- * rest will have an value of SDL_STANDARD_GRAVITY away from the center of the
- * earth, which is a positive Y value.
- *
- * - `values[0]`: Acceleration on the x axis
- * - `values[1]`: Acceleration on the y axis
- * - `values[2]`: Acceleration on the z axis
- *
- * For phones and tablets held in natural orientation and game controllers
- * held in front of you, the axes are defined as follows:
- *
- * - -X ... +X : left ... right
- * - -Y ... +Y : bottom ... top
- * - -Z ... +Z : farther ... closer
- *
- * The accelerometer axis data is not changed when the device is rotated.
- *
- * Gyroscope sensor notes:
- *
- * The gyroscope returns the current rate of rotation in radians per second.
- * The rotation is positive in the counter-clockwise direction. That is, an
- * observer looking from a positive location on one of the axes would see
- * positive rotation on that axis when it appeared to be rotating
- * counter-clockwise.
- *
- * - `values[0]`: Angular speed around the x axis (pitch)
- * - `values[1]`: Angular speed around the y axis (yaw)
- * - `values[2]`: Angular speed around the z axis (roll)
- *
- * For phones and tablets held in natural orientation and game controllers
- * held in front of you, the axes are defined as follows:
- *
- * - -X ... +X : left ... right
- * - -Y ... +Y : bottom ... top
- * - -Z ... +Z : farther ... closer
- *
- * The gyroscope axis data is not changed when the device is rotated.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetCurrentDisplayOrientation
- *
- * @from SDL_sensor.h:131 SDL_SENSOR_
- */
-export const SENSOR = SDL_sensor_enums.SDL_SensorType;
-
-
+export {
+  SDL_SensorType as SENSOR,
+} from "../enums/SDL_sensor.ts"
 
 /**
  * Get a list of currently connected sensors.

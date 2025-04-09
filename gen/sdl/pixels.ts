@@ -79,175 +79,23 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_pixels_enums from "../enums/SDL_pixels.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Pixel type.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:133 SDL_PIXELTYPE_
- */
-export const PIXELTYPE = SDL_pixels_enums.SDL_PixelType;
-
-/**
- * Bitmap pixel order, high bit -> low bit.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:156 SDL_BITMAPORDER_
- */
-export const BITMAPORDER = SDL_pixels_enums.SDL_BitmapOrder;
-
-/**
- * Packed component order, high bit -> low bit.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:168 SDL_PACKEDORDER_
- */
-export const PACKEDORDER = SDL_pixels_enums.SDL_PackedOrder;
-
-/**
- * Array component order, low byte -> high byte.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:186 SDL_ARRAYORDER_
- */
-export const ARRAYORDER = SDL_pixels_enums.SDL_ArrayOrder;
-
-/**
- * Packed component layout.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:202 SDL_PACKEDLAYOUT_
- */
-export const PACKEDLAYOUT = SDL_pixels_enums.SDL_PackedLayout;
-
-/**
- * Pixel format.
- *
- * SDL's pixel formats have the following naming convention:
- *
- * - Names with a list of components and a single bit count, such as RGB24 and
- *   ABGR32, define a platform-independent encoding into bytes in the order
- *   specified. For example, in RGB24 data, each pixel is encoded in 3 bytes
- *   (red, green, blue) in that order, and in ABGR32 data, each pixel is
- *   encoded in 4 bytes alpha, blue, green, red) in that order. Use these
- *   names if the property of a format that is important to you is the order
- *   of the bytes in memory or on disk.
- * - Names with a bit count per component, such as ARGB8888 and XRGB1555, are
- *   "packed" into an appropriately-sized integer in the platform's native
- *   endianness. For example, ARGB8888 is a sequence of 32-bit integers; in
- *   each integer, the most significant bits are alpha, and the least
- *   significant bits are blue. On a little-endian CPU such as x86, the least
- *   significant bits of each integer are arranged first in memory, but on a
- *   big-endian CPU such as s390x, the most significant bits are arranged
- *   first. Use these names if the property of a format that is important to
- *   you is the meaning of each bit position within a native-endianness
- *   integer.
- * - In indexed formats such as INDEX4LSB, each pixel is represented by
- *   encoding an index into the palette into the indicated number of bits,
- *   with multiple pixels packed into each byte if appropriate. In LSB
- *   formats, the first (leftmost) pixel is stored in the least-significant
- *   bits of the byte; in MSB formats, it's stored in the most-significant
- *   bits. INDEX8 does not need LSB/MSB variants, because each pixel exactly
- *   fills one byte.
- *
- * The 32-bit byte-array encodings such as RGBA32 are aliases for the
- * appropriate 8888 encoding for the current platform. For example, RGBA32 is
- * an alias for ABGR8888 on little-endian CPUs like x86, or an alias for
- * RGBA8888 on big-endian CPUs.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:547 SDL_PIXELFORMAT_
- */
-export const PIXELFORMAT = SDL_pixels_enums.SDL_PixelFormat;
-
-/**
- * Colorspace color type.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:708 SDL_COLOR_TYPE_
- */
-export const COLOR_TYPE = SDL_pixels_enums.SDL_ColorType;
-
-/**
- * Colorspace color range, as described by
- * https://www.itu.int/rec/R-REC-BT.2100-2-201807-I/en
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:721 SDL_COLOR_RANGE_
- */
-export const COLOR_RANGE = SDL_pixels_enums.SDL_ColorRange;
-
-/**
- * Colorspace color primaries, as described by
- * https://www.itu.int/rec/T-REC-H.273-201612-S/en
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:734 SDL_COLOR_PRIMARIES_
- */
-export const COLOR_PRIMARIES = SDL_pixels_enums.SDL_ColorPrimaries;
-
-/**
- * Colorspace transfer characteristics.
- *
- * These are as described by https://www.itu.int/rec/T-REC-H.273-201612-S/en
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:759 SDL_TRANSFER_CHARACTERISTICS_
- */
-export const TRANSFER_CHARACTERISTICS = SDL_pixels_enums.SDL_TransferCharacteristics;
-
-/**
- * Colorspace matrix coefficients.
- *
- * These are as described by https://www.itu.int/rec/T-REC-H.273-201612-S/en
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:789 SDL_MATRIX_COEFFICIENTS_
- */
-export const MATRIX_COEFFICIENTS = SDL_pixels_enums.SDL_MatrixCoefficients;
-
-/**
- * Colorspace chroma sample location.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_pixels.h:813 SDL_CHROMA_LOCATION_
- */
-export const CHROMA_LOCATION = SDL_pixels_enums.SDL_ChromaLocation;
-
-/**
- * Colorspace definitions.
- *
- * Since similar colorspaces may vary in their details (matrix, transfer
- * function, etc.), this is not an exhaustive list, but rather a
- * representative sample of the kinds of colorspaces supported in SDL.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_ColorPrimaries
- * @sa SDL_ColorRange
- * @sa SDL_ColorType
- * @sa SDL_MatrixCoefficients
- * @sa SDL_TransferCharacteristics
- *
- * @from SDL_pixels.h:1010 SDL_COLORSPACE_
- */
-export const COLORSPACE = SDL_pixels_enums.SDL_Colorspace;
-
-
+export {
+  SDL_PixelType as PIXELTYPE,
+  SDL_BitmapOrder as BITMAPORDER,
+  SDL_PackedOrder as PACKEDORDER,
+  SDL_ArrayOrder as ARRAYORDER,
+  SDL_PackedLayout as PACKEDLAYOUT,
+  SDL_PixelFormat as PIXELFORMAT,
+  SDL_ColorType as COLOR_TYPE,
+  SDL_ColorRange as COLOR_RANGE,
+  SDL_ColorPrimaries as COLOR_PRIMARIES,
+  SDL_TransferCharacteristics as TRANSFER_CHARACTERISTICS,
+  SDL_MatrixCoefficients as MATRIX_COEFFICIENTS,
+  SDL_ChromaLocation as CHROMA_LOCATION,
+  SDL_Colorspace as COLORSPACE,
+} from "../enums/SDL_pixels.ts"
 
 /**
  * Get the human readable name of a pixel format.

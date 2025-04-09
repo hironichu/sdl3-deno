@@ -36,21 +36,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_power_enums from "../enums/SDL_power.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The basic state for the system's power supply.
- *
- * These are results returned by SDL_GetPowerInfo().
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_power.h:55 SDL_POWERSTATE_
- */
-export const POWERSTATE = SDL_power_enums.SDL_PowerState;
-
-
+export {
+  SDL_PowerState as POWERSTATE,
+} from "../enums/SDL_power.ts"
 
 /**
  * Get the current power supply details.

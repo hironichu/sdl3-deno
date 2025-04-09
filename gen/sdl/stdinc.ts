@@ -45,13 +45,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_stdinc_enums from "../enums/SDL_stdinc.ts";
 import { lib } from "./lib.ts";
 
-/* TODO: include/SDL_stdinc.h:390: error: size of array 'SDL_dummy_enum' is negative */
-export const DUMMY_ENUM = SDL_stdinc_enums.SDL_DUMMY_ENUM;
-
-
+export {
+  SDL_DUMMY_ENUM as DUMMY_ENUM,
+} from "../enums/SDL_stdinc.ts"
 
 /**
  * Get the original set of SDL memory functions.

@@ -32,24 +32,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_scancode_enums from "../enums/SDL_scancode.ts";
-/**
- * The SDL keyboard scancode representation.
- *
- * An SDL scancode is the physical representation of a key on the keyboard,
- * independent of language and keyboard mapping.
- *
- * Values of this type are used to represent keyboard keys, among other places
- * in the `scancode` field of the SDL_KeyboardEvent structure.
- *
- * The values in this enumeration are based on the USB usage page standard:
- * https://usb.org/sites/default/files/hut1_5.pdf
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_scancode.h:51 SDL_SCANCODE_
- */
-export const SCANCODE = SDL_scancode_enums.SDL_Scancode;
-
-
+export {
+  SDL_Scancode as SCANCODE,
+} from "../enums/SDL_scancode.ts"
 

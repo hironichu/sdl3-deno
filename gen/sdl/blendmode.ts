@@ -29,39 +29,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_blendmode_enums from "../enums/SDL_blendmode.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_blendmode:53 SDL_BLENDMODE_
- */
-export const BLENDMODE = SDL_blendmode_enums.BLENDMODE;
-
-/**
- * The blend operation used when combining source and destination pixel
- * components.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_blendmode.h:68 SDL_BLENDOPERATION_
- */
-export const BLENDOPERATION = SDL_blendmode_enums.SDL_BlendOperation;
-
-/**
- * The normalized factor used to multiply pixel components.
- *
- * The blend factors are multiplied with the pixels from a drawing operation
- * (src) and the pixels from the render target (dst) before the blend
- * operation. The comma-separated factors listed above are always applied in
- * the component order red, green, blue, and alpha.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_blendmode.h:87 SDL_BLENDFACTOR_
- */
-export const BLENDFACTOR = SDL_blendmode_enums.SDL_BlendFactor;
-
-
+export {
+  BLENDMODE as BLENDMODE,
+  SDL_BlendOperation as BLENDOPERATION,
+  SDL_BlendFactor as BLENDFACTOR,
+} from "../enums/SDL_blendmode.ts"
 
 /**
  * Compose a custom blend mode for renderers.

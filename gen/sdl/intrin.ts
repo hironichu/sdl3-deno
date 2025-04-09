@@ -46,11 +46,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_intrin_enums from "../enums/SDL_intrin.ts";
-/**
- * @from SDL_intrin:262 __ARM_
- */
-export const __ARM = SDL_intrin_enums.__ARM;
-
-
+export {
+  __ARM as __ARM,
+} from "../enums/SDL_intrin.ts"
 

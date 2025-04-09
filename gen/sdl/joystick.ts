@@ -52,48 +52,14 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_joystick_enums from "../enums/SDL_joystick.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_joystick:654 SDL_PROP_JOYSTICK_CAP_
- */
-export const PROP_JOYSTICK_CAP = SDL_joystick_enums.PROP_JOYSTICK_CAP;
-
-/**
- * @from SDL_joystick:1044 SDL_HAT_
- */
-export const HAT = SDL_joystick_enums.HAT;
-
-/**
- * An enum of some common joystick types.
- *
- * In some cases, SDL can identify a low-level joystick as being a certain
- * type of device, and will report it through SDL_GetJoystickType (or
- * SDL_GetJoystickTypeForID).
- *
- * This is by no means a complete list of everything that can be plugged into
- * a computer.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_joystick.h:111 SDL_JOYSTICK_TYPE_
- */
-export const JOYSTICK_TYPE = SDL_joystick_enums.SDL_JoystickType;
-
-/**
- * Possible connection states for a joystick device.
- *
- * This is used by SDL_GetJoystickConnectionState to report how a device is
- * connected to the system.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_joystick.h:134 SDL_JOYSTICK_CONNECTION_
- */
-export const JOYSTICK_CONNECTION = SDL_joystick_enums.SDL_JoystickConnectionState;
-
-
+export {
+  PROP_JOYSTICK_CAP as PROP_JOYSTICK_CAP,
+  HAT as HAT,
+  SDL_JoystickType as JOYSTICK_TYPE,
+  SDL_JoystickConnectionState as JOYSTICK_CONNECTION,
+} from "../enums/SDL_joystick.ts"
 
 /**
  * Locking for atomic access to the joystick API.

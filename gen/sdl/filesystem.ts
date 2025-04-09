@@ -43,69 +43,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_filesystem_enums from "../enums/SDL_filesystem.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The type of the OS-provided default folder for a specific purpose.
- *
- * Note that the Trash folder isn't included here, because trashing files
- * usually involves extra OS-specific functionality to remember the file's
- * original location.
- *
- * The folders supported per platform are:
- *
- * |             | Windows | macOS/iOS | tvOS | Unix (XDG) | Haiku | Emscripten |
- * | ----------- | ------- | --------- | ---- | ---------- | ----- | ---------- |
- * | HOME        | X       | X         |      | X          | X     | X          |
- * | DESKTOP     | X       | X         |      | X          | X     |            |
- * | DOCUMENTS   | X       | X         |      | X          |       |            |
- * | DOWNLOADS   | Vista+  | X         |      | X          |       |            |
- * | MUSIC       | X       | X         |      | X          |       |            |
- * | PICTURES    | X       | X         |      | X          |       |            |
- * | PUBLICSHARE |         | X         |      | X          |       |            |
- * | SAVEDGAMES  | Vista+  |           |      |            |       |            |
- * | SCREENSHOTS | Vista+  |           |      |            |       |            |
- * | TEMPLATES   | X       | X         |      | X          |       |            |
- * | VIDEOS      | X       | X*        |      | X          |       |            |
- *
- * Note that on macOS/iOS, the Videos folder is called "Movies".
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetUserFolder
- *
- * @from SDL_filesystem.h:181 SDL_FOLDER_
- */
-export const FOLDER = SDL_filesystem_enums.SDL_Folder;
-
-/**
- * Types of filesystem entries.
- *
- * Note that there may be other sorts of items on a filesystem: devices,
- * symlinks, named pipes, etc. They are currently reported as
- * SDL_PATHTYPE_OTHER.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_PathInfo
- *
- * @from SDL_filesystem.h:236 SDL_PATHTYPE_
- */
-export const PATHTYPE = SDL_filesystem_enums.SDL_PathType;
-
-/**
- * Possible results from an enumeration callback.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_EnumerateDirectoryCallback
- *
- * @from SDL_filesystem.h:296 SDL_ENUM_
- */
-export const ENUM = SDL_filesystem_enums.SDL_EnumerationResult;
-
-
+export {
+  SDL_Folder as FOLDER,
+  SDL_PathType as PATHTYPE,
+  SDL_EnumerationResult as ENUM,
+} from "../enums/SDL_filesystem.ts"
 
 /**
  * Get the directory where the application was run from.

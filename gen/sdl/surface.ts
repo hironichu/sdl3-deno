@@ -39,38 +39,14 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_surface_enums from "../enums/SDL_surface.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_surface:65 SDL_SURFACE_
- */
-export const SURFACE = SDL_surface_enums.SURFACE;
-
-/**
- * @from SDL_surface:248 SDL_PROP_SURFACE_
- */
-export const PROP_SURFACE = SDL_surface_enums.PROP_SURFACE;
-
-/**
- * The scaling mode.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_surface.h:82 SDL_SCALEMODE_
- */
-export const SCALEMODE = SDL_surface_enums.SDL_ScaleMode;
-
-/**
- * The flip mode.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_surface.h:94 SDL_FLIP_
- */
-export const FLIP = SDL_surface_enums.SDL_FlipMode;
-
-
+export {
+  SURFACE as SURFACE,
+  PROP_SURFACE as PROP_SURFACE,
+  SDL_ScaleMode as SCALEMODE,
+  SDL_FlipMode as FLIP,
+} from "../enums/SDL_surface.ts"
 
 /**
  * Allocate a new surface with a specific pixel format.

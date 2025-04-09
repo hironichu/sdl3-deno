@@ -47,19 +47,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_properties_enums from "../enums/SDL_properties.ts";
 import { lib } from "./lib.ts";
 
-/**
- * SDL property type
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_properties.h:72 SDL_PROPERTY_TYPE_
- */
-export const PROPERTY_TYPE = SDL_properties_enums.SDL_PropertyType;
-
-
+export {
+  SDL_PropertyType as PROPERTY_TYPE,
+} from "../enums/SDL_properties.ts"
 
 /**
  * Get the global SDL properties.

@@ -15,117 +15,28 @@ export const lib = Deno.dlopen(libSdlPath("SDL3_ttf"), symbols);
 
 /*--- SDL_textengine ---*/
 
-import * as SDL_textengine_enums from "./enums/SDL_textengine.ts";
-/**
- * A font atlas draw command.
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @from SDL_textengine.h:45 TTF_DRAW_COMMAND_
- */
-export const DRAW_COMMAND = SDL_textengine_enums.TTF_DrawCommand;
-
-
+export {
+  TTF_DrawCommand as DRAW_COMMAND,
+} from "./enums/SDL_textengine.ts"
 
 
 
 /*--- SDL_ttf ---*/
 
-import * as SDL_ttf_enums from "./enums/SDL_ttf.ts";
-/**
- * @from SDL_ttf:46 SDL_TTF_
- */
-export const SDL_TTF = SDL_ttf_enums.TTF;
-
-/**
- * @from SDL_ttf:226 TTF_PROP_FONT_CREATE_
- */
-export const PROP_FONT_CREATE = SDL_ttf_enums.PROP_FONT_CREATE;
-
-/**
- * @from SDL_ttf:281 TTF_PROP_FONT_OUTLINE_
- */
-export const PROP_FONT_OUTLINE = SDL_ttf_enums.PROP_FONT_OUTLINE;
-
-/**
- * @from SDL_ttf:454 TTF_STYLE_
- */
-export const STYLE = SDL_ttf_enums.STYLE;
-
-/**
- * @from SDL_ttf:1809 TTF_PROP_RENDERER_TEXT_ENGINE_
- */
-export const PROP_RENDERER_TEXT_ENGINE = SDL_ttf_enums.PROP_RENDERER_TEXT_ENGINE;
-
-/**
- * @from SDL_ttf:1900 TTF_PROP_GPU_TEXT_ENGINE_
- */
-export const PROP_GPU_TEXT_ENGINE = SDL_ttf_enums.PROP_GPU_TEXT_ENGINE;
-
-/**
- * @from SDL_ttf:2543 TTF_SUBSTRING_
- */
-export const SUBSTRING = SDL_ttf_enums.SUBSTRING;
-
-/**
- * Hinting flags for TTF (TrueType Fonts)
- *
- * This enum specifies the level of hinting to be applied to the font
- * rendering. The hinting level determines how much the font's outlines are
- * adjusted for better alignment on the pixel grid.
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @sa TTF_SetFontHinting
- * @sa TTF_GetFontHinting
- *
- * @from SDL_ttf.h:558 TTF_HINTING_
- */
-export const HINTING = SDL_ttf_enums.TTF_HintingFlags;
-
-/**
- * The horizontal alignment used when rendering wrapped text.
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @from SDL_ttf.h:672 TTF_HORIZONTAL_ALIGN_
- */
-export const HORIZONTAL_ALIGN = SDL_ttf_enums.TTF_HorizontalAlignment;
-
-/**
- * Direction flags
- *
- * The values here are chosen to match
- * [hb_direction_t](https://harfbuzz.github.io/harfbuzz-hb-common.html#hb-direction-t)
- * .
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @sa TTF_SetFontDirection
- *
- * @from SDL_ttf.h:901 TTF_DIRECTION_
- */
-export const DIRECTION = SDL_ttf_enums.TTF_Direction;
-
-/**
- * The type of data in a glyph image
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @from SDL_ttf.h:1073 TTF_IMAGE_
- */
-export const IMAGE = SDL_ttf_enums.TTF_ImageType;
-
-/**
- * The winding order of the vertices returned by TTF_GetGPUTextDrawData
- *
- * @since This enum is available since SDL_ttf 3.0.0.
- *
- * @from SDL_ttf.h:1975 TTF_GPU_TEXTENGINE_WINDING_
- */
-export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
-
-
+export {
+  TTF as SDL_TTF,
+  PROP_FONT_CREATE as PROP_FONT_CREATE,
+  PROP_FONT_OUTLINE as PROP_FONT_OUTLINE,
+  STYLE as STYLE,
+  PROP_RENDERER_TEXT_ENGINE as PROP_RENDERER_TEXT_ENGINE,
+  PROP_GPU_TEXT_ENGINE as PROP_GPU_TEXT_ENGINE,
+  SUBSTRING as SUBSTRING,
+  TTF_HintingFlags as HINTING,
+  TTF_HorizontalAlignment as HORIZONTAL_ALIGN,
+  TTF_Direction as DIRECTION,
+  TTF_ImageType as IMAGE,
+  TTF_GPUTextEngineWinding as GPU_TEXTENGINE_WINDING,
+} from "./enums/SDL_ttf.ts"
 
 /**
  * This function gets the version of the dynamically linked SDL_ttf library.

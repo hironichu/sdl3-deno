@@ -15,13 +15,9 @@ export const lib = Deno.dlopen(libSdlPath("SDL3_image"), symbols);
 
 /*--- SDL_image ---*/
 
-import * as SDL_image_enums from "./enums/SDL_image.ts";
-/**
- * @from SDL_image:45 SDL_IMAGE_
- */
-export const SDL_IMAGE = SDL_image_enums.IMAGE;
-
-
+export {
+  IMAGE as SDL_IMAGE,
+} from "./enums/SDL_image.ts"
 
 /**
  * This function gets the version of the dynamically linked SDL_image library.

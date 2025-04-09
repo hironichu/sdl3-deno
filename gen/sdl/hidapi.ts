@@ -50,19 +50,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_hidapi_enums from "../enums/SDL_hidapi.ts";
 import { lib } from "./lib.ts";
 
-/**
- * HID underlying bus types.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_hidapi.h:76 SDL_HID_API_BUS_
- */
-export const HID_API_BUS = SDL_hidapi_enums.SDL_hid_bus_type;
-
-
+export {
+  SDL_hid_bus_type as HID_API_BUS,
+} from "../enums/SDL_hidapi.ts"
 
 /**
  * Initialize the HIDAPI library.

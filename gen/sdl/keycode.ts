@@ -32,16 +32,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_keycode_enums from "../enums/SDL_keycode.ts";
-/**
- * @from SDL_keycode:56 SDLK_
- */
-export const SDLK = SDL_keycode_enums.SDLK;
-
-/**
- * @from SDL_keycode:323 SDL_KMOD_
- */
-export const KMOD = SDL_keycode_enums.KMOD;
-
-
+export {
+  SDLK as SDLK,
+  KMOD as KMOD,
+} from "../enums/SDL_keycode.ts"
 

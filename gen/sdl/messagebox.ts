@@ -38,28 +38,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_messagebox_enums from "../enums/SDL_messagebox.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_messagebox:60 SDL_MESSAGEBOX_
- */
-export const MESSAGEBOX = SDL_messagebox_enums.MESSAGEBOX;
-
-/**
- * @from SDL_messagebox:73 SDL_MESSAGEBOX_BUTTON_
- */
-export const MESSAGEBOX_BUTTON = SDL_messagebox_enums.MESSAGEBOX_BUTTON;
-
-/**
- * An enumeration of indices inside the colors array of
- * SDL_MessageBoxColorScheme.
- *
- * @from SDL_messagebox.h:102 SDL_MESSAGEBOX_COLOR_
- */
-export const MESSAGEBOX_COLOR = SDL_messagebox_enums.SDL_MessageBoxColorType;
-
-
+export {
+  MESSAGEBOX as MESSAGEBOX,
+  MESSAGEBOX_BUTTON as MESSAGEBOX_BUTTON,
+  SDL_MessageBoxColorType as MESSAGEBOX_COLOR,
+} from "../enums/SDL_messagebox.ts"
 
 /**
  * Create a modal message box.

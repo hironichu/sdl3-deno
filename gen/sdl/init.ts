@@ -48,44 +48,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_init_enums from "../enums/SDL_init.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_init:79 SDL_INIT_
- */
-export const INIT = SDL_init_enums.INIT;
-
-/**
- * @from SDL_init:459 SDL_PROP_APP_METADATA_
- */
-export const PROP_APP_METADATA = SDL_init_enums.PROP_APP_METADATA;
-
-/**
- * Return values for optional main callbacks.
- *
- * Returning SDL_APP_SUCCESS or SDL_APP_FAILURE from SDL_AppInit,
- * SDL_AppEvent, or SDL_AppIterate will terminate the program and report
- * success/failure to the operating system. What that means is
- * platform-dependent. On Unix, for example, on success, the process error
- * code will be zero, and on failure it will be 1. This interface doesn't
- * allow you to return specific exit codes, just whether there was an error
- * generally or not.
- *
- * Returning SDL_APP_CONTINUE from these functions will let the app continue
- * to run.
- *
- * See
- * [Main callbacks in SDL3](https://wiki.libsdl.org/SDL3/README/main-functions#main-callbacks-in-sdl3)
- * for complete details.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_init.h:108 SDL_APP_
- */
-export const APP = SDL_init_enums.SDL_AppResult;
-
-
+export {
+  INIT as INIT,
+  PROP_APP_METADATA as PROP_APP_METADATA,
+  SDL_AppResult as APP,
+} from "../enums/SDL_init.ts"
 
 /**
  * Initialize the SDL library.

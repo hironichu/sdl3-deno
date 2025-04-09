@@ -56,33 +56,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_mouse_enums from "../enums/SDL_mouse.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_mouse:149 SDL_BUTTON_
- */
-export const BUTTON = SDL_mouse_enums.BUTTON;
-
-/**
- * Cursor types for SDL_CreateSystemCursor().
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_mouse.h:96 SDL_SYSTEM_CURSOR_
- */
-export const SYSTEM_CURSOR = SDL_mouse_enums.SDL_SystemCursor;
-
-/**
- * Scroll direction types for the Scroll event
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_mouse.h:126 SDL_MOUSEWHEEL_
- */
-export const MOUSEWHEEL = SDL_mouse_enums.SDL_MouseWheelDirection;
-
-
+export {
+  BUTTON as BUTTON,
+  SDL_SystemCursor as SYSTEM_CURSOR,
+  SDL_MouseWheelDirection as MOUSEWHEEL,
+} from "../enums/SDL_mouse.ts"
 
 /**
  * Return whether a mouse is currently connected.

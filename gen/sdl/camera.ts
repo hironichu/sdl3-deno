@@ -67,21 +67,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_camera_enums from "../enums/SDL_camera.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The position of camera in relation to system device.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetCameraPosition
- *
- * @from SDL_camera.h:131 SDL_CAMERA_POSITION_
- */
-export const CAMERA_POSITION = SDL_camera_enums.SDL_CameraPosition;
-
-
+export {
+  SDL_CameraPosition as CAMERA_POSITION,
+} from "../enums/SDL_camera.ts"
 
 /**
  * Use this function to get the number of built-in camera drivers.

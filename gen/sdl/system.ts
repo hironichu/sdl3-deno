@@ -33,19 +33,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_system_enums from "../enums/SDL_system.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Application sandbox environment.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_system.h:627 SDL_SANDBOX_
- */
-export const SANDBOX = SDL_system_enums.SDL_Sandbox;
-
-
+export {
+  SDL_Sandbox as SANDBOX,
+} from "../enums/SDL_system.ts"
 
 /**
  * Set a callback for every Windows message, run before TranslateMessage().

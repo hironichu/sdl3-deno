@@ -49,53 +49,17 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_render_enums from "../enums/SDL_render.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_render:300 SDL_PROP_RENDERER_CREATE_
- */
-export const PROP_RENDERER_CREATE = SDL_render_enums.PROP_RENDERER_CREATE;
-
-/**
- * @from SDL_render:461 SDL_PROP_RENDERER_
- */
-export const PROP_RENDERER = SDL_render_enums.PROP_RENDERER;
-
-/**
- * @from SDL_render:697 SDL_PROP_TEXTURE_CREATE_
- */
-export const PROP_TEXTURE_CREATE = SDL_render_enums.PROP_TEXTURE_CREATE;
-
-/**
- * @from SDL_render:809 SDL_PROP_TEXTURE_
- */
-export const PROP_TEXTURE = SDL_render_enums.PROP_TEXTURE;
-
-/**
- * @from SDL_render:2539 SDL_RENDERER_VSYNC_
- */
-export const RENDERER_VSYNC = SDL_render_enums.RENDERER_VSYNC;
-
-/**
- * The access pattern allowed for a texture.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_render.h:92 SDL_TEXTUREACCESS_
- */
-export const TEXTUREACCESS = SDL_render_enums.SDL_TextureAccess;
-
-/**
- * How the logical size is mapped to the output.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_render.h:104 SDL_LOGICAL_PRESENTATION_
- */
-export const LOGICAL_PRESENTATION = SDL_render_enums.SDL_RendererLogicalPresentation;
-
-
+export {
+  PROP_RENDERER_CREATE as PROP_RENDERER_CREATE,
+  PROP_RENDERER as PROP_RENDERER,
+  PROP_TEXTURE_CREATE as PROP_TEXTURE_CREATE,
+  PROP_TEXTURE as PROP_TEXTURE,
+  RENDERER_VSYNC as RENDERER_VSYNC,
+  SDL_TextureAccess as TEXTUREACCESS,
+  SDL_RendererLogicalPresentation as LOGICAL_PRESENTATION,
+} from "../enums/SDL_render.ts"
 
 /**
  * Get the number of 2D rendering drivers available for the current display.

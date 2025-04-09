@@ -38,19 +38,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_touch_enums from "../enums/SDL_touch.ts";
 import { lib } from "./lib.ts";
 
-/**
- * An enum that describes the type of a touch device.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_touch.h:82 SDL_TOUCH_DEVICE_
- */
-export const TOUCH_DEVICE = SDL_touch_enums.SDL_TouchDeviceType;
-
-
+export {
+  SDL_TouchDeviceType as TOUCH_DEVICE,
+} from "../enums/SDL_touch.ts"
 
 /**
  * Get a list of registered touch devices.

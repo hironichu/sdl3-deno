@@ -39,19 +39,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_mutex_enums from "../enums/SDL_mutex.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The current status of an SDL_InitState structure.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_mutex.h:930 SDL_INIT_STATUS_
- */
-export const INIT_STATUS = SDL_mutex_enums.SDL_InitStatus;
-
-
+export {
+  SDL_InitStatus as INIT_STATUS,
+} from "../enums/SDL_mutex.ts"
 
 /**
  * Create a new mutex.

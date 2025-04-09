@@ -127,28 +127,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_audio_enums from "../enums/SDL_audio.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Audio format.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_AUDIO_BITSIZE
- * @sa SDL_AUDIO_BYTESIZE
- * @sa SDL_AUDIO_ISINT
- * @sa SDL_AUDIO_ISFLOAT
- * @sa SDL_AUDIO_ISBIGENDIAN
- * @sa SDL_AUDIO_ISLITTLEENDIAN
- * @sa SDL_AUDIO_ISSIGNED
- * @sa SDL_AUDIO_ISUNSIGNED
- *
- * @from SDL_audio.h:220 SDL_AUDIO_
- */
-export const AUDIO = SDL_audio_enums.SDL_AudioFormat;
-
-
+export {
+  SDL_AudioFormat as AUDIO,
+} from "../enums/SDL_audio.ts"
 
 /**
  * Use this function to get the number of built-in audio drivers.

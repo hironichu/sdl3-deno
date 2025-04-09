@@ -31,15 +31,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_tray_enums from "../enums/SDL_tray.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_tray:79 SDL_TRAYENTRY_
- */
-export const TRAYENTRY = SDL_tray_enums.TRAYENTRY;
-
-
+export {
+  TRAYENTRY as TRAYENTRY,
+} from "../enums/SDL_tray.ts"
 
 /**
  * Create an icon to be placed in the operating system's tray, or equivalent.

@@ -73,97 +73,15 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_gamepad_enums from "../enums/SDL_gamepad.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Standard gamepad types.
- *
- * This type does not necessarily map to first-party controllers from
- * Microsoft/Sony/Nintendo; in many cases, third-party controllers can report
- * as these, either because they were designed for a specific console, or they
- * simply most closely match that console's controllers (does it have A/B/X/Y
- * buttons or X/O/Square/Triangle? Does it have a touchpad? etc).
- *
- * @from SDL_gamepad.h:107 SDL_GAMEPAD_TYPE_
- */
-export const GAMEPAD_TYPE = SDL_gamepad_enums.SDL_GamepadType;
-
-/**
- * The list of buttons available on a gamepad
- *
- * For controllers that use a diamond pattern for the face buttons, the
- * south/east/west/north buttons below correspond to the locations in the
- * diamond pattern. For Xbox controllers, this would be A/B/X/Y, for Nintendo
- * Switch controllers, this would be B/A/Y/X, for PlayStation controllers this
- * would be Cross/Circle/Square/Triangle.
- *
- * For controllers that don't use a diamond pattern for the face buttons, the
- * south/east/west/north buttons indicate the buttons labeled A, B, C, D, or
- * 1, 2, 3, 4, or for controllers that aren't labeled, they are the primary,
- * secondary, etc. buttons.
- *
- * The activate action is often the south button and the cancel action is
- * often the east button, but in some regions this is reversed, so your game
- * should allow remapping actions based on user preferences.
- *
- * You can query the labels for the face buttons using
- * SDL_GetGamepadButtonLabel()
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_gamepad.h:146 SDL_GAMEPAD_BUTTON_
- */
-export const GAMEPAD_BUTTON = SDL_gamepad_enums.SDL_GamepadButton;
-
-/**
- * The set of gamepad button labels
- *
- * This isn't a complete set, just the face buttons to make it easy to show
- * button prompts.
- *
- * For a complete set, you should look at the button and gamepad type and have
- * a set of symbols that work well with your art style.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_gamepad.h:189 SDL_GAMEPAD_BUTTON_LABEL_
- */
-export const GAMEPAD_BUTTON_LABEL = SDL_gamepad_enums.SDL_GamepadButtonLabel;
-
-/**
- * The list of axes available on a gamepad
- *
- * Thumbstick axis values range from SDL_JOYSTICK_AXIS_MIN to
- * SDL_JOYSTICK_AXIS_MAX, and are centered within ~8000 of zero, though
- * advanced UI will allow users to set or autodetect the dead zone, which
- * varies between gamepads.
- *
- * Trigger axis values range from 0 (released) to SDL_JOYSTICK_AXIS_MAX (fully
- * pressed) when reported by SDL_GetGamepadAxis(). Note that this is not the
- * same range that will be reported by the lower-level SDL_GetJoystickAxis().
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_gamepad.h:216 SDL_GAMEPAD_AXIS_
- */
-export const GAMEPAD_AXIS = SDL_gamepad_enums.SDL_GamepadAxis;
-
-/**
- * Types of gamepad control bindings.
- *
- * A gamepad is a collection of bindings that map arbitrary joystick buttons,
- * axes and hat switches to specific positions on a generic console-style
- * gamepad. This enum is used as part of SDL_GamepadBinding to specify those
- * mappings.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_gamepad.h:238 SDL_GAMEPAD_BINDTYPE_
- */
-export const GAMEPAD_BINDTYPE = SDL_gamepad_enums.SDL_GamepadBindingType;
-
-
+export {
+  SDL_GamepadType as GAMEPAD_TYPE,
+  SDL_GamepadButton as GAMEPAD_BUTTON,
+  SDL_GamepadButtonLabel as GAMEPAD_BUTTON_LABEL,
+  SDL_GamepadAxis as GAMEPAD_AXIS,
+  SDL_GamepadBindingType as GAMEPAD_BINDTYPE,
+} from "../enums/SDL_gamepad.ts"
 
 /**
  * Add support for gamepads that SDL is unaware of or change the binding of an

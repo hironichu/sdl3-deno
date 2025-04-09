@@ -39,43 +39,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_thread_enums from "../enums/SDL_thread.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_thread:282 SDL_PROP_THREAD_CREATE_
- */
-export const PROP_THREAD_CREATE = SDL_thread_enums.PROP_THREAD_CREATE;
-
-/**
- * The SDL thread priority.
- *
- * SDL will make system changes as necessary in order to apply the thread
- * priority. Code which attempts to control thread state related to priority
- * should be aware that calling SDL_SetCurrentThreadPriority may alter such
- * state. SDL_HINT_THREAD_PRIORITY_POLICY can be used to control aspects of
- * this behavior.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_thread.h:109 SDL_THREAD_PRIORITY_
- */
-export const THREAD_PRIORITY = SDL_thread_enums.SDL_ThreadPriority;
-
-/**
- * The SDL thread state.
- *
- * The current state of a thread can be checked by calling SDL_GetThreadState.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_GetThreadState
- *
- * @from SDL_thread.h:125 SDL_THREAD_
- */
-export const THREAD = SDL_thread_enums.SDL_ThreadState;
-
-
+export {
+  PROP_THREAD_CREATE as PROP_THREAD_CREATE,
+  SDL_ThreadPriority as THREAD_PRIORITY,
+  SDL_ThreadState as THREAD,
+} from "../enums/SDL_thread.ts"
 
 /**
  * Create a new thread with with the specified properties.

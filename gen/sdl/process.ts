@@ -42,66 +42,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_process_enums from "../enums/SDL_process.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_process:219 SDL_PROP_PROCESS_CREATE_
- */
-export const PROP_PROCESS_CREATE = SDL_process_enums.PROP_PROCESS_CREATE;
-
-/**
- * @from SDL_process:261 SDL_PROP_PROCESS_
- */
-export const PROP_PROCESS = SDL_process_enums.PROP_PROCESS;
-
-/**
- * Description of where standard I/O should be directed when creating a
- * process.
- *
- * If a standard I/O stream is set to SDL_PROCESS_STDIO_INHERITED, it will go
- * to the same place as the application's I/O stream. This is the default for
- * standard output and standard error.
- *
- * If a standard I/O stream is set to SDL_PROCESS_STDIO_NULL, it is connected
- * to `NUL:` on Windows and `/dev/null` on POSIX systems. This is the default
- * for standard input.
- *
- * If a standard I/O stream is set to SDL_PROCESS_STDIO_APP, it is connected
- * to a new SDL_IOStream that is available to the application. Standard input
- * will be available as `SDL_PROP_PROCESS_STDIN_POINTER` and allows
- * SDL_GetProcessInput(), standard output will be available as
- * `SDL_PROP_PROCESS_STDOUT_POINTER` and allows SDL_ReadProcess() and
- * SDL_GetProcessOutput(), and standard error will be available as
- * `SDL_PROP_PROCESS_STDERR_POINTER` in the properties for the created
- * process.
- *
- * If a standard I/O stream is set to SDL_PROCESS_STDIO_REDIRECT, it is
- * connected to an existing SDL_IOStream provided by the application. Standard
- * input is provided using `SDL_PROP_PROCESS_CREATE_STDIN_POINTER`, standard
- * output is provided using `SDL_PROP_PROCESS_CREATE_STDOUT_POINTER`, and
- * standard error is provided using `SDL_PROP_PROCESS_CREATE_STDERR_POINTER`
- * in the creation properties. These existing streams should be closed by the
- * application once the new process is created.
- *
- * In order to use an SDL_IOStream with SDL_PROCESS_STDIO_REDIRECT, it must
- * have `SDL_PROP_IOSTREAM_WINDOWS_HANDLE_POINTER` or
- * `SDL_PROP_IOSTREAM_FILE_DESCRIPTOR_NUMBER` set. This is true for streams
- * representing files and process I/O.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_CreateProcessWithProperties
- * @sa SDL_GetProcessProperties
- * @sa SDL_ReadProcess
- * @sa SDL_GetProcessInput
- * @sa SDL_GetProcessOutput
- *
- * @from SDL_process.h:149 SDL_PROCESS_STDIO_
- */
-export const PROCESS_STDIO = SDL_process_enums.SDL_ProcessIO;
-
-
+export {
+  PROP_PROCESS_CREATE as PROP_PROCESS_CREATE,
+  PROP_PROCESS as PROP_PROCESS,
+  SDL_ProcessIO as PROCESS_STDIO,
+} from "../enums/SDL_process.ts"
 
 /**
  * Create a new process.

@@ -63,27 +63,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_assert_enums from "../enums/SDL_assert.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Possible outcomes from a triggered assertion.
- *
- * When an enabled assertion triggers, it may call the assertion handler
- * (possibly one provided by the app via SDL_SetAssertionHandler), which will
- * return one of these values, possibly after asking the user.
- *
- * Then SDL will respond based on this outcome (loop around to retry the
- * condition, try to break in a debugger, kill the program, or ignore the
- * problem).
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_assert.h:270 SDL_ASSERTION_
- */
-export const ASSERTION = SDL_assert_enums.SDL_AssertState;
-
-
+export {
+  SDL_AssertState as ASSERTION,
+} from "../enums/SDL_assert.ts"
 
 /**
  * Never call this directly.

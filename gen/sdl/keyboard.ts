@@ -32,45 +32,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_keyboard_enums from "../enums/SDL_keyboard.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_keyboard:475 SDL_PROP_TEXTINPUT_
- */
-export const PROP_TEXTINPUT = SDL_keyboard_enums.PROP_TEXTINPUT;
-
-/**
- * Text input type.
- *
- * These are the valid values for SDL_PROP_TEXTINPUT_TYPE_NUMBER. Not every
- * value is valid on every platform, but where a value isn't supported, a
- * reasonable fallback will be used.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_StartTextInputWithProperties
- *
- * @from SDL_keyboard.h:391 SDL_TEXTINPUT_TYPE_
- */
-export const TEXTINPUT_TYPE = SDL_keyboard_enums.SDL_TextInputType;
-
-/**
- * Auto capitalization type.
- *
- * These are the valid values for SDL_PROP_TEXTINPUT_CAPITALIZATION_NUMBER.
- * Not every value is valid on every platform, but where a value isn't
- * supported, a reasonable fallback will be used.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_StartTextInputWithProperties
- *
- * @from SDL_keyboard.h:415 SDL_CAPITALIZE_
- */
-export const CAPITALIZE = SDL_keyboard_enums.SDL_Capitalization;
-
-
+export {
+  PROP_TEXTINPUT as PROP_TEXTINPUT,
+  SDL_TextInputType as TEXTINPUT_TYPE,
+  SDL_Capitalization as CAPITALIZE,
+} from "../enums/SDL_keyboard.ts"
 
 /**
  * Return whether a keyboard is currently connected.

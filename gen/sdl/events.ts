@@ -51,28 +51,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_events_enums from "../enums/SDL_events.ts";
 import { lib } from "./lib.ts";
 
-/**
- * The types of events that can be delivered.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_events.h:83 SDL_EVENT_
- */
-export const EVENT = SDL_events_enums.SDL_EventType;
-
-/**
- * The type of action to request from SDL_PeepEvents().
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_events.h:1077 SDL_
- */
-export const SDL_EventAction = SDL_events_enums.SDL_EventAction;
-
-
+export {
+  SDL_EventType as EVENT,
+  SDL_EventAction as SDL_EventAction,
+} from "../enums/SDL_events.ts"
 
 /**
  * Pump the event loop, gathering events from the input devices.

@@ -48,116 +48,24 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_video_enums from "../enums/SDL_video.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_video:188 SDL_WINDOW_
- */
-export const WINDOW = SDL_video_enums.WINDOW;
-
-/**
- * @from SDL_video:465 SDL_GL_CONTEXT_PROFILE_
- */
-export const GL_CONTEXT_PROFILE = SDL_video_enums.GL_CONTEXT_PROFILE;
-
-/**
- * @from SDL_video:477 SDL_GL_CONTEXT_
- */
-export const GL_CONTEXT = SDL_video_enums.GL_CONTEXT;
-
-/**
- * @from SDL_video:491 SDL_GL_CONTEXT_RELEASE_BEHAVIOR_
- */
-export const GL_CONTEXT_RELEASE_BEHAVIOR = SDL_video_enums.GL_CONTEXT_RELEASE_BEHAVIOR;
-
-/**
- * @from SDL_video:502 SDL_GL_CONTEXT_RESET_
- */
-export const GL_CONTEXT_RESET = SDL_video_enums.GL_CONTEXT_RESET;
-
-/**
- * @from SDL_video:629 SDL_PROP_DISPLAY_
- */
-export const PROP_DISPLAY = SDL_video_enums.PROP_DISPLAY;
-
-/**
- * @from SDL_video:1309 SDL_PROP_WINDOW_CREATE_
- */
-export const PROP_WINDOW_CREATE = SDL_video_enums.PROP_WINDOW_CREATE;
-
-/**
- * @from SDL_video:1517 SDL_PROP_WINDOW_
- */
-export const PROP_WINDOW = SDL_video_enums.PROP_WINDOW;
-
-/**
- * @from SDL_video:2312 SDL_WINDOW_SURFACE_VSYNC_
- */
-export const WINDOW_SURFACE_VSYNC = SDL_video_enums.WINDOW_SURFACE_VSYNC;
-
-/**
- * System theme.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_video.h:107 SDL_SYSTEM_THEME_
- */
-export const SYSTEM_THEME = SDL_video_enums.SDL_SystemTheme;
-
-/**
- * Display orientation values; the way a display is rotated.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_video.h:156 SDL_ORIENTATION_
- */
-export const ORIENTATION = SDL_video_enums.SDL_DisplayOrientation;
-
-/**
- * Window flash operation.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_video.h:302 SDL_FLASH_
- */
-export const FLASH = SDL_video_enums.SDL_FlashOperation;
-
-/**
- * An enumeration of OpenGL configuration attributes.
- *
- * While you can set most OpenGL attributes normally, the attributes listed
- * above must be known before SDL creates the window that will be used with
- * the OpenGL context. These attributes are set and read with
- * SDL_GL_SetAttribute() and SDL_GL_GetAttribute().
- *
- * In some cases, these attributes are minimum requests; the GL does not
- * promise to give you exactly what you asked for. It's possible to ask for a
- * 16-bit depth buffer and get a 24-bit one instead, for example, or to ask
- * for no stencil buffer and still have one available. Context creation should
- * fail if the GL can't provide your requested attributes at a minimum, but
- * you should check to see exactly what you got.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_video.h:426 SDL_GL_
- */
-export const GL = SDL_video_enums.SDL_GLAttr;
-
-/**
- * Possible return values from the SDL_HitTest callback.
- *
- * @threadsafety This function should only be called on the main thread.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @sa SDL_HitTest
- *
- * @from SDL_video.h:2678 SDL_HITTEST_
- */
-export const HITTEST = SDL_video_enums.SDL_HitTestResult;
-
-
+export {
+  WINDOW as WINDOW,
+  GL_CONTEXT_PROFILE as GL_CONTEXT_PROFILE,
+  GL_CONTEXT as GL_CONTEXT,
+  GL_CONTEXT_RELEASE_BEHAVIOR as GL_CONTEXT_RELEASE_BEHAVIOR,
+  GL_CONTEXT_RESET as GL_CONTEXT_RESET,
+  PROP_DISPLAY as PROP_DISPLAY,
+  PROP_WINDOW_CREATE as PROP_WINDOW_CREATE,
+  PROP_WINDOW as PROP_WINDOW,
+  WINDOW_SURFACE_VSYNC as WINDOW_SURFACE_VSYNC,
+  SDL_SystemTheme as SYSTEM_THEME,
+  SDL_DisplayOrientation as ORIENTATION,
+  SDL_FlashOperation as FLASH,
+  SDL_GLAttr as GL,
+  SDL_HitTestResult as HITTEST,
+} from "../enums/SDL_video.ts"
 
 /**
  * Get the number of video drivers compiled into SDL.

@@ -100,28 +100,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_asyncio_enums from "../enums/SDL_asyncio.ts";
 import { lib } from "./lib.ts";
 
-/**
- * Types of asynchronous I/O tasks.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_asyncio.h:130 SDL_ASYNCIO_TASK_
- */
-export const ASYNCIO_TASK = SDL_asyncio_enums.SDL_AsyncIOTaskType;
-
-/**
- * Possible outcomes of an asynchronous I/O task.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_asyncio.h:142 SDL_ASYNCIO_
- */
-export const ASYNCIO = SDL_asyncio_enums.SDL_AsyncIOResult;
-
-
+export {
+  SDL_AsyncIOTaskType as ASYNCIO_TASK,
+  SDL_AsyncIOResult as ASYNCIO,
+} from "../enums/SDL_asyncio.ts"
 
 /**
  * Use this function to create a new SDL_AsyncIO object for reading from

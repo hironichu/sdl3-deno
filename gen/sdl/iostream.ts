@@ -32,46 +32,15 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-import * as SDL_iostream_enums from "../enums/SDL_iostream.ts";
 import { lib } from "./lib.ts";
 
-/**
- * @from SDL_iostream:275 SDL_PROP_IOSTREAM_
- */
-export const PROP_IOSTREAM = SDL_iostream_enums.PROP_IOSTREAM;
-
-/**
- * @from SDL_iostream:321 SDL_PROP_IOSTREAM_MEMORY_
- */
-export const PROP_IOSTREAM_MEMORY = SDL_iostream_enums.PROP_IOSTREAM_MEMORY;
-
-/**
- * @from SDL_iostream:395 SDL_PROP_IOSTREAM_DYNAMIC_
- */
-export const PROP_IOSTREAM_DYNAMIC = SDL_iostream_enums.PROP_IOSTREAM_DYNAMIC;
-
-/**
- * SDL_IOStream status, set by a read or write operation.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_iostream.h:52 SDL_IO_STATUS_
- */
-export const IO_STATUS = SDL_iostream_enums.SDL_IOStatus;
-
-/**
- * Possible `whence` values for SDL_IOStream seeking.
- *
- * These map to the same "whence" concept that `fseek` or `lseek` use in the
- * standard C runtime.
- *
- * @since This enum is available since SDL 3.2.0.
- *
- * @from SDL_iostream.h:70 SDL_IO_SEEK_
- */
-export const IO_SEEK = SDL_iostream_enums.SDL_IOWhence;
-
-
+export {
+  PROP_IOSTREAM as PROP_IOSTREAM,
+  PROP_IOSTREAM_MEMORY as PROP_IOSTREAM_MEMORY,
+  PROP_IOSTREAM_DYNAMIC as PROP_IOSTREAM_DYNAMIC,
+  SDL_IOStatus as IO_STATUS,
+  SDL_IOWhence as IO_SEEK,
+} from "../enums/SDL_iostream.ts"
 
 /**
  * Use this function to create a new SDL_IOStream structure for reading from
