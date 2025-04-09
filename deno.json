@@ -1,6 +1,6 @@
 {
   "name": "@sdl3/sdl3-deno",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "license": "MIT",
   "exports": {
     ".": "./mod.ts",
@@ -8,6 +8,7 @@
     "./dialog": "./dialog.ts",
     "./messagebox": "./messagebox.ts",
     "./events": "./events.ts",
+    "./misc": "./misc.ts",
     "./SDL": "./gen/SDL.ts",
     "./IMG": "./gen/IMG.ts",
     "./TTF": "./gen/TTF.ts",
