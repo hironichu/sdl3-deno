@@ -10,9 +10,9 @@
  * @module
  */
 
-import { SDL } from "./gen/SDL.ts";
+import { SDL } from "../gen/SDL.ts";
 
-import { callbacks as CB } from "./gen/callbacks/mod.ts";
+import { callbacks as CB } from "../gen/callbacks/mod.ts";
 
 import { cstr, ptr_view, read_cstr, throwSdlError } from "./_utils.ts";
 import { Surface } from "./surface.ts";

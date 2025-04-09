@@ -7,7 +7,7 @@
  */
 
 import { cstr } from "./_utils.ts";
-import { SDL } from "./gen/SDL.ts";
+import { SDL } from "../gen/SDL.ts";
 
 /**
  * Open a URL/URI in the browser or other appropriate external application.

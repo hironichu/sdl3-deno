@@ -1,4 +1,6 @@
-import { init_pumpEvents, SDL, Tray, TrayMenu } from "../sdl3_tray.ts";
+import { Tray } from "../src/tray.ts";
+import { init_pumpEvents } from "../src/_utils.ts";
+import { SDL } from "../gen/SDL.ts";
 
 if (import.meta.main) {
   main();
