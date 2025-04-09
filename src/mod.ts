@@ -13,4 +13,6 @@ export { Dialog };
 import * as MessageBox from "./messagebox.ts";
 export { MessageBox };
 
+export { Event, EventType } from "./events.ts";
+
 export { openUrl } from "./misc.ts"
