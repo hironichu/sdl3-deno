@@ -6,13 +6,8 @@
  * @module
  */
 
-
-import { libSdlPath } from './_utils.ts';
-
-import * as SDL_textengine_enums from "./enums/SDL_textengine.ts";
-import * as SDL_ttf_enums from "./enums/SDL_ttf.ts";
-
 import { symbols } from "./funcs/SDL_ttf.ts";
+import { libSdlPath } from './_utils.ts';
 
 export const lib = Deno.dlopen(libSdlPath("SDL3_ttf"), symbols);
 
@@ -20,6 +15,7 @@ export const lib = Deno.dlopen(libSdlPath("SDL3_ttf"), symbols);
 
 /*--- SDL_textengine ---*/
 
+import * as SDL_textengine_enums from "./enums/SDL_textengine.ts";
 /**
  * A font atlas draw command.
  *
@@ -35,6 +31,7 @@ export const DRAW_COMMAND = SDL_textengine_enums.TTF_DrawCommand;
 
 /*--- SDL_ttf ---*/
 
+import * as SDL_ttf_enums from "./enums/SDL_ttf.ts";
 /**
  * @from SDL_ttf:46 SDL_TTF_
  */
@@ -141,7 +138,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:73 int TTF_Version(void);
  */
-  export const version = lib.symbols.TTF_Version;
+export const version = lib.symbols.TTF_Version;
 
 /**
  * Query the version of the FreeType library in use.
@@ -160,7 +157,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:90 void TTF_GetFreeTypeVersion(int *major, int *minor, int *patch);
  */
-  export const getFreeTypeVersion = lib.symbols.TTF_GetFreeTypeVersion;
+export const getFreeTypeVersion = lib.symbols.TTF_GetFreeTypeVersion;
 
 /**
  * Query the version of the HarfBuzz library in use.
@@ -177,7 +174,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:105 void TTF_GetHarfBuzzVersion(int *major, int *minor, int *patch);
  */
-  export const getHarfBuzzVersion = lib.symbols.TTF_GetHarfBuzzVersion;
+export const getHarfBuzzVersion = lib.symbols.TTF_GetHarfBuzzVersion;
 
 /**
  * Initialize SDL_ttf.
@@ -197,7 +194,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:130 bool TTF_Init(void);
  */
-  export const init = lib.symbols.TTF_Init;
+export const init = lib.symbols.TTF_Init;
 
 /**
  * Create a font from a file, using a specified point size.
@@ -221,7 +218,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:152 TTF_Font * TTF_OpenFont(const char *file, float ptsize);
  */
-  export const openFont = lib.symbols.TTF_OpenFont;
+export const openFont = lib.symbols.TTF_OpenFont;
 
 /**
  * Create a font from an SDL_IOStream, using a specified point size.
@@ -250,7 +247,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:179 TTF_Font * TTF_OpenFontIO(SDL_IOStream *src, bool closeio, float ptsize);
  */
-  export const openFontIo = lib.symbols.TTF_OpenFontIO;
+export const openFontIo = lib.symbols.TTF_OpenFontIO;
 
 /**
  * Create a font with the specified properties.
@@ -297,7 +294,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:224 TTF_Font * TTF_OpenFontWithProperties(SDL_PropertiesID props);
  */
-  export const openFontWithProperties = lib.symbols.TTF_OpenFontWithProperties;
+export const openFontWithProperties = lib.symbols.TTF_OpenFontWithProperties;
 
 /**
  * Create a copy of an existing font.
@@ -320,7 +317,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:255 TTF_Font * TTF_CopyFont(TTF_Font *existing_font);
  */
-  export const copyFont = lib.symbols.TTF_CopyFont;
+export const copyFont = lib.symbols.TTF_CopyFont;
 
 /**
  * Get the properties associated with a font.
@@ -346,7 +343,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:279 SDL_PropertiesID TTF_GetFontProperties(TTF_Font *font);
  */
-  export const getFontProperties = lib.symbols.TTF_GetFontProperties;
+export const getFontProperties = lib.symbols.TTF_GetFontProperties;
 
 /**
  * Get the font generation.
@@ -365,7 +362,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:300 Uint32 TTF_GetFontGeneration(TTF_Font *font);
  */
-  export const getFontGeneration = lib.symbols.TTF_GetFontGeneration;
+export const getFontGeneration = lib.symbols.TTF_GetFontGeneration;
 
 /**
  * Add a fallback font.
@@ -392,7 +389,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:325 bool TTF_AddFallbackFont(TTF_Font *font, TTF_Font *fallback);
  */
-  export const addFallbackFont = lib.symbols.TTF_AddFallbackFont;
+export const addFallbackFont = lib.symbols.TTF_AddFallbackFont;
 
 /**
  * Remove a fallback font.
@@ -412,7 +409,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:343 void TTF_RemoveFallbackFont(TTF_Font *font, TTF_Font *fallback);
  */
-  export const removeFallbackFont = lib.symbols.TTF_RemoveFallbackFont;
+export const removeFallbackFont = lib.symbols.TTF_RemoveFallbackFont;
 
 /**
  * Remove all fallback fonts.
@@ -431,7 +428,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:360 void TTF_ClearFallbackFonts(TTF_Font *font);
  */
-  export const clearFallbackFonts = lib.symbols.TTF_ClearFallbackFonts;
+export const clearFallbackFonts = lib.symbols.TTF_ClearFallbackFonts;
 
 /**
  * Set a font's size dynamically.
@@ -453,7 +450,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:380 bool TTF_SetFontSize(TTF_Font *font, float ptsize);
  */
-  export const setFontSize = lib.symbols.TTF_SetFontSize;
+export const setFontSize = lib.symbols.TTF_SetFontSize;
 
 /**
  * Set font size dynamically with target resolutions, in dots per inch.
@@ -478,7 +475,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:403 bool TTF_SetFontSizeDPI(TTF_Font *font, float ptsize, int hdpi, int vdpi);
  */
-  export const setFontSizeDpi = lib.symbols.TTF_SetFontSizeDPI;
+export const setFontSizeDpi = lib.symbols.TTF_SetFontSizeDPI;
 
 /**
  * Get the size of a font.
@@ -497,7 +494,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:420 float TTF_GetFontSize(TTF_Font *font);
  */
-  export const getFontSize = lib.symbols.TTF_GetFontSize;
+export const getFontSize = lib.symbols.TTF_GetFontSize;
 
 /**
  * Get font target resolutions, in dots per inch.
@@ -517,7 +514,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:438 bool TTF_GetFontDPI(TTF_Font *font, int *hdpi, int *vdpi);
  */
-  export const getFontDpi = lib.symbols.TTF_GetFontDPI;
+export const getFontDpi = lib.symbols.TTF_GetFontDPI;
 
 /**
  * Set a font's current style.
@@ -545,7 +542,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:484 void TTF_SetFontStyle(TTF_Font *font, TTF_FontStyleFlags style);
  */
-  export const setFontStyle = lib.symbols.TTF_SetFontStyle;
+export const setFontStyle = lib.symbols.TTF_SetFontStyle;
 
 /**
  * Query a font's current style.
@@ -569,7 +566,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:506 TTF_FontStyleFlags TTF_GetFontStyle(const TTF_Font *font);
  */
-  export const getFontStyle = lib.symbols.TTF_GetFontStyle;
+export const getFontStyle = lib.symbols.TTF_GetFontStyle;
 
 /**
  * Set a font's current outline.
@@ -595,7 +592,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:530 bool TTF_SetFontOutline(TTF_Font *font, int outline);
  */
-  export const setFontOutline = lib.symbols.TTF_SetFontOutline;
+export const setFontOutline = lib.symbols.TTF_SetFontOutline;
 
 /**
  * Query a font's current outline.
@@ -611,7 +608,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:544 int TTF_GetFontOutline(const TTF_Font *font);
  */
-  export const getFontOutline = lib.symbols.TTF_GetFontOutline;
+export const getFontOutline = lib.symbols.TTF_GetFontOutline;
 
 /**
  * Set a font's current hinter setting.
@@ -639,7 +636,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:591 void TTF_SetFontHinting(TTF_Font *font, TTF_HintingFlags hinting);
  */
-  export const setFontHinting = lib.symbols.TTF_SetFontHinting;
+export const setFontHinting = lib.symbols.TTF_SetFontHinting;
 
 /**
  * Query the number of faces of a font.
@@ -653,7 +650,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:603 int TTF_GetNumFontFaces(const TTF_Font *font);
  */
-  export const getNumFontFaces = lib.symbols.TTF_GetNumFontFaces;
+export const getNumFontFaces = lib.symbols.TTF_GetNumFontFaces;
 
 /**
  * Query a font's current FreeType hinter setting.
@@ -677,7 +674,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:625 TTF_HintingFlags TTF_GetFontHinting(const TTF_Font *font);
  */
-  export const getFontHinting = lib.symbols.TTF_GetFontHinting;
+export const getFontHinting = lib.symbols.TTF_GetFontHinting;
 
 /**
  * Enable Signed Distance Field rendering for a font.
@@ -705,7 +702,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:651 bool TTF_SetFontSDF(TTF_Font *font, bool enabled);
  */
-  export const setFontSdf = lib.symbols.TTF_SetFontSDF;
+export const setFontSdf = lib.symbols.TTF_SetFontSDF;
 
 /**
  * Query whether Signed Distance Field rendering is enabled for a font.
@@ -721,7 +718,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:665 bool TTF_GetFontSDF(const TTF_Font *font);
  */
-  export const getFontSdf = lib.symbols.TTF_GetFontSDF;
+export const getFontSdf = lib.symbols.TTF_GetFontSDF;
 
 /**
  * Set a font's current wrap alignment option.
@@ -740,7 +737,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:695 void TTF_SetFontWrapAlignment(TTF_Font *font, TTF_HorizontalAlignment align);
  */
-  export const setFontWrapAlignment = lib.symbols.TTF_SetFontWrapAlignment;
+export const setFontWrapAlignment = lib.symbols.TTF_SetFontWrapAlignment;
 
 /**
  * Query a font's current wrap alignment option.
@@ -756,7 +753,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:709 TTF_HorizontalAlignment TTF_GetFontWrapAlignment(const TTF_Font *font);
  */
-  export const getFontWrapAlignment = lib.symbols.TTF_GetFontWrapAlignment;
+export const getFontWrapAlignment = lib.symbols.TTF_GetFontWrapAlignment;
 
 /**
  * Query the total height of a font.
@@ -772,7 +769,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:723 int TTF_GetFontHeight(const TTF_Font *font);
  */
-  export const getFontHeight = lib.symbols.TTF_GetFontHeight;
+export const getFontHeight = lib.symbols.TTF_GetFontHeight;
 
 /**
  * Query the offset from the baseline to the top of a font.
@@ -788,7 +785,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:737 int TTF_GetFontAscent(const TTF_Font *font);
  */
-  export const getFontAscent = lib.symbols.TTF_GetFontAscent;
+export const getFontAscent = lib.symbols.TTF_GetFontAscent;
 
 /**
  * Query the offset from the baseline to the bottom of a font.
@@ -804,7 +801,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:751 int TTF_GetFontDescent(const TTF_Font *font);
  */
-  export const getFontDescent = lib.symbols.TTF_GetFontDescent;
+export const getFontDescent = lib.symbols.TTF_GetFontDescent;
 
 /**
  * Set the spacing between lines of text for a font.
@@ -823,7 +820,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:768 void TTF_SetFontLineSkip(TTF_Font *font, int lineskip);
  */
-  export const setFontLineSkip = lib.symbols.TTF_SetFontLineSkip;
+export const setFontLineSkip = lib.symbols.TTF_SetFontLineSkip;
 
 /**
  * Query the spacing between lines of text for a font.
@@ -839,7 +836,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:782 int TTF_GetFontLineSkip(const TTF_Font *font);
  */
-  export const getFontLineSkip = lib.symbols.TTF_GetFontLineSkip;
+export const getFontLineSkip = lib.symbols.TTF_GetFontLineSkip;
 
 /**
  * Set if kerning is enabled for a font.
@@ -863,7 +860,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:804 void TTF_SetFontKerning(TTF_Font *font, bool enabled);
  */
-  export const setFontKerning = lib.symbols.TTF_SetFontKerning;
+export const setFontKerning = lib.symbols.TTF_SetFontKerning;
 
 /**
  * Query whether or not kerning is enabled for a font.
@@ -879,7 +876,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:818 bool TTF_GetFontKerning(const TTF_Font *font);
  */
-  export const getFontKerning = lib.symbols.TTF_GetFontKerning;
+export const getFontKerning = lib.symbols.TTF_GetFontKerning;
 
 /**
  * Query whether a font is fixed-width.
@@ -899,7 +896,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:836 bool TTF_FontIsFixedWidth(const TTF_Font *font);
  */
-  export const fontIsFixedWidth = lib.symbols.TTF_FontIsFixedWidth;
+export const fontIsFixedWidth = lib.symbols.TTF_FontIsFixedWidth;
 
 /**
  * Query whether a font is scalable or not.
@@ -917,7 +914,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:852 bool TTF_FontIsScalable(const TTF_Font *font);
  */
-  export const fontIsScalable = lib.symbols.TTF_FontIsScalable;
+export const fontIsScalable = lib.symbols.TTF_FontIsScalable;
 
 /**
  * Query a font's family name.
@@ -937,7 +934,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:870 const char * TTF_GetFontFamilyName(const TTF_Font *font);
  */
-  export const getFontFamilyName = lib.symbols.TTF_GetFontFamilyName;
+export const getFontFamilyName = lib.symbols.TTF_GetFontFamilyName;
 
 /**
  * Query a font's style name.
@@ -957,7 +954,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:888 const char * TTF_GetFontStyleName(const TTF_Font *font);
  */
-  export const getFontStyleName = lib.symbols.TTF_GetFontStyleName;
+export const getFontStyleName = lib.symbols.TTF_GetFontStyleName;
 
 /**
  * Set the direction to be used for text shaping by a font.
@@ -979,7 +976,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:928 bool TTF_SetFontDirection(TTF_Font *font, TTF_Direction direction);
  */
-  export const setFontDirection = lib.symbols.TTF_SetFontDirection;
+export const setFontDirection = lib.symbols.TTF_SetFontDirection;
 
 /**
  * Get the direction to be used for text shaping by a font.
@@ -996,7 +993,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:943 TTF_Direction TTF_GetFontDirection(TTF_Font *font);
  */
-  export const getFontDirection = lib.symbols.TTF_GetFontDirection;
+export const getFontDirection = lib.symbols.TTF_GetFontDirection;
 
 /**
  * Convert from a 4 character string to a 32-bit tag.
@@ -1012,7 +1009,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:957 Uint32 TTF_StringToTag(const char *string);
  */
-  export const stringToTag = lib.symbols.TTF_StringToTag;
+export const stringToTag = lib.symbols.TTF_StringToTag;
 
 /**
  * Convert from a 32-bit tag to a 4 character string.
@@ -1031,7 +1028,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:974 void TTF_TagToString(Uint32 tag, char *string, size_t size);
  */
-  export const tagToString = lib.symbols.TTF_TagToString;
+export const tagToString = lib.symbols.TTF_TagToString;
 
 /**
  * Set the script to be used for text shaping by a font.
@@ -1056,7 +1053,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:997 bool TTF_SetFontScript(TTF_Font *font, Uint32 script);
  */
-  export const setFontScript = lib.symbols.TTF_SetFontScript;
+export const setFontScript = lib.symbols.TTF_SetFontScript;
 
 /**
  * Get the script used for text shaping a font.
@@ -1075,7 +1072,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1014 Uint32 TTF_GetFontScript(TTF_Font *font);
  */
-  export const getFontScript = lib.symbols.TTF_GetFontScript;
+export const getFontScript = lib.symbols.TTF_GetFontScript;
 
 /**
  * Get the script used by a 32-bit codepoint.
@@ -1094,7 +1091,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1031 Uint32 TTF_GetGlyphScript(Uint32 ch);
  */
-  export const getGlyphScript = lib.symbols.TTF_GetGlyphScript;
+export const getGlyphScript = lib.symbols.TTF_GetGlyphScript;
 
 /**
  * Set language to be used for text shaping by a font.
@@ -1117,7 +1114,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1052 bool TTF_SetFontLanguage(TTF_Font *font, const char *language_bcp47);
  */
-  export const setFontLanguage = lib.symbols.TTF_SetFontLanguage;
+export const setFontLanguage = lib.symbols.TTF_SetFontLanguage;
 
 /**
  * Check whether a glyph is provided by the font for a UNICODE codepoint.
@@ -1133,7 +1130,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1066 bool TTF_FontHasGlyph(TTF_Font *font, Uint32 ch);
  */
-  export const fontHasGlyph = lib.symbols.TTF_FontHasGlyph;
+export const fontHasGlyph = lib.symbols.TTF_FontHasGlyph;
 
 /**
  * Get the pixel image for a UNICODE codepoint.
@@ -1152,7 +1149,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1096 SDL_Surface * TTF_GetGlyphImage(TTF_Font *font, Uint32 ch, TTF_ImageType *image_type);
  */
-  export const getGlyphImage = lib.symbols.TTF_GetGlyphImage;
+export const getGlyphImage = lib.symbols.TTF_GetGlyphImage;
 
 /**
  * Get the pixel image for a character index.
@@ -1174,7 +1171,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1116 SDL_Surface * TTF_GetGlyphImageForIndex(TTF_Font *font, Uint32 glyph_index, TTF_ImageType *image_type);
  */
-  export const getGlyphImageForIndex = lib.symbols.TTF_GetGlyphImageForIndex;
+export const getGlyphImageForIndex = lib.symbols.TTF_GetGlyphImageForIndex;
 
 /**
  * Query the metrics (dimensions) of a font's glyph for a UNICODE codepoint.
@@ -1207,7 +1204,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1147 bool TTF_GetGlyphMetrics(TTF_Font *font, Uint32 ch, int *minx, int *maxx, int *miny, int *maxy, int *advance);
  */
-  export const getGlyphMetrics = lib.symbols.TTF_GetGlyphMetrics;
+export const getGlyphMetrics = lib.symbols.TTF_GetGlyphMetrics;
 
 /**
  * Query the kerning size between the glyphs of two UNICODE codepoints.
@@ -1227,7 +1224,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1165 bool TTF_GetGlyphKerning(TTF_Font *font, Uint32 previous_ch, Uint32 ch, int *kerning);
  */
-  export const getGlyphKerning = lib.symbols.TTF_GetGlyphKerning;
+export const getGlyphKerning = lib.symbols.TTF_GetGlyphKerning;
 
 /**
  * Calculate the dimensions of a rendered string of UTF-8 text.
@@ -1251,7 +1248,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1187 bool TTF_GetStringSize(TTF_Font *font, const char *text, size_t length, int *w, int *h);
  */
-  export const getStringSize = lib.symbols.TTF_GetStringSize;
+export const getStringSize = lib.symbols.TTF_GetStringSize;
 
 /**
  * Calculate the dimensions of a rendered string of UTF-8 text.
@@ -1281,7 +1278,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1215 bool TTF_GetStringSizeWrapped(TTF_Font *font, const char *text, size_t length, int wrap_width, int *w, int *h);
  */
-  export const getStringSizeWrapped = lib.symbols.TTF_GetStringSizeWrapped;
+export const getStringSizeWrapped = lib.symbols.TTF_GetStringSizeWrapped;
 
 /**
  * Calculate how much of a UTF-8 string will fit in a given width.
@@ -1311,7 +1308,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1243 bool TTF_MeasureString(TTF_Font *font, const char *text, size_t length, int max_width, int *measured_width, size_t *measured_length);
  */
-  export const measureString = lib.symbols.TTF_MeasureString;
+export const measureString = lib.symbols.TTF_MeasureString;
 
 /**
  * Render UTF-8 text at fast quality to a new 8-bit surface.
@@ -1350,7 +1347,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1280 SDL_Surface * TTF_RenderText_Solid(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
  */
-  export const renderTextSolid = lib.symbols.TTF_RenderText_Solid;
+export const renderTextSolid = lib.symbols.TTF_RenderText_Solid;
 
 /**
  * Render word-wrapped UTF-8 text at fast quality to a new 8-bit surface.
@@ -1388,7 +1385,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1316 SDL_Surface * TTF_RenderText_Solid_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrapLength);
  */
-  export const renderTextSolidWrapped = lib.symbols.TTF_RenderText_Solid_Wrapped;
+export const renderTextSolidWrapped = lib.symbols.TTF_RenderText_Solid_Wrapped;
 
 /**
  * Render a single 32-bit glyph at fast quality to a new 8-bit surface.
@@ -1419,7 +1416,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1345 SDL_Surface * TTF_RenderGlyph_Solid(TTF_Font *font, Uint32 ch, SDL_Color fg);
  */
-  export const renderGlyphSolid = lib.symbols.TTF_RenderGlyph_Solid;
+export const renderGlyphSolid = lib.symbols.TTF_RenderGlyph_Solid;
 
 /**
  * Render UTF-8 text at high quality to a new 8-bit surface.
@@ -1459,7 +1456,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1383 SDL_Surface * TTF_RenderText_Shaded(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
  */
-  export const renderTextShaded = lib.symbols.TTF_RenderText_Shaded;
+export const renderTextShaded = lib.symbols.TTF_RenderText_Shaded;
 
 /**
  * Render word-wrapped UTF-8 text at high quality to a new 8-bit surface.
@@ -1499,7 +1496,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1421 SDL_Surface * TTF_RenderText_Shaded_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
  */
-  export const renderTextShadedWrapped = lib.symbols.TTF_RenderText_Shaded_Wrapped;
+export const renderTextShadedWrapped = lib.symbols.TTF_RenderText_Shaded_Wrapped;
 
 /**
  * Render a single UNICODE codepoint at high quality to a new 8-bit surface.
@@ -1532,7 +1529,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1452 SDL_Surface * TTF_RenderGlyph_Shaded(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
  */
-  export const renderGlyphShaded = lib.symbols.TTF_RenderGlyph_Shaded;
+export const renderGlyphShaded = lib.symbols.TTF_RenderGlyph_Shaded;
 
 /**
  * Render UTF-8 text at high quality to a new ARGB surface.
@@ -1570,7 +1567,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1488 SDL_Surface * TTF_RenderText_Blended(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
  */
-  export const renderTextBlended = lib.symbols.TTF_RenderText_Blended;
+export const renderTextBlended = lib.symbols.TTF_RenderText_Blended;
 
 /**
  * Render word-wrapped UTF-8 text at high quality to a new ARGB surface.
@@ -1608,7 +1605,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1524 SDL_Surface * TTF_RenderText_Blended_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrap_width);
  */
-  export const renderTextBlendedWrapped = lib.symbols.TTF_RenderText_Blended_Wrapped;
+export const renderTextBlendedWrapped = lib.symbols.TTF_RenderText_Blended_Wrapped;
 
 /**
  * Render a single UNICODE codepoint at high quality to a new ARGB surface.
@@ -1639,7 +1636,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1553 SDL_Surface * TTF_RenderGlyph_Blended(TTF_Font *font, Uint32 ch, SDL_Color fg);
  */
-  export const renderGlyphBlended = lib.symbols.TTF_RenderGlyph_Blended;
+export const renderGlyphBlended = lib.symbols.TTF_RenderGlyph_Blended;
 
 /**
  * Render UTF-8 text at LCD subpixel quality to a new ARGB surface.
@@ -1678,7 +1675,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1590 SDL_Surface * TTF_RenderText_LCD(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
  */
-  export const renderTextLcd = lib.symbols.TTF_RenderText_LCD;
+export const renderTextLcd = lib.symbols.TTF_RenderText_LCD;
 
 /**
  * Render word-wrapped UTF-8 text at LCD subpixel quality to a new ARGB
@@ -1718,7 +1715,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1628 SDL_Surface * TTF_RenderText_LCD_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
  */
-  export const renderTextLcdWrapped = lib.symbols.TTF_RenderText_LCD_Wrapped;
+export const renderTextLcdWrapped = lib.symbols.TTF_RenderText_LCD_Wrapped;
 
 /**
  * Render a single UNICODE codepoint at LCD subpixel quality to a new ARGB
@@ -1751,7 +1748,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1659 SDL_Surface * TTF_RenderGlyph_LCD(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
  */
-  export const renderGlyphLcd = lib.symbols.TTF_RenderGlyph_LCD;
+export const renderGlyphLcd = lib.symbols.TTF_RenderGlyph_LCD;
 
 /**
  * Create a text engine for drawing text on SDL surfaces.
@@ -1768,7 +1765,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1720 TTF_TextEngine * TTF_CreateSurfaceTextEngine(void);
  */
-  export const createSurfaceTextEngine = lib.symbols.TTF_CreateSurfaceTextEngine;
+export const createSurfaceTextEngine = lib.symbols.TTF_CreateSurfaceTextEngine;
 
 /**
  * Draw text to an SDL surface.
@@ -1795,7 +1792,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1745 bool TTF_DrawSurfaceText(TTF_Text *text, int x, int y, SDL_Surface *surface);
  */
-  export const drawSurfaceText = lib.symbols.TTF_DrawSurfaceText;
+export const drawSurfaceText = lib.symbols.TTF_DrawSurfaceText;
 
 /**
  * Destroy a text engine created for drawing text on SDL surfaces.
@@ -1815,7 +1812,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1763 void TTF_DestroySurfaceTextEngine(TTF_TextEngine *engine);
  */
-  export const destroySurfaceTextEngine = lib.symbols.TTF_DestroySurfaceTextEngine;
+export const destroySurfaceTextEngine = lib.symbols.TTF_DestroySurfaceTextEngine;
 
 /**
  * Create a text engine for drawing text on an SDL renderer.
@@ -1835,7 +1832,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1781 TTF_TextEngine * TTF_CreateRendererTextEngine(SDL_Renderer *renderer);
  */
-  export const createRendererTextEngine = lib.symbols.TTF_CreateRendererTextEngine;
+export const createRendererTextEngine = lib.symbols.TTF_CreateRendererTextEngine;
 
 /**
  * Create a text engine for drawing text on an SDL renderer, with the
@@ -1863,7 +1860,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1807 TTF_TextEngine * TTF_CreateRendererTextEngineWithProperties(SDL_PropertiesID props);
  */
-  export const createRendererTextEngineWithProperties = lib.symbols.TTF_CreateRendererTextEngineWithProperties;
+export const createRendererTextEngineWithProperties = lib.symbols.TTF_CreateRendererTextEngineWithProperties;
 
 /**
  * Draw text to an SDL renderer.
@@ -1890,7 +1887,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1835 bool TTF_DrawRendererText(TTF_Text *text, float x, float y);
  */
-  export const drawRendererText = lib.symbols.TTF_DrawRendererText;
+export const drawRendererText = lib.symbols.TTF_DrawRendererText;
 
 /**
  * Destroy a text engine created for drawing text on an SDL renderer.
@@ -1910,7 +1907,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1853 void TTF_DestroyRendererTextEngine(TTF_TextEngine *engine);
  */
-  export const destroyRendererTextEngine = lib.symbols.TTF_DestroyRendererTextEngine;
+export const destroyRendererTextEngine = lib.symbols.TTF_DestroyRendererTextEngine;
 
 /**
  * Create a text engine for drawing text with the SDL GPU API.
@@ -1931,7 +1928,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1872 TTF_TextEngine * TTF_CreateGPUTextEngine(SDL_GPUDevice *device);
  */
-  export const createGpuTextEngine = lib.symbols.TTF_CreateGPUTextEngine;
+export const createGpuTextEngine = lib.symbols.TTF_CreateGPUTextEngine;
 
 /**
  * Create a text engine for drawing text with the SDL GPU API, with the
@@ -1959,7 +1956,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1898 TTF_TextEngine * TTF_CreateGPUTextEngineWithProperties(SDL_PropertiesID props);
  */
-  export const createGpuTextEngineWithProperties = lib.symbols.TTF_CreateGPUTextEngineWithProperties;
+export const createGpuTextEngineWithProperties = lib.symbols.TTF_CreateGPUTextEngineWithProperties;
 
 /**
  * Get the geometry data needed for drawing the text.
@@ -1990,7 +1987,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1950 TTF_GPUAtlasDrawSequence * TTF_GetGPUTextDrawData(TTF_Text *text);
  */
-  export const getGpuTextDrawData = lib.symbols.TTF_GetGPUTextDrawData;
+export const getGpuTextDrawData = lib.symbols.TTF_GetGPUTextDrawData;
 
 /**
  * Destroy a text engine created for drawing text with the SDL GPU API.
@@ -2010,7 +2007,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1968 void TTF_DestroyGPUTextEngine(TTF_TextEngine *engine);
  */
-  export const destroyGpuTextEngine = lib.symbols.TTF_DestroyGPUTextEngine;
+export const destroyGpuTextEngine = lib.symbols.TTF_DestroyGPUTextEngine;
 
 /**
  * Sets the winding order of the vertices returned by TTF_GetGPUTextDrawData
@@ -2029,7 +2026,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:1997 void TTF_SetGPUTextEngineWinding(TTF_TextEngine *engine, TTF_GPUTextEngineWinding winding);
  */
-  export const setGpuTextEngineWinding = lib.symbols.TTF_SetGPUTextEngineWinding;
+export const setGpuTextEngineWinding = lib.symbols.TTF_SetGPUTextEngineWinding;
 
 /**
  * Get the winding order of the vertices returned by TTF_GetGPUTextDrawData
@@ -2049,7 +2046,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2015 TTF_GPUTextEngineWinding TTF_GetGPUTextEngineWinding(const TTF_TextEngine *engine);
  */
-  export const getGpuTextEngineWinding = lib.symbols.TTF_GetGPUTextEngineWinding;
+export const getGpuTextEngineWinding = lib.symbols.TTF_GetGPUTextEngineWinding;
 
 /**
  * Create a text object from UTF-8 text and a text engine.
@@ -2072,7 +2069,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2036 TTF_Text * TTF_CreateText(TTF_TextEngine *engine, TTF_Font *font, const char *text, size_t length);
  */
-  export const createText = lib.symbols.TTF_CreateText;
+export const createText = lib.symbols.TTF_CreateText;
 
 /**
  * Get the properties associated with a text object.
@@ -2088,7 +2085,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2050 SDL_PropertiesID TTF_GetTextProperties(TTF_Text *text);
  */
-  export const getTextProperties = lib.symbols.TTF_GetTextProperties;
+export const getTextProperties = lib.symbols.TTF_GetTextProperties;
 
 /**
  * Set the text engine used by a text object.
@@ -2109,7 +2106,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2069 bool TTF_SetTextEngine(TTF_Text *text, TTF_TextEngine *engine);
  */
-  export const setTextEngine = lib.symbols.TTF_SetTextEngine;
+export const setTextEngine = lib.symbols.TTF_SetTextEngine;
 
 /**
  * Get the text engine used by a text object.
@@ -2127,7 +2124,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2085 TTF_TextEngine * TTF_GetTextEngine(TTF_Text *text);
  */
-  export const getTextEngine = lib.symbols.TTF_GetTextEngine;
+export const getTextEngine = lib.symbols.TTF_GetTextEngine;
 
 /**
  * Set the font used by a text object.
@@ -2152,7 +2149,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2108 bool TTF_SetTextFont(TTF_Text *text, TTF_Font *font);
  */
-  export const setTextFont = lib.symbols.TTF_SetTextFont;
+export const setTextFont = lib.symbols.TTF_SetTextFont;
 
 /**
  * Get the font used by a text object.
@@ -2170,7 +2167,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2124 TTF_Font * TTF_GetTextFont(TTF_Text *text);
  */
-  export const getTextFont = lib.symbols.TTF_GetTextFont;
+export const getTextFont = lib.symbols.TTF_GetTextFont;
 
 /**
  * Set the direction to be used for text shaping a text object.
@@ -2190,7 +2187,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2142 bool TTF_SetTextDirection(TTF_Text *text, TTF_Direction direction);
  */
-  export const setTextDirection = lib.symbols.TTF_SetTextDirection;
+export const setTextDirection = lib.symbols.TTF_SetTextDirection;
 
 /**
  * Get the direction to be used for text shaping a text object.
@@ -2207,7 +2204,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2157 TTF_Direction TTF_GetTextDirection(TTF_Text *text);
  */
-  export const getTextDirection = lib.symbols.TTF_GetTextDirection;
+export const getTextDirection = lib.symbols.TTF_GetTextDirection;
 
 /**
  * Set the script to be used for text shaping a text object.
@@ -2230,7 +2227,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2178 bool TTF_SetTextScript(TTF_Text *text, Uint32 script);
  */
-  export const setTextScript = lib.symbols.TTF_SetTextScript;
+export const setTextScript = lib.symbols.TTF_SetTextScript;
 
 /**
  * Get the script used for text shaping a text object.
@@ -2252,7 +2249,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2198 Uint32 TTF_GetTextScript(TTF_Text *text);
  */
-  export const getTextScript = lib.symbols.TTF_GetTextScript;
+export const getTextScript = lib.symbols.TTF_GetTextScript;
 
 /**
  * Set the color of a text object.
@@ -2277,7 +2274,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2221 bool TTF_SetTextColor(TTF_Text *text, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
-  export const setTextColor = lib.symbols.TTF_SetTextColor;
+export const setTextColor = lib.symbols.TTF_SetTextColor;
 
 /**
  * Set the color of a text object.
@@ -2302,7 +2299,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2244 bool TTF_SetTextColorFloat(TTF_Text *text, float r, float g, float b, float a);
  */
-  export const setTextColorFloat = lib.symbols.TTF_SetTextColorFloat;
+export const setTextColorFloat = lib.symbols.TTF_SetTextColorFloat;
 
 /**
  * Get the color of a text object.
@@ -2329,7 +2326,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2269 bool TTF_GetTextColor(TTF_Text *text, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
-  export const getTextColor = lib.symbols.TTF_GetTextColor;
+export const getTextColor = lib.symbols.TTF_GetTextColor;
 
 /**
  * Get the color of a text object.
@@ -2356,7 +2353,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2294 bool TTF_GetTextColorFloat(TTF_Text *text, float *r, float *g, float *b, float *a);
  */
-  export const getTextColorFloat = lib.symbols.TTF_GetTextColorFloat;
+export const getTextColorFloat = lib.symbols.TTF_GetTextColorFloat;
 
 /**
  * Set the position of a text object.
@@ -2379,7 +2376,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2315 bool TTF_SetTextPosition(TTF_Text *text, int x, int y);
  */
-  export const setTextPosition = lib.symbols.TTF_SetTextPosition;
+export const setTextPosition = lib.symbols.TTF_SetTextPosition;
 
 /**
  * Get the position of a text object.
@@ -2399,7 +2396,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2333 bool TTF_GetTextPosition(TTF_Text *text, int *x, int *y);
  */
-  export const getTextPosition = lib.symbols.TTF_GetTextPosition;
+export const getTextPosition = lib.symbols.TTF_GetTextPosition;
 
 /**
  * Set whether wrapping is enabled on a text object.
@@ -2421,7 +2418,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2353 bool TTF_SetTextWrapWidth(TTF_Text *text, int wrap_width);
  */
-  export const setTextWrapWidth = lib.symbols.TTF_SetTextWrapWidth;
+export const setTextWrapWidth = lib.symbols.TTF_SetTextWrapWidth;
 
 /**
  * Get whether wrapping is enabled on a text object.
@@ -2441,7 +2438,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2371 bool TTF_GetTextWrapWidth(TTF_Text *text, int *wrap_width);
  */
-  export const getTextWrapWidth = lib.symbols.TTF_GetTextWrapWidth;
+export const getTextWrapWidth = lib.symbols.TTF_GetTextWrapWidth;
 
 /**
  * Set whether whitespace should be visible when wrapping a text object.
@@ -2468,7 +2465,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2396 bool TTF_SetTextWrapWhitespaceVisible(TTF_Text *text, bool visible);
  */
-  export const setTextWrapWhitespaceVisible = lib.symbols.TTF_SetTextWrapWhitespaceVisible;
+export const setTextWrapWhitespaceVisible = lib.symbols.TTF_SetTextWrapWhitespaceVisible;
 
 /**
  * Return whether whitespace is shown when wrapping a text object.
@@ -2486,7 +2483,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2412 bool TTF_TextWrapWhitespaceVisible(TTF_Text *text);
  */
-  export const textWrapWhitespaceVisible = lib.symbols.TTF_TextWrapWhitespaceVisible;
+export const textWrapWhitespaceVisible = lib.symbols.TTF_TextWrapWhitespaceVisible;
 
 /**
  * Set the UTF-8 text used by a text object.
@@ -2511,7 +2508,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2435 bool TTF_SetTextString(TTF_Text *text, const char *string, size_t length);
  */
-  export const setTextString = lib.symbols.TTF_SetTextString;
+export const setTextString = lib.symbols.TTF_SetTextString;
 
 /**
  * Insert UTF-8 text into a text object.
@@ -2540,7 +2537,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2462 bool TTF_InsertTextString(TTF_Text *text, int offset, const char *string, size_t length);
  */
-  export const insertTextString = lib.symbols.TTF_InsertTextString;
+export const insertTextString = lib.symbols.TTF_InsertTextString;
 
 /**
  * Append UTF-8 text to a text object.
@@ -2565,7 +2562,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2485 bool TTF_AppendTextString(TTF_Text *text, const char *string, size_t length);
  */
-  export const appendTextString = lib.symbols.TTF_AppendTextString;
+export const appendTextString = lib.symbols.TTF_AppendTextString;
 
 /**
  * Delete UTF-8 text from a text object.
@@ -2593,7 +2590,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2511 bool TTF_DeleteTextString(TTF_Text *text, int offset, int length);
  */
-  export const deleteTextString = lib.symbols.TTF_DeleteTextString;
+export const deleteTextString = lib.symbols.TTF_DeleteTextString;
 
 /**
  * Get the size of a text object.
@@ -2616,7 +2613,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2532 bool TTF_GetTextSize(TTF_Text *text, int *w, int *h);
  */
-  export const getTextSize = lib.symbols.TTF_GetTextSize;
+export const getTextSize = lib.symbols.TTF_GetTextSize;
 
 /**
  * Get the substring of a text object that surrounds a text offset.
@@ -2641,7 +2638,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2592 bool TTF_GetTextSubString(TTF_Text *text, int offset, TTF_SubString *substring);
  */
-  export const getTextSubString = lib.symbols.TTF_GetTextSubString;
+export const getTextSubString = lib.symbols.TTF_GetTextSubString;
 
 /**
  * Get the substring of a text object that contains the given line.
@@ -2666,7 +2663,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2615 bool TTF_GetTextSubStringForLine(TTF_Text *text, int line, TTF_SubString *substring);
  */
-  export const getTextSubStringForLine = lib.symbols.TTF_GetTextSubStringForLine;
+export const getTextSubStringForLine = lib.symbols.TTF_GetTextSubStringForLine;
 
 /**
  * Get the substrings of a text object that contain a range of text.
@@ -2689,7 +2686,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2636 TTF_SubString ** TTF_GetTextSubStringsForRange(TTF_Text *text, int offset, int length, int *count);
  */
-  export const getTextSubStringsForRange = lib.symbols.TTF_GetTextSubStringsForRange;
+export const getTextSubStringsForRange = lib.symbols.TTF_GetTextSubStringsForRange;
 
 /**
  * Get the portion of a text string that is closest to a point.
@@ -2713,7 +2710,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2658 bool TTF_GetTextSubStringForPoint(TTF_Text *text, int x, int y, TTF_SubString *substring);
  */
-  export const getTextSubStringForPoint = lib.symbols.TTF_GetTextSubStringForPoint;
+export const getTextSubStringForPoint = lib.symbols.TTF_GetTextSubStringForPoint;
 
 /**
  * Get the previous substring in a text object
@@ -2733,7 +2730,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2676 bool TTF_GetPreviousTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *previous);
  */
-  export const getPreviousTextSubString = lib.symbols.TTF_GetPreviousTextSubString;
+export const getPreviousTextSubString = lib.symbols.TTF_GetPreviousTextSubString;
 
 /**
  * Get the next substring in a text object
@@ -2754,7 +2751,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2695 bool TTF_GetNextTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *next);
  */
-  export const getNextTextSubString = lib.symbols.TTF_GetNextTextSubString;
+export const getNextTextSubString = lib.symbols.TTF_GetNextTextSubString;
 
 /**
  * Update the layout of a text object.
@@ -2774,7 +2771,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2713 bool TTF_UpdateText(TTF_Text *text);
  */
-  export const updateText = lib.symbols.TTF_UpdateText;
+export const updateText = lib.symbols.TTF_UpdateText;
 
 /**
  * Destroy a text object created by a text engine.
@@ -2790,7 +2787,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2727 void TTF_DestroyText(TTF_Text *text);
  */
-  export const destroyText = lib.symbols.TTF_DestroyText;
+export const destroyText = lib.symbols.TTF_DestroyText;
 
 /**
  * Dispose of a previously-created font.
@@ -2816,7 +2813,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2751 void TTF_CloseFont(TTF_Font *font);
  */
-  export const closeFont = lib.symbols.TTF_CloseFont;
+export const closeFont = lib.symbols.TTF_CloseFont;
 
 /**
  * Deinitialize SDL_ttf.
@@ -2840,7 +2837,7 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2773 void TTF_Quit(void);
  */
-  export const quit = lib.symbols.TTF_Quit;
+export const quit = lib.symbols.TTF_Quit;
 
 /**
  * Check if SDL_ttf is initialized.
@@ -2866,5 +2863,5 @@ export const GPU_TEXTENGINE_WINDING = SDL_ttf_enums.TTF_GPUTextEngineWinding;
  *
  * @from SDL_ttf.h:2797 int TTF_WasInit(void);
  */
-  export const wasInit = lib.symbols.TTF_WasInit;
+export const wasInit = lib.symbols.TTF_WasInit;
 

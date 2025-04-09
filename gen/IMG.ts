@@ -6,12 +6,8 @@
  * @module
  */
 
-
-import { libSdlPath } from './_utils.ts';
-
-import * as SDL_image_enums from "./enums/SDL_image.ts";
-
 import { symbols } from "./funcs/SDL_image.ts";
+import { libSdlPath } from './_utils.ts';
 
 export const lib = Deno.dlopen(libSdlPath("SDL3_image"), symbols);
 
@@ -19,6 +15,7 @@ export const lib = Deno.dlopen(libSdlPath("SDL3_image"), symbols);
 
 /*--- SDL_image ---*/
 
+import * as SDL_image_enums from "./enums/SDL_image.ts";
 /**
  * @from SDL_image:45 SDL_IMAGE_
  */
@@ -35,7 +32,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:70 int IMG_Version(void);
  */
-  export const version = lib.symbols.IMG_Version;
+export const version = lib.symbols.IMG_Version;
 
 /**
  * Load an image from an SDL data source into a software surface.
@@ -99,7 +96,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:132 SDL_Surface * IMG_LoadTyped_IO(SDL_IOStream *src, bool closeio, const char *type);
  */
-  export const loadTypedIo = lib.symbols.IMG_LoadTyped_IO;
+export const loadTypedIo = lib.symbols.IMG_LoadTyped_IO;
 
 /**
  * Load an image from a filesystem path into a software surface.
@@ -146,7 +143,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:177 SDL_Surface * IMG_Load(const char *file);
  */
-  export const load = lib.symbols.IMG_Load;
+export const load = lib.symbols.IMG_Load;
 
 /**
  * Load an image from an SDL data source into a software surface.
@@ -202,7 +199,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:231 SDL_Surface * IMG_Load_IO(SDL_IOStream *src, bool closeio);
  */
-  export const loadIo = lib.symbols.IMG_Load_IO;
+export const loadIo = lib.symbols.IMG_Load_IO;
 
 /**
  * Load an image from a filesystem path into a GPU texture.
@@ -239,7 +236,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:266 SDL_Texture * IMG_LoadTexture(SDL_Renderer *renderer, const char *file);
  */
-  export const loadTexture = lib.symbols.IMG_LoadTexture;
+export const loadTexture = lib.symbols.IMG_LoadTexture;
 
 /**
  * Load an image from an SDL data source into a GPU texture.
@@ -288,7 +285,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:313 SDL_Texture * IMG_LoadTexture_IO(SDL_Renderer *renderer, SDL_IOStream *src, bool closeio);
  */
-  export const loadTextureIo = lib.symbols.IMG_LoadTexture_IO;
+export const loadTextureIo = lib.symbols.IMG_LoadTexture_IO;
 
 /**
  * Load an image from an SDL data source into a GPU texture.
@@ -345,7 +342,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:368 SDL_Texture * IMG_LoadTextureTyped_IO(SDL_Renderer *renderer, SDL_IOStream *src, bool closeio, const char *type);
  */
-  export const loadTextureTypedIo = lib.symbols.IMG_LoadTextureTyped_IO;
+export const loadTextureTypedIo = lib.symbols.IMG_LoadTextureTyped_IO;
 
 /**
  * Detect AVIF image data on a readable/seekable SDL_IOStream.
@@ -391,7 +388,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:412 bool IMG_isAVIF(SDL_IOStream *src);
  */
-  export const isAvif = lib.symbols.IMG_isAVIF;
+export const isAvif = lib.symbols.IMG_isAVIF;
 
 /**
  * Detect ICO image data on a readable/seekable SDL_IOStream.
@@ -436,7 +433,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:455 bool IMG_isICO(SDL_IOStream *src);
  */
-  export const isIco = lib.symbols.IMG_isICO;
+export const isIco = lib.symbols.IMG_isICO;
 
 /**
  * Detect CUR image data on a readable/seekable SDL_IOStream.
@@ -481,7 +478,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:498 bool IMG_isCUR(SDL_IOStream *src);
  */
-  export const isCur = lib.symbols.IMG_isCUR;
+export const isCur = lib.symbols.IMG_isCUR;
 
 /**
  * Detect BMP image data on a readable/seekable SDL_IOStream.
@@ -526,7 +523,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:541 bool IMG_isBMP(SDL_IOStream *src);
  */
-  export const isBmp = lib.symbols.IMG_isBMP;
+export const isBmp = lib.symbols.IMG_isBMP;
 
 /**
  * Detect GIF image data on a readable/seekable SDL_IOStream.
@@ -571,7 +568,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:584 bool IMG_isGIF(SDL_IOStream *src);
  */
-  export const isGif = lib.symbols.IMG_isGIF;
+export const isGif = lib.symbols.IMG_isGIF;
 
 /**
  * Detect JPG image data on a readable/seekable SDL_IOStream.
@@ -616,7 +613,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:627 bool IMG_isJPG(SDL_IOStream *src);
  */
-  export const isJpg = lib.symbols.IMG_isJPG;
+export const isJpg = lib.symbols.IMG_isJPG;
 
 /**
  * Detect JXL image data on a readable/seekable SDL_IOStream.
@@ -661,7 +658,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:670 bool IMG_isJXL(SDL_IOStream *src);
  */
-  export const isJxl = lib.symbols.IMG_isJXL;
+export const isJxl = lib.symbols.IMG_isJXL;
 
 /**
  * Detect LBM image data on a readable/seekable SDL_IOStream.
@@ -706,7 +703,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:713 bool IMG_isLBM(SDL_IOStream *src);
  */
-  export const isLbm = lib.symbols.IMG_isLBM;
+export const isLbm = lib.symbols.IMG_isLBM;
 
 /**
  * Detect PCX image data on a readable/seekable SDL_IOStream.
@@ -751,7 +748,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:756 bool IMG_isPCX(SDL_IOStream *src);
  */
-  export const isPcx = lib.symbols.IMG_isPCX;
+export const isPcx = lib.symbols.IMG_isPCX;
 
 /**
  * Detect PNG image data on a readable/seekable SDL_IOStream.
@@ -796,7 +793,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:799 bool IMG_isPNG(SDL_IOStream *src);
  */
-  export const isPng = lib.symbols.IMG_isPNG;
+export const isPng = lib.symbols.IMG_isPNG;
 
 /**
  * Detect PNM image data on a readable/seekable SDL_IOStream.
@@ -841,7 +838,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:842 bool IMG_isPNM(SDL_IOStream *src);
  */
-  export const isPnm = lib.symbols.IMG_isPNM;
+export const isPnm = lib.symbols.IMG_isPNM;
 
 /**
  * Detect SVG image data on a readable/seekable SDL_IOStream.
@@ -886,7 +883,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:885 bool IMG_isSVG(SDL_IOStream *src);
  */
-  export const isSvg = lib.symbols.IMG_isSVG;
+export const isSvg = lib.symbols.IMG_isSVG;
 
 /**
  * Detect QOI image data on a readable/seekable SDL_IOStream.
@@ -931,7 +928,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:928 bool IMG_isQOI(SDL_IOStream *src);
  */
-  export const isQoi = lib.symbols.IMG_isQOI;
+export const isQoi = lib.symbols.IMG_isQOI;
 
 /**
  * Detect TIFF image data on a readable/seekable SDL_IOStream.
@@ -976,7 +973,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:971 bool IMG_isTIF(SDL_IOStream *src);
  */
-  export const isTif = lib.symbols.IMG_isTIF;
+export const isTif = lib.symbols.IMG_isTIF;
 
 /**
  * Detect XCF image data on a readable/seekable SDL_IOStream.
@@ -1021,7 +1018,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1014 bool IMG_isXCF(SDL_IOStream *src);
  */
-  export const isXcf = lib.symbols.IMG_isXCF;
+export const isXcf = lib.symbols.IMG_isXCF;
 
 /**
  * Detect XPM image data on a readable/seekable SDL_IOStream.
@@ -1066,7 +1063,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1057 bool IMG_isXPM(SDL_IOStream *src);
  */
-  export const isXpm = lib.symbols.IMG_isXPM;
+export const isXpm = lib.symbols.IMG_isXPM;
 
 /**
  * Detect XV image data on a readable/seekable SDL_IOStream.
@@ -1111,7 +1108,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1100 bool IMG_isXV(SDL_IOStream *src);
  */
-  export const isXv = lib.symbols.IMG_isXV;
+export const isXv = lib.symbols.IMG_isXV;
 
 /**
  * Detect WEBP image data on a readable/seekable SDL_IOStream.
@@ -1156,7 +1153,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1143 bool IMG_isWEBP(SDL_IOStream *src);
  */
-  export const isWebp = lib.symbols.IMG_isWEBP;
+export const isWebp = lib.symbols.IMG_isWEBP;
 
 /**
  * Load a AVIF image directly.
@@ -1192,7 +1189,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1177 SDL_Surface * IMG_LoadAVIF_IO(SDL_IOStream *src);
  */
-  export const loadAvifIo = lib.symbols.IMG_LoadAVIF_IO;
+export const loadAvifIo = lib.symbols.IMG_LoadAVIF_IO;
 
 /**
  * Load a ICO image directly.
@@ -1228,7 +1225,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1211 SDL_Surface * IMG_LoadICO_IO(SDL_IOStream *src);
  */
-  export const loadIcoIo = lib.symbols.IMG_LoadICO_IO;
+export const loadIcoIo = lib.symbols.IMG_LoadICO_IO;
 
 /**
  * Load a CUR image directly.
@@ -1264,7 +1261,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1245 SDL_Surface * IMG_LoadCUR_IO(SDL_IOStream *src);
  */
-  export const loadCurIo = lib.symbols.IMG_LoadCUR_IO;
+export const loadCurIo = lib.symbols.IMG_LoadCUR_IO;
 
 /**
  * Load a BMP image directly.
@@ -1300,7 +1297,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1279 SDL_Surface * IMG_LoadBMP_IO(SDL_IOStream *src);
  */
-  export const loadBmpIo = lib.symbols.IMG_LoadBMP_IO;
+export const loadBmpIo = lib.symbols.IMG_LoadBMP_IO;
 
 /**
  * Load a GIF image directly.
@@ -1336,7 +1333,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1313 SDL_Surface * IMG_LoadGIF_IO(SDL_IOStream *src);
  */
-  export const loadGifIo = lib.symbols.IMG_LoadGIF_IO;
+export const loadGifIo = lib.symbols.IMG_LoadGIF_IO;
 
 /**
  * Load a JPG image directly.
@@ -1372,7 +1369,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1347 SDL_Surface * IMG_LoadJPG_IO(SDL_IOStream *src);
  */
-  export const loadJpgIo = lib.symbols.IMG_LoadJPG_IO;
+export const loadJpgIo = lib.symbols.IMG_LoadJPG_IO;
 
 /**
  * Load a JXL image directly.
@@ -1408,7 +1405,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1381 SDL_Surface * IMG_LoadJXL_IO(SDL_IOStream *src);
  */
-  export const loadJxlIo = lib.symbols.IMG_LoadJXL_IO;
+export const loadJxlIo = lib.symbols.IMG_LoadJXL_IO;
 
 /**
  * Load a LBM image directly.
@@ -1444,7 +1441,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1415 SDL_Surface * IMG_LoadLBM_IO(SDL_IOStream *src);
  */
-  export const loadLbmIo = lib.symbols.IMG_LoadLBM_IO;
+export const loadLbmIo = lib.symbols.IMG_LoadLBM_IO;
 
 /**
  * Load a PCX image directly.
@@ -1480,7 +1477,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1449 SDL_Surface * IMG_LoadPCX_IO(SDL_IOStream *src);
  */
-  export const loadPcxIo = lib.symbols.IMG_LoadPCX_IO;
+export const loadPcxIo = lib.symbols.IMG_LoadPCX_IO;
 
 /**
  * Load a PNG image directly.
@@ -1516,7 +1513,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1483 SDL_Surface * IMG_LoadPNG_IO(SDL_IOStream *src);
  */
-  export const loadPngIo = lib.symbols.IMG_LoadPNG_IO;
+export const loadPngIo = lib.symbols.IMG_LoadPNG_IO;
 
 /**
  * Load a PNM image directly.
@@ -1552,7 +1549,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1517 SDL_Surface * IMG_LoadPNM_IO(SDL_IOStream *src);
  */
-  export const loadPnmIo = lib.symbols.IMG_LoadPNM_IO;
+export const loadPnmIo = lib.symbols.IMG_LoadPNM_IO;
 
 /**
  * Load a SVG image directly.
@@ -1588,7 +1585,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1551 SDL_Surface * IMG_LoadSVG_IO(SDL_IOStream *src);
  */
-  export const loadSvgIo = lib.symbols.IMG_LoadSVG_IO;
+export const loadSvgIo = lib.symbols.IMG_LoadSVG_IO;
 
 /**
  * Load a QOI image directly.
@@ -1624,7 +1621,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1585 SDL_Surface * IMG_LoadQOI_IO(SDL_IOStream *src);
  */
-  export const loadQoiIo = lib.symbols.IMG_LoadQOI_IO;
+export const loadQoiIo = lib.symbols.IMG_LoadQOI_IO;
 
 /**
  * Load a TGA image directly.
@@ -1660,7 +1657,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1619 SDL_Surface * IMG_LoadTGA_IO(SDL_IOStream *src);
  */
-  export const loadTgaIo = lib.symbols.IMG_LoadTGA_IO;
+export const loadTgaIo = lib.symbols.IMG_LoadTGA_IO;
 
 /**
  * Load a TIFF image directly.
@@ -1696,7 +1693,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1653 SDL_Surface * IMG_LoadTIF_IO(SDL_IOStream *src);
  */
-  export const loadTifIo = lib.symbols.IMG_LoadTIF_IO;
+export const loadTifIo = lib.symbols.IMG_LoadTIF_IO;
 
 /**
  * Load a XCF image directly.
@@ -1732,7 +1729,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1687 SDL_Surface * IMG_LoadXCF_IO(SDL_IOStream *src);
  */
-  export const loadXcfIo = lib.symbols.IMG_LoadXCF_IO;
+export const loadXcfIo = lib.symbols.IMG_LoadXCF_IO;
 
 /**
  * Load a XPM image directly.
@@ -1768,7 +1765,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1721 SDL_Surface * IMG_LoadXPM_IO(SDL_IOStream *src);
  */
-  export const loadXpmIo = lib.symbols.IMG_LoadXPM_IO;
+export const loadXpmIo = lib.symbols.IMG_LoadXPM_IO;
 
 /**
  * Load a XV image directly.
@@ -1804,7 +1801,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1755 SDL_Surface * IMG_LoadXV_IO(SDL_IOStream *src);
  */
-  export const loadXvIo = lib.symbols.IMG_LoadXV_IO;
+export const loadXvIo = lib.symbols.IMG_LoadXV_IO;
 
 /**
  * Load a WEBP image directly.
@@ -1840,7 +1837,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1789 SDL_Surface * IMG_LoadWEBP_IO(SDL_IOStream *src);
  */
-  export const loadWebpIo = lib.symbols.IMG_LoadWEBP_IO;
+export const loadWebpIo = lib.symbols.IMG_LoadWEBP_IO;
 
 /**
  * Load an SVG image, scaled to a specific size.
@@ -1863,7 +1860,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1810 SDL_Surface * IMG_LoadSizedSVG_IO(SDL_IOStream *src, int width, int height);
  */
-  export const loadSizedSvgIo = lib.symbols.IMG_LoadSizedSVG_IO;
+export const loadSizedSvgIo = lib.symbols.IMG_LoadSizedSVG_IO;
 
 /**
  * Load an XPM image from a memory array.
@@ -1884,7 +1881,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1829 SDL_Surface * IMG_ReadXPMFromArray(char **xpm);
  */
-  export const readXpmFromArray = lib.symbols.IMG_ReadXPMFromArray;
+export const readXpmFromArray = lib.symbols.IMG_ReadXPMFromArray;
 
 /**
  * Load an XPM image from a memory array.
@@ -1905,7 +1902,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1848 SDL_Surface * IMG_ReadXPMFromArrayToRGB888(char **xpm);
  */
-  export const readXpmFromArrayToRgb888 = lib.symbols.IMG_ReadXPMFromArrayToRGB888;
+export const readXpmFromArrayToRgb888 = lib.symbols.IMG_ReadXPMFromArrayToRGB888;
 
 /**
  * Save an SDL_Surface into a AVIF image file.
@@ -1925,7 +1922,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1866 bool IMG_SaveAVIF(SDL_Surface *surface, const char *file, int quality);
  */
-  export const saveAvif = lib.symbols.IMG_SaveAVIF;
+export const saveAvif = lib.symbols.IMG_SaveAVIF;
 
 /**
  * Save an SDL_Surface into AVIF image data, via an SDL_IOStream.
@@ -1950,7 +1947,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1889 bool IMG_SaveAVIF_IO(SDL_Surface *surface, SDL_IOStream *dst, bool closeio, int quality);
  */
-  export const saveAvifIo = lib.symbols.IMG_SaveAVIF_IO;
+export const saveAvifIo = lib.symbols.IMG_SaveAVIF_IO;
 
 /**
  * Save an SDL_Surface into a PNG image file.
@@ -1968,7 +1965,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1905 bool IMG_SavePNG(SDL_Surface *surface, const char *file);
  */
-  export const savePng = lib.symbols.IMG_SavePNG;
+export const savePng = lib.symbols.IMG_SavePNG;
 
 /**
  * Save an SDL_Surface into PNG image data, via an SDL_IOStream.
@@ -1991,7 +1988,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1926 bool IMG_SavePNG_IO(SDL_Surface *surface, SDL_IOStream *dst, bool closeio);
  */
-  export const savePngIo = lib.symbols.IMG_SavePNG_IO;
+export const savePngIo = lib.symbols.IMG_SavePNG_IO;
 
 /**
  * Save an SDL_Surface into a JPEG image file.
@@ -2011,7 +2008,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1944 bool IMG_SaveJPG(SDL_Surface *surface, const char *file, int quality);
  */
-  export const saveJpg = lib.symbols.IMG_SaveJPG;
+export const saveJpg = lib.symbols.IMG_SaveJPG;
 
 /**
  * Save an SDL_Surface into JPEG image data, via an SDL_IOStream.
@@ -2036,7 +2033,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1967 bool IMG_SaveJPG_IO(SDL_Surface *surface, SDL_IOStream *dst, bool closeio, int quality);
  */
-  export const saveJpgIo = lib.symbols.IMG_SaveJPG_IO;
+export const saveJpgIo = lib.symbols.IMG_SaveJPG_IO;
 
 /**
  * Load an animation from a file.
@@ -2053,7 +2050,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:1995 IMG_Animation * IMG_LoadAnimation(const char *file);
  */
-  export const loadAnimation = lib.symbols.IMG_LoadAnimation;
+export const loadAnimation = lib.symbols.IMG_LoadAnimation;
 
 /**
  * Load an animation from an SDL_IOStream.
@@ -2076,7 +2073,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:2016 IMG_Animation * IMG_LoadAnimation_IO(SDL_IOStream *src, bool closeio);
  */
-  export const loadAnimationIo = lib.symbols.IMG_LoadAnimation_IO;
+export const loadAnimationIo = lib.symbols.IMG_LoadAnimation_IO;
 
 /**
  * Load an animation from an SDL datasource
@@ -2108,7 +2105,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:2046 IMG_Animation * IMG_LoadAnimationTyped_IO(SDL_IOStream *src, bool closeio, const char *type);
  */
-  export const loadAnimationTypedIo = lib.symbols.IMG_LoadAnimationTyped_IO;
+export const loadAnimationTypedIo = lib.symbols.IMG_LoadAnimationTyped_IO;
 
 /**
  * Dispose of an IMG_Animation and free its resources.
@@ -2125,7 +2122,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:2061 void IMG_FreeAnimation(IMG_Animation *anim);
  */
-  export const freeAnimation = lib.symbols.IMG_FreeAnimation;
+export const freeAnimation = lib.symbols.IMG_FreeAnimation;
 
 /**
  * Load a GIF animation directly.
@@ -2147,7 +2144,7 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:2081 IMG_Animation * IMG_LoadGIFAnimation_IO(SDL_IOStream *src);
  */
-  export const loadGifAnimationIo = lib.symbols.IMG_LoadGIFAnimation_IO;
+export const loadGifAnimationIo = lib.symbols.IMG_LoadGIFAnimation_IO;
 
 /**
  * Load a WEBP animation directly.
@@ -2169,5 +2166,5 @@ export const SDL_IMAGE = SDL_image_enums.IMAGE;
  *
  * @from SDL_image.h:2101 IMG_Animation * IMG_LoadWEBPAnimation_IO(SDL_IOStream *src);
  */
-  export const loadWebpAnimationIo = lib.symbols.IMG_LoadWEBPAnimation_IO;
+export const loadWebpAnimationIo = lib.symbols.IMG_LoadWEBPAnimation_IO;
 

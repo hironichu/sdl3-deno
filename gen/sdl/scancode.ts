@@ -1,0 +1,55 @@
+/**
+ * # CategoryScancode
+ *
+ * Defines keyboard scancodes.
+ *
+ * Please refer to the Best Keyboard Practices document for details on what
+ * this information means and how best to use it.
+ *
+ * https://wiki.libsdl.org/SDL3/BestKeyboardPractices
+ *
+ * @module
+ */
+
+/*
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+*/
+
+import * as SDL_scancode_enums from "../enums/SDL_scancode.ts";
+/**
+ * The SDL keyboard scancode representation.
+ *
+ * An SDL scancode is the physical representation of a key on the keyboard,
+ * independent of language and keyboard mapping.
+ *
+ * Values of this type are used to represent keyboard keys, among other places
+ * in the `scancode` field of the SDL_KeyboardEvent structure.
+ *
+ * The values in this enumeration are based on the USB usage page standard:
+ * https://usb.org/sites/default/files/hut1_5.pdf
+ *
+ * @since This enum is available since SDL 3.2.0.
+ *
+ * @from SDL_scancode.h:51 SDL_SCANCODE_
+ */
+export const SCANCODE = SDL_scancode_enums.SDL_Scancode;
+
+
+
