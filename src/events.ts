@@ -34,7 +34,7 @@ import * as S from "../gen/structs/SDL_events.ts";
 import { SDL_EventType as EventType } from "../gen/enums/SDL_events.ts";
 export { EventType };
 
-import { SDL } from "../gen/SDL.ts";
+import  * as SDL from "../gen/SDL.ts";
 
 /**
  * Represents an SDL event with methods to poll, push, and access various event types.

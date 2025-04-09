@@ -1,5 +1,5 @@
 import { Tray } from "../src/tray.ts";
-import { SDL } from "../gen/SDL.ts";
+import  * as SDL from "../gen/SDL.ts";
 
 if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
   throw new Error("SDL init video and events failed");

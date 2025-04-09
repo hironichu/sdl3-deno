@@ -10,7 +10,7 @@
  * @module
  */
 
-import { SDL } from "../gen/SDL.ts";
+import  * as SDL from "../gen/SDL.ts";
 
 import { callbacks as CB } from "../gen/callbacks/mod.ts";
 

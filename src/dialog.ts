@@ -15,7 +15,7 @@
  * @module
  */
 
-import { SDL } from "../gen/SDL.ts";
+import * as SDL from "../gen/SDL.ts";
 import { cstr, cstr_v } from "./_utils.ts";
 import { callbacks as CB } from "../gen/callbacks/SDL_dialog.ts";
 

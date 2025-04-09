@@ -18,8 +18,8 @@
  * @module
  */
 
-import { IMG } from "../gen/IMG.ts";
-import { SDL } from "../gen/SDL.ts";
+import * as IMG from "../gen/IMG.ts";
+import  * as SDL from "../gen/SDL.ts";
 
 import { cstr, throwSdlError } from "./_utils.ts";
 

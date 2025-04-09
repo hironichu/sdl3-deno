@@ -1,4 +1,4 @@
-import { SDL } from "../gen/SDL.ts";
+import * as SDL from "../gen/SDL.ts";
 
 const enc = new TextEncoder();
 

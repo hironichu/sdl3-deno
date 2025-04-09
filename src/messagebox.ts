@@ -18,9 +18,9 @@
  */
 
 import * as _ from "../gen/structs/SDL_messagebox.ts";
-import { SDL } from "../gen/SDL.ts";
+import  * as SDL from "../gen/SDL.ts";
 
-import { cstr, cstr_v } from "./_utils.ts";
+import { cstr } from "./_utils.ts";
 
 /** informational dialog  */
 export function info(title: string, message: string): void {
