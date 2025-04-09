@@ -49,7 +49,6 @@ import * as SDL_tray_enums from "./enums/SDL_tray.ts";
 import * as SDL_video_enums from "./enums/SDL_video.ts";
 
 import { symbols } from "./funcs/SDL.ts";
-export { symbols };
 
 export const lib = Deno.dlopen(libSdlPath("SDL3"), symbols);
 
