@@ -34,16 +34,17 @@ DENO_SDL3_PATH=/path/to/sdl3
 
 ```typescript
 
-// FFI
-import { SDL } from "@sdl3/sdl3-deno/SDL";
-import { IMG } from "@sdl3/sdl3-deno/IMG";
-import { TTF } from "@sdl3/sdl3-deno/TTF";
+// Raw
+import * as SDL from "@sdl3/sdl3-deno/SDL";
+import * as IMG from "@sdl3/sdl3-deno/IMG";
+import * as TTF from "@sdl3/sdl3-deno/TTF";
 
 // Safe wrappers
+import { SDL, Dialog, openUrl } from "@sdl3/sdl3-deno";
 import { Tray } from "@sdl3/sdl3-deno/tray";
 import * as Dialog from "@sdl3/sdl3-deno/dialog";
 import * as MessageBox from "@sdl3/sdl3-deno/messagebox";
-import { Event } from "@sdl3/sdl3-deno/events";
+import { Event, EventType } from "@sdl3/sdl3-deno/events";
 
 // some modules are not yet published - you can use them directly from source by cloning the repository
 import * as structs from './gen/structs/mod.ts';
@@ -54,7 +55,7 @@ import * as structs from './gen/structs/mod.ts';
 
 ```typescript
 import { Tray } from "@sdl3/sdl3-deno/tray";
-import { SDL } from "@sdl3/sdl3-deno/SDL";
+import * as SDL from "@sdl3/sdl3-deno/SDL";
 
 if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
   throw new Error("SDL init video and events failed");
