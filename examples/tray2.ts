@@ -1,4 +1,4 @@
-import { Tray } from "../src/tray.ts";
+import { Tray, type TrayMenu } from "../src/tray.ts";
 import { init_pumpEvents } from "../src/_utils.ts";
 import  * as SDL from "../gen/SDL.ts";
 
