@@ -225,6 +225,7 @@ export class Event extends EventUnion {
     SDL.pumpEvents();
   }
 
+
   /**
    * Add an event to the event queue.
    *
@@ -244,18 +245,20 @@ export class Event extends EventUnion {
    * get an event type that does not conflict with other code that also wants
    * its own custom event types.
    *
-   * \param event the SDL_Event to be added to the queue.
-   * \returns true on success, false if the event was filtered or on failure;
+   * @param event the SDL_Event to be added to the queue.
+   * @returns true on success, false if the event was filtered or on failure;
    *          call SDL_GetError() for more information. A common reason for
    *          error is the event queue being full.
    *
-   * \threadsafety It is safe to call this function from any thread.
+   * @threadsafety It is safe to call this function from any thread.
    *
-   * \since This function is available since SDL 3.2.0.
+   * @since This function is available since SDL 3.2.0.
    *
-   * \sa SDL_PeepEvents
-   * \sa SDL_PollEvent
-   * \sa SDL_RegisterEvents
+   * @sa SDL_PeepEvents
+   * @sa SDL_PollEvent
+   * @sa SDL_RegisterEvents
+   *
+   * @from SDL_events.h:1355 bool SDL_PushEvent(SDL_Event *event);
    */
   override push(): boolean {
     return SDL.pushEvent(this.pointer);
