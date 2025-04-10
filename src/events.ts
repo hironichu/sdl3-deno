@@ -30,11 +30,10 @@
  * @module
  */
 
-import * as S from "../gen/structs/SDL_events.ts";
-import { SDL_EventType as EventType } from "../gen/enums/SDL_events.ts";
+import { EventType, EventUnion } from "../gen/events.ts";
 export { EventType };
 
-import  * as SDL from "../gen/SDL.ts";
+import { SDL } from "./SDL.ts";
 
 /**
  * Represents an SDL event with methods to poll, push, and access various event types.
@@ -60,17 +59,19 @@ import  * as SDL from "../gen/SDL.ts";
  * }, frameInterval);
  * ```
  */
-export class Event {
+export class Event extends EventUnion {
   #buffer: Uint8Array = new Uint8Array(128);
-  type: number = 0;
-  timestamp: bigint = 0n;
-  private pointer: Deno.PointerObject;
-  private get dt(): DataView {
-    return new DataView(this.#buffer.buffer);
+  get pointer(): Deno.PointerObject {
+    return Deno.UnsafePointer.of(this.#buffer)!;
   }
 
-  constructor() {
-    this.pointer = Deno.UnsafePointer.of(this.#buffer)!;
+  type: number =
+    0; /**< Uint32: Event type, shared with all events, Uint32 to cover user events which are not in the SDL_EventType enumeration */
+
+  //timestamp: bigint = 0n; /**< Uint64: In nanoseconds, populated using SDL_GetTicksNS() */
+
+  override get dt(): DataView {
+    return new DataView(this.#buffer.buffer);
   }
 
   /**
@@ -123,12 +124,79 @@ export class Event {
    */
   poll(): boolean {
     const r = SDL.pollEvent(this.pointer);
+    return this.readType_(r);
+  }
+
+  private readType_(r: boolean): boolean {
     if (r) {
       const view = new Deno.UnsafePointerView(this.pointer);
       this.type = view.getUint32(0);
-      this.timestamp = view.getBigUint64(8);
     }
     return r;
+  }
+
+  /**
+   * Wait indefinitely for the next available event.
+   *
+   * If `event` is not NULL, the next event is removed from the queue and stored
+   * in the SDL_Event structure pointed to by `event`.
+   *
+   * As this function may implicitly call SDL_PumpEvents(), you can only call
+   * this function in the thread that initialized the video subsystem.
+   *
+   * @param event the SDL_Event structure to be filled in with the next event
+   *              from the queue, or NULL.
+   * @returns true on success or false if there was an error while waiting for
+   *          events; call SDL_GetError() for more information.
+   *
+   * @threadsafety This function should only be called on the main thread.
+   *
+   * @since This function is available since SDL 3.2.0.
+   *
+   * @sa SDL_PollEvent
+   * @sa SDL_PushEvent
+   * @sa SDL_WaitEventTimeout
+   *
+   * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
+   */
+  wait(): boolean {
+    const r = SDL.waitEvent(this.pointer);
+    return this.readType_(r);
+  }
+
+  /**
+   * Wait until the specified timeout (in milliseconds) for the next available
+   * event.
+   *
+   * If `event` is not NULL, the next event is removed from the queue and stored
+   * in the SDL_Event structure pointed to by `event`.
+   *
+   * As this function may implicitly call SDL_PumpEvents(), you can only call
+   * this function in the thread that initialized the video subsystem.
+   *
+   * The timeout is not guaranteed, the actual wait time could be longer due to
+   * system scheduling.
+   *
+   * @param event the SDL_Event structure to be filled in with the next event
+   *              from the queue, or NULL.
+   * @param timeoutMS the maximum number of milliseconds to wait for the next
+   *                  available event.
+   * @returns true if this got an event or false if the timeout elapsed without
+   *          any events available.
+   *
+   * @threadsafety This function should only be called on the main thread.
+   *
+   * @since This function is available since SDL 3.2.0.
+   *
+   * @sa SDL_PollEvent
+   * @sa SDL_PushEvent
+   * @sa SDL_WaitEvent
+   *
+   * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
+   */
+  waitTimeout(timeoutMS: number): boolean {
+    const r = SDL.waitEventTimeout(this.pointer, timeoutMS);
+    return this.readType_(r);
   }
 
   /**
@@ -157,301 +225,39 @@ export class Event {
     SDL.pumpEvents();
   }
 
-  /** -------gen------*/
-
-  get common(): S.CommonEvent {
-    return S.read_CommonEvent(this.dt);
-  }
-  pushCommon(e: S.CommonEvent) {
-    S.write_CommonEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get display(): S.DisplayEvent {
-    return S.read_DisplayEvent(this.dt);
-  }
-  pushDisplay(e: S.DisplayEvent) {
-    S.write_DisplayEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get window(): S.WindowEvent {
-    return S.read_WindowEvent(this.dt);
-  }
-  pushWindow(e: S.WindowEvent) {
-    S.write_WindowEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get keyboardDevice(): S.KeyboardDeviceEvent {
-    return S.read_KeyboardDeviceEvent(this.dt);
-  }
-  pushKeyboardDevice(e: S.KeyboardDeviceEvent) {
-    S.write_KeyboardDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get keyboard(): S.KeyboardEvent {
-    return S.read_KeyboardEvent(this.dt);
-  }
-  pushKeyboard(e: S.KeyboardEvent) {
-    S.write_KeyboardEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get textEditing(): S.TextEditingEvent {
-    return S.read_TextEditingEvent(this.dt);
-  }
-  pushTextEditing(e: S.TextEditingEvent) {
-    S.write_TextEditingEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get textEditingCandidates(): S.TextEditingCandidatesEvent {
-    return S.read_TextEditingCandidatesEvent(this.dt);
-  }
-  pushTextEditingCandidates(e: S.TextEditingCandidatesEvent) {
-    S.write_TextEditingCandidatesEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get textInput(): S.TextInputEvent {
-    return S.read_TextInputEvent(this.dt);
-  }
-  pushTextInput(e: S.TextInputEvent) {
-    S.write_TextInputEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get mouseDevice(): S.MouseDeviceEvent {
-    return S.read_MouseDeviceEvent(this.dt);
-  }
-  pushMouseDevice(e: S.MouseDeviceEvent) {
-    S.write_MouseDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get mouseMotion(): S.MouseMotionEvent {
-    return S.read_MouseMotionEvent(this.dt);
-  }
-  pushMouseMotion(e: S.MouseMotionEvent) {
-    S.write_MouseMotionEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get mouseButton(): S.MouseButtonEvent {
-    return S.read_MouseButtonEvent(this.dt);
-  }
-  pushMouseButton(e: S.MouseButtonEvent) {
-    S.write_MouseButtonEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get mouseWheel(): S.MouseWheelEvent {
-    return S.read_MouseWheelEvent(this.dt);
-  }
-  pushMouseWheel(e: S.MouseWheelEvent) {
-    S.write_MouseWheelEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyAxis(): S.JoyAxisEvent {
-    return S.read_JoyAxisEvent(this.dt);
-  }
-  pushJoyAxis(e: S.JoyAxisEvent) {
-    S.write_JoyAxisEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyBall(): S.JoyBallEvent {
-    return S.read_JoyBallEvent(this.dt);
-  }
-  pushJoyBall(e: S.JoyBallEvent) {
-    S.write_JoyBallEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyHat(): S.JoyHatEvent {
-    return S.read_JoyHatEvent(this.dt);
-  }
-  pushJoyHat(e: S.JoyHatEvent) {
-    S.write_JoyHatEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyButton(): S.JoyButtonEvent {
-    return S.read_JoyButtonEvent(this.dt);
-  }
-  pushJoyButton(e: S.JoyButtonEvent) {
-    S.write_JoyButtonEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyDevice(): S.JoyDeviceEvent {
-    return S.read_JoyDeviceEvent(this.dt);
-  }
-  pushJoyDevice(e: S.JoyDeviceEvent) {
-    S.write_JoyDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get joyBattery(): S.JoyBatteryEvent {
-    return S.read_JoyBatteryEvent(this.dt);
-  }
-  pushJoyBattery(e: S.JoyBatteryEvent) {
-    S.write_JoyBatteryEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get gamepadAxis(): S.GamepadAxisEvent {
-    return S.read_GamepadAxisEvent(this.dt);
-  }
-  pushGamepadAxis(e: S.GamepadAxisEvent) {
-    S.write_GamepadAxisEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get gamepadButton(): S.GamepadButtonEvent {
-    return S.read_GamepadButtonEvent(this.dt);
-  }
-  pushGamepadButton(e: S.GamepadButtonEvent) {
-    S.write_GamepadButtonEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get gamepadDevice(): S.GamepadDeviceEvent {
-    return S.read_GamepadDeviceEvent(this.dt);
-  }
-  pushGamepadDevice(e: S.GamepadDeviceEvent) {
-    S.write_GamepadDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get gamepadTouchpad(): S.GamepadTouchpadEvent {
-    return S.read_GamepadTouchpadEvent(this.dt);
-  }
-  pushGamepadTouchpad(e: S.GamepadTouchpadEvent) {
-    S.write_GamepadTouchpadEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get gamepadSensor(): S.GamepadSensorEvent {
-    return S.read_GamepadSensorEvent(this.dt);
-  }
-  pushGamepadSensor(e: S.GamepadSensorEvent) {
-    S.write_GamepadSensorEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get audioDevice(): S.AudioDeviceEvent {
-    return S.read_AudioDeviceEvent(this.dt);
-  }
-  pushAudioDevice(e: S.AudioDeviceEvent) {
-    S.write_AudioDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get cameraDevice(): S.CameraDeviceEvent {
-    return S.read_CameraDeviceEvent(this.dt);
-  }
-  pushCameraDevice(e: S.CameraDeviceEvent) {
-    S.write_CameraDeviceEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get render(): S.RenderEvent {
-    return S.read_RenderEvent(this.dt);
-  }
-  pushRender(e: S.RenderEvent) {
-    S.write_RenderEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get touchFinger(): S.TouchFingerEvent {
-    return S.read_TouchFingerEvent(this.dt);
-  }
-  pushTouchFinger(e: S.TouchFingerEvent) {
-    S.write_TouchFingerEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get penProximity(): S.PenProximityEvent {
-    return S.read_PenProximityEvent(this.dt);
-  }
-  pushPenProximity(e: S.PenProximityEvent) {
-    S.write_PenProximityEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get penMotion(): S.PenMotionEvent {
-    return S.read_PenMotionEvent(this.dt);
-  }
-  pushPenMotion(e: S.PenMotionEvent) {
-    S.write_PenMotionEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get penTouch(): S.PenTouchEvent {
-    return S.read_PenTouchEvent(this.dt);
-  }
-  pushPenTouch(e: S.PenTouchEvent) {
-    S.write_PenTouchEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get penButton(): S.PenButtonEvent {
-    return S.read_PenButtonEvent(this.dt);
-  }
-  pushPenButton(e: S.PenButtonEvent) {
-    S.write_PenButtonEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get penAxis(): S.PenAxisEvent {
-    return S.read_PenAxisEvent(this.dt);
-  }
-  pushPenAxis(e: S.PenAxisEvent) {
-    S.write_PenAxisEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get drop(): S.DropEvent {
-    return S.read_DropEvent(this.dt);
-  }
-  pushDrop(e: S.DropEvent) {
-    S.write_DropEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get clipboard(): S.ClipboardEvent {
-    return S.read_ClipboardEvent(this.dt);
-  }
-  pushClipboard(e: S.ClipboardEvent) {
-    S.write_ClipboardEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get sensor(): S.SensorEvent {
-    return S.read_SensorEvent(this.dt);
-  }
-  pushSensor(e: S.SensorEvent) {
-    S.write_SensorEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get quit(): S.QuitEvent {
-    return S.read_QuitEvent(this.dt);
-  }
-  pushQuit(e: S.QuitEvent) {
-    S.write_QuitEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
-  }
-
-  get user(): S.UserEvent {
-    return S.read_UserEvent(this.dt);
-  }
-  pushUser(e: S.UserEvent) {
-    S.write_UserEvent(e, this.dt);
-    SDL.pushEvent(this.pointer);
+  /**
+   * Add an event to the event queue.
+   *
+   * The event queue can actually be used as a two way communication channel.
+   * Not only can events be read from the queue, but the user can also push
+   * their own events onto it. `event` is a pointer to the event structure you
+   * wish to push onto the queue. The event is copied into the queue, and the
+   * caller may dispose of the memory pointed to after SDL_PushEvent() returns.
+   *
+   * Note: Pushing device input events onto the queue doesn't modify the state
+   * of the device within SDL.
+   *
+   * Note: Events pushed onto the queue with SDL_PushEvent() get passed through
+   * the event filter but events added with SDL_PeepEvents() do not.
+   *
+   * For pushing application-specific events, please use SDL_RegisterEvents() to
+   * get an event type that does not conflict with other code that also wants
+   * its own custom event types.
+   *
+   * \param event the SDL_Event to be added to the queue.
+   * \returns true on success, false if the event was filtered or on failure;
+   *          call SDL_GetError() for more information. A common reason for
+   *          error is the event queue being full.
+   *
+   * \threadsafety It is safe to call this function from any thread.
+   *
+   * \since This function is available since SDL 3.2.0.
+   *
+   * \sa SDL_PeepEvents
+   * \sa SDL_PollEvent
+   * \sa SDL_RegisterEvents
+   */
+  override push(): boolean {
+    return SDL.pushEvent(this.pointer);
   }
 }
