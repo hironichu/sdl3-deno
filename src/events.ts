@@ -33,7 +33,7 @@
 import { EventType, EventUnion } from "../gen/events.ts";
 export { EventType };
 
-import { SDL } from "./SDL.ts";
+import * as SDL from "../gen/sdl/events.ts";
 
 /**
  * Represents an SDL event with methods to poll, push, and access various event types.
