@@ -123,16 +123,13 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
    */
   poll(): boolean {
-    const r = SDL.pollEvent(this.pointer);
-    return this.readType_(r);
+    return SDL.pollEvent(this.pointer) && this.readType_();
   }
 
-  private readType_(r: boolean): boolean {
-    if (r) {
-      const view = new Deno.UnsafePointerView(this.pointer);
-      this.type = view.getUint32(0);
-    }
-    return r;
+  private readType_(): true {
+    const view = new Deno.UnsafePointerView(this.pointer);
+    this.type = view.getUint32(0);
+    return true;
   }
 
   /**
@@ -160,8 +157,7 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
    */
   wait(): boolean {
-    const r = SDL.waitEvent(this.pointer);
-    return this.readType_(r);
+    return SDL.waitEvent(this.pointer) && this.readType_();
   }
 
   /**
@@ -195,8 +191,7 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
    */
   waitTimeout(timeoutMS: number): boolean {
-    const r = SDL.waitEventTimeout(this.pointer, timeoutMS);
-    return this.readType_(r);
+    return SDL.waitEventTimeout(this.pointer, timeoutMS) && this.readType_();
   }
 
   /**
