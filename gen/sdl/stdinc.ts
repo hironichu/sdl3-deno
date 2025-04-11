@@ -52,6 +52,127 @@ export {
 } from "../enums/SDL_stdinc.ts"
 
 /**
+ * Allocate uninitialized memory.
+ *
+ * The allocated memory returned by this function must be freed with
+ * SDL_free().
+ *
+ * If `size` is 0, it will be set to 1.
+ *
+ * If the allocation is successful, the returned pointer is guaranteed to be
+ * aligned to either the *fundamental alignment* (`alignof(max_align_t)` in
+ * C11 and later) or `2 * sizeof(void *)`, whichever is smaller. Use
+ * SDL_aligned_alloc() if you need to allocate memory aligned to an alignment
+ * greater than this guarantee.
+ *
+ * @param size the size to allocate.
+ * @returns a pointer to the allocated memory, or NULL if allocation failed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_free
+ * @sa SDL_calloc
+ * @sa SDL_realloc
+ * @sa SDL_aligned_alloc
+ *
+ * @from SDL_stdinc.h:1319 SDL_MALLOC void * SDL_malloc(size_t size);
+ */
+export const malloc = lib.symbols.SDL_malloc;
+
+/**
+ * Allocate a zero-initialized array.
+ *
+ * The memory returned by this function must be freed with SDL_free().
+ *
+ * If either of `nmemb` or `size` is 0, they will both be set to 1.
+ *
+ * If the allocation is successful, the returned pointer is guaranteed to be
+ * aligned to either the *fundamental alignment* (`alignof(max_align_t)` in
+ * C11 and later) or `2 * sizeof(void *)`, whichever is smaller.
+ *
+ * @param nmemb the number of elements in the array.
+ * @param size the size of each element of the array.
+ * @returns a pointer to the allocated array, or NULL if allocation failed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_free
+ * @sa SDL_malloc
+ * @sa SDL_realloc
+ *
+ * @from SDL_stdinc.h:1344 SDL_MALLOC SDL_ALLOC_SIZE2(1, 2) void * SDL_calloc(size_t nmemb, size_t size);
+ */
+export const calloc = lib.symbols.SDL_calloc;
+
+/**
+ * Change the size of allocated memory.
+ *
+ * The memory returned by this function must be freed with SDL_free().
+ *
+ * If `size` is 0, it will be set to 1. Note that this is unlike some other C
+ * runtime `realloc` implementations, which may treat `realloc(mem, 0)` the
+ * same way as `free(mem)`.
+ *
+ * If `mem` is NULL, the behavior of this function is equivalent to
+ * SDL_malloc(). Otherwise, the function can have one of three possible
+ * outcomes:
+ *
+ * - If it returns the same pointer as `mem`, it means that `mem` was resized
+ *   in place without freeing.
+ * - If it returns a different non-NULL pointer, it means that `mem` was freed
+ *   and cannot be dereferenced anymore.
+ * - If it returns NULL (indicating failure), then `mem` will remain valid and
+ *   must still be freed with SDL_free().
+ *
+ * If the allocation is successfully resized, the returned pointer is
+ * guaranteed to be aligned to either the *fundamental alignment*
+ * (`alignof(max_align_t)` in C11 and later) or `2 * sizeof(void *)`,
+ * whichever is smaller.
+ *
+ * @param mem a pointer to allocated memory to reallocate, or NULL.
+ * @param size the new size of the memory.
+ * @returns a pointer to the newly allocated memory, or NULL if allocation
+ *          failed.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_free
+ * @sa SDL_malloc
+ * @sa SDL_calloc
+ *
+ * @from SDL_stdinc.h:1384 SDL_ALLOC_SIZE(2) void * SDL_realloc(void *mem, size_t size);
+ */
+export const realloc = lib.symbols.SDL_realloc;
+
+/**
+ * Free allocated memory.
+ *
+ * The pointer is no longer valid after this call and cannot be dereferenced
+ * anymore.
+ *
+ * If `mem` is NULL, this function does nothing.
+ *
+ * @param mem a pointer to allocated memory, or NULL.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_malloc
+ * @sa SDL_calloc
+ * @sa SDL_realloc
+ *
+ * @from SDL_stdinc.h:1404 void SDL_free(void *mem);
+ */
+export const free = lib.symbols.SDL_free;
+
+/**
  * Get the original set of SDL memory functions.
  *
  * This is what SDL_malloc and friends will use by default, if there has been
@@ -985,6 +1106,71 @@ export const crc32 = lib.symbols.SDL_crc32;
 export const murmur332 = lib.symbols.SDL_murmur3_32;
 
 /**
+ * Copy non-overlapping memory.
+ *
+ * The memory regions must not overlap. If they do, use SDL_memmove() instead.
+ *
+ * @param dst The destination memory region. Must not be NULL, and must not
+ *            overlap with `src`.
+ * @param src The source memory region. Must not be NULL, and must not overlap
+ *            with `dst`.
+ * @param len The length in bytes of both `dst` and `src`.
+ * @returns `dst`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_memmove
+ *
+ * @from SDL_stdinc.h:2475 void * SDL_memcpy(SDL_OUT_BYTECAP(len) void *dst, SDL_IN_BYTECAP(len) const void *src, size_t len);
+ */
+export const memcpy = lib.symbols.SDL_memcpy;
+
+/**
+ * Copy memory ranges that might overlap.
+ *
+ * It is okay for the memory regions to overlap. If you are confident that the
+ * regions never overlap, using SDL_memcpy() may improve performance.
+ *
+ * @param dst The destination memory region. Must not be NULL.
+ * @param src The source memory region. Must not be NULL.
+ * @param len The length in bytes of both `dst` and `src`.
+ * @returns `dst`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_memcpy
+ *
+ * @from SDL_stdinc.h:2531 void * SDL_memmove(SDL_OUT_BYTECAP(len) void *dst, SDL_IN_BYTECAP(len) const void *src, size_t len);
+ */
+export const memmove = lib.symbols.SDL_memmove;
+
+/**
+ * Initialize all bytes of buffer of memory to a specific value.
+ *
+ * This function will set `len` bytes, pointed to by `dst`, to the value
+ * specified in `c`.
+ *
+ * Despite `c` being an `int` instead of a `char`, this only operates on
+ * bytes; `c` must be a value between 0 and 255, inclusive.
+ *
+ * @param dst the destination memory region. Must not be NULL.
+ * @param c the byte value to set.
+ * @param len the length, in bytes, to set in `dst`.
+ * @returns `dst`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2559 void * SDL_memset(SDL_OUT_BYTECAP(len) void *dst, int c, size_t len);
+ */
+export const memset = lib.symbols.SDL_memset;
+
+/**
  * Initialize all 32-bit words of buffer of memory to a specific value.
  *
  * This function will set a buffer of `dwords` Uint32 values, pointed to by
@@ -1005,6 +1191,53 @@ export const murmur332 = lib.symbols.SDL_murmur3_32;
  * @from SDL_stdinc.h:2579 void * SDL_memset4(void *dst, Uint32 val, size_t dwords);
  */
 export const memset4 = lib.symbols.SDL_memset4;
+
+/**
+ * Compare two buffers of memory.
+ *
+ * @param s1 the first buffer to compare. NULL is not permitted!
+ * @param s2 the second buffer to compare. NULL is not permitted!
+ * @param len the number of bytes to compare between the buffers.
+ * @returns less than zero if s1 is "less than" s2, greater than zero if s1 is
+ *          "greater than" s2, and zero if the buffers match exactly for `len`
+ *          bytes.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2661 int SDL_memcmp(const void *s1, const void *s2, size_t len);
+ */
+export const memcmp = lib.symbols.SDL_memcmp;
+
+/**
+ * This works exactly like wcslen() but doesn't require access to a C runtime.
+ *
+ * Counts the number of wchar_t values in `wstr`, excluding the null
+ * terminator.
+ *
+ * Like SDL_strlen only counts bytes and not codepoints in a UTF-8 string,
+ * this counts wchar_t values in a string, even if the string's encoding is of
+ * variable width, like UTF-16.
+ *
+ * Also be aware that wchar_t is different sizes on different platforms (4
+ * bytes on Linux, 2 on Windows, etc).
+ *
+ * @param wstr The null-terminated wide string to read. Must not be NULL.
+ * @returns the length (in wchar_t values, excluding the null terminator) of
+ *          `wstr`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_wcsnlen
+ * @sa SDL_utf8strlen
+ * @sa SDL_utf8strnlen
+ *
+ * @from SDL_stdinc.h:2688 size_t SDL_wcslen(const wchar_t *wstr);
+ */
+export const wcslen = lib.symbols.SDL_wcslen;
 
 /**
  * This works exactly like wcsnlen() but doesn't require access to a C
@@ -1040,6 +1273,108 @@ export const memset4 = lib.symbols.SDL_memset4;
 export const wcsnlen = lib.symbols.SDL_wcsnlen;
 
 /**
+ * Copy a wide string.
+ *
+ * This function copies `maxlen` - 1 wide characters from `src` to `dst`, then
+ * appends a null terminator.
+ *
+ * `src` and `dst` must not overlap.
+ *
+ * If `maxlen` is 0, no wide characters are copied and no null terminator is
+ * written.
+ *
+ * @param dst The destination buffer. Must not be NULL, and must not overlap
+ *            with `src`.
+ * @param src The null-terminated wide string to copy. Must not be NULL, and
+ *            must not overlap with `dst`.
+ * @param maxlen The length (in wide characters) of the destination buffer.
+ * @returns the length (in wide characters, excluding the null terminator) of
+ *          `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_wcslcat
+ *
+ * @from SDL_stdinc.h:2746 size_t SDL_wcslcpy(SDL_OUT_Z_CAP(maxlen) wchar_t *dst, const wchar_t *src, size_t maxlen);
+ */
+export const wcslcpy = lib.symbols.SDL_wcslcpy;
+
+/**
+ * Concatenate wide strings.
+ *
+ * This function appends up to `maxlen` - SDL_wcslen(dst) - 1 wide characters
+ * from `src` to the end of the wide string in `dst`, then appends a null
+ * terminator.
+ *
+ * `src` and `dst` must not overlap.
+ *
+ * If `maxlen` - SDL_wcslen(dst) - 1 is less than or equal to 0, then `dst` is
+ * unmodified.
+ *
+ * @param dst The destination buffer already containing the first
+ *            null-terminated wide string. Must not be NULL and must not
+ *            overlap with `src`.
+ * @param src The second null-terminated wide string. Must not be NULL, and
+ *            must not overlap with `dst`.
+ * @param maxlen The length (in wide characters) of the destination buffer.
+ * @returns the length (in wide characters, excluding the null terminator) of
+ *          the string in `dst` plus the length of `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_wcslcpy
+ *
+ * @from SDL_stdinc.h:2775 size_t SDL_wcslcat(SDL_INOUT_Z_CAP(maxlen) wchar_t *dst, const wchar_t *src, size_t maxlen);
+ */
+export const wcslcat = lib.symbols.SDL_wcslcat;
+
+/**
+ * Allocate a copy of a wide string.
+ *
+ * This allocates enough space for a null-terminated copy of `wstr`, using
+ * SDL_malloc, and then makes a copy of the string into this space.
+ *
+ * The returned string is owned by the caller, and should be passed to
+ * SDL_free when no longer needed.
+ *
+ * @param wstr the string to copy.
+ * @returns a pointer to the newly-allocated wide string.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2793 wchar_t * SDL_wcsdup(const wchar_t *wstr);
+ */
+export const wcsdup = lib.symbols.SDL_wcsdup;
+
+/**
+ * Search a wide string for the first instance of a specific substring.
+ *
+ * The search ends once it finds the requested substring, or a null terminator
+ * byte to end the string.
+ *
+ * Note that this looks for strings of _wide characters_, not _codepoints_, so
+ * it's legal to search for malformed and incomplete UTF-16 sequences.
+ *
+ * @param haystack the wide string to search. Must not be NULL.
+ * @param needle the wide string to search for. Must not be NULL.
+ * @returns a pointer to the first instance of `needle` in the string, or NULL
+ *          if not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2813 wchar_t * SDL_wcsstr(const wchar_t *haystack, const wchar_t *needle);
+ */
+export const wcsstr = lib.symbols.SDL_wcsstr;
+
+/**
  * Search a wide string, up to n wide chars, for the first instance of a
  * specific substring.
  *
@@ -1065,6 +1400,60 @@ export const wcsnlen = lib.symbols.SDL_wcsnlen;
  * @from SDL_stdinc.h:2838 wchar_t * SDL_wcsnstr(const wchar_t *haystack, const wchar_t *needle, size_t maxlen);
  */
 export const wcsnstr = lib.symbols.SDL_wcsnstr;
+
+/**
+ * Compare two null-terminated wide strings.
+ *
+ * This only compares wchar_t values until it hits a null-terminating
+ * character; it does not care if the string is well-formed UTF-16 (or UTF-32,
+ * depending on your platform's wchar_t size), or uses valid Unicode values.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2857 int SDL_wcscmp(const wchar_t *str1, const wchar_t *str2);
+ */
+export const wcscmp = lib.symbols.SDL_wcscmp;
+
+/**
+ * Compare two wide strings up to a number of wchar_t values.
+ *
+ * This only compares wchar_t values; it does not care if the string is
+ * well-formed UTF-16 (or UTF-32, depending on your platform's wchar_t size),
+ * or uses valid Unicode values.
+ *
+ * Note that while this function is intended to be used with UTF-16 (or
+ * UTF-32, depending on your platform's definition of wchar_t), it is
+ * comparing raw wchar_t values and not Unicode codepoints: `maxlen` specifies
+ * a wchar_t limit! If the limit lands in the middle of a multi-wchar UTF-16
+ * sequence, it will only compare a portion of the final character.
+ *
+ * `maxlen` specifies a maximum number of wchar_t to compare; if the strings
+ * match to this number of wide chars (or both have matched to a
+ * null-terminator character before this count), they will be considered
+ * equal.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @param maxlen the maximum number of wchar_t to compare.
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:2888 int SDL_wcsncmp(const wchar_t *str1, const wchar_t *str2, size_t maxlen);
+ */
+export const wcsncmp = lib.symbols.SDL_wcsncmp;
 
 /**
  * Compare two null-terminated wide strings, case-insensitively.
@@ -1172,6 +1561,28 @@ export const wcsncasecmp = lib.symbols.SDL_wcsncasecmp;
 export const wcstol = lib.symbols.SDL_wcstol;
 
 /**
+ * This works exactly like strlen() but doesn't require access to a C runtime.
+ *
+ * Counts the bytes in `str`, excluding the null terminator.
+ *
+ * If you need the length of a UTF-8 string, consider using SDL_utf8strlen().
+ *
+ * @param str The null-terminated string to read. Must not be NULL.
+ * @returns the length (in bytes, excluding the null terminator) of `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strnlen
+ * @sa SDL_utf8strlen
+ * @sa SDL_utf8strnlen
+ *
+ * @from SDL_stdinc.h:3007 size_t SDL_strlen(const char *str);
+ */
+export const strlen = lib.symbols.SDL_strlen;
+
+/**
  * This works exactly like strnlen() but doesn't require access to a C
  * runtime.
  *
@@ -1196,6 +1607,37 @@ export const wcstol = lib.symbols.SDL_wcstol;
  * @from SDL_stdinc.h:3031 size_t SDL_strnlen(const char *str, size_t maxlen);
  */
 export const strnlen = lib.symbols.SDL_strnlen;
+
+/**
+ * Copy a string.
+ *
+ * This function copies up to `maxlen` - 1 characters from `src` to `dst`,
+ * then appends a null terminator.
+ *
+ * If `maxlen` is 0, no characters are copied and no null terminator is
+ * written.
+ *
+ * If you want to copy an UTF-8 string but need to ensure that multi-byte
+ * sequences are not truncated, consider using SDL_utf8strlcpy().
+ *
+ * @param dst The destination buffer. Must not be NULL, and must not overlap
+ *            with `src`.
+ * @param src The null-terminated string to copy. Must not be NULL, and must
+ *            not overlap with `dst`.
+ * @param maxlen The length (in characters) of the destination buffer.
+ * @returns the length (in characters, excluding the null terminator) of
+ *          `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strlcat
+ * @sa SDL_utf8strlcpy
+ *
+ * @from SDL_stdinc.h:3060 size_t SDL_strlcpy(SDL_OUT_Z_CAP(maxlen) char *dst, const char *src, size_t maxlen);
+ */
+export const strlcpy = lib.symbols.SDL_strlcpy;
 
 /**
  * Copy an UTF-8 string.
@@ -1226,6 +1668,56 @@ export const strnlen = lib.symbols.SDL_strnlen;
  * @from SDL_stdinc.h:3088 size_t SDL_utf8strlcpy(SDL_OUT_Z_CAP(dst_bytes) char *dst, const char *src, size_t dst_bytes);
  */
 export const utf8Strlcpy = lib.symbols.SDL_utf8strlcpy;
+
+/**
+ * Concatenate strings.
+ *
+ * This function appends up to `maxlen` - SDL_strlen(dst) - 1 characters from
+ * `src` to the end of the string in `dst`, then appends a null terminator.
+ *
+ * `src` and `dst` must not overlap.
+ *
+ * If `maxlen` - SDL_strlen(dst) - 1 is less than or equal to 0, then `dst` is
+ * unmodified.
+ *
+ * @param dst The destination buffer already containing the first
+ *            null-terminated string. Must not be NULL and must not overlap
+ *            with `src`.
+ * @param src The second null-terminated string. Must not be NULL, and must
+ *            not overlap with `dst`.
+ * @param maxlen The length (in characters) of the destination buffer.
+ * @returns the length (in characters, excluding the null terminator) of the
+ *          string in `dst` plus the length of `src`.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @sa SDL_strlcpy
+ *
+ * @from SDL_stdinc.h:3116 size_t SDL_strlcat(SDL_INOUT_Z_CAP(maxlen) char *dst, const char *src, size_t maxlen);
+ */
+export const strlcat = lib.symbols.SDL_strlcat;
+
+/**
+ * Allocate a copy of a string.
+ *
+ * This allocates enough space for a null-terminated copy of `str`, using
+ * SDL_malloc, and then makes a copy of the string into this space.
+ *
+ * The returned string is owned by the caller, and should be passed to
+ * SDL_free when no longer needed.
+ *
+ * @param str the string to copy.
+ * @returns a pointer to the newly-allocated string.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3134 SDL_MALLOC char * SDL_strdup(const char *str);
+ */
+export const strdup = lib.symbols.SDL_strdup;
 
 /**
  * Allocate a copy of a string, up to n characters.
@@ -1324,6 +1816,71 @@ export const strupr = lib.symbols.SDL_strupr;
 export const strlwr = lib.symbols.SDL_strlwr;
 
 /**
+ * Search a string for the first instance of a specific byte.
+ *
+ * The search ends once it finds the requested byte value, or a null
+ * terminator byte to end the string.
+ *
+ * Note that this looks for _bytes_, not _characters_, so you cannot match
+ * against a Unicode codepoint > 255, regardless of character encoding.
+ *
+ * @param str the string to search. Must not be NULL.
+ * @param c the byte value to search for.
+ * @returns a pointer to the first instance of `c` in the string, or NULL if
+ *          not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3242 char * SDL_strchr(const char *str, int c);
+ */
+export const strchr = lib.symbols.SDL_strchr;
+
+/**
+ * Search a string for the last instance of a specific byte.
+ *
+ * The search must go until it finds a null terminator byte to end the string.
+ *
+ * Note that this looks for _bytes_, not _characters_, so you cannot match
+ * against a Unicode codepoint > 255, regardless of character encoding.
+ *
+ * @param str the string to search. Must not be NULL.
+ * @param c the byte value to search for.
+ * @returns a pointer to the last instance of `c` in the string, or NULL if
+ *          not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3261 char * SDL_strrchr(const char *str, int c);
+ */
+export const strrchr = lib.symbols.SDL_strrchr;
+
+/**
+ * Search a string for the first instance of a specific substring.
+ *
+ * The search ends once it finds the requested substring, or a null terminator
+ * byte to end the string.
+ *
+ * Note that this looks for strings of _bytes_, not _characters_, so it's
+ * legal to search for malformed and incomplete UTF-8 sequences.
+ *
+ * @param haystack the string to search. Must not be NULL.
+ * @param needle the string to search for. Must not be NULL.
+ * @returns a pointer to the first instance of `needle` in the string, or NULL
+ *          if not found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3281 char * SDL_strstr(const char *haystack, const char *needle);
+ */
+export const strstr = lib.symbols.SDL_strstr;
+
+/**
  * Search a string, up to n bytes, for the first instance of a specific
  * substring.
  *
@@ -1377,6 +1934,37 @@ export const strnstr = lib.symbols.SDL_strnstr;
  * @from SDL_stdinc.h:3332 char * SDL_strcasestr(const char *haystack, const char *needle);
  */
 export const strcasestr = lib.symbols.SDL_strcasestr;
+
+/**
+ * This works exactly like strtok_r() but doesn't require access to a C
+ * runtime.
+ *
+ * Break a string up into a series of tokens.
+ *
+ * To start tokenizing a new string, `str` should be the non-NULL address of
+ * the string to start tokenizing. Future calls to get the next token from the
+ * same string should specify a NULL.
+ *
+ * Note that this function will overwrite pieces of `str` with null chars to
+ * split it into tokens. This function cannot be used with const/read-only
+ * strings!
+ *
+ * `saveptr` just needs to point to a `char *` that can be overwritten; SDL
+ * will use this to save tokenizing state between calls. It is initialized if
+ * `str` is non-NULL, and used to resume tokenizing when `str` is NULL.
+ *
+ * @param str the string to tokenize, or NULL to continue tokenizing.
+ * @param delim the delimiter string that separates tokens.
+ * @param saveptr pointer to a char *, used for ongoing state.
+ * @returns A pointer to the next token, or NULL if no tokens remain.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3361 char * SDL_strtok_r(char *str, const char *delim, char **saveptr);
+ */
+export const strtokR = lib.symbols.SDL_strtok_r;
 
 /**
  * Count the number of codepoints in a UTF-8 string.
@@ -1844,6 +2432,151 @@ export const strtoull = lib.symbols.SDL_strtoull;
  * @from SDL_stdinc.h:3804 double SDL_strtod(const char *str, char **endp);
  */
 export const strtod = lib.symbols.SDL_strtod;
+
+/**
+ * Compare two null-terminated UTF-8 strings.
+ *
+ * Due to the nature of UTF-8 encoding, this will work with Unicode strings,
+ * since effectively this function just compares bytes until it hits a
+ * null-terminating character. Also due to the nature of UTF-8, this can be
+ * used with SDL_qsort() to put strings in (roughly) alphabetical order.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3824 int SDL_strcmp(const char *str1, const char *str2);
+ */
+export const strcmp = lib.symbols.SDL_strcmp;
+
+/**
+ * Compare two UTF-8 strings up to a number of bytes.
+ *
+ * Due to the nature of UTF-8 encoding, this will work with Unicode strings,
+ * since effectively this function just compares bytes until it hits a
+ * null-terminating character. Also due to the nature of UTF-8, this can be
+ * used with SDL_qsort() to put strings in (roughly) alphabetical order.
+ *
+ * Note that while this function is intended to be used with UTF-8, it is
+ * doing a bytewise comparison, and `maxlen` specifies a _byte_ limit! If the
+ * limit lands in the middle of a multi-byte UTF-8 sequence, it will only
+ * compare a portion of the final character.
+ *
+ * `maxlen` specifies a maximum number of bytes to compare; if the strings
+ * match to this number of bytes (or both have matched to a null-terminator
+ * character before this number of bytes), they will be considered equal.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @param maxlen the maximum number of _bytes_ to compare.
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3854 int SDL_strncmp(const char *str1, const char *str2, size_t maxlen);
+ */
+export const strncmp = lib.symbols.SDL_strncmp;
+
+/**
+ * Compare two null-terminated UTF-8 strings, case-insensitively.
+ *
+ * This will work with Unicode strings, using a technique called
+ * "case-folding" to handle the vast majority of case-sensitive human
+ * languages regardless of system locale. It can deal with expanding values: a
+ * German Eszett character can compare against two ASCII 's' chars and be
+ * considered a match, for example. A notable exception: it does not handle
+ * the Turkish 'i' character; human language is complicated!
+ *
+ * Since this handles Unicode, it expects the string to be well-formed UTF-8
+ * and not a null-terminated string of arbitrary bytes. Bytes that are not
+ * valid UTF-8 are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), which is to say two strings of random bits may turn out to
+ * match if they convert to the same amount of replacement characters.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3882 int SDL_strcasecmp(const char *str1, const char *str2);
+ */
+export const strcasecmp = lib.symbols.SDL_strcasecmp;
+
+/**
+ * Compare two UTF-8 strings, case-insensitively, up to a number of bytes.
+ *
+ * This will work with Unicode strings, using a technique called
+ * "case-folding" to handle the vast majority of case-sensitive human
+ * languages regardless of system locale. It can deal with expanding values: a
+ * German Eszett character can compare against two ASCII 's' chars and be
+ * considered a match, for example. A notable exception: it does not handle
+ * the Turkish 'i' character; human language is complicated!
+ *
+ * Since this handles Unicode, it expects the string to be well-formed UTF-8
+ * and not a null-terminated string of arbitrary bytes. Bytes that are not
+ * valid UTF-8 are treated as Unicode character U+FFFD (REPLACEMENT
+ * CHARACTER), which is to say two strings of random bits may turn out to
+ * match if they convert to the same amount of replacement characters.
+ *
+ * Note that while this function is intended to be used with UTF-8, `maxlen`
+ * specifies a _byte_ limit! If the limit lands in the middle of a multi-byte
+ * UTF-8 sequence, it may convert a portion of the final character to one or
+ * more Unicode character U+FFFD (REPLACEMENT CHARACTER) so as not to overflow
+ * a buffer.
+ *
+ * `maxlen` specifies a maximum number of bytes to compare; if the strings
+ * match to this number of bytes (or both have matched to a null-terminator
+ * character before this number of bytes), they will be considered equal.
+ *
+ * @param str1 the first string to compare. NULL is not permitted!
+ * @param str2 the second string to compare. NULL is not permitted!
+ * @param maxlen the maximum number of bytes to compare.
+ * @returns less than zero if str1 is "less than" str2, greater than zero if
+ *          str1 is "greater than" str2, and zero if the strings match
+ *          exactly.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3922 int SDL_strncasecmp(const char *str1, const char *str2, size_t maxlen);
+ */
+export const strncasecmp = lib.symbols.SDL_strncasecmp;
+
+/**
+ * Searches a string for the first occurence of any character contained in a
+ * breakset, and returns a pointer from the string to that character.
+ *
+ * @param str The null-terminated string to be searched. Must not be NULL, and
+ *            must not overlap with `breakset`.
+ * @param breakset A null-terminated string containing the list of characters
+ *                 to look for. Must not be NULL, and must not overlap with
+ *                 `str`.
+ * @returns A pointer to the location, in str, of the first occurence of a
+ *          character present in the breakset, or NULL if none is found.
+ *
+ * @threadsafety It is safe to call this function from any thread.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_stdinc.h:3940 char * SDL_strpbrk(const char *str, const char *breakset);
+ */
+export const strpbrk = lib.symbols.SDL_strpbrk;
 
 /**
  * Decode a UTF-8 string, one Unicode codepoint at a time.
