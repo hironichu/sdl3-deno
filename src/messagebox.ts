@@ -18,7 +18,7 @@
  */
 
 import * as _ from "../gen/structs/SDL_messagebox.ts";
-import  * as SDL from "../gen/SDL.ts";
+import * as SDL from "../gen/sdl/messagebox.ts";
 
 import { cstr } from "./_utils.ts";
 

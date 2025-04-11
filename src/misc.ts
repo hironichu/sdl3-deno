@@ -7,7 +7,7 @@
  */
 
 import { cstr } from "./_utils.ts";
-import  * as SDL from "../gen/SDL.ts";
+import * as SDL from "../gen/sdl/misc.ts";
 
 /**
  * Open a URL/URI in the browser or other appropriate external application.
@@ -41,5 +41,5 @@ import  * as SDL from "../gen/SDL.ts";
  * @from SDL_misc.h:69 bool SDL_OpenURL(const char *url);
  */
 export function openUrl(url: string): boolean {
-    return SDL.openUrl(cstr(url));
+  return SDL.openUrl(cstr(url));
 }

@@ -19,7 +19,9 @@
  */
 
 import * as IMG from "../gen/IMG.ts";
-import  * as SDL from "../gen/SDL.ts";
+
+import * as SDL from "../gen/sdl/iostream.ts";
+import { destroySurface } from "../gen/sdl/surface.ts";
 
 import { cstr, throwSdlError } from "./_utils.ts";
 
@@ -235,7 +237,7 @@ export class Surface {
    * @from SDL_surface.h:212 void SDL_DestroySurface(SDL_Surface *surface);
    */
   destroy() {
-    SDL.destroySurface(this.pointer);
+    destroySurface(this.pointer);
     this.pointer = null;
   }
 }
