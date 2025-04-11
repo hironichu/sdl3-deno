@@ -16,8 +16,9 @@
  */
 
 import * as SDL from "../gen/SDL.ts";
-import { cstr, cstr_v } from "./_utils.ts";
+import { cstr } from "./_utils.ts";
 import { callbacks as CB } from "../gen/callbacks/SDL_dialog.ts";
+import { Cursor } from "@g9wp/ptr";
 
 /**
  * Displays a dialog that lets the user select a file on their filesystem.
@@ -311,7 +312,7 @@ export function withProperties(
 
 type FileCallback = (
   userdata: Deno.PointerValue,
-  filelist: string[] | undefined,
+  filelist: string[] | null,
   filter: number,
 ) => void;
 
@@ -332,15 +333,15 @@ function createFileCallback(
   return r;
 }
 
-function getFileList(filelist: Deno.PointerValue): string[] | undefined {
-  if (!filelist) return undefined;
+function getFileList(filelist: Deno.PointerValue): string[] | null {
+  if (!filelist) return null;
 
   const files: string[] = [];
-  const p = new Deno.UnsafePointerView(filelist!);
+  const p = Cursor.Unsafe(filelist!);
   while (true) {
-    const fp = p.getPointer(files.length * 8);
-    if (!fp) break;
-    files.push(new Deno.UnsafePointerView(fp).getCString());
+    const s = p.pcstr;
+    if (s === null) break;
+    files.push(s);
   }
   return files;
 }
@@ -356,13 +357,14 @@ function cFileFilters(
   if (filters === undefined || filters.length === 0) return null;
 
   const buf = new BigUint64Array(2 * filters.length);
-  filters.forEach((e, i) => {
+  const p = new Cursor(buf);
+  filters.forEach((e) => {
     if (e instanceof Array) {
-      buf[i * 2] = cstr_v(e[0]);
-      buf[i * 2 + 1] = cstr_v(e[1]);
+      p.setPcstr(e[0]);
+      p.setPcstr(e[1]);
     } else {
-      buf[i * 2] = cstr_v(e.name);
-      buf[i * 2 + 1] = cstr_v(e.pattern);
+      p.setPcstr(e.name);
+      p.setPcstr(e.pattern);
     }
   });
   return Deno.UnsafePointer.of(buf);
