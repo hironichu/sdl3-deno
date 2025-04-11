@@ -10,9 +10,9 @@
  * @module
  */
 
-import  * as SDL from "../gen/SDL.ts";
+import * as SDL from "../gen/sdl/tray.ts";
 
-import { callbacks as CB } from "../gen/callbacks/mod.ts";
+import { callbacks as CB } from "../gen/callbacks/SDL_tray.ts";
 
 import { cstr, ptr_view, read_cstr, throwSdlError } from "./_utils.ts";
 import { Surface } from "./surface.ts";
@@ -950,5 +950,10 @@ export class TrayMenu {
     flag: number,
   ): TrayEntry {
     return TrayEntry.of(TrayMenu.insertEntryAt(this.pointer, pos, label, flag));
+  }
+
+  static clearCb_() {
+    entryCb.map.forEach((i) => i.callback.close());
+    this.map = [];
   }
 }
