@@ -954,6 +954,6 @@ export class TrayMenu {
 
   static clearCb_() {
     entryCb.map.forEach((i) => i.callback.close());
-    this.map = [];
+    entryCb.map = [];
   }
 }
