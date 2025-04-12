@@ -50,6 +50,8 @@
 */
 
 import * as _ from "@denosaurs/byte-type";
+import { SDL_FPoint } from "./SDL_rect.ts";
+import { SDL_FColor } from "./SDL_pixels.ts";
 
 
 /**
