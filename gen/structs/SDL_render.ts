@@ -51,6 +51,8 @@
 
 import * as _ from "../_utils.ts";
 import * as _b from "../_structs/SDL_render.ts";
+import { FPoint } from "./SDL_rect.ts";
+import { FColor } from "./SDL_pixels.ts";
 
 
 /**
