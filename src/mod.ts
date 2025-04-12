@@ -16,3 +16,10 @@ export { MessageBox };
 export { Event, EventType } from "./events.ts";
 
 export { openUrl } from "./misc.ts"
+
+
+export type { Render, RenderDriver, Texture } from "./render.ts";
+
+export type { Window, VideoDriver, DisplayModePtr } from "./video.ts";
+
+export type { Properties, PropertyType } from "./properties.ts"
