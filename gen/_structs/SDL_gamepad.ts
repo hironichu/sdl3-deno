@@ -91,7 +91,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_GetGamepadBindings
  *
- * @from SDL_gamepad.h:261 
+ * @from SDL_gamepad.h:261
  */
 export const SDL_GamepadBinding = new _.Struct({
   input_type: _.u32, /* SDL_GamepadBindingType */

@@ -82,7 +82,7 @@ import * as _b from "../_structs/SDL_camera.ts";
  * @sa SDL_GetCameraSupportedFormats
  * @sa SDL_GetCameraFormat
  *
- * @from SDL_camera.h:114 
+ * @from SDL_camera.h:114
  */
 export interface CameraSpec {
   format: number; /**< SDL_PixelFormat : Frame format */

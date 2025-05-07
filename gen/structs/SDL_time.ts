@@ -45,7 +45,7 @@ import * as _b from "../_structs/SDL_time.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_time.h:53 
+ * @from SDL_time.h:53
  */
 export interface DateTime {
   year: number; /**< int : Year */

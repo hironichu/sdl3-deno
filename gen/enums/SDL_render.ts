@@ -166,7 +166,7 @@ export enum PROP_TEXTURE {
 
 
 /**
- * @from SDL_render:2539 SDL_RENDERER_VSYNC_
+ * @from SDL_render:2538 SDL_RENDERER_VSYNC_
  */
 export enum RENDERER_VSYNC {
   DISABLED = 0, 

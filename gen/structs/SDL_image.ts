@@ -38,7 +38,7 @@ import * as _b from "../_structs/SDL_image.ts";
  *
  * Currently only animated GIFs and WEBP images are supported.
  *
- * @from SDL_image.h:1974 
+ * @from SDL_image.h:1974
  */
 export interface Animation {
   w: number; /* int */

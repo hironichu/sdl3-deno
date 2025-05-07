@@ -71,7 +71,7 @@ import * as _b from "../_structs/SDL_surface.ts";
  * @sa SDL_CreateSurface
  * @sa SDL_DestroySurface
  *
- * @from SDL_surface.h:131 
+ * @from SDL_surface.h:131
  */
 export interface Surface {
   flags: number; /**< SDL_SurfaceFlags : The flags of the surface, read-only */

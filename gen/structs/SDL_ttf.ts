@@ -43,7 +43,7 @@ import * as _b from "../_structs/SDL_ttf.ts";
  * @sa TTF_GetTextProperties
  * @sa TTF_DestroyText
  *
- * @from SDL_ttf.h:1696 
+ * @from SDL_ttf.h:1722
  */
 export interface Text {
   text: Deno.PointerValue; /**< char * : A copy of the UTF-8 string that this text object represents, useful for layout, debugging and retrieving substring text. This is updated when the text object is modified and will be freed automatically when the object is destroyed. */
@@ -79,7 +79,7 @@ export function write_Text(t: Text, dt: DataView) {
  *
  * @sa TTF_GetGPUTextDrawData
  *
- * @from SDL_ttf.h:1910 
+ * @from SDL_ttf.h:1936
  */
 export interface GPUAtlasDrawSequence {
   atlas_texture: Deno.PointerValue; /**< SDL_GPUTexture * : Texture atlas that stores the glyphs */
@@ -132,7 +132,7 @@ export function write_GPUAtlasDrawSequence(t: GPUAtlasDrawSequence, dt: DataView
  * @sa TTF_GetTextSubStringForPoint
  * @sa TTF_GetTextSubStringsForRange
  *
- * @from SDL_ttf.h:2561 
+ * @from SDL_ttf.h:2587
  */
 export interface SubString {
   flags: number; /**< TTF_SubStringFlags : The flags for this substring */

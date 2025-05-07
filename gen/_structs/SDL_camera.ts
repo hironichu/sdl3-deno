@@ -81,7 +81,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa SDL_GetCameraSupportedFormats
  * @sa SDL_GetCameraFormat
  *
- * @from SDL_camera.h:114 
+ * @from SDL_camera.h:114
  */
 export const SDL_CameraSpec = new _.Struct({
   format: _.u32, /**< SDL_PixelFormat : Frame format */

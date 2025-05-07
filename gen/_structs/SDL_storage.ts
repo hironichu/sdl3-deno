@@ -261,7 +261,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_storage.h:273 
+ * @from SDL_storage.h:273
  */
 export const SDL_StorageInterface = new _.Struct({
     /* The version of this interface */

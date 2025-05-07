@@ -221,7 +221,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa SDL_HapticEffect
  * @sa SDL_GetNumHapticAxes
  *
- * @from SDL_haptic.h:545 
+ * @from SDL_haptic.h:545
  */
 export const SDL_HapticDirection = new _.Struct({
   type: _.u8, /**< Uint8 : The type of encoding. */
@@ -243,7 +243,7 @@ export const SDL_HapticDirection = new _.Struct({
  * @sa SDL_HAPTIC_CONSTANT
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:565 
+ * @from SDL_haptic.h:565
  */
 export const SDL_HapticConstant = new _.Struct({
     /* Header */
@@ -328,7 +328,7 @@ export const SDL_HapticConstant = new _.Struct({
  * @sa SDL_HAPTIC_SAWTOOTHDOWN
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:651 
+ * @from SDL_haptic.h:651
  */
 export const SDL_HapticPeriodic = new _.Struct({
     /* Header */
@@ -383,7 +383,7 @@ export const SDL_HapticPeriodic = new _.Struct({
  * @sa SDL_HAPTIC_FRICTION
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:707 
+ * @from SDL_haptic.h:707
  */
 export const SDL_HapticCondition = new _.Struct({
     /* Header */
@@ -422,7 +422,7 @@ export const SDL_HapticCondition = new _.Struct({
  * @sa SDL_HAPTIC_RAMP
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:746 
+ * @from SDL_haptic.h:746
  */
 export const SDL_HapticRamp = new _.Struct({
     /* Header */
@@ -460,7 +460,7 @@ export const SDL_HapticRamp = new _.Struct({
  * @sa SDL_HAPTIC_LEFTRIGHT
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:785 
+ * @from SDL_haptic.h:785
  */
 export const SDL_HapticLeftRight = new _.Struct({
     /* Header */
@@ -491,7 +491,7 @@ export const SDL_HapticLeftRight = new _.Struct({
  * @sa SDL_HAPTIC_CUSTOM
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:815 
+ * @from SDL_haptic.h:815
  */
 export const SDL_HapticCustom = new _.Struct({
     /* Header */

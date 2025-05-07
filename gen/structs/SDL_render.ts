@@ -60,7 +60,7 @@ import { FColor } from "./SDL_pixels.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_render.h:80 
+ * @from SDL_render.h:80
  */
 export interface Vertex {
   position: FPoint; /**< SDL_FPoint : Vertex position, in SDL_Renderer coordinates  */
@@ -96,7 +96,7 @@ export function write_Vertex(t: Vertex, dt: DataView) {
  * @sa SDL_CreateTextureWithProperties
  * @sa SDL_DestroyTexture
  *
- * @from SDL_render.h:132 
+ * @from SDL_render.h:132
  */
 export interface Texture {
   format: number; /**< SDL_PixelFormat : The format of the texture, read-only */

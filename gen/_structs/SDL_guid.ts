@@ -50,7 +50,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_guid.h:60 
+ * @from SDL_guid.h:60
  */
 export const SDL_GUID = new _.Struct({
   data: new _.ArrayType(_.u8, 16), /* Uint8[16] */

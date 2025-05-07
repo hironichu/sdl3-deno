@@ -52,7 +52,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_GetTouchFingers
  *
- * @from SDL_touch.h:101 
+ * @from SDL_touch.h:101
  */
 export const SDL_Finger = new _.Struct({
   id: _.u64, /**< SDL_FingerID : the finger ID */

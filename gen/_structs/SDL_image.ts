@@ -37,7 +37,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * Currently only animated GIFs and WEBP images are supported.
  *
- * @from SDL_image.h:1974 
+ * @from SDL_image.h:1974
  */
 export const IMG_Animation = new _.Struct({
   w: _.i32, /* int */

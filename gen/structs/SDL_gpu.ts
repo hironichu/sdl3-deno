@@ -314,7 +314,7 @@ import * as _b from "../_structs/SDL_gpu.ts";
  *
  * @sa SDL_SetGPUViewport
  *
- * @from SDL_gpu.h:1298 
+ * @from SDL_gpu.h:1298
  */
 export interface GPUViewport {
   x: number; /**< float : The left offset of the viewport. */
@@ -358,7 +358,7 @@ export function write_GPUViewport(t: GPUViewport, dt: DataView) {
  * @sa SDL_UploadToGPUTexture
  * @sa SDL_DownloadFromGPUTexture
  *
- * @from SDL_gpu.h:1317 
+ * @from SDL_gpu.h:1317
  */
 export interface GPUTextureTransferInfo {
   transfer_buffer: Deno.PointerValue; /**< SDL_GPUTransferBuffer * : The transfer buffer used in the transfer operation. */
@@ -397,7 +397,7 @@ export function write_GPUTextureTransferInfo(t: GPUTextureTransferInfo, dt: Data
  * @sa SDL_UploadToGPUBuffer
  * @sa SDL_DownloadFromGPUBuffer
  *
- * @from SDL_gpu.h:1335 
+ * @from SDL_gpu.h:1335
  */
 export interface GPUTransferBufferLocation {
   transfer_buffer: Deno.PointerValue; /**< SDL_GPUTransferBuffer * : The transfer buffer used in the transfer operation. */
@@ -429,7 +429,7 @@ export function write_GPUTransferBufferLocation(t: GPUTransferBufferLocation, dt
  *
  * @sa SDL_CopyGPUTextureToTexture
  *
- * @from SDL_gpu.h:1350 
+ * @from SDL_gpu.h:1350
  */
 export interface GPUTextureLocation {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture used in the copy operation. */
@@ -475,7 +475,7 @@ export function write_GPUTextureLocation(t: GPUTextureLocation, dt: DataView) {
  * @sa SDL_DownloadFromGPUTexture
  * @sa SDL_CreateGPUTexture
  *
- * @from SDL_gpu.h:1371 
+ * @from SDL_gpu.h:1371
  */
 export interface GPUTextureRegion {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture used in the copy operation. */
@@ -526,7 +526,7 @@ export function write_GPUTextureRegion(t: GPUTextureRegion, dt: DataView) {
  *
  * @sa SDL_BlitGPUTexture
  *
- * @from SDL_gpu.h:1391 
+ * @from SDL_gpu.h:1391
  */
 export interface GPUBlitRegion {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture. */
@@ -573,7 +573,7 @@ export function write_GPUBlitRegion(t: GPUBlitRegion, dt: DataView) {
  *
  * @sa SDL_CopyGPUBufferToBuffer
  *
- * @from SDL_gpu.h:1411 
+ * @from SDL_gpu.h:1411
  */
 export interface GPUBufferLocation {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer. */
@@ -606,7 +606,7 @@ export function write_GPUBufferLocation(t: GPUBufferLocation, dt: DataView) {
  * @sa SDL_UploadToGPUBuffer
  * @sa SDL_DownloadFromGPUBuffer
  *
- * @from SDL_gpu.h:1427 
+ * @from SDL_gpu.h:1427
  */
 export interface GPUBufferRegion {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer. */
@@ -646,7 +646,7 @@ export function write_GPUBufferRegion(t: GPUBufferRegion, dt: DataView) {
  *
  * @sa SDL_DrawGPUPrimitivesIndirect
  *
- * @from SDL_gpu.h:1448 
+ * @from SDL_gpu.h:1448
  */
 export interface GPUIndirectDrawCommand {
   num_vertices: number; /**< Uint32 : The number of vertices to draw. */
@@ -689,7 +689,7 @@ export function write_GPUIndirectDrawCommand(t: GPUIndirectDrawCommand, dt: Data
  *
  * @sa SDL_DrawGPUIndexedPrimitivesIndirect
  *
- * @from SDL_gpu.h:1470 
+ * @from SDL_gpu.h:1470
  */
 export interface GPUIndexedIndirectDrawCommand {
   num_indices: number; /**< Uint32 : The number of indices to draw per instance. */
@@ -728,7 +728,7 @@ export function write_GPUIndexedIndirectDrawCommand(t: GPUIndexedIndirectDrawCom
  *
  * @sa SDL_DispatchGPUComputeIndirect
  *
- * @from SDL_gpu.h:1486 
+ * @from SDL_gpu.h:1486
  */
 export interface GPUIndirectDispatchCommand {
   groupcount_x: number; /**< Uint32 : The number of local workgroups to dispatch in the X dimension. */
@@ -768,7 +768,7 @@ export function write_GPUIndirectDispatchCommand(t: GPUIndirectDispatchCommand, 
  * @sa SDL_GPUSamplerAddressMode
  * @sa SDL_GPUCompareOp
  *
- * @from SDL_gpu.h:1509 
+ * @from SDL_gpu.h:1509
  */
 export interface GPUSamplerCreateInfo {
   min_filter: number; /**< SDL_GPUFilter : The minification filter to apply to lookups. */
@@ -851,7 +851,7 @@ export function write_GPUSamplerCreateInfo(t: GPUSamplerCreateInfo, dt: DataView
  * @sa SDL_GPUVertexAttribute
  * @sa SDL_GPUVertexInputRate
  *
- * @from SDL_gpu.h:1548 
+ * @from SDL_gpu.h:1548
  */
 export interface GPUVertexBufferDescription {
   slot: number; /**< Uint32 : The binding slot of the vertex buffer. */
@@ -892,7 +892,7 @@ export function write_GPUVertexBufferDescription(t: GPUVertexBufferDescription, 
  * @sa SDL_GPUVertexInputState
  * @sa SDL_GPUVertexElementFormat
  *
- * @from SDL_gpu.h:1568 
+ * @from SDL_gpu.h:1568
  */
 export interface GPUVertexAttribute {
   location: number; /**< Uint32 : The shader input location index. */
@@ -931,7 +931,7 @@ export function write_GPUVertexAttribute(t: GPUVertexAttribute, dt: DataView) {
  * @sa SDL_GPUVertexBufferDescription
  * @sa SDL_GPUVertexAttribute
  *
- * @from SDL_gpu.h:1586 
+ * @from SDL_gpu.h:1586
  */
 export interface GPUVertexInputState {
   vertex_buffer_descriptions: Deno.PointerValue; /**< const SDL_GPUVertexBufferDescription * : A pointer to an array of vertex buffer descriptions. */
@@ -967,7 +967,7 @@ export function write_GPUVertexInputState(t: GPUVertexInputState, dt: DataView) 
  *
  * @sa SDL_GPUDepthStencilState
  *
- * @from SDL_gpu.h:1601 
+ * @from SDL_gpu.h:1601
  */
 export interface GPUStencilOpState {
   fail_op: number; /**< SDL_GPUStencilOp : The action performed on samples that fail the stencil test. */
@@ -1003,7 +1003,7 @@ export function write_GPUStencilOpState(t: GPUStencilOpState, dt: DataView) {
  *
  * @sa SDL_GPUColorTargetDescription
  *
- * @from SDL_gpu.h:1616 
+ * @from SDL_gpu.h:1616
  */
 export interface GPUColorTargetBlendState {
   src_color_blendfactor: number; /**< SDL_GPUBlendFactor : The value to be multiplied by the source RGB value. */
@@ -1060,7 +1060,7 @@ export function write_GPUColorTargetBlendState(t: GPUColorTargetBlendState, dt: 
  *
  * @sa SDL_CreateGPUShader
  *
- * @from SDL_gpu.h:1639 
+ * @from SDL_gpu.h:1639
  */
 export interface GPUShaderCreateInfo {
   code_size: bigint; /**< size_t : The size in bytes of the code pointed to. */
@@ -1122,7 +1122,7 @@ export function write_GPUShaderCreateInfo(t: GPUShaderCreateInfo, dt: DataView) 
  * @sa SDL_GPUTextureUsageFlags
  * @sa SDL_GPUSampleCount
  *
- * @from SDL_gpu.h:1669 
+ * @from SDL_gpu.h:1669
  */
 export interface GPUTextureCreateInfo {
   type: number; /**< SDL_GPUTextureType : The base dimensionality of the texture. */
@@ -1177,7 +1177,7 @@ export function write_GPUTextureCreateInfo(t: GPUTextureCreateInfo, dt: DataView
  * @sa SDL_CreateGPUBuffer
  * @sa SDL_GPUBufferUsageFlags
  *
- * @from SDL_gpu.h:1694 
+ * @from SDL_gpu.h:1694
  */
 export interface GPUBufferCreateInfo {
   usage: number; /**< SDL_GPUBufferUsageFlags : How the buffer is intended to be used by the client. */
@@ -1210,7 +1210,7 @@ export function write_GPUBufferCreateInfo(t: GPUBufferCreateInfo, dt: DataView) 
  *
  * @sa SDL_CreateGPUTransferBuffer
  *
- * @from SDL_gpu.h:1709 
+ * @from SDL_gpu.h:1709
  */
 export interface GPUTransferBufferCreateInfo {
   usage: number; /**< SDL_GPUTransferBufferUsage : How the transfer buffer is intended to be used by the client. */
@@ -1252,7 +1252,7 @@ export function write_GPUTransferBufferCreateInfo(t: GPUTransferBufferCreateInfo
  *
  * @sa SDL_GPUGraphicsPipelineCreateInfo
  *
- * @from SDL_gpu.h:1735 
+ * @from SDL_gpu.h:1735
  */
 export interface GPURasterizerState {
   fill_mode: number; /**< SDL_GPUFillMode : Whether polygons will be filled in or drawn as lines. */
@@ -1307,7 +1307,7 @@ export function write_GPURasterizerState(t: GPURasterizerState, dt: DataView) {
  *
  * @sa SDL_GPUGraphicsPipelineCreateInfo
  *
- * @from SDL_gpu.h:1757 
+ * @from SDL_gpu.h:1757
  */
 export interface GPUMultisampleState {
   sample_count: number; /**< SDL_GPUSampleCount : The number of samples to be used in rasterization. */
@@ -1350,7 +1350,7 @@ export function write_GPUMultisampleState(t: GPUMultisampleState, dt: DataView) 
  *
  * @sa SDL_GPUGraphicsPipelineCreateInfo
  *
- * @from SDL_gpu.h:1775 
+ * @from SDL_gpu.h:1775
  */
 export interface GPUDepthStencilState {
   compare_op: number; /**< SDL_GPUCompareOp : The comparison operator used for depth testing. */
@@ -1408,7 +1408,7 @@ export function write_GPUDepthStencilState(t: GPUDepthStencilState, dt: DataView
  *
  * @sa SDL_GPUGraphicsPipelineTargetInfo
  *
- * @from SDL_gpu.h:1798 
+ * @from SDL_gpu.h:1798
  */
 export interface GPUColorTargetDescription {
   format: number; /**< SDL_GPUTextureFormat : The pixel format of the texture to be used as a color target. */
@@ -1441,7 +1441,7 @@ export function write_GPUColorTargetDescription(t: GPUColorTargetDescription, dt
  * @sa SDL_GPUColorTargetDescription
  * @sa SDL_GPUTextureFormat
  *
- * @from SDL_gpu.h:1814 
+ * @from SDL_gpu.h:1814
  */
 export interface GPUGraphicsPipelineTargetInfo {
   color_target_descriptions: Deno.PointerValue; /**< const SDL_GPUColorTargetDescription * : A pointer to an array of color target descriptions. */
@@ -1493,7 +1493,7 @@ export function write_GPUGraphicsPipelineTargetInfo(t: GPUGraphicsPipelineTarget
  * @sa SDL_GPUDepthStencilState
  * @sa SDL_GPUGraphicsPipelineTargetInfo
  *
- * @from SDL_gpu.h:1839 
+ * @from SDL_gpu.h:1839
  */
 export interface GPUGraphicsPipelineCreateInfo {
   vertex_shader: Deno.PointerValue; /**< SDL_GPUShader * : The vertex shader used by the graphics pipeline. */
@@ -1545,7 +1545,7 @@ export function write_GPUGraphicsPipelineCreateInfo(t: GPUGraphicsPipelineCreate
  * @sa SDL_CreateGPUComputePipeline
  * @sa SDL_GPUShaderFormat
  *
- * @from SDL_gpu.h:1861 
+ * @from SDL_gpu.h:1861
  */
 export interface GPUComputePipelineCreateInfo {
   code_size: bigint; /**< size_t : The size in bytes of the compute shader code pointed to. */
@@ -1639,7 +1639,7 @@ export function write_GPUComputePipelineCreateInfo(t: GPUComputePipelineCreateIn
  *
  * @sa SDL_BeginGPURenderPass
  *
- * @from SDL_gpu.h:1915 
+ * @from SDL_gpu.h:1915
  */
 export interface GPUColorTargetInfo {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture that will be used as a color target by a render pass. */
@@ -1739,7 +1739,7 @@ export function write_GPUColorTargetInfo(t: GPUColorTargetInfo, dt: DataView) {
  *
  * @sa SDL_BeginGPURenderPass
  *
- * @from SDL_gpu.h:1976 
+ * @from SDL_gpu.h:1976
  */
 export interface GPUDepthStencilTargetInfo {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture that will be used as the depth stencil target by the render pass. */
@@ -1793,7 +1793,7 @@ export function write_GPUDepthStencilTargetInfo(t: GPUDepthStencilTargetInfo, dt
  *
  * @sa SDL_BlitGPUTexture
  *
- * @from SDL_gpu.h:1997 
+ * @from SDL_gpu.h:1997
  */
 export interface GPUBlitInfo {
   source: GPUBlitRegion; /**< SDL_GPUBlitRegion : The source region for the blit. */
@@ -1848,7 +1848,7 @@ export function write_GPUBlitInfo(t: GPUBlitInfo, dt: DataView) {
  * @sa SDL_BindGPUVertexBuffers
  * @sa SDL_BindGPUIndexBuffer
  *
- * @from SDL_gpu.h:2020 
+ * @from SDL_gpu.h:2020
  */
 export interface GPUBufferBinding {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer to bind. Must have been created with SDL_GPU_BUFFERUSAGE_VERTEX for SDL_BindGPUVertexBuffers, or SDL_GPU_BUFFERUSAGE_INDEX for SDL_BindGPUIndexBuffer. */
@@ -1879,7 +1879,7 @@ export function write_GPUBufferBinding(t: GPUBufferBinding, dt: DataView) {
  * @sa SDL_BindGPUVertexSamplers
  * @sa SDL_BindGPUFragmentSamplers
  *
- * @from SDL_gpu.h:2034 
+ * @from SDL_gpu.h:2034
  */
 export interface GPUTextureSamplerBinding {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_SAMPLER. */
@@ -1910,7 +1910,7 @@ export function write_GPUTextureSamplerBinding(t: GPUTextureSamplerBinding, dt: 
  *
  * @sa SDL_BeginGPUComputePass
  *
- * @from SDL_gpu.h:2048 
+ * @from SDL_gpu.h:2048
  */
 export interface GPUStorageBufferReadWriteBinding {
   buffer: Deno.PointerValue; /**< SDL_GPUBuffer * : The buffer to bind. Must have been created with SDL_GPU_BUFFERUSAGE_COMPUTE_STORAGE_WRITE. */
@@ -1950,7 +1950,7 @@ export function write_GPUStorageBufferReadWriteBinding(t: GPUStorageBufferReadWr
  *
  * @sa SDL_BeginGPUComputePass
  *
- * @from SDL_gpu.h:2065 
+ * @from SDL_gpu.h:2065
  */
 export interface GPUStorageTextureReadWriteBinding {
   texture: Deno.PointerValue; /**< SDL_GPUTexture * : The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_WRITE or SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_SIMULTANEOUS_READ_WRITE. */

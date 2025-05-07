@@ -40,7 +40,7 @@ import * as _b from "../_structs/SDL_rect.ts";
  * @sa SDL_GetRectEnclosingPoints
  * @sa SDL_PointInRect
  *
- * @from SDL_rect.h:48 
+ * @from SDL_rect.h:48
  */
 export interface Point {
   x: number; /* int */
@@ -71,7 +71,7 @@ export function write_Point(t: Point, dt: DataView) {
  * @sa SDL_GetRectEnclosingPointsFloat
  * @sa SDL_PointInRectFloat
  *
- * @from SDL_rect.h:62 
+ * @from SDL_rect.h:62
  */
 export interface FPoint {
   x: number; /* float */
@@ -107,7 +107,7 @@ export function write_FPoint(t: FPoint, dt: DataView) {
  * @sa SDL_GetRectUnion
  * @sa SDL_GetRectEnclosingPoints
  *
- * @from SDL_rect.h:82 
+ * @from SDL_rect.h:82
  */
 export interface Rect {
   x: number; /* int */
@@ -152,7 +152,7 @@ export function write_Rect(t: Rect, dt: DataView) {
  * @sa SDL_GetRectEnclosingPointsFloat
  * @sa SDL_PointInRectFloat
  *
- * @from SDL_rect.h:105 
+ * @from SDL_rect.h:105
  */
 export interface FRect {
   x: number; /* float */

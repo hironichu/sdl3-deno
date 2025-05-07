@@ -92,7 +92,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1111 
+ * @from SDL_pixels.h:1111
  */
 export const SDL_Color = new _.Struct({
   r: _.u8, /* Uint8 */
@@ -109,7 +109,7 @@ export const SDL_Color = new _.Struct({
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1125 
+ * @from SDL_pixels.h:1125
  */
 export const SDL_FColor = new _.Struct({
   r: _.f32, /* float */
@@ -127,7 +127,7 @@ export const SDL_FColor = new _.Struct({
  *
  * @sa SDL_SetPaletteColors
  *
- * @from SDL_pixels.h:1140 
+ * @from SDL_pixels.h:1140
  */
 export const SDL_Palette = new _.Struct({
   ncolors: _.i32, /**< int : number of elements in `colors`. */
@@ -143,7 +143,7 @@ export const SDL_Palette = new _.Struct({
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1153 
+ * @from SDL_pixels.h:1153
  */
 export const SDL_PixelFormatDetails = new _.Struct({
   format: _.u32, /* SDL_PixelFormat */

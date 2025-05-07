@@ -1118,9 +1118,6 @@ export const fillSurfaceRects = lib.symbols.SDL_FillSurfaceRects;
  * If either `srcrect` or `dstrect` are NULL, the entire surface (`src` or
  * `dst`) is copied while ensuring clipping to `dst->clip_rect`.
  *
- * The final blit rectangles are saved in `srcrect` and `dstrect` after all
- * clipping is performed.
- *
  * The blit function should not be called on a locked surface.
  *
  * The blit semantics for surfaces with and without blending and colorkey are
@@ -1185,7 +1182,7 @@ export const fillSurfaceRects = lib.symbols.SDL_FillSurfaceRects;
  *
  * @sa SDL_BlitSurfaceScaled
  *
- * @from SDL_surface.h:1204 bool SDL_BlitSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
+ * @from SDL_surface.h:1201 bool SDL_BlitSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
 export const blitSurface = lib.symbols.SDL_BlitSurface;
 
@@ -1211,7 +1208,7 @@ export const blitSurface = lib.symbols.SDL_BlitSurface;
  *
  * @sa SDL_BlitSurface
  *
- * @from SDL_surface.h:1228 bool SDL_BlitSurfaceUnchecked(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
+ * @from SDL_surface.h:1225 bool SDL_BlitSurfaceUnchecked(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
 export const blitSurfaceUnchecked = lib.symbols.SDL_BlitSurfaceUnchecked;
 
@@ -1237,7 +1234,7 @@ export const blitSurfaceUnchecked = lib.symbols.SDL_BlitSurfaceUnchecked;
  *
  * @sa SDL_BlitSurface
  *
- * @from SDL_surface.h:1252 bool SDL_BlitSurfaceScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
+ * @from SDL_surface.h:1249 bool SDL_BlitSurfaceScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
 export const blitSurfaceScaled = lib.symbols.SDL_BlitSurfaceScaled;
 
@@ -1264,7 +1261,7 @@ export const blitSurfaceScaled = lib.symbols.SDL_BlitSurfaceScaled;
  *
  * @sa SDL_BlitSurfaceScaled
  *
- * @from SDL_surface.h:1277 bool SDL_BlitSurfaceUncheckedScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
+ * @from SDL_surface.h:1274 bool SDL_BlitSurfaceUncheckedScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
 export const blitSurfaceUncheckedScaled = lib.symbols.SDL_BlitSurfaceUncheckedScaled;
 
@@ -1288,7 +1285,7 @@ export const blitSurfaceUncheckedScaled = lib.symbols.SDL_BlitSurfaceUncheckedSc
  *
  * @sa SDL_BlitSurfaceScaled
  *
- * @from SDL_surface.h:1299 bool SDL_StretchSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
+ * @from SDL_surface.h:1296 bool SDL_StretchSurface(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
  */
 export const stretchSurface = lib.symbols.SDL_StretchSurface;
 
@@ -1315,7 +1312,7 @@ export const stretchSurface = lib.symbols.SDL_StretchSurface;
  *
  * @sa SDL_BlitSurface
  *
- * @from SDL_surface.h:1324 bool SDL_BlitSurfaceTiled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
+ * @from SDL_surface.h:1321 bool SDL_BlitSurfaceTiled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
 export const blitSurfaceTiled = lib.symbols.SDL_BlitSurfaceTiled;
 
@@ -1346,7 +1343,7 @@ export const blitSurfaceTiled = lib.symbols.SDL_BlitSurfaceTiled;
  *
  * @sa SDL_BlitSurface
  *
- * @from SDL_surface.h:1353 bool SDL_BlitSurfaceTiledWithScale(SDL_Surface *src, const SDL_Rect *srcrect, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
+ * @from SDL_surface.h:1350 bool SDL_BlitSurfaceTiledWithScale(SDL_Surface *src, const SDL_Rect *srcrect, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
 export const blitSurfaceTiledWithScale = lib.symbols.SDL_BlitSurfaceTiledWithScale;
 
@@ -1384,7 +1381,7 @@ export const blitSurfaceTiledWithScale = lib.symbols.SDL_BlitSurfaceTiledWithSca
  *
  * @sa SDL_BlitSurface
  *
- * @from SDL_surface.h:1389 bool SDL_BlitSurface9Grid(SDL_Surface *src, const SDL_Rect *srcrect, int left_width, int right_width, int top_height, int bottom_height, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
+ * @from SDL_surface.h:1386 bool SDL_BlitSurface9Grid(SDL_Surface *src, const SDL_Rect *srcrect, int left_width, int right_width, int top_height, int bottom_height, float scale, SDL_ScaleMode scaleMode, SDL_Surface *dst, const SDL_Rect *dstrect);
  */
 export const blitSurface9Grid = lib.symbols.SDL_BlitSurface9Grid;
 
@@ -1418,7 +1415,7 @@ export const blitSurface9Grid = lib.symbols.SDL_BlitSurface9Grid;
  *
  * @sa SDL_MapSurfaceRGBA
  *
- * @from SDL_surface.h:1421 Uint32 SDL_MapSurfaceRGB(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b);
+ * @from SDL_surface.h:1418 Uint32 SDL_MapSurfaceRGB(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b);
  */
 export const mapSurfaceRgb = lib.symbols.SDL_MapSurfaceRGB;
 
@@ -1453,7 +1450,7 @@ export const mapSurfaceRgb = lib.symbols.SDL_MapSurfaceRGB;
  *
  * @sa SDL_MapSurfaceRGB
  *
- * @from SDL_surface.h:1454 Uint32 SDL_MapSurfaceRGBA(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+ * @from SDL_surface.h:1451 Uint32 SDL_MapSurfaceRGBA(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
 export const mapSurfaceRgba = lib.symbols.SDL_MapSurfaceRGBA;
 
@@ -1484,7 +1481,7 @@ export const mapSurfaceRgba = lib.symbols.SDL_MapSurfaceRGBA;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_surface.h:1483 bool SDL_ReadSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
+ * @from SDL_surface.h:1480 bool SDL_ReadSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
 export const readSurfacePixel = lib.symbols.SDL_ReadSurfacePixel;
 
@@ -1512,7 +1509,7 @@ export const readSurfacePixel = lib.symbols.SDL_ReadSurfacePixel;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_surface.h:1509 bool SDL_ReadSurfacePixelFloat(SDL_Surface *surface, int x, int y, float *r, float *g, float *b, float *a);
+ * @from SDL_surface.h:1506 bool SDL_ReadSurfacePixelFloat(SDL_Surface *surface, int x, int y, float *r, float *g, float *b, float *a);
  */
 export const readSurfacePixelFloat = lib.symbols.SDL_ReadSurfacePixelFloat;
 
@@ -1539,7 +1536,7 @@ export const readSurfacePixelFloat = lib.symbols.SDL_ReadSurfacePixelFloat;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_surface.h:1534 bool SDL_WriteSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+ * @from SDL_surface.h:1531 bool SDL_WriteSurfacePixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
 export const writeSurfacePixel = lib.symbols.SDL_WriteSurfacePixel;
 
@@ -1563,7 +1560,7 @@ export const writeSurfacePixel = lib.symbols.SDL_WriteSurfacePixel;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_surface.h:1556 bool SDL_WriteSurfacePixelFloat(SDL_Surface *surface, int x, int y, float r, float g, float b, float a);
+ * @from SDL_surface.h:1553 bool SDL_WriteSurfacePixelFloat(SDL_Surface *surface, int x, int y, float r, float g, float b, float a);
  */
 export const writeSurfacePixelFloat = lib.symbols.SDL_WriteSurfacePixelFloat;
 

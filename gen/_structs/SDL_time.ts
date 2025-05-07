@@ -44,7 +44,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_time.h:53 
+ * @from SDL_time.h:53
  */
 export const SDL_DateTime = new _.Struct({
   year: _.i32, /**< int : Year */

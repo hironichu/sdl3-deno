@@ -135,7 +135,7 @@ export enum PROP_DISPLAY {
 
 
 /**
- * @from SDL_video:1309 SDL_PROP_WINDOW_CREATE_
+ * @from SDL_video:1321 SDL_PROP_WINDOW_CREATE_
  */
 export enum PROP_WINDOW_CREATE {
   ALWAYS_ON_TOP_BOOLEAN = "SDL.window.create.always_on_top", 
@@ -177,7 +177,7 @@ export enum PROP_WINDOW_CREATE {
 
 
 /**
- * @from SDL_video:1517 SDL_PROP_WINDOW_
+ * @from SDL_video:1529 SDL_PROP_WINDOW_
  */
 export enum PROP_WINDOW {
   SHAPE_POINTER = "SDL.window.shape", 
@@ -220,7 +220,7 @@ export enum PROP_WINDOW {
 
 
 /**
- * @from SDL_video:2312 SDL_WINDOW_SURFACE_VSYNC_
+ * @from SDL_video:2324 SDL_WINDOW_SURFACE_VSYNC_
  */
 export enum WINDOW_SURFACE_VSYNC {
   DISABLED = 0, 
@@ -296,10 +296,10 @@ export enum SDL_FlashOperation {
  * @from SDL_video.h:426 SDL_GL_
  */
 export enum SDL_GLAttr {
-  RED_SIZE, /**< the minimum number of bits for the red channel of the color buffer; defaults to 3. */
-  GREEN_SIZE, /**< the minimum number of bits for the green channel of the color buffer; defaults to 3. */
-  BLUE_SIZE, /**< the minimum number of bits for the blue channel of the color buffer; defaults to 2. */
-  ALPHA_SIZE, /**< the minimum number of bits for the alpha channel of the color buffer; defaults to 0. */
+  RED_SIZE, /**< the minimum number of bits for the red channel of the color buffer; defaults to 8. */
+  GREEN_SIZE, /**< the minimum number of bits for the green channel of the color buffer; defaults to 8. */
+  BLUE_SIZE, /**< the minimum number of bits for the blue channel of the color buffer; defaults to 8. */
+  ALPHA_SIZE, /**< the minimum number of bits for the alpha channel of the color buffer; defaults to 8. */
   BUFFER_SIZE, /**< the minimum number of bits for frame buffer size; defaults to 0. */
   DOUBLEBUFFER, /**< whether the output is single or double buffered; defaults to double buffering on. */
   DEPTH_SIZE, /**< the minimum number of bits in the depth buffer; defaults to 16. */
@@ -337,7 +337,7 @@ export enum SDL_GLAttr {
  *
  * @sa SDL_HitTest
  *
- * @from SDL_video.h:2678 SDL_HITTEST_
+ * @from SDL_video.h:2690 SDL_HITTEST_
  */
 export enum SDL_HitTestResult {
   NORMAL, /**< Region is normal. No special properties. */

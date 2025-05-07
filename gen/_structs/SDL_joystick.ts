@@ -62,7 +62,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_VirtualJoystickDesc
  *
- * @from SDL_joystick.h:389 
+ * @from SDL_joystick.h:389
  */
 export const SDL_VirtualJoystickTouchpadDesc = new _.Struct({
   nfingers: _.u16, /**< Uint16 : the number of simultaneous fingers on this touchpad */
@@ -78,7 +78,7 @@ export const SDL_VirtualJoystickTouchpadDesc = new _.Struct({
  *
  * @sa SDL_VirtualJoystickDesc
  *
- * @from SDL_joystick.h:402 
+ * @from SDL_joystick.h:402
  */
 export const SDL_VirtualJoystickSensorDesc = new _.Struct({
   type: _.u32, /**< SDL_SensorType : the type of this sensor */
@@ -100,7 +100,7 @@ export const SDL_VirtualJoystickSensorDesc = new _.Struct({
  * @sa SDL_VirtualJoystickSensorDesc
  * @sa SDL_VirtualJoystickTouchpadDesc
  *
- * @from SDL_joystick.h:421 
+ * @from SDL_joystick.h:421
  */
 export const SDL_VirtualJoystickDesc = new _.Struct({
   version: _.u32, /**< Uint32 : the version of this interface */

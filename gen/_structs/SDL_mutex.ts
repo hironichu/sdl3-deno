@@ -98,7 +98,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_mutex.h:994 
+ * @from SDL_mutex.h:994
  */
 export const SDL_InitState = new _.Struct({
   status: SDL_AtomicInt, /* SDL_AtomicInt */

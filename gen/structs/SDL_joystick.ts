@@ -63,7 +63,7 @@ import * as _b from "../_structs/SDL_joystick.ts";
  *
  * @sa SDL_VirtualJoystickDesc
  *
- * @from SDL_joystick.h:389 
+ * @from SDL_joystick.h:389
  */
 export interface VirtualJoystickTouchpadDesc {
   nfingers: number; /**< Uint16 : the number of simultaneous fingers on this touchpad */
@@ -93,7 +93,7 @@ export function write_VirtualJoystickTouchpadDesc(t: VirtualJoystickTouchpadDesc
  *
  * @sa SDL_VirtualJoystickDesc
  *
- * @from SDL_joystick.h:402 
+ * @from SDL_joystick.h:402
  */
 export interface VirtualJoystickSensorDesc {
   type: number; /**< SDL_SensorType : the type of this sensor */
@@ -129,7 +129,7 @@ export function write_VirtualJoystickSensorDesc(t: VirtualJoystickSensorDesc, dt
  * @sa SDL_VirtualJoystickSensorDesc
  * @sa SDL_VirtualJoystickTouchpadDesc
  *
- * @from SDL_joystick.h:421 
+ * @from SDL_joystick.h:421
  */
 export interface VirtualJoystickDesc {
   version: number; /**< Uint32 : the version of this interface */

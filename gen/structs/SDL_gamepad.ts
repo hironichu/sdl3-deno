@@ -92,7 +92,7 @@ import * as _b from "../_structs/SDL_gamepad.ts";
  *
  * @sa SDL_GetGamepadBindings
  *
- * @from SDL_gamepad.h:261 
+ * @from SDL_gamepad.h:261
  */
 export interface GamepadBinding {
   input_type: number; /* SDL_GamepadBindingType */

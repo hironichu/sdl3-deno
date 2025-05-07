@@ -99,7 +99,7 @@ import * as _b from "../_structs/SDL_mutex.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_mutex.h:994 
+ * @from SDL_mutex.h:994
  */
 export interface InitState {
   status: AtomicInt; /* SDL_AtomicInt */

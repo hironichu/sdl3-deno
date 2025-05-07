@@ -46,7 +46,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:81 
+ * @from SDL_messagebox.h:81
  */
 export const SDL_MessageBoxButtonData = new _.Struct({
   flags: _.u32, /* SDL_MessageBoxButtonFlags */
@@ -61,7 +61,7 @@ export const SDL_MessageBoxButtonData = new _.Struct({
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:93 
+ * @from SDL_messagebox.h:93
  */
 export const SDL_MessageBoxColor = new _.Struct({
   r: _.u8, /* Uint8 */
@@ -76,7 +76,7 @@ export const SDL_MessageBoxColor = new _.Struct({
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:117 
+ * @from SDL_messagebox.h:117
  */
 export const SDL_MessageBoxColorScheme = new _.Struct({
   colors: new _.ArrayType(SDL_MessageBoxColor, 5), /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
@@ -89,7 +89,7 @@ export const SDL_MessageBoxColorScheme = new _.Struct({
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:127 
+ * @from SDL_messagebox.h:127
  */
 export const SDL_MessageBoxData = new _.Struct({
   flags: _.u32, /* SDL_MessageBoxFlags */

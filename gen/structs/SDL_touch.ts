@@ -53,7 +53,7 @@ import * as _b from "../_structs/SDL_touch.ts";
  *
  * @sa SDL_GetTouchFingers
  *
- * @from SDL_touch.h:101 
+ * @from SDL_touch.h:101
  */
 export interface Finger {
   id: bigint; /**< SDL_FingerID : the finger ID */

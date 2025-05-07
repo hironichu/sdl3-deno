@@ -51,7 +51,7 @@ import * as _b from "../_structs/SDL_guid.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_guid.h:60 
+ * @from SDL_guid.h:60
  */
 export interface GUID {
   data: number[]; /* Uint8[16] */

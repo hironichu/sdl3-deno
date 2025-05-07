@@ -48,7 +48,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_GetPreferredLocales
  *
- * @from SDL_locale.h:59 
+ * @from SDL_locale.h:59
  */
 export const SDL_Locale = new _.Struct({
   language: _.u64, /**< const char * : A language name, like "en" for English. */

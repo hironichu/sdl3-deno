@@ -78,7 +78,7 @@ export {
  * @sa SDL_PollEvent
  * @sa SDL_WaitEvent
  *
- * @from SDL_events.h:1068 void SDL_PumpEvents(void);
+ * @from SDL_events.h:1070 void SDL_PumpEvents(void);
  */
 export const pumpEvents = lib.symbols.SDL_PumpEvents;
 
@@ -124,7 +124,7 @@ export const pumpEvents = lib.symbols.SDL_PumpEvents;
  * @sa SDL_PumpEvents
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1126 int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1128 int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
  */
 export const peepEvents = lib.symbols.SDL_PeepEvents;
 
@@ -144,7 +144,7 @@ export const peepEvents = lib.symbols.SDL_PeepEvents;
  *
  * @sa SDL_HasEvents
  *
- * @from SDL_events.h:1145 bool SDL_HasEvent(Uint32 type);
+ * @from SDL_events.h:1147 bool SDL_HasEvent(Uint32 type);
  */
 export const hasEvent = lib.symbols.SDL_HasEvent;
 
@@ -166,7 +166,7 @@ export const hasEvent = lib.symbols.SDL_HasEvent;
  *
  * @sa SDL_HasEvents
  *
- * @from SDL_events.h:1166 bool SDL_HasEvents(Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1168 bool SDL_HasEvents(Uint32 minType, Uint32 maxType);
  */
 export const hasEvents = lib.symbols.SDL_HasEvents;
 
@@ -196,7 +196,7 @@ export const hasEvents = lib.symbols.SDL_HasEvents;
  *
  * @sa SDL_FlushEvents
  *
- * @from SDL_events.h:1194 void SDL_FlushEvent(Uint32 type);
+ * @from SDL_events.h:1196 void SDL_FlushEvent(Uint32 type);
  */
 export const flushEvent = lib.symbols.SDL_FlushEvent;
 
@@ -225,7 +225,7 @@ export const flushEvent = lib.symbols.SDL_FlushEvent;
  *
  * @sa SDL_FlushEvent
  *
- * @from SDL_events.h:1221 void SDL_FlushEvents(Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1223 void SDL_FlushEvents(Uint32 minType, Uint32 maxType);
  */
 export const flushEvents = lib.symbols.SDL_FlushEvents;
 
@@ -273,7 +273,7 @@ export const flushEvents = lib.symbols.SDL_FlushEvents;
  * @sa SDL_WaitEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
+ * @from SDL_events.h:1269 bool SDL_PollEvent(SDL_Event *event);
  */
 export const pollEvent = lib.symbols.SDL_PollEvent;
 
@@ -299,7 +299,7 @@ export const pollEvent = lib.symbols.SDL_PollEvent;
  * @sa SDL_PushEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
+ * @from SDL_events.h:1293 bool SDL_WaitEvent(SDL_Event *event);
  */
 export const waitEvent = lib.symbols.SDL_WaitEvent;
 
@@ -331,7 +331,7 @@ export const waitEvent = lib.symbols.SDL_WaitEvent;
  * @sa SDL_PushEvent
  * @sa SDL_WaitEvent
  *
- * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
+ * @from SDL_events.h:1323 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
  */
 export const waitEventTimeout = lib.symbols.SDL_WaitEventTimeout;
 
@@ -367,7 +367,7 @@ export const waitEventTimeout = lib.symbols.SDL_WaitEventTimeout;
  * @sa SDL_PollEvent
  * @sa SDL_RegisterEvents
  *
- * @from SDL_events.h:1355 bool SDL_PushEvent(SDL_Event *event);
+ * @from SDL_events.h:1357 bool SDL_PushEvent(SDL_Event *event);
  */
 export const pushEvent = lib.symbols.SDL_PushEvent;
 
@@ -410,7 +410,7 @@ export const pushEvent = lib.symbols.SDL_PushEvent;
  * @sa SDL_PeepEvents
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1417 void SDL_SetEventFilter(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1419 void SDL_SetEventFilter(SDL_EventFilter filter, void *userdata);
  */
 export const setEventFilter = lib.symbols.SDL_SetEventFilter;
 
@@ -431,7 +431,7 @@ export const setEventFilter = lib.symbols.SDL_SetEventFilter;
  *
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1436 bool SDL_GetEventFilter(SDL_EventFilter *filter, void **userdata);
+ * @from SDL_events.h:1438 bool SDL_GetEventFilter(SDL_EventFilter *filter, void **userdata);
  */
 export const getEventFilter = lib.symbols.SDL_GetEventFilter;
 
@@ -465,7 +465,7 @@ export const getEventFilter = lib.symbols.SDL_GetEventFilter;
  * @sa SDL_RemoveEventWatch
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1468 bool SDL_AddEventWatch(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1470 bool SDL_AddEventWatch(SDL_EventFilter filter, void *userdata);
  */
 export const addEventWatch = lib.symbols.SDL_AddEventWatch;
 
@@ -484,7 +484,7 @@ export const addEventWatch = lib.symbols.SDL_AddEventWatch;
  *
  * @sa SDL_AddEventWatch
  *
- * @from SDL_events.h:1485 void SDL_RemoveEventWatch(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1487 void SDL_RemoveEventWatch(SDL_EventFilter filter, void *userdata);
  */
 export const removeEventWatch = lib.symbols.SDL_RemoveEventWatch;
 
@@ -506,7 +506,7 @@ export const removeEventWatch = lib.symbols.SDL_RemoveEventWatch;
  * @sa SDL_GetEventFilter
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1505 void SDL_FilterEvents(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1507 void SDL_FilterEvents(SDL_EventFilter filter, void *userdata);
  */
 export const filterEvents = lib.symbols.SDL_FilterEvents;
 
@@ -522,7 +522,7 @@ export const filterEvents = lib.symbols.SDL_FilterEvents;
  *
  * @sa SDL_EventEnabled
  *
- * @from SDL_events.h:1519 void SDL_SetEventEnabled(Uint32 type, bool enabled);
+ * @from SDL_events.h:1521 void SDL_SetEventEnabled(Uint32 type, bool enabled);
  */
 export const setEventEnabled = lib.symbols.SDL_SetEventEnabled;
 
@@ -538,7 +538,7 @@ export const setEventEnabled = lib.symbols.SDL_SetEventEnabled;
  *
  * @sa SDL_SetEventEnabled
  *
- * @from SDL_events.h:1533 bool SDL_EventEnabled(Uint32 type);
+ * @from SDL_events.h:1535 bool SDL_EventEnabled(Uint32 type);
  */
 export const eventEnabled = lib.symbols.SDL_EventEnabled;
 
@@ -556,7 +556,7 @@ export const eventEnabled = lib.symbols.SDL_EventEnabled;
  *
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1549 Uint32 SDL_RegisterEvents(int numevents);
+ * @from SDL_events.h:1551 Uint32 SDL_RegisterEvents(int numevents);
  */
 export const registerEvents = lib.symbols.SDL_RegisterEvents;
 
@@ -574,7 +574,7 @@ export const registerEvents = lib.symbols.SDL_RegisterEvents;
  * @sa SDL_WaitEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1565 SDL_Window * SDL_GetWindowFromEvent(const SDL_Event *event);
+ * @from SDL_events.h:1567 SDL_Window * SDL_GetWindowFromEvent(const SDL_Event *event);
  */
 export const getWindowFromEvent = lib.symbols.SDL_GetWindowFromEvent;
 

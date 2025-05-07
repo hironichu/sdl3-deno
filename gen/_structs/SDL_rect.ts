@@ -39,7 +39,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa SDL_GetRectEnclosingPoints
  * @sa SDL_PointInRect
  *
- * @from SDL_rect.h:48 
+ * @from SDL_rect.h:48
  */
 export const SDL_Point = new _.Struct({
   x: _.i32, /* int */
@@ -56,7 +56,7 @@ export const SDL_Point = new _.Struct({
  * @sa SDL_GetRectEnclosingPointsFloat
  * @sa SDL_PointInRectFloat
  *
- * @from SDL_rect.h:62 
+ * @from SDL_rect.h:62
  */
 export const SDL_FPoint = new _.Struct({
   x: _.f32, /* float */
@@ -78,7 +78,7 @@ export const SDL_FPoint = new _.Struct({
  * @sa SDL_GetRectUnion
  * @sa SDL_GetRectEnclosingPoints
  *
- * @from SDL_rect.h:82 
+ * @from SDL_rect.h:82
  */
 export const SDL_Rect = new _.Struct({
   x: _.i32, /* int */
@@ -105,7 +105,7 @@ export const SDL_Rect = new _.Struct({
  * @sa SDL_GetRectEnclosingPointsFloat
  * @sa SDL_PointInRectFloat
  *
- * @from SDL_rect.h:105 
+ * @from SDL_rect.h:105
  */
 export const SDL_FRect = new _.Struct({
   x: _.f32, /* float */

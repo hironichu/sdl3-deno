@@ -137,7 +137,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_AudioFormat
  *
- * @from SDL_audio.h:404 
+ * @from SDL_audio.h:404
  */
 export const SDL_AudioSpec = new _.Struct({
   format: _.u32, /**< SDL_AudioFormat : Audio data format */

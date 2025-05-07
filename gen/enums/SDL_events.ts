@@ -237,7 +237,7 @@ export enum SDL_EventType {
  *
  * @since This enum is available since SDL 3.2.0.
  *
- * @from SDL_events.h:1077 SDL_
+ * @from SDL_events.h:1079 SDL_
  */
 export enum SDL_EventAction {
   ADDEVENT, /**< Add events to the back of the queue. */

@@ -58,7 +58,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa SDL_ShowOpenFolderDialog
  * @sa SDL_ShowFileDialogWithProperties
  *
- * @from SDL_dialog.h:69 
+ * @from SDL_dialog.h:69
  */
 export const SDL_DialogFileFilter = new _.Struct({
   name: _.u64, /* const char * */

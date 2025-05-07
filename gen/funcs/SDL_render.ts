@@ -1691,8 +1691,7 @@ SDL_GetRenderViewport: {
  * Return whether an explicit rectangle was set as the viewport.
  *
  * This is useful if you're saving and restoring the viewport and want to know
- * whether you should restore a specific rectangle or NULL. Note that the
- * viewport is always reset when changing rendering targets.
+ * whether you should restore a specific rectangle or NULL.
  *
  * Each render target has its own viewport. This function checks the viewport
  * for the current render target.
@@ -1708,7 +1707,7 @@ SDL_GetRenderViewport: {
  * @sa SDL_GetRenderViewport
  * @sa SDL_SetRenderViewport
  *
- * @from SDL_render.h:1626 bool SDL_RenderViewportSet(SDL_Renderer *renderer);
+ * @from SDL_render.h:1625 bool SDL_RenderViewportSet(SDL_Renderer *renderer);
  */
 SDL_RenderViewportSet: {
       parameters: ["pointer"],
@@ -1736,7 +1735,7 @@ SDL_RenderViewportSet: {
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_render.h:1648 bool SDL_GetRenderSafeArea(SDL_Renderer *renderer, SDL_Rect *rect);
+ * @from SDL_render.h:1647 bool SDL_GetRenderSafeArea(SDL_Renderer *renderer, SDL_Rect *rect);
  */
 SDL_GetRenderSafeArea: {
       parameters: ["pointer", "pointer"],
@@ -1763,7 +1762,7 @@ SDL_GetRenderSafeArea: {
  * @sa SDL_GetRenderClipRect
  * @sa SDL_RenderClipEnabled
  *
- * @from SDL_render.h:1669 bool SDL_SetRenderClipRect(SDL_Renderer *renderer, const SDL_Rect *rect);
+ * @from SDL_render.h:1668 bool SDL_SetRenderClipRect(SDL_Renderer *renderer, const SDL_Rect *rect);
  */
 SDL_SetRenderClipRect: {
       parameters: ["pointer", "pointer"],
@@ -1790,7 +1789,7 @@ SDL_SetRenderClipRect: {
  * @sa SDL_RenderClipEnabled
  * @sa SDL_SetRenderClipRect
  *
- * @from SDL_render.h:1690 bool SDL_GetRenderClipRect(SDL_Renderer *renderer, SDL_Rect *rect);
+ * @from SDL_render.h:1689 bool SDL_GetRenderClipRect(SDL_Renderer *renderer, SDL_Rect *rect);
  */
 SDL_GetRenderClipRect: {
       parameters: ["pointer", "pointer"],
@@ -1815,7 +1814,7 @@ SDL_GetRenderClipRect: {
  * @sa SDL_GetRenderClipRect
  * @sa SDL_SetRenderClipRect
  *
- * @from SDL_render.h:1709 bool SDL_RenderClipEnabled(SDL_Renderer *renderer);
+ * @from SDL_render.h:1708 bool SDL_RenderClipEnabled(SDL_Renderer *renderer);
  */
 SDL_RenderClipEnabled: {
       parameters: ["pointer"],
@@ -1849,7 +1848,7 @@ SDL_RenderClipEnabled: {
  *
  * @sa SDL_GetRenderScale
  *
- * @from SDL_render.h:1737 bool SDL_SetRenderScale(SDL_Renderer *renderer, float scaleX, float scaleY);
+ * @from SDL_render.h:1736 bool SDL_SetRenderScale(SDL_Renderer *renderer, float scaleX, float scaleY);
  */
 SDL_SetRenderScale: {
       parameters: ["pointer", "f32", "f32"],
@@ -1875,7 +1874,7 @@ SDL_SetRenderScale: {
  *
  * @sa SDL_SetRenderScale
  *
- * @from SDL_render.h:1757 bool SDL_GetRenderScale(SDL_Renderer *renderer, float *scaleX, float *scaleY);
+ * @from SDL_render.h:1756 bool SDL_GetRenderScale(SDL_Renderer *renderer, float *scaleX, float *scaleY);
  */
 SDL_GetRenderScale: {
       parameters: ["pointer", "pointer", "pointer"],
@@ -1906,7 +1905,7 @@ SDL_GetRenderScale: {
  * @sa SDL_GetRenderDrawColor
  * @sa SDL_SetRenderDrawColorFloat
  *
- * @from SDL_render.h:1782 bool SDL_SetRenderDrawColor(SDL_Renderer *renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+ * @from SDL_render.h:1781 bool SDL_SetRenderDrawColor(SDL_Renderer *renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
 SDL_SetRenderDrawColor: {
       parameters: ["pointer", "u8", "u8", "u8", "u8"],
@@ -1937,7 +1936,7 @@ SDL_SetRenderDrawColor: {
  * @sa SDL_GetRenderDrawColorFloat
  * @sa SDL_SetRenderDrawColor
  *
- * @from SDL_render.h:1807 bool SDL_SetRenderDrawColorFloat(SDL_Renderer *renderer, float r, float g, float b, float a);
+ * @from SDL_render.h:1806 bool SDL_SetRenderDrawColorFloat(SDL_Renderer *renderer, float r, float g, float b, float a);
  */
 SDL_SetRenderDrawColorFloat: {
       parameters: ["pointer", "f32", "f32", "f32", "f32"],
@@ -1967,7 +1966,7 @@ SDL_SetRenderDrawColorFloat: {
  * @sa SDL_GetRenderDrawColorFloat
  * @sa SDL_SetRenderDrawColor
  *
- * @from SDL_render.h:1831 bool SDL_GetRenderDrawColor(SDL_Renderer *renderer, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
+ * @from SDL_render.h:1830 bool SDL_GetRenderDrawColor(SDL_Renderer *renderer, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
 SDL_GetRenderDrawColor: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -1997,7 +1996,7 @@ SDL_GetRenderDrawColor: {
  * @sa SDL_SetRenderDrawColorFloat
  * @sa SDL_GetRenderDrawColor
  *
- * @from SDL_render.h:1855 bool SDL_GetRenderDrawColorFloat(SDL_Renderer *renderer, float *r, float *g, float *b, float *a);
+ * @from SDL_render.h:1854 bool SDL_GetRenderDrawColorFloat(SDL_Renderer *renderer, float *r, float *g, float *b, float *a);
  */
 SDL_GetRenderDrawColorFloat: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -2027,7 +2026,7 @@ SDL_GetRenderDrawColorFloat: {
  *
  * @sa SDL_GetRenderColorScale
  *
- * @from SDL_render.h:1879 bool SDL_SetRenderColorScale(SDL_Renderer *renderer, float scale);
+ * @from SDL_render.h:1878 bool SDL_SetRenderColorScale(SDL_Renderer *renderer, float scale);
  */
 SDL_SetRenderColorScale: {
       parameters: ["pointer", "f32"],
@@ -2049,7 +2048,7 @@ SDL_SetRenderColorScale: {
  *
  * @sa SDL_SetRenderColorScale
  *
- * @from SDL_render.h:1895 bool SDL_GetRenderColorScale(SDL_Renderer *renderer, float *scale);
+ * @from SDL_render.h:1894 bool SDL_GetRenderColorScale(SDL_Renderer *renderer, float *scale);
  */
 SDL_GetRenderColorScale: {
       parameters: ["pointer", "pointer"],
@@ -2073,7 +2072,7 @@ SDL_GetRenderColorScale: {
  *
  * @sa SDL_GetRenderDrawBlendMode
  *
- * @from SDL_render.h:1913 bool SDL_SetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode blendMode);
+ * @from SDL_render.h:1912 bool SDL_SetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode blendMode);
  */
 SDL_SetRenderDrawBlendMode: {
       parameters: ["pointer", "u32"],
@@ -2095,7 +2094,7 @@ SDL_SetRenderDrawBlendMode: {
  *
  * @sa SDL_SetRenderDrawBlendMode
  *
- * @from SDL_render.h:1929 bool SDL_GetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode *blendMode);
+ * @from SDL_render.h:1928 bool SDL_GetRenderDrawBlendMode(SDL_Renderer *renderer, SDL_BlendMode *blendMode);
  */
 SDL_GetRenderDrawBlendMode: {
       parameters: ["pointer", "pointer"],
@@ -2121,7 +2120,7 @@ SDL_GetRenderDrawBlendMode: {
  *
  * @sa SDL_SetRenderDrawColor
  *
- * @from SDL_render.h:1949 bool SDL_RenderClear(SDL_Renderer *renderer);
+ * @from SDL_render.h:1948 bool SDL_RenderClear(SDL_Renderer *renderer);
  */
 SDL_RenderClear: {
       parameters: ["pointer"],
@@ -2144,7 +2143,7 @@ SDL_RenderClear: {
  *
  * @sa SDL_RenderPoints
  *
- * @from SDL_render.h:1966 bool SDL_RenderPoint(SDL_Renderer *renderer, float x, float y);
+ * @from SDL_render.h:1965 bool SDL_RenderPoint(SDL_Renderer *renderer, float x, float y);
  */
 SDL_RenderPoint: {
       parameters: ["pointer", "f32", "f32"],
@@ -2167,7 +2166,7 @@ SDL_RenderPoint: {
  *
  * @sa SDL_RenderPoint
  *
- * @from SDL_render.h:1983 bool SDL_RenderPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
+ * @from SDL_render.h:1982 bool SDL_RenderPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
  */
 SDL_RenderPoints: {
       parameters: ["pointer", "pointer", "i32"],
@@ -2192,7 +2191,7 @@ SDL_RenderPoints: {
  *
  * @sa SDL_RenderLines
  *
- * @from SDL_render.h:2002 bool SDL_RenderLine(SDL_Renderer *renderer, float x1, float y1, float x2, float y2);
+ * @from SDL_render.h:2001 bool SDL_RenderLine(SDL_Renderer *renderer, float x1, float y1, float x2, float y2);
  */
 SDL_RenderLine: {
       parameters: ["pointer", "f32", "f32", "f32", "f32"],
@@ -2216,7 +2215,7 @@ SDL_RenderLine: {
  *
  * @sa SDL_RenderLine
  *
- * @from SDL_render.h:2020 bool SDL_RenderLines(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
+ * @from SDL_render.h:2019 bool SDL_RenderLines(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
  */
 SDL_RenderLines: {
       parameters: ["pointer", "pointer", "i32"],
@@ -2239,7 +2238,7 @@ SDL_RenderLines: {
  *
  * @sa SDL_RenderRects
  *
- * @from SDL_render.h:2037 bool SDL_RenderRect(SDL_Renderer *renderer, const SDL_FRect *rect);
+ * @from SDL_render.h:2036 bool SDL_RenderRect(SDL_Renderer *renderer, const SDL_FRect *rect);
  */
 SDL_RenderRect: {
       parameters: ["pointer", "pointer"],
@@ -2263,7 +2262,7 @@ SDL_RenderRect: {
  *
  * @sa SDL_RenderRect
  *
- * @from SDL_render.h:2055 bool SDL_RenderRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
+ * @from SDL_render.h:2054 bool SDL_RenderRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
  */
 SDL_RenderRects: {
       parameters: ["pointer", "pointer", "i32"],
@@ -2287,7 +2286,7 @@ SDL_RenderRects: {
  *
  * @sa SDL_RenderFillRects
  *
- * @from SDL_render.h:2073 bool SDL_RenderFillRect(SDL_Renderer *renderer, const SDL_FRect *rect);
+ * @from SDL_render.h:2072 bool SDL_RenderFillRect(SDL_Renderer *renderer, const SDL_FRect *rect);
  */
 SDL_RenderFillRect: {
       parameters: ["pointer", "pointer"],
@@ -2311,7 +2310,7 @@ SDL_RenderFillRect: {
  *
  * @sa SDL_RenderFillRect
  *
- * @from SDL_render.h:2091 bool SDL_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
+ * @from SDL_render.h:2090 bool SDL_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
  */
 SDL_RenderFillRects: {
       parameters: ["pointer", "pointer", "i32"],
@@ -2339,7 +2338,7 @@ SDL_RenderFillRects: {
  * @sa SDL_RenderTextureRotated
  * @sa SDL_RenderTextureTiled
  *
- * @from SDL_render.h:2113 bool SDL_RenderTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, const SDL_FRect *dstrect);
+ * @from SDL_render.h:2112 bool SDL_RenderTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, const SDL_FRect *dstrect);
  */
 SDL_RenderTexture: {
       parameters: ["pointer", "pointer", "pointer", "pointer"],
@@ -2373,7 +2372,7 @@ SDL_RenderTexture: {
  *
  * @sa SDL_RenderTexture
  *
- * @from SDL_render.h:2141 bool SDL_RenderTextureRotated(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FRect *dstrect,                                                     double angle, const SDL_FPoint *center,                                                     SDL_FlipMode flip);
+ * @from SDL_render.h:2140 bool SDL_RenderTextureRotated(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FRect *dstrect,                                                     double angle, const SDL_FPoint *center,                                                     SDL_FlipMode flip);
  */
 SDL_RenderTextureRotated: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "f64", "pointer", "u32"],
@@ -2407,7 +2406,7 @@ SDL_RenderTextureRotated: {
  *
  * @sa SDL_RenderTexture
  *
- * @from SDL_render.h:2172 bool SDL_RenderTextureAffine(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FPoint *origin,                                                     const SDL_FPoint *right, const SDL_FPoint *down);
+ * @from SDL_render.h:2171 bool SDL_RenderTextureAffine(SDL_Renderer *renderer, SDL_Texture *texture,                                                     const SDL_FRect *srcrect, const SDL_FPoint *origin,                                                     const SDL_FPoint *right, const SDL_FPoint *down);
  */
 SDL_RenderTextureAffine: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -2440,7 +2439,7 @@ SDL_RenderTextureAffine: {
  *
  * @sa SDL_RenderTexture
  *
- * @from SDL_render.h:2201 bool SDL_RenderTextureTiled(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float scale, const SDL_FRect *dstrect);
+ * @from SDL_render.h:2200 bool SDL_RenderTextureTiled(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float scale, const SDL_FRect *dstrect);
  */
 SDL_RenderTextureTiled: {
       parameters: ["pointer", "pointer", "pointer", "f32", "pointer"],
@@ -2480,7 +2479,7 @@ SDL_RenderTextureTiled: {
  *
  * @sa SDL_RenderTexture
  *
- * @from SDL_render.h:2235 bool SDL_RenderTexture9Grid(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float left_width, float right_width, float top_height, float bottom_height, float scale, const SDL_FRect *dstrect);
+ * @from SDL_render.h:2234 bool SDL_RenderTexture9Grid(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_FRect *srcrect, float left_width, float right_width, float top_height, float bottom_height, float scale, const SDL_FRect *dstrect);
  */
 SDL_RenderTexture9Grid: {
       parameters: ["pointer", "pointer", "pointer", "f32", "f32", "f32", "f32", "f32", "pointer"],
@@ -2510,7 +2509,7 @@ SDL_RenderTexture9Grid: {
  *
  * @sa SDL_RenderGeometryRaw
  *
- * @from SDL_render.h:2259 bool SDL_RenderGeometry(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const SDL_Vertex *vertices, int num_vertices,                                               const int *indices, int num_indices);
+ * @from SDL_render.h:2258 bool SDL_RenderGeometry(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const SDL_Vertex *vertices, int num_vertices,                                               const int *indices, int num_indices);
  */
 SDL_RenderGeometry: {
       parameters: ["pointer", "pointer", "pointer", "i32", "pointer", "i32"],
@@ -2545,7 +2544,7 @@ SDL_RenderGeometry: {
  *
  * @sa SDL_RenderGeometry
  *
- * @from SDL_render.h:2291 bool SDL_RenderGeometryRaw(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const float *xy, int xy_stride,                                               const SDL_FColor *color, int color_stride,                                               const float *uv, int uv_stride,                                               int num_vertices,                                               const void *indices, int num_indices, int size_indices);
+ * @from SDL_render.h:2290 bool SDL_RenderGeometryRaw(SDL_Renderer *renderer,                                               SDL_Texture *texture,                                               const float *xy, int xy_stride,                                               const SDL_FColor *color, int color_stride,                                               const float *uv, int uv_stride,                                               int num_vertices,                                               const void *indices, int num_indices, int size_indices);
  */
 SDL_RenderGeometryRaw: {
       parameters: ["pointer", "pointer", "pointer", "i32", "pointer", "i32", "pointer", "i32", "i32", "pointer", "i32", "i32"],
@@ -2578,7 +2577,7 @@ SDL_RenderGeometryRaw: {
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_render.h:2324 SDL_Surface * SDL_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect);
+ * @from SDL_render.h:2323 SDL_Surface * SDL_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect);
  */
 SDL_RenderReadPixels: {
       parameters: ["pointer", "pointer"],
@@ -2634,7 +2633,7 @@ SDL_RenderReadPixels: {
  * @sa SDL_SetRenderDrawBlendMode
  * @sa SDL_SetRenderDrawColor
  *
- * @from SDL_render.h:2374 bool SDL_RenderPresent(SDL_Renderer *renderer);
+ * @from SDL_render.h:2373 bool SDL_RenderPresent(SDL_Renderer *renderer);
  */
 SDL_RenderPresent: {
       parameters: ["pointer"],
@@ -2657,7 +2656,7 @@ SDL_RenderPresent: {
  * @sa SDL_CreateTexture
  * @sa SDL_CreateTextureFromSurface
  *
- * @from SDL_render.h:2391 void SDL_DestroyTexture(SDL_Texture *texture);
+ * @from SDL_render.h:2390 void SDL_DestroyTexture(SDL_Texture *texture);
  */
 SDL_DestroyTexture: {
       parameters: ["pointer"],
@@ -2679,7 +2678,7 @@ SDL_DestroyTexture: {
  *
  * @sa SDL_CreateRenderer
  *
- * @from SDL_render.h:2407 void SDL_DestroyRenderer(SDL_Renderer *renderer);
+ * @from SDL_render.h:2406 void SDL_DestroyRenderer(SDL_Renderer *renderer);
  */
 SDL_DestroyRenderer: {
       parameters: ["pointer"],
@@ -2718,7 +2717,7 @@ SDL_DestroyRenderer: {
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_render.h:2440 bool SDL_FlushRenderer(SDL_Renderer *renderer);
+ * @from SDL_render.h:2439 bool SDL_FlushRenderer(SDL_Renderer *renderer);
  */
 SDL_FlushRenderer: {
       parameters: ["pointer"],
@@ -2742,7 +2741,7 @@ SDL_FlushRenderer: {
  *
  * @sa SDL_GetRenderMetalCommandEncoder
  *
- * @from SDL_render.h:2458 void * SDL_GetRenderMetalLayer(SDL_Renderer *renderer);
+ * @from SDL_render.h:2457 void * SDL_GetRenderMetalLayer(SDL_Renderer *renderer);
  */
 SDL_GetRenderMetalLayer: {
       parameters: ["pointer"],
@@ -2771,7 +2770,7 @@ SDL_GetRenderMetalLayer: {
  *
  * @sa SDL_GetRenderMetalLayer
  *
- * @from SDL_render.h:2481 void * SDL_GetRenderMetalCommandEncoder(SDL_Renderer *renderer);
+ * @from SDL_render.h:2480 void * SDL_GetRenderMetalCommandEncoder(SDL_Renderer *renderer);
  */
 SDL_GetRenderMetalCommandEncoder: {
       parameters: ["pointer"],
@@ -2807,7 +2806,7 @@ SDL_GetRenderMetalCommandEncoder: {
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_render.h:2512 bool SDL_AddVulkanRenderSemaphores(SDL_Renderer *renderer, Uint32 wait_stage_mask, Sint64 wait_semaphore, Sint64 signal_semaphore);
+ * @from SDL_render.h:2511 bool SDL_AddVulkanRenderSemaphores(SDL_Renderer *renderer, Uint32 wait_stage_mask, Sint64 wait_semaphore, Sint64 signal_semaphore);
  */
 SDL_AddVulkanRenderSemaphores: {
       parameters: ["pointer", "u32", "i64", "i64"],
@@ -2838,7 +2837,7 @@ SDL_AddVulkanRenderSemaphores: {
  *
  * @sa SDL_GetRenderVSync
  *
- * @from SDL_render.h:2537 bool SDL_SetRenderVSync(SDL_Renderer *renderer, int vsync);
+ * @from SDL_render.h:2536 bool SDL_SetRenderVSync(SDL_Renderer *renderer, int vsync);
  */
 SDL_SetRenderVSync: {
       parameters: ["pointer", "i32"],
@@ -2861,7 +2860,7 @@ SDL_SetRenderVSync: {
  *
  * @sa SDL_SetRenderVSync
  *
- * @from SDL_render.h:2557 bool SDL_GetRenderVSync(SDL_Renderer *renderer, int *vsync);
+ * @from SDL_render.h:2556 bool SDL_GetRenderVSync(SDL_Renderer *renderer, int *vsync);
  */
 SDL_GetRenderVSync: {
       parameters: ["pointer", "pointer"],
@@ -2908,7 +2907,7 @@ SDL_GetRenderVSync: {
  * @sa SDL_RenderDebugTextFormat
  * @sa SDL_DEBUG_TEXT_FONT_CHARACTER_SIZE
  *
- * @from SDL_render.h:2609 bool SDL_RenderDebugText(SDL_Renderer *renderer, float x, float y, const char *str);
+ * @from SDL_render.h:2608 bool SDL_RenderDebugText(SDL_Renderer *renderer, float x, float y, const char *str);
  */
 SDL_RenderDebugText: {
       parameters: ["pointer", "f32", "f32", "pointer"],

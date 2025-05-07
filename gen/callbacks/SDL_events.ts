@@ -71,7 +71,7 @@ export const callbacks = {
  * @sa SDL_SetEventFilter
  * @sa SDL_AddEventWatch
  *
- * @from SDL_events.h:1376 typedef bool (*SDL_EventFilter)(void *userdata, SDL_Event *event);
+ * @from SDL_events.h:1378 typedef bool (*SDL_EventFilter)(void *userdata, SDL_Event *event);
  */
 SDL_EventFilter: {
       parameters: ["pointer", "pointer"],

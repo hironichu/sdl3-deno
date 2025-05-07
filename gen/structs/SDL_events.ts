@@ -60,7 +60,7 @@ import * as _b from "../_structs/SDL_events.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:286 
+ * @from SDL_events.h:286
  */
 export interface CommonEvent {
   type: number; /**< Uint32 : Event type, shared with all events, Uint32 to cover user events which are not in the SDL_EventType enumeration */
@@ -91,7 +91,7 @@ export function write_CommonEvent(t: CommonEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:298 
+ * @from SDL_events.h:298
  */
 export interface DisplayEvent {
   type: number; /**< SDL_EventType : SDL_DISPLAYEVENT_* */
@@ -131,7 +131,7 @@ export function write_DisplayEvent(t: DisplayEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:313 
+ * @from SDL_events.h:313
  */
 export interface WindowEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_WINDOW_* */
@@ -171,7 +171,7 @@ export function write_WindowEvent(t: WindowEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:328 
+ * @from SDL_events.h:328
  */
 export interface KeyboardDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_KEYBOARD_ADDED or SDL_EVENT_KEYBOARD_REMOVED */
@@ -214,7 +214,7 @@ export function write_KeyboardDeviceEvent(t: KeyboardDeviceEvent, dt: DataView) 
  * @sa SDL_GetKeyFromScancode
  * @sa SDL_HINT_KEYCODE_OPTIONS
  *
- * @from SDL_events.h:350 
+ * @from SDL_events.h:350
  */
 export interface KeyboardEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_KEY_DOWN or SDL_EVENT_KEY_UP */
@@ -273,7 +273,7 @@ export function write_KeyboardEvent(t: KeyboardEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:374 
+ * @from SDL_events.h:374
  */
 export interface TextEditingEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_EDITING */
@@ -316,7 +316,7 @@ export function write_TextEditingEvent(t: TextEditingEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:390 
+ * @from SDL_events.h:390
  */
 export interface TextEditingCandidatesEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_EDITING_CANDIDATES */
@@ -377,7 +377,7 @@ export function write_TextEditingCandidatesEvent(t: TextEditingCandidatesEvent, 
  * @sa SDL_StartTextInput
  * @sa SDL_StopTextInput
  *
- * @from SDL_events.h:416 
+ * @from SDL_events.h:416
  */
 export interface TextInputEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_TEXT_INPUT */
@@ -414,7 +414,7 @@ export function write_TextInputEvent(t: TextInputEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:430 
+ * @from SDL_events.h:430
  */
 export interface MouseDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_ADDED or SDL_EVENT_MOUSE_REMOVED */
@@ -448,7 +448,7 @@ export function write_MouseDeviceEvent(t: MouseDeviceEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:443 
+ * @from SDL_events.h:443
  */
 export interface MouseMotionEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_MOTION */
@@ -500,7 +500,7 @@ export function write_MouseMotionEvent(t: MouseMotionEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:462 
+ * @from SDL_events.h:462
  */
 export interface MouseButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_BUTTON_DOWN or SDL_EVENT_MOUSE_BUTTON_UP */
@@ -555,7 +555,7 @@ export function write_MouseButtonEvent(t: MouseButtonEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:482 
+ * @from SDL_events.h:482
  */
 export interface MouseWheelEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_MOUSE_WHEEL */
@@ -568,6 +568,8 @@ export interface MouseWheelEvent {
   direction: number; /**< SDL_MouseWheelDirection : Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back */
   mouse_x: number; /**< float : X coordinate, relative to window */
   mouse_y: number; /**< float : Y coordinate, relative to window */
+  integer_x: number; /**< Sint32 : The amount scrolled horizontally, accumulated to whole scroll "ticks" (added in 3.2.12) */
+  integer_y: number; /**< Sint32 : The amount scrolled vertically, accumulated to whole scroll "ticks" (added in 3.2.12) */
 }
 
 export function read_MouseWheelEvent(dt: DataView): MouseWheelEvent {
@@ -583,6 +585,8 @@ export function read_MouseWheelEvent(dt: DataView): MouseWheelEvent {
     direction: t.direction, /** SDL_MouseWheelDirection */
     mouse_x: t.mouse_x, /** float */
     mouse_y: t.mouse_y, /** float */
+    integer_x: t.integer_x, /** Sint32 */
+    integer_y: t.integer_y, /** Sint32 */
   };
 }
 
@@ -598,6 +602,8 @@ export function write_MouseWheelEvent(t: MouseWheelEvent, dt: DataView) {
     direction: t.direction, /** SDL_MouseWheelDirection */
     mouse_x: t.mouse_x, /** float */
     mouse_y: t.mouse_y, /** float */
+    integer_x: t.integer_x, /** Sint32 */
+    integer_y: t.integer_y, /** Sint32 */
   }, dt);
 }
 
@@ -607,7 +613,7 @@ export function write_MouseWheelEvent(t: MouseWheelEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:501 
+ * @from SDL_events.h:503
  */
 export interface JoyAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_AXIS_MOTION */
@@ -659,7 +665,7 @@ export function write_JoyAxisEvent(t: JoyAxisEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:520 
+ * @from SDL_events.h:522
  */
 export interface JoyBallEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BALL_MOTION */
@@ -711,7 +717,7 @@ export function write_JoyBallEvent(t: JoyBallEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:539 
+ * @from SDL_events.h:541
  */
 export interface JoyHatEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_HAT_MOTION */
@@ -763,7 +769,7 @@ export function write_JoyHatEvent(t: JoyHatEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:562 
+ * @from SDL_events.h:564
  */
 export interface JoyButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BUTTON_DOWN or SDL_EVENT_JOYSTICK_BUTTON_UP */
@@ -814,7 +820,7 @@ export function write_JoyButtonEvent(t: JoyButtonEvent, dt: DataView) {
  *
  * @sa SDL_GamepadDeviceEvent
  *
- * @from SDL_events.h:584 
+ * @from SDL_events.h:586
  */
 export interface JoyDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_ADDED or SDL_EVENT_JOYSTICK_REMOVED or SDL_EVENT_JOYSTICK_UPDATE_COMPLETE */
@@ -848,7 +854,7 @@ export function write_JoyDeviceEvent(t: JoyDeviceEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:597 
+ * @from SDL_events.h:599
  */
 export interface JoyBatteryEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_JOYSTICK_BATTERY_UPDATED */
@@ -888,7 +894,7 @@ export function write_JoyBatteryEvent(t: JoyBatteryEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:612 
+ * @from SDL_events.h:614
  */
 export interface GamepadAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_AXIS_MOTION */
@@ -940,7 +946,7 @@ export function write_GamepadAxisEvent(t: GamepadAxisEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:632 
+ * @from SDL_events.h:634
  */
 export interface GamepadButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_BUTTON_DOWN or SDL_EVENT_GAMEPAD_BUTTON_UP */
@@ -995,7 +1001,7 @@ export function write_GamepadButtonEvent(t: GamepadButtonEvent, dt: DataView) {
  *
  * @sa SDL_JoyDeviceEvent
  *
- * @from SDL_events.h:659 
+ * @from SDL_events.h:661
  */
 export interface GamepadDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_ADDED, SDL_EVENT_GAMEPAD_REMOVED, or SDL_EVENT_GAMEPAD_REMAPPED, SDL_EVENT_GAMEPAD_UPDATE_COMPLETE or SDL_EVENT_GAMEPAD_STEAM_HANDLE_UPDATED */
@@ -1029,7 +1035,7 @@ export function write_GamepadDeviceEvent(t: GamepadDeviceEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:672 
+ * @from SDL_events.h:674
  */
 export interface GamepadTouchpadEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_TOUCHPAD_DOWN or SDL_EVENT_GAMEPAD_TOUCHPAD_MOTION or SDL_EVENT_GAMEPAD_TOUCHPAD_UP */
@@ -1078,7 +1084,7 @@ export function write_GamepadTouchpadEvent(t: GamepadTouchpadEvent, dt: DataView
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:690 
+ * @from SDL_events.h:692
  */
 export interface GamepadSensorEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_GAMEPAD_SENSOR_UPDATE */
@@ -1121,7 +1127,7 @@ export function write_GamepadSensorEvent(t: GamepadSensorEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:706 
+ * @from SDL_events.h:708
  */
 export interface AudioDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_AUDIO_DEVICE_ADDED, or SDL_EVENT_AUDIO_DEVICE_REMOVED, or SDL_EVENT_AUDIO_DEVICE_FORMAT_CHANGED */
@@ -1167,7 +1173,7 @@ export function write_AudioDeviceEvent(t: AudioDeviceEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:723 
+ * @from SDL_events.h:725
  */
 export interface CameraDeviceEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_CAMERA_DEVICE_ADDED, SDL_EVENT_CAMERA_DEVICE_REMOVED, SDL_EVENT_CAMERA_DEVICE_APPROVED, SDL_EVENT_CAMERA_DEVICE_DENIED */
@@ -1201,7 +1207,7 @@ export function write_CameraDeviceEvent(t: CameraDeviceEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:737 
+ * @from SDL_events.h:739
  */
 export interface RenderEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_RENDER_TARGETS_RESET, SDL_EVENT_RENDER_DEVICE_RESET, SDL_EVENT_RENDER_DEVICE_LOST */
@@ -1249,7 +1255,7 @@ export function write_RenderEvent(t: RenderEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:765 
+ * @from SDL_events.h:767
  */
 export interface TouchFingerEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_FINGER_DOWN, SDL_EVENT_FINGER_UP, SDL_EVENT_FINGER_MOTION, or SDL_EVENT_FINGER_CANCELED */
@@ -1314,7 +1320,7 @@ export function write_TouchFingerEvent(t: TouchFingerEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:795 
+ * @from SDL_events.h:797
  */
 export interface PenProximityEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_PROXIMITY_IN or SDL_EVENT_PEN_PROXIMITY_OUT */
@@ -1357,7 +1363,7 @@ export function write_PenProximityEvent(t: PenProximityEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:815 
+ * @from SDL_events.h:817
  */
 export interface PenMotionEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_MOTION */
@@ -1406,7 +1412,7 @@ export function write_PenMotionEvent(t: PenMotionEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:835 
+ * @from SDL_events.h:837
  */
 export interface PenTouchEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_DOWN or SDL_EVENT_PEN_UP */
@@ -1461,7 +1467,7 @@ export function write_PenTouchEvent(t: PenTouchEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:857 
+ * @from SDL_events.h:859
  */
 export interface PenButtonEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_BUTTON_DOWN or SDL_EVENT_PEN_BUTTON_UP */
@@ -1516,7 +1522,7 @@ export function write_PenButtonEvent(t: PenButtonEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:879 
+ * @from SDL_events.h:881
  */
 export interface PenAxisEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_PEN_AXIS */
@@ -1569,7 +1575,7 @@ export function write_PenAxisEvent(t: PenAxisEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:899 
+ * @from SDL_events.h:901
  */
 export interface DropEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_DROP_BEGIN or SDL_EVENT_DROP_FILE or SDL_EVENT_DROP_TEXT or SDL_EVENT_DROP_COMPLETE or SDL_EVENT_DROP_POSITION */
@@ -1616,7 +1622,7 @@ export function write_DropEvent(t: DropEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:917 
+ * @from SDL_events.h:919
  */
 export interface ClipboardEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_CLIPBOARD_UPDATE */
@@ -1656,7 +1662,7 @@ export function write_ClipboardEvent(t: ClipboardEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:932 
+ * @from SDL_events.h:934
  */
 export interface SensorEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_SENSOR_UPDATE */
@@ -1696,7 +1702,7 @@ export function write_SensorEvent(t: SensorEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:947 
+ * @from SDL_events.h:949
  */
 export interface QuitEvent {
   type: number; /**< SDL_EventType : SDL_EVENT_QUIT */
@@ -1733,7 +1739,7 @@ export function write_QuitEvent(t: QuitEvent, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_events.h:965 
+ * @from SDL_events.h:967
  */
 export interface UserEvent {
   type: number; /**< Uint32 : SDL_EVENT_USER through SDL_EVENT_LAST-1, Uint32 because these are not in the SDL_EventType enumeration */

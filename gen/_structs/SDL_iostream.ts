@@ -49,7 +49,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_iostream.h:91 
+ * @from SDL_iostream.h:91
  */
 export const SDL_IOStreamInterface = new _.Struct({
     /* The version of this interface */

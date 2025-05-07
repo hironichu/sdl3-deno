@@ -8,7 +8,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @sa TTF_DrawOperation
  *
- * @from SDL_textengine.h:59 
+ * @from SDL_textengine.h:59
  */
 export const TTF_FillOperation = new _.Struct({
   cmd: _.u32, /**< TTF_DrawCommand : TTF_DRAW_COMMAND_FILL */
@@ -24,7 +24,7 @@ export const TTF_FillOperation = new _.Struct({
  *
  * @sa TTF_DrawOperation
  *
- * @from SDL_textengine.h:72 
+ * @from SDL_textengine.h:72
  */
 export const TTF_CopyOperation = new _.Struct({
   cmd: _.u32, /**< TTF_DrawCommand : TTF_DRAW_COMMAND_COPY */
@@ -74,7 +74,7 @@ export const TTF_TextData = new _.Struct({
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_textengine.h:138 
+ * @from SDL_textengine.h:138
  */
 export const TTF_TextEngine = new _.Struct({
   version: _.u32, /**< Uint32 : The version of this interface */

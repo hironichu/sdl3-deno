@@ -203,7 +203,7 @@ SDL_CompareCallback_r: {
  *
  * @since This datatype is available since SDL 3.2.0.
  *
- * @from SDL_stdinc.h:6119 typedef void (*SDL_FunctionPointer)(void);
+ * @from SDL_stdinc.h:6123 typedef void (*SDL_FunctionPointer)(void);
  */
 SDL_FunctionPointer: {
       parameters: [],

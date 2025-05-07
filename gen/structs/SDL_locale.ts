@@ -49,7 +49,7 @@ import * as _b from "../_structs/SDL_locale.ts";
  *
  * @sa SDL_GetPreferredLocales
  *
- * @from SDL_locale.h:59 
+ * @from SDL_locale.h:59
  */
 export interface Locale {
   language: string; /**< const char * : A language name, like "en" for English. */

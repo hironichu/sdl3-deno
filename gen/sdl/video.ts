@@ -653,6 +653,10 @@ export const getWindows = lib.symbols.SDL_GetWindows;
 /**
  * Create a window with the specified dimensions and flags.
  *
+ * The window size is a request and may be different than expected based on
+ * the desktop layout and window manager policies. Your application should be
+ * prepared to handle a window of any size.
+ *
  * `flags` may be any of the following OR'd together:
  *
  * - `SDL_WINDOW_FULLSCREEN`: fullscreen window at desktop resolution
@@ -734,12 +738,16 @@ export const getWindows = lib.symbols.SDL_GetWindows;
  * @sa SDL_CreateWindowWithProperties
  * @sa SDL_DestroyWindow
  *
- * @from SDL_video.h:1124 SDL_Window * SDL_CreateWindow(const char *title, int w, int h, SDL_WindowFlags flags);
+ * @from SDL_video.h:1128 SDL_Window * SDL_CreateWindow(const char *title, int w, int h, SDL_WindowFlags flags);
  */
 export const createWindow = lib.symbols.SDL_CreateWindow;
 
 /**
  * Create a child popup window of the specified parent window.
+ *
+ * The window size is a request and may be different than expected based on
+ * the desktop layout and window manager policies. Your application should be
+ * prepared to handle a window of any size.
  *
  * The flags parameter **must** contain at least one of the following:
  *
@@ -798,12 +806,16 @@ export const createWindow = lib.symbols.SDL_CreateWindow;
  * @sa SDL_DestroyWindow
  * @sa SDL_GetWindowParent
  *
- * @from SDL_video.h:1186 SDL_Window * SDL_CreatePopupWindow(SDL_Window *parent, int offset_x, int offset_y, int w, int h, SDL_WindowFlags flags);
+ * @from SDL_video.h:1194 SDL_Window * SDL_CreatePopupWindow(SDL_Window *parent, int offset_x, int offset_y, int w, int h, SDL_WindowFlags flags);
  */
 export const createPopupWindow = lib.symbols.SDL_CreatePopupWindow;
 
 /**
  * Create a window with the specified properties.
+ *
+ * The window size is a request and may be different than expected based on
+ * the desktop layout and window manager policies. Your application should be
+ * prepared to handle a window of any size.
  *
  * These are the supported properties:
  *
@@ -921,7 +933,7 @@ export const createPopupWindow = lib.symbols.SDL_CreatePopupWindow;
  * @sa SDL_CreateWindow
  * @sa SDL_DestroyWindow
  *
- * @from SDL_video.h:1307 SDL_Window * SDL_CreateWindowWithProperties(SDL_PropertiesID props);
+ * @from SDL_video.h:1319 SDL_Window * SDL_CreateWindowWithProperties(SDL_PropertiesID props);
  */
 export const createWindowWithProperties = lib.symbols.SDL_CreateWindowWithProperties;
 
@@ -941,7 +953,7 @@ export const createWindowWithProperties = lib.symbols.SDL_CreateWindowWithProper
  *
  * @sa SDL_GetWindowFromID
  *
- * @from SDL_video.h:1360 SDL_WindowID SDL_GetWindowID(SDL_Window *window);
+ * @from SDL_video.h:1372 SDL_WindowID SDL_GetWindowID(SDL_Window *window);
  */
 export const getWindowId = lib.symbols.SDL_GetWindowID;
 
@@ -961,7 +973,7 @@ export const getWindowId = lib.symbols.SDL_GetWindowID;
  *
  * @sa SDL_GetWindowID
  *
- * @from SDL_video.h:1378 SDL_Window * SDL_GetWindowFromID(SDL_WindowID id);
+ * @from SDL_video.h:1390 SDL_Window * SDL_GetWindowFromID(SDL_WindowID id);
  */
 export const getWindowFromId = lib.symbols.SDL_GetWindowFromID;
 
@@ -978,7 +990,7 @@ export const getWindowFromId = lib.symbols.SDL_GetWindowFromID;
  *
  * @sa SDL_CreatePopupWindow
  *
- * @from SDL_video.h:1393 SDL_Window * SDL_GetWindowParent(SDL_Window *window);
+ * @from SDL_video.h:1405 SDL_Window * SDL_GetWindowParent(SDL_Window *window);
  */
 export const getWindowParent = lib.symbols.SDL_GetWindowParent;
 
@@ -1102,7 +1114,7 @@ export const getWindowParent = lib.symbols.SDL_GetWindowParent;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:1515 SDL_PropertiesID SDL_GetWindowProperties(SDL_Window *window);
+ * @from SDL_video.h:1527 SDL_PropertiesID SDL_GetWindowProperties(SDL_Window *window);
  */
 export const getWindowProperties = lib.symbols.SDL_GetWindowProperties;
 
@@ -1124,7 +1136,7 @@ export const getWindowProperties = lib.symbols.SDL_GetWindowProperties;
  * @sa SDL_SetWindowMouseGrab
  * @sa SDL_ShowWindow
  *
- * @from SDL_video.h:1571 SDL_WindowFlags SDL_GetWindowFlags(SDL_Window *window);
+ * @from SDL_video.h:1583 SDL_WindowFlags SDL_GetWindowFlags(SDL_Window *window);
  */
 export const getWindowFlags = lib.symbols.SDL_GetWindowFlags;
 
@@ -1144,7 +1156,7 @@ export const getWindowFlags = lib.symbols.SDL_GetWindowFlags;
  *
  * @sa SDL_GetWindowTitle
  *
- * @from SDL_video.h:1589 bool SDL_SetWindowTitle(SDL_Window *window, const char *title);
+ * @from SDL_video.h:1601 bool SDL_SetWindowTitle(SDL_Window *window, const char *title);
  */
 export const setWindowTitle = lib.symbols.SDL_SetWindowTitle;
 
@@ -1161,7 +1173,7 @@ export const setWindowTitle = lib.symbols.SDL_SetWindowTitle;
  *
  * @sa SDL_SetWindowTitle
  *
- * @from SDL_video.h:1604 const char * SDL_GetWindowTitle(SDL_Window *window);
+ * @from SDL_video.h:1616 const char * SDL_GetWindowTitle(SDL_Window *window);
  */
 export const getWindowTitle = lib.symbols.SDL_GetWindowTitle;
 
@@ -1187,7 +1199,7 @@ export const getWindowTitle = lib.symbols.SDL_GetWindowTitle;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:1628 bool SDL_SetWindowIcon(SDL_Window *window, SDL_Surface *icon);
+ * @from SDL_video.h:1640 bool SDL_SetWindowIcon(SDL_Window *window, SDL_Surface *icon);
  */
 export const setWindowIcon = lib.symbols.SDL_SetWindowIcon;
 
@@ -1230,7 +1242,7 @@ export const setWindowIcon = lib.symbols.SDL_SetWindowIcon;
  * @sa SDL_GetWindowPosition
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:1669 bool SDL_SetWindowPosition(SDL_Window *window, int x, int y);
+ * @from SDL_video.h:1681 bool SDL_SetWindowPosition(SDL_Window *window, int x, int y);
  */
 export const setWindowPosition = lib.symbols.SDL_SetWindowPosition;
 
@@ -1257,7 +1269,7 @@ export const setWindowPosition = lib.symbols.SDL_SetWindowPosition;
  *
  * @sa SDL_SetWindowPosition
  *
- * @from SDL_video.h:1694 bool SDL_GetWindowPosition(SDL_Window *window, int *x, int *y);
+ * @from SDL_video.h:1706 bool SDL_GetWindowPosition(SDL_Window *window, int *x, int *y);
  */
 export const getWindowPosition = lib.symbols.SDL_GetWindowPosition;
 
@@ -1296,7 +1308,7 @@ export const getWindowPosition = lib.symbols.SDL_GetWindowPosition;
  * @sa SDL_SetWindowFullscreenMode
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:1731 bool SDL_SetWindowSize(SDL_Window *window, int w, int h);
+ * @from SDL_video.h:1743 bool SDL_SetWindowSize(SDL_Window *window, int w, int h);
  */
 export const setWindowSize = lib.symbols.SDL_SetWindowSize;
 
@@ -1321,7 +1333,7 @@ export const setWindowSize = lib.symbols.SDL_SetWindowSize;
  * @sa SDL_GetWindowSizeInPixels
  * @sa SDL_SetWindowSize
  *
- * @from SDL_video.h:1754 bool SDL_GetWindowSize(SDL_Window *window, int *w, int *h);
+ * @from SDL_video.h:1766 bool SDL_GetWindowSize(SDL_Window *window, int *w, int *h);
  */
 export const getWindowSize = lib.symbols.SDL_GetWindowSize;
 
@@ -1345,7 +1357,7 @@ export const getWindowSize = lib.symbols.SDL_GetWindowSize;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:1776 bool SDL_GetWindowSafeArea(SDL_Window *window, SDL_Rect *rect);
+ * @from SDL_video.h:1788 bool SDL_GetWindowSafeArea(SDL_Window *window, SDL_Rect *rect);
  */
 export const getWindowSafeArea = lib.symbols.SDL_GetWindowSafeArea;
 
@@ -1388,7 +1400,7 @@ export const getWindowSafeArea = lib.symbols.SDL_GetWindowSafeArea;
  * @sa SDL_GetWindowAspectRatio
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:1817 bool SDL_SetWindowAspectRatio(SDL_Window *window, float min_aspect, float max_aspect);
+ * @from SDL_video.h:1829 bool SDL_SetWindowAspectRatio(SDL_Window *window, float min_aspect, float max_aspect);
  */
 export const setWindowAspectRatio = lib.symbols.SDL_SetWindowAspectRatio;
 
@@ -1409,7 +1421,7 @@ export const setWindowAspectRatio = lib.symbols.SDL_SetWindowAspectRatio;
  *
  * @sa SDL_SetWindowAspectRatio
  *
- * @from SDL_video.h:1836 bool SDL_GetWindowAspectRatio(SDL_Window *window, float *min_aspect, float *max_aspect);
+ * @from SDL_video.h:1848 bool SDL_GetWindowAspectRatio(SDL_Window *window, float *min_aspect, float *max_aspect);
  */
 export const getWindowAspectRatio = lib.symbols.SDL_GetWindowAspectRatio;
 
@@ -1448,7 +1460,7 @@ export const getWindowAspectRatio = lib.symbols.SDL_GetWindowAspectRatio;
  *
  * @sa SDL_GetWindowSize
  *
- * @from SDL_video.h:1873 bool SDL_GetWindowBordersSize(SDL_Window *window, int *top, int *left, int *bottom, int *right);
+ * @from SDL_video.h:1885 bool SDL_GetWindowBordersSize(SDL_Window *window, int *top, int *left, int *bottom, int *right);
  */
 export const getWindowBordersSize = lib.symbols.SDL_GetWindowBordersSize;
 
@@ -1470,7 +1482,7 @@ export const getWindowBordersSize = lib.symbols.SDL_GetWindowBordersSize;
  * @sa SDL_CreateWindow
  * @sa SDL_GetWindowSize
  *
- * @from SDL_video.h:1893 bool SDL_GetWindowSizeInPixels(SDL_Window *window, int *w, int *h);
+ * @from SDL_video.h:1905 bool SDL_GetWindowSizeInPixels(SDL_Window *window, int *w, int *h);
  */
 export const getWindowSizeInPixels = lib.symbols.SDL_GetWindowSizeInPixels;
 
@@ -1490,7 +1502,7 @@ export const getWindowSizeInPixels = lib.symbols.SDL_GetWindowSizeInPixels;
  * @sa SDL_GetWindowMinimumSize
  * @sa SDL_SetWindowMaximumSize
  *
- * @from SDL_video.h:1911 bool SDL_SetWindowMinimumSize(SDL_Window *window, int min_w, int min_h);
+ * @from SDL_video.h:1923 bool SDL_SetWindowMinimumSize(SDL_Window *window, int min_w, int min_h);
  */
 export const setWindowMinimumSize = lib.symbols.SDL_SetWindowMinimumSize;
 
@@ -1512,7 +1524,7 @@ export const setWindowMinimumSize = lib.symbols.SDL_SetWindowMinimumSize;
  * @sa SDL_GetWindowMaximumSize
  * @sa SDL_SetWindowMinimumSize
  *
- * @from SDL_video.h:1931 bool SDL_GetWindowMinimumSize(SDL_Window *window, int *w, int *h);
+ * @from SDL_video.h:1943 bool SDL_GetWindowMinimumSize(SDL_Window *window, int *w, int *h);
  */
 export const getWindowMinimumSize = lib.symbols.SDL_GetWindowMinimumSize;
 
@@ -1532,7 +1544,7 @@ export const getWindowMinimumSize = lib.symbols.SDL_GetWindowMinimumSize;
  * @sa SDL_GetWindowMaximumSize
  * @sa SDL_SetWindowMinimumSize
  *
- * @from SDL_video.h:1949 bool SDL_SetWindowMaximumSize(SDL_Window *window, int max_w, int max_h);
+ * @from SDL_video.h:1961 bool SDL_SetWindowMaximumSize(SDL_Window *window, int max_w, int max_h);
  */
 export const setWindowMaximumSize = lib.symbols.SDL_SetWindowMaximumSize;
 
@@ -1554,7 +1566,7 @@ export const setWindowMaximumSize = lib.symbols.SDL_SetWindowMaximumSize;
  * @sa SDL_GetWindowMinimumSize
  * @sa SDL_SetWindowMaximumSize
  *
- * @from SDL_video.h:1969 bool SDL_GetWindowMaximumSize(SDL_Window *window, int *w, int *h);
+ * @from SDL_video.h:1981 bool SDL_GetWindowMaximumSize(SDL_Window *window, int *w, int *h);
  */
 export const getWindowMaximumSize = lib.symbols.SDL_GetWindowMaximumSize;
 
@@ -1578,7 +1590,7 @@ export const getWindowMaximumSize = lib.symbols.SDL_GetWindowMaximumSize;
  *
  * @sa SDL_GetWindowFlags
  *
- * @from SDL_video.h:1991 bool SDL_SetWindowBordered(SDL_Window *window, bool bordered);
+ * @from SDL_video.h:2003 bool SDL_SetWindowBordered(SDL_Window *window, bool bordered);
  */
 export const setWindowBordered = lib.symbols.SDL_SetWindowBordered;
 
@@ -1602,7 +1614,7 @@ export const setWindowBordered = lib.symbols.SDL_SetWindowBordered;
  *
  * @sa SDL_GetWindowFlags
  *
- * @from SDL_video.h:2013 bool SDL_SetWindowResizable(SDL_Window *window, bool resizable);
+ * @from SDL_video.h:2025 bool SDL_SetWindowResizable(SDL_Window *window, bool resizable);
  */
 export const setWindowResizable = lib.symbols.SDL_SetWindowResizable;
 
@@ -1623,7 +1635,7 @@ export const setWindowResizable = lib.symbols.SDL_SetWindowResizable;
  *
  * @sa SDL_GetWindowFlags
  *
- * @from SDL_video.h:2032 bool SDL_SetWindowAlwaysOnTop(SDL_Window *window, bool on_top);
+ * @from SDL_video.h:2044 bool SDL_SetWindowAlwaysOnTop(SDL_Window *window, bool on_top);
  */
 export const setWindowAlwaysOnTop = lib.symbols.SDL_SetWindowAlwaysOnTop;
 
@@ -1641,7 +1653,7 @@ export const setWindowAlwaysOnTop = lib.symbols.SDL_SetWindowAlwaysOnTop;
  * @sa SDL_HideWindow
  * @sa SDL_RaiseWindow
  *
- * @from SDL_video.h:2048 bool SDL_ShowWindow(SDL_Window *window);
+ * @from SDL_video.h:2060 bool SDL_ShowWindow(SDL_Window *window);
  */
 export const showWindow = lib.symbols.SDL_ShowWindow;
 
@@ -1659,7 +1671,7 @@ export const showWindow = lib.symbols.SDL_ShowWindow;
  * @sa SDL_ShowWindow
  * @sa SDL_WINDOW_HIDDEN
  *
- * @from SDL_video.h:2064 bool SDL_HideWindow(SDL_Window *window);
+ * @from SDL_video.h:2076 bool SDL_HideWindow(SDL_Window *window);
  */
 export const hideWindow = lib.symbols.SDL_HideWindow;
 
@@ -1681,7 +1693,7 @@ export const hideWindow = lib.symbols.SDL_HideWindow;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:2084 bool SDL_RaiseWindow(SDL_Window *window);
+ * @from SDL_video.h:2096 bool SDL_RaiseWindow(SDL_Window *window);
  */
 export const raiseWindow = lib.symbols.SDL_RaiseWindow;
 
@@ -1717,7 +1729,7 @@ export const raiseWindow = lib.symbols.SDL_RaiseWindow;
  * @sa SDL_RestoreWindow
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:2118 bool SDL_MaximizeWindow(SDL_Window *window);
+ * @from SDL_video.h:2130 bool SDL_MaximizeWindow(SDL_Window *window);
  */
 export const maximizeWindow = lib.symbols.SDL_MaximizeWindow;
 
@@ -1748,7 +1760,7 @@ export const maximizeWindow = lib.symbols.SDL_MaximizeWindow;
  * @sa SDL_RestoreWindow
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:2147 bool SDL_MinimizeWindow(SDL_Window *window);
+ * @from SDL_video.h:2159 bool SDL_MinimizeWindow(SDL_Window *window);
  */
 export const minimizeWindow = lib.symbols.SDL_MinimizeWindow;
 
@@ -1780,7 +1792,7 @@ export const minimizeWindow = lib.symbols.SDL_MinimizeWindow;
  * @sa SDL_MinimizeWindow
  * @sa SDL_SyncWindow
  *
- * @from SDL_video.h:2177 bool SDL_RestoreWindow(SDL_Window *window);
+ * @from SDL_video.h:2189 bool SDL_RestoreWindow(SDL_Window *window);
  */
 export const restoreWindow = lib.symbols.SDL_RestoreWindow;
 
@@ -1814,7 +1826,7 @@ export const restoreWindow = lib.symbols.SDL_RestoreWindow;
  * @sa SDL_SyncWindow
  * @sa SDL_WINDOW_FULLSCREEN
  *
- * @from SDL_video.h:2209 bool SDL_SetWindowFullscreen(SDL_Window *window, bool fullscreen);
+ * @from SDL_video.h:2221 bool SDL_SetWindowFullscreen(SDL_Window *window, bool fullscreen);
  */
 export const setWindowFullscreen = lib.symbols.SDL_SetWindowFullscreen;
 
@@ -1847,7 +1859,7 @@ export const setWindowFullscreen = lib.symbols.SDL_SetWindowFullscreen;
  * @sa SDL_RestoreWindow
  * @sa SDL_HINT_VIDEO_SYNC_WINDOW_OPERATIONS
  *
- * @from SDL_video.h:2240 bool SDL_SyncWindow(SDL_Window *window);
+ * @from SDL_video.h:2252 bool SDL_SyncWindow(SDL_Window *window);
  */
 export const syncWindow = lib.symbols.SDL_SyncWindow;
 
@@ -1864,7 +1876,7 @@ export const syncWindow = lib.symbols.SDL_SyncWindow;
  *
  * @sa SDL_GetWindowSurface
  *
- * @from SDL_video.h:2255 bool SDL_WindowHasSurface(SDL_Window *window);
+ * @from SDL_video.h:2267 bool SDL_WindowHasSurface(SDL_Window *window);
  */
 export const windowHasSurface = lib.symbols.SDL_WindowHasSurface;
 
@@ -1895,7 +1907,7 @@ export const windowHasSurface = lib.symbols.SDL_WindowHasSurface;
  * @sa SDL_UpdateWindowSurface
  * @sa SDL_UpdateWindowSurfaceRects
  *
- * @from SDL_video.h:2284 SDL_Surface * SDL_GetWindowSurface(SDL_Window *window);
+ * @from SDL_video.h:2296 SDL_Surface * SDL_GetWindowSurface(SDL_Window *window);
  */
 export const getWindowSurface = lib.symbols.SDL_GetWindowSurface;
 
@@ -1923,7 +1935,7 @@ export const getWindowSurface = lib.symbols.SDL_GetWindowSurface;
  *
  * @sa SDL_GetWindowSurfaceVSync
  *
- * @from SDL_video.h:2310 bool SDL_SetWindowSurfaceVSync(SDL_Window *window, int vsync);
+ * @from SDL_video.h:2322 bool SDL_SetWindowSurfaceVSync(SDL_Window *window, int vsync);
  */
 export const setWindowSurfaceVSync = lib.symbols.SDL_SetWindowSurfaceVSync;
 
@@ -1942,7 +1954,7 @@ export const setWindowSurfaceVSync = lib.symbols.SDL_SetWindowSurfaceVSync;
  *
  * @sa SDL_SetWindowSurfaceVSync
  *
- * @from SDL_video.h:2330 bool SDL_GetWindowSurfaceVSync(SDL_Window *window, int *vsync);
+ * @from SDL_video.h:2342 bool SDL_GetWindowSurfaceVSync(SDL_Window *window, int *vsync);
  */
 export const getWindowSurfaceVSync = lib.symbols.SDL_GetWindowSurfaceVSync;
 
@@ -1965,7 +1977,7 @@ export const getWindowSurfaceVSync = lib.symbols.SDL_GetWindowSurfaceVSync;
  * @sa SDL_GetWindowSurface
  * @sa SDL_UpdateWindowSurfaceRects
  *
- * @from SDL_video.h:2351 bool SDL_UpdateWindowSurface(SDL_Window *window);
+ * @from SDL_video.h:2363 bool SDL_UpdateWindowSurface(SDL_Window *window);
  */
 export const updateWindowSurface = lib.symbols.SDL_UpdateWindowSurface;
 
@@ -1996,7 +2008,7 @@ export const updateWindowSurface = lib.symbols.SDL_UpdateWindowSurface;
  * @sa SDL_GetWindowSurface
  * @sa SDL_UpdateWindowSurface
  *
- * @from SDL_video.h:2380 bool SDL_UpdateWindowSurfaceRects(SDL_Window *window, const SDL_Rect *rects, int numrects);
+ * @from SDL_video.h:2392 bool SDL_UpdateWindowSurfaceRects(SDL_Window *window, const SDL_Rect *rects, int numrects);
  */
 export const updateWindowSurfaceRects = lib.symbols.SDL_UpdateWindowSurfaceRects;
 
@@ -2014,7 +2026,7 @@ export const updateWindowSurfaceRects = lib.symbols.SDL_UpdateWindowSurfaceRects
  * @sa SDL_GetWindowSurface
  * @sa SDL_WindowHasSurface
  *
- * @from SDL_video.h:2396 bool SDL_DestroyWindowSurface(SDL_Window *window);
+ * @from SDL_video.h:2408 bool SDL_DestroyWindowSurface(SDL_Window *window);
  */
 export const destroyWindowSurface = lib.symbols.SDL_DestroyWindowSurface;
 
@@ -2049,7 +2061,7 @@ export const destroyWindowSurface = lib.symbols.SDL_DestroyWindowSurface;
  * @sa SDL_GetWindowKeyboardGrab
  * @sa SDL_SetWindowMouseGrab
  *
- * @from SDL_video.h:2429 bool SDL_SetWindowKeyboardGrab(SDL_Window *window, bool grabbed);
+ * @from SDL_video.h:2441 bool SDL_SetWindowKeyboardGrab(SDL_Window *window, bool grabbed);
  */
 export const setWindowKeyboardGrab = lib.symbols.SDL_SetWindowKeyboardGrab;
 
@@ -2072,7 +2084,7 @@ export const setWindowKeyboardGrab = lib.symbols.SDL_SetWindowKeyboardGrab;
  * @sa SDL_SetWindowMouseGrab
  * @sa SDL_SetWindowKeyboardGrab
  *
- * @from SDL_video.h:2450 bool SDL_SetWindowMouseGrab(SDL_Window *window, bool grabbed);
+ * @from SDL_video.h:2462 bool SDL_SetWindowMouseGrab(SDL_Window *window, bool grabbed);
  */
 export const setWindowMouseGrab = lib.symbols.SDL_SetWindowMouseGrab;
 
@@ -2088,7 +2100,7 @@ export const setWindowMouseGrab = lib.symbols.SDL_SetWindowMouseGrab;
  *
  * @sa SDL_SetWindowKeyboardGrab
  *
- * @from SDL_video.h:2464 bool SDL_GetWindowKeyboardGrab(SDL_Window *window);
+ * @from SDL_video.h:2476 bool SDL_GetWindowKeyboardGrab(SDL_Window *window);
  */
 export const getWindowKeyboardGrab = lib.symbols.SDL_GetWindowKeyboardGrab;
 
@@ -2107,7 +2119,7 @@ export const getWindowKeyboardGrab = lib.symbols.SDL_GetWindowKeyboardGrab;
  * @sa SDL_SetWindowMouseGrab
  * @sa SDL_SetWindowKeyboardGrab
  *
- * @from SDL_video.h:2481 bool SDL_GetWindowMouseGrab(SDL_Window *window);
+ * @from SDL_video.h:2493 bool SDL_GetWindowMouseGrab(SDL_Window *window);
  */
 export const getWindowMouseGrab = lib.symbols.SDL_GetWindowMouseGrab;
 
@@ -2123,7 +2135,7 @@ export const getWindowMouseGrab = lib.symbols.SDL_GetWindowMouseGrab;
  * @sa SDL_SetWindowMouseGrab
  * @sa SDL_SetWindowKeyboardGrab
  *
- * @from SDL_video.h:2495 SDL_Window * SDL_GetGrabbedWindow(void);
+ * @from SDL_video.h:2507 SDL_Window * SDL_GetGrabbedWindow(void);
  */
 export const getGrabbedWindow = lib.symbols.SDL_GetGrabbedWindow;
 
@@ -2147,7 +2159,7 @@ export const getGrabbedWindow = lib.symbols.SDL_GetGrabbedWindow;
  * @sa SDL_GetWindowMouseGrab
  * @sa SDL_SetWindowMouseGrab
  *
- * @from SDL_video.h:2517 bool SDL_SetWindowMouseRect(SDL_Window *window, const SDL_Rect *rect);
+ * @from SDL_video.h:2529 bool SDL_SetWindowMouseRect(SDL_Window *window, const SDL_Rect *rect);
  */
 export const setWindowMouseRect = lib.symbols.SDL_SetWindowMouseRect;
 
@@ -2166,7 +2178,7 @@ export const setWindowMouseRect = lib.symbols.SDL_SetWindowMouseRect;
  * @sa SDL_GetWindowMouseGrab
  * @sa SDL_SetWindowMouseGrab
  *
- * @from SDL_video.h:2534 const SDL_Rect * SDL_GetWindowMouseRect(SDL_Window *window);
+ * @from SDL_video.h:2546 const SDL_Rect * SDL_GetWindowMouseRect(SDL_Window *window);
  */
 export const getWindowMouseRect = lib.symbols.SDL_GetWindowMouseRect;
 
@@ -2189,7 +2201,7 @@ export const getWindowMouseRect = lib.symbols.SDL_GetWindowMouseRect;
  *
  * @sa SDL_GetWindowOpacity
  *
- * @from SDL_video.h:2555 bool SDL_SetWindowOpacity(SDL_Window *window, float opacity);
+ * @from SDL_video.h:2567 bool SDL_SetWindowOpacity(SDL_Window *window, float opacity);
  */
 export const setWindowOpacity = lib.symbols.SDL_SetWindowOpacity;
 
@@ -2209,7 +2221,7 @@ export const setWindowOpacity = lib.symbols.SDL_SetWindowOpacity;
  *
  * @sa SDL_SetWindowOpacity
  *
- * @from SDL_video.h:2573 float SDL_GetWindowOpacity(SDL_Window *window);
+ * @from SDL_video.h:2585 float SDL_GetWindowOpacity(SDL_Window *window);
  */
 export const getWindowOpacity = lib.symbols.SDL_GetWindowOpacity;
 
@@ -2245,7 +2257,7 @@ export const getWindowOpacity = lib.symbols.SDL_GetWindowOpacity;
  *
  * @sa SDL_SetWindowModal
  *
- * @from SDL_video.h:2607 bool SDL_SetWindowParent(SDL_Window *window, SDL_Window *parent);
+ * @from SDL_video.h:2619 bool SDL_SetWindowParent(SDL_Window *window, SDL_Window *parent);
  */
 export const setWindowParent = lib.symbols.SDL_SetWindowParent;
 
@@ -2267,7 +2279,7 @@ export const setWindowParent = lib.symbols.SDL_SetWindowParent;
  * @sa SDL_SetWindowParent
  * @sa SDL_WINDOW_MODAL
  *
- * @from SDL_video.h:2627 bool SDL_SetWindowModal(SDL_Window *window, bool modal);
+ * @from SDL_video.h:2639 bool SDL_SetWindowModal(SDL_Window *window, bool modal);
  */
 export const setWindowModal = lib.symbols.SDL_SetWindowModal;
 
@@ -2283,7 +2295,7 @@ export const setWindowModal = lib.symbols.SDL_SetWindowModal;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:2641 bool SDL_SetWindowFocusable(SDL_Window *window, bool focusable);
+ * @from SDL_video.h:2653 bool SDL_SetWindowFocusable(SDL_Window *window, bool focusable);
  */
 export const setWindowFocusable = lib.symbols.SDL_SetWindowFocusable;
 
@@ -2310,7 +2322,7 @@ export const setWindowFocusable = lib.symbols.SDL_SetWindowFocusable;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:2667 bool SDL_ShowWindowSystemMenu(SDL_Window *window, int x, int y);
+ * @from SDL_video.h:2679 bool SDL_ShowWindowSystemMenu(SDL_Window *window, int x, int y);
  */
 export const showWindowSystemMenu = lib.symbols.SDL_ShowWindowSystemMenu;
 
@@ -2340,7 +2352,7 @@ export const showWindowSystemMenu = lib.symbols.SDL_ShowWindowSystemMenu;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:2776 bool SDL_SetWindowShape(SDL_Window *window, SDL_Surface *shape);
+ * @from SDL_video.h:2788 bool SDL_SetWindowShape(SDL_Window *window, SDL_Surface *shape);
  */
 export const setWindowShape = lib.symbols.SDL_SetWindowShape;
 
@@ -2356,7 +2368,7 @@ export const setWindowShape = lib.symbols.SDL_SetWindowShape;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:2790 bool SDL_FlashWindow(SDL_Window *window, SDL_FlashOperation operation);
+ * @from SDL_video.h:2802 bool SDL_FlashWindow(SDL_Window *window, SDL_FlashOperation operation);
  */
 export const flashWindow = lib.symbols.SDL_FlashWindow;
 
@@ -2380,7 +2392,7 @@ export const flashWindow = lib.symbols.SDL_FlashWindow;
  * @sa SDL_CreateWindow
  * @sa SDL_CreateWindowWithProperties
  *
- * @from SDL_video.h:2812 void SDL_DestroyWindow(SDL_Window *window);
+ * @from SDL_video.h:2824 void SDL_DestroyWindow(SDL_Window *window);
  */
 export const destroyWindow = lib.symbols.SDL_DestroyWindow;
 
@@ -2400,7 +2412,7 @@ export const destroyWindow = lib.symbols.SDL_DestroyWindow;
  * @sa SDL_DisableScreenSaver
  * @sa SDL_EnableScreenSaver
  *
- * @from SDL_video.h:2831 bool SDL_ScreenSaverEnabled(void);
+ * @from SDL_video.h:2843 bool SDL_ScreenSaverEnabled(void);
  */
 export const screenSaverEnabled = lib.symbols.SDL_ScreenSaverEnabled;
 
@@ -2417,7 +2429,7 @@ export const screenSaverEnabled = lib.symbols.SDL_ScreenSaverEnabled;
  * @sa SDL_DisableScreenSaver
  * @sa SDL_ScreenSaverEnabled
  *
- * @from SDL_video.h:2846 bool SDL_EnableScreenSaver(void);
+ * @from SDL_video.h:2858 bool SDL_EnableScreenSaver(void);
  */
 export const enableScreenSaver = lib.symbols.SDL_EnableScreenSaver;
 
@@ -2440,7 +2452,7 @@ export const enableScreenSaver = lib.symbols.SDL_EnableScreenSaver;
  * @sa SDL_EnableScreenSaver
  * @sa SDL_ScreenSaverEnabled
  *
- * @from SDL_video.h:2867 bool SDL_DisableScreenSaver(void);
+ * @from SDL_video.h:2879 bool SDL_DisableScreenSaver(void);
  */
 export const disableScreenSaver = lib.symbols.SDL_DisableScreenSaver;
 
@@ -2466,7 +2478,7 @@ export const disableScreenSaver = lib.symbols.SDL_DisableScreenSaver;
  * @sa SDL_GL_GetProcAddress
  * @sa SDL_GL_UnloadLibrary
  *
- * @from SDL_video.h:2897 bool SDL_GL_LoadLibrary(const char *path);
+ * @from SDL_video.h:2909 bool SDL_GL_LoadLibrary(const char *path);
  */
 export const glLoadLibrary = lib.symbols.SDL_GL_LoadLibrary;
 
@@ -2523,7 +2535,7 @@ export const glLoadLibrary = lib.symbols.SDL_GL_LoadLibrary;
  * @sa SDL_GL_LoadLibrary
  * @sa SDL_GL_UnloadLibrary
  *
- * @from SDL_video.h:2952 SDL_FunctionPointer SDL_GL_GetProcAddress(const char *proc);
+ * @from SDL_video.h:2964 SDL_FunctionPointer SDL_GL_GetProcAddress(const char *proc);
  */
 export const glGetProcAddress = lib.symbols.SDL_GL_GetProcAddress;
 
@@ -2544,7 +2556,7 @@ export const glGetProcAddress = lib.symbols.SDL_GL_GetProcAddress;
  *
  * @sa SDL_EGL_GetCurrentDisplay
  *
- * @from SDL_video.h:2971 SDL_FunctionPointer SDL_EGL_GetProcAddress(const char *proc);
+ * @from SDL_video.h:2983 SDL_FunctionPointer SDL_EGL_GetProcAddress(const char *proc);
  */
 export const eglGetProcAddress = lib.symbols.SDL_EGL_GetProcAddress;
 
@@ -2557,7 +2569,7 @@ export const eglGetProcAddress = lib.symbols.SDL_EGL_GetProcAddress;
  *
  * @sa SDL_GL_LoadLibrary
  *
- * @from SDL_video.h:2982 void SDL_GL_UnloadLibrary(void);
+ * @from SDL_video.h:2994 void SDL_GL_UnloadLibrary(void);
  */
 export const glUnloadLibrary = lib.symbols.SDL_GL_UnloadLibrary;
 
@@ -2582,7 +2594,7 @@ export const glUnloadLibrary = lib.symbols.SDL_GL_UnloadLibrary;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:3005 bool SDL_GL_ExtensionSupported(const char *extension);
+ * @from SDL_video.h:3017 bool SDL_GL_ExtensionSupported(const char *extension);
  */
 export const glExtensionSupported = lib.symbols.SDL_GL_ExtensionSupported;
 
@@ -2596,7 +2608,7 @@ export const glExtensionSupported = lib.symbols.SDL_GL_ExtensionSupported;
  * @sa SDL_GL_GetAttribute
  * @sa SDL_GL_SetAttribute
  *
- * @from SDL_video.h:3017 void SDL_GL_ResetAttributes(void);
+ * @from SDL_video.h:3029 void SDL_GL_ResetAttributes(void);
  */
 export const glResetAttributes = lib.symbols.SDL_GL_ResetAttributes;
 
@@ -2621,7 +2633,7 @@ export const glResetAttributes = lib.symbols.SDL_GL_ResetAttributes;
  * @sa SDL_GL_GetAttribute
  * @sa SDL_GL_ResetAttributes
  *
- * @from SDL_video.h:3040 bool SDL_GL_SetAttribute(SDL_GLAttr attr, int value);
+ * @from SDL_video.h:3052 bool SDL_GL_SetAttribute(SDL_GLAttr attr, int value);
  */
 export const glSetAttribute = lib.symbols.SDL_GL_SetAttribute;
 
@@ -2641,7 +2653,7 @@ export const glSetAttribute = lib.symbols.SDL_GL_SetAttribute;
  * @sa SDL_GL_ResetAttributes
  * @sa SDL_GL_SetAttribute
  *
- * @from SDL_video.h:3058 bool SDL_GL_GetAttribute(SDL_GLAttr attr, int *value);
+ * @from SDL_video.h:3070 bool SDL_GL_GetAttribute(SDL_GLAttr attr, int *value);
  */
 export const glGetAttribute = lib.symbols.SDL_GL_GetAttribute;
 
@@ -2655,7 +2667,7 @@ export const glGetAttribute = lib.symbols.SDL_GL_GetAttribute;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:3112 SDL_Window * SDL_GL_GetCurrentWindow(void);
+ * @from SDL_video.h:3124 SDL_Window * SDL_GL_GetCurrentWindow(void);
  */
 export const glGetCurrentWindow = lib.symbols.SDL_GL_GetCurrentWindow;
 
@@ -2679,7 +2691,7 @@ export const glGetCurrentWindow = lib.symbols.SDL_GL_GetCurrentWindow;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:3185 void SDL_EGL_SetAttributeCallbacks(SDL_EGLAttribArrayCallback platformAttribCallback,                                                               SDL_EGLIntArrayCallback surfaceAttribCallback,                                                               SDL_EGLIntArrayCallback contextAttribCallback, void *userdata);
+ * @from SDL_video.h:3197 void SDL_EGL_SetAttributeCallbacks(SDL_EGLAttribArrayCallback platformAttribCallback,                                                               SDL_EGLIntArrayCallback surfaceAttribCallback,                                                               SDL_EGLIntArrayCallback contextAttribCallback, void *userdata);
  */
 export const eglSetAttributeCallbacks = lib.symbols.SDL_EGL_SetAttributeCallbacks;
 
@@ -2712,7 +2724,7 @@ export const eglSetAttributeCallbacks = lib.symbols.SDL_EGL_SetAttributeCallback
  *
  * @sa SDL_GL_GetSwapInterval
  *
- * @from SDL_video.h:3218 bool SDL_GL_SetSwapInterval(int interval);
+ * @from SDL_video.h:3230 bool SDL_GL_SetSwapInterval(int interval);
  */
 export const glSetSwapInterval = lib.symbols.SDL_GL_SetSwapInterval;
 
@@ -2735,7 +2747,7 @@ export const glSetSwapInterval = lib.symbols.SDL_GL_SetSwapInterval;
  *
  * @sa SDL_GL_SetSwapInterval
  *
- * @from SDL_video.h:3239 bool SDL_GL_GetSwapInterval(int *interval);
+ * @from SDL_video.h:3251 bool SDL_GL_GetSwapInterval(int *interval);
  */
 export const glGetSwapInterval = lib.symbols.SDL_GL_GetSwapInterval;
 
@@ -2757,7 +2769,7 @@ export const glGetSwapInterval = lib.symbols.SDL_GL_GetSwapInterval;
  *
  * @since This function is available since SDL 3.2.0.
  *
- * @from SDL_video.h:3259 bool SDL_GL_SwapWindow(SDL_Window *window);
+ * @from SDL_video.h:3271 bool SDL_GL_SwapWindow(SDL_Window *window);
  */
 export const glSwapWindow = lib.symbols.SDL_GL_SwapWindow;
 

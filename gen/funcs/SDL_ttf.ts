@@ -623,7 +623,7 @@ TTF_GetFontOutline: {
  *
  * @sa TTF_GetFontHinting
  *
- * @from SDL_ttf.h:591 void TTF_SetFontHinting(TTF_Font *font, TTF_HintingFlags hinting);
+ * @from SDL_ttf.h:592 void TTF_SetFontHinting(TTF_Font *font, TTF_HintingFlags hinting);
  */
 TTF_SetFontHinting: {
       parameters: ["pointer", "u32"],
@@ -641,7 +641,7 @@ TTF_SetFontHinting: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:603 int TTF_GetNumFontFaces(const TTF_Font *font);
+ * @from SDL_ttf.h:604 int TTF_GetNumFontFaces(const TTF_Font *font);
  */
 TTF_GetNumFontFaces: {
       parameters: ["pointer"],
@@ -661,7 +661,8 @@ TTF_GetNumFontFaces: {
  * - `TTF_HINTING_LIGHT_SUBPIXEL` (available in SDL_ttf 3.0.0 and later)
  *
  * @param font the font to query.
- * @returns the font's current hinter value.
+ * @returns the font's current hinter value, or TTF_HINTING_INVALID if the
+ *          font is invalid.
  *
  * @threadsafety It is safe to call this function from any thread.
  *
@@ -669,7 +670,7 @@ TTF_GetNumFontFaces: {
  *
  * @sa TTF_SetFontHinting
  *
- * @from SDL_ttf.h:625 TTF_HintingFlags TTF_GetFontHinting(const TTF_Font *font);
+ * @from SDL_ttf.h:627 TTF_HintingFlags TTF_GetFontHinting(const TTF_Font *font);
  */
 TTF_GetFontHinting: {
       parameters: ["pointer"],
@@ -701,7 +702,7 @@ TTF_GetFontHinting: {
  *
  * @sa TTF_GetFontSDF
  *
- * @from SDL_ttf.h:651 bool TTF_SetFontSDF(TTF_Font *font, bool enabled);
+ * @from SDL_ttf.h:653 bool TTF_SetFontSDF(TTF_Font *font, bool enabled);
  */
 TTF_SetFontSDF: {
       parameters: ["pointer", "bool"],
@@ -721,11 +722,30 @@ TTF_SetFontSDF: {
  *
  * @sa TTF_SetFontSDF
  *
- * @from SDL_ttf.h:665 bool TTF_GetFontSDF(const TTF_Font *font);
+ * @from SDL_ttf.h:667 bool TTF_GetFontSDF(const TTF_Font *font);
  */
 TTF_GetFontSDF: {
       parameters: ["pointer"],
       result: "bool"
+    },
+
+
+/**
+ * Query a font's weight, in terms of the lightness/heaviness of the strokes.
+ *
+ * @param font the font to query.
+ * @returns the font's current weight.
+ *
+ * @threadsafety This function should be called on the thread that created the
+ *               font.
+ *
+ * @since This function is available since SDL_ttf 3.4.0.
+ *
+ * @from SDL_ttf.h:680 int TTF_GetFontWeight(const TTF_Font *font);
+ */
+TTF_GetFontWeight: {
+      parameters: ["pointer"],
+      result: "i32"
     },
 
 
@@ -744,7 +764,7 @@ TTF_GetFontSDF: {
  *
  * @sa TTF_GetFontWrapAlignment
  *
- * @from SDL_ttf.h:695 void TTF_SetFontWrapAlignment(TTF_Font *font, TTF_HorizontalAlignment align);
+ * @from SDL_ttf.h:721 void TTF_SetFontWrapAlignment(TTF_Font *font, TTF_HorizontalAlignment align);
  */
 TTF_SetFontWrapAlignment: {
       parameters: ["pointer", "u32"],
@@ -764,7 +784,7 @@ TTF_SetFontWrapAlignment: {
  *
  * @sa TTF_SetFontWrapAlignment
  *
- * @from SDL_ttf.h:709 TTF_HorizontalAlignment TTF_GetFontWrapAlignment(const TTF_Font *font);
+ * @from SDL_ttf.h:735 TTF_HorizontalAlignment TTF_GetFontWrapAlignment(const TTF_Font *font);
  */
 TTF_GetFontWrapAlignment: {
       parameters: ["pointer"],
@@ -784,7 +804,7 @@ TTF_GetFontWrapAlignment: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:723 int TTF_GetFontHeight(const TTF_Font *font);
+ * @from SDL_ttf.h:749 int TTF_GetFontHeight(const TTF_Font *font);
  */
 TTF_GetFontHeight: {
       parameters: ["pointer"],
@@ -804,7 +824,7 @@ TTF_GetFontHeight: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:737 int TTF_GetFontAscent(const TTF_Font *font);
+ * @from SDL_ttf.h:763 int TTF_GetFontAscent(const TTF_Font *font);
  */
 TTF_GetFontAscent: {
       parameters: ["pointer"],
@@ -824,7 +844,7 @@ TTF_GetFontAscent: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:751 int TTF_GetFontDescent(const TTF_Font *font);
+ * @from SDL_ttf.h:777 int TTF_GetFontDescent(const TTF_Font *font);
  */
 TTF_GetFontDescent: {
       parameters: ["pointer"],
@@ -847,7 +867,7 @@ TTF_GetFontDescent: {
  *
  * @sa TTF_GetFontLineSkip
  *
- * @from SDL_ttf.h:768 void TTF_SetFontLineSkip(TTF_Font *font, int lineskip);
+ * @from SDL_ttf.h:794 void TTF_SetFontLineSkip(TTF_Font *font, int lineskip);
  */
 TTF_SetFontLineSkip: {
       parameters: ["pointer", "i32"],
@@ -867,7 +887,7 @@ TTF_SetFontLineSkip: {
  *
  * @sa TTF_SetFontLineSkip
  *
- * @from SDL_ttf.h:782 int TTF_GetFontLineSkip(const TTF_Font *font);
+ * @from SDL_ttf.h:808 int TTF_GetFontLineSkip(const TTF_Font *font);
  */
 TTF_GetFontLineSkip: {
       parameters: ["pointer"],
@@ -895,7 +915,7 @@ TTF_GetFontLineSkip: {
  *
  * @sa TTF_GetFontKerning
  *
- * @from SDL_ttf.h:804 void TTF_SetFontKerning(TTF_Font *font, bool enabled);
+ * @from SDL_ttf.h:830 void TTF_SetFontKerning(TTF_Font *font, bool enabled);
  */
 TTF_SetFontKerning: {
       parameters: ["pointer", "bool"],
@@ -915,7 +935,7 @@ TTF_SetFontKerning: {
  *
  * @sa TTF_SetFontKerning
  *
- * @from SDL_ttf.h:818 bool TTF_GetFontKerning(const TTF_Font *font);
+ * @from SDL_ttf.h:844 bool TTF_GetFontKerning(const TTF_Font *font);
  */
 TTF_GetFontKerning: {
       parameters: ["pointer"],
@@ -939,7 +959,7 @@ TTF_GetFontKerning: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:836 bool TTF_FontIsFixedWidth(const TTF_Font *font);
+ * @from SDL_ttf.h:862 bool TTF_FontIsFixedWidth(const TTF_Font *font);
  */
 TTF_FontIsFixedWidth: {
       parameters: ["pointer"],
@@ -961,7 +981,7 @@ TTF_FontIsFixedWidth: {
  *
  * @sa TTF_SetFontSDF
  *
- * @from SDL_ttf.h:852 bool TTF_FontIsScalable(const TTF_Font *font);
+ * @from SDL_ttf.h:878 bool TTF_FontIsScalable(const TTF_Font *font);
  */
 TTF_FontIsScalable: {
       parameters: ["pointer"],
@@ -985,7 +1005,7 @@ TTF_FontIsScalable: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:870 const char * TTF_GetFontFamilyName(const TTF_Font *font);
+ * @from SDL_ttf.h:896 const char * TTF_GetFontFamilyName(const TTF_Font *font);
  */
 TTF_GetFontFamilyName: {
       parameters: ["pointer"],
@@ -1009,7 +1029,7 @@ TTF_GetFontFamilyName: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:888 const char * TTF_GetFontStyleName(const TTF_Font *font);
+ * @from SDL_ttf.h:914 const char * TTF_GetFontStyleName(const TTF_Font *font);
  */
 TTF_GetFontStyleName: {
       parameters: ["pointer"],
@@ -1035,7 +1055,7 @@ TTF_GetFontStyleName: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:928 bool TTF_SetFontDirection(TTF_Font *font, TTF_Direction direction);
+ * @from SDL_ttf.h:954 bool TTF_SetFontDirection(TTF_Font *font, TTF_Direction direction);
  */
 TTF_SetFontDirection: {
       parameters: ["pointer", "u32"],
@@ -1056,7 +1076,7 @@ TTF_SetFontDirection: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:943 TTF_Direction TTF_GetFontDirection(TTF_Font *font);
+ * @from SDL_ttf.h:969 TTF_Direction TTF_GetFontDirection(TTF_Font *font);
  */
 TTF_GetFontDirection: {
       parameters: ["pointer"],
@@ -1076,7 +1096,7 @@ TTF_GetFontDirection: {
  *
  * @sa TTF_TagToString
  *
- * @from SDL_ttf.h:957 Uint32 TTF_StringToTag(const char *string);
+ * @from SDL_ttf.h:983 Uint32 TTF_StringToTag(const char *string);
  */
 TTF_StringToTag: {
       parameters: ["pointer"],
@@ -1099,7 +1119,7 @@ TTF_StringToTag: {
  *
  * @sa TTF_TagToString
  *
- * @from SDL_ttf.h:974 void TTF_TagToString(Uint32 tag, char *string, size_t size);
+ * @from SDL_ttf.h:1000 void TTF_TagToString(Uint32 tag, char *string, size_t size);
  */
 TTF_TagToString: {
       parameters: ["u32", "pointer", "usize"],
@@ -1128,7 +1148,7 @@ TTF_TagToString: {
  *
  * @sa TTF_StringToTag
  *
- * @from SDL_ttf.h:997 bool TTF_SetFontScript(TTF_Font *font, Uint32 script);
+ * @from SDL_ttf.h:1023 bool TTF_SetFontScript(TTF_Font *font, Uint32 script);
  */
 TTF_SetFontScript: {
       parameters: ["pointer", "u32"],
@@ -1151,7 +1171,7 @@ TTF_SetFontScript: {
  *
  * @sa TTF_TagToString
  *
- * @from SDL_ttf.h:1014 Uint32 TTF_GetFontScript(TTF_Font *font);
+ * @from SDL_ttf.h:1040 Uint32 TTF_GetFontScript(TTF_Font *font);
  */
 TTF_GetFontScript: {
       parameters: ["pointer"],
@@ -1174,7 +1194,7 @@ TTF_GetFontScript: {
  *
  * @sa TTF_TagToString
  *
- * @from SDL_ttf.h:1031 Uint32 TTF_GetGlyphScript(Uint32 ch);
+ * @from SDL_ttf.h:1057 Uint32 TTF_GetGlyphScript(Uint32 ch);
  */
 TTF_GetGlyphScript: {
       parameters: ["u32"],
@@ -1201,7 +1221,7 @@ TTF_GetGlyphScript: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1052 bool TTF_SetFontLanguage(TTF_Font *font, const char *language_bcp47);
+ * @from SDL_ttf.h:1078 bool TTF_SetFontLanguage(TTF_Font *font, const char *language_bcp47);
  */
 TTF_SetFontLanguage: {
       parameters: ["pointer", "pointer"],
@@ -1221,7 +1241,7 @@ TTF_SetFontLanguage: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1066 bool TTF_FontHasGlyph(TTF_Font *font, Uint32 ch);
+ * @from SDL_ttf.h:1092 bool TTF_FontHasGlyph(TTF_Font *font, Uint32 ch);
  */
 TTF_FontHasGlyph: {
       parameters: ["pointer", "u32"],
@@ -1244,7 +1264,7 @@ TTF_FontHasGlyph: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1096 SDL_Surface * TTF_GetGlyphImage(TTF_Font *font, Uint32 ch, TTF_ImageType *image_type);
+ * @from SDL_ttf.h:1122 SDL_Surface * TTF_GetGlyphImage(TTF_Font *font, Uint32 ch, TTF_ImageType *image_type);
  */
 TTF_GetGlyphImage: {
       parameters: ["pointer", "u32", "pointer"],
@@ -1270,7 +1290,7 @@ TTF_GetGlyphImage: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1116 SDL_Surface * TTF_GetGlyphImageForIndex(TTF_Font *font, Uint32 glyph_index, TTF_ImageType *image_type);
+ * @from SDL_ttf.h:1142 SDL_Surface * TTF_GetGlyphImageForIndex(TTF_Font *font, Uint32 glyph_index, TTF_ImageType *image_type);
  */
 TTF_GetGlyphImageForIndex: {
       parameters: ["pointer", "u32", "pointer"],
@@ -1307,7 +1327,7 @@ TTF_GetGlyphImageForIndex: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1147 bool TTF_GetGlyphMetrics(TTF_Font *font, Uint32 ch, int *minx, int *maxx, int *miny, int *maxy, int *advance);
+ * @from SDL_ttf.h:1173 bool TTF_GetGlyphMetrics(TTF_Font *font, Uint32 ch, int *minx, int *maxx, int *miny, int *maxy, int *advance);
  */
 TTF_GetGlyphMetrics: {
       parameters: ["pointer", "u32", "pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -1331,7 +1351,7 @@ TTF_GetGlyphMetrics: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1165 bool TTF_GetGlyphKerning(TTF_Font *font, Uint32 previous_ch, Uint32 ch, int *kerning);
+ * @from SDL_ttf.h:1191 bool TTF_GetGlyphKerning(TTF_Font *font, Uint32 previous_ch, Uint32 ch, int *kerning);
  */
 TTF_GetGlyphKerning: {
       parameters: ["pointer", "u32", "u32", "pointer"],
@@ -1359,7 +1379,7 @@ TTF_GetGlyphKerning: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1187 bool TTF_GetStringSize(TTF_Font *font, const char *text, size_t length, int *w, int *h);
+ * @from SDL_ttf.h:1213 bool TTF_GetStringSize(TTF_Font *font, const char *text, size_t length, int *w, int *h);
  */
 TTF_GetStringSize: {
       parameters: ["pointer", "pointer", "usize", "pointer", "pointer"],
@@ -1393,7 +1413,7 @@ TTF_GetStringSize: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1215 bool TTF_GetStringSizeWrapped(TTF_Font *font, const char *text, size_t length, int wrap_width, int *w, int *h);
+ * @from SDL_ttf.h:1241 bool TTF_GetStringSizeWrapped(TTF_Font *font, const char *text, size_t length, int wrap_width, int *w, int *h);
  */
 TTF_GetStringSizeWrapped: {
       parameters: ["pointer", "pointer", "usize", "i32", "pointer", "pointer"],
@@ -1427,7 +1447,7 @@ TTF_GetStringSizeWrapped: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:1243 bool TTF_MeasureString(TTF_Font *font, const char *text, size_t length, int max_width, int *measured_width, size_t *measured_length);
+ * @from SDL_ttf.h:1269 bool TTF_MeasureString(TTF_Font *font, const char *text, size_t length, int max_width, int *measured_width, size_t *measured_length);
  */
 TTF_MeasureString: {
       parameters: ["pointer", "pointer", "usize", "i32", "pointer", "pointer"],
@@ -1470,7 +1490,7 @@ TTF_MeasureString: {
  * @sa TTF_RenderText_Solid
  * @sa TTF_RenderText_Solid_Wrapped
  *
- * @from SDL_ttf.h:1280 SDL_Surface * TTF_RenderText_Solid(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
+ * @from SDL_ttf.h:1306 SDL_Surface * TTF_RenderText_Solid(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
  */
 TTF_RenderText_Solid: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}],
@@ -1512,7 +1532,7 @@ TTF_RenderText_Solid: {
  * @sa TTF_RenderText_Shaded_Wrapped
  * @sa TTF_RenderText_Solid
  *
- * @from SDL_ttf.h:1316 SDL_Surface * TTF_RenderText_Solid_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrapLength);
+ * @from SDL_ttf.h:1342 SDL_Surface * TTF_RenderText_Solid_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrapLength);
  */
 TTF_RenderText_Solid_Wrapped: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, "i32"],
@@ -1547,7 +1567,7 @@ TTF_RenderText_Solid_Wrapped: {
  * @sa TTF_RenderGlyph_LCD
  * @sa TTF_RenderGlyph_Shaded
  *
- * @from SDL_ttf.h:1345 SDL_Surface * TTF_RenderGlyph_Solid(TTF_Font *font, Uint32 ch, SDL_Color fg);
+ * @from SDL_ttf.h:1371 SDL_Surface * TTF_RenderGlyph_Solid(TTF_Font *font, Uint32 ch, SDL_Color fg);
  */
 TTF_RenderGlyph_Solid: {
       parameters: ["pointer", "u32", {"struct":["u8","u8","u8","u8"]}],
@@ -1591,7 +1611,7 @@ TTF_RenderGlyph_Solid: {
  * @sa TTF_RenderText_Shaded_Wrapped
  * @sa TTF_RenderText_Solid
  *
- * @from SDL_ttf.h:1383 SDL_Surface * TTF_RenderText_Shaded(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
+ * @from SDL_ttf.h:1409 SDL_Surface * TTF_RenderText_Shaded(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
  */
 TTF_RenderText_Shaded: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}],
@@ -1635,7 +1655,7 @@ TTF_RenderText_Shaded: {
  * @sa TTF_RenderText_Shaded
  * @sa TTF_RenderText_Solid_Wrapped
  *
- * @from SDL_ttf.h:1421 SDL_Surface * TTF_RenderText_Shaded_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
+ * @from SDL_ttf.h:1447 SDL_Surface * TTF_RenderText_Shaded_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
  */
 TTF_RenderText_Shaded_Wrapped: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}, "i32"],
@@ -1672,7 +1692,7 @@ TTF_RenderText_Shaded_Wrapped: {
  * @sa TTF_RenderGlyph_LCD
  * @sa TTF_RenderGlyph_Solid
  *
- * @from SDL_ttf.h:1452 SDL_Surface * TTF_RenderGlyph_Shaded(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
+ * @from SDL_ttf.h:1478 SDL_Surface * TTF_RenderGlyph_Shaded(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
  */
 TTF_RenderGlyph_Shaded: {
       parameters: ["pointer", "u32", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}],
@@ -1714,7 +1734,7 @@ TTF_RenderGlyph_Shaded: {
  * @sa TTF_RenderText_Shaded
  * @sa TTF_RenderText_Solid
  *
- * @from SDL_ttf.h:1488 SDL_Surface * TTF_RenderText_Blended(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
+ * @from SDL_ttf.h:1514 SDL_Surface * TTF_RenderText_Blended(TTF_Font *font, const char *text, size_t length, SDL_Color fg);
  */
 TTF_RenderText_Blended: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}],
@@ -1756,7 +1776,7 @@ TTF_RenderText_Blended: {
  * @sa TTF_RenderText_Shaded_Wrapped
  * @sa TTF_RenderText_Solid_Wrapped
  *
- * @from SDL_ttf.h:1524 SDL_Surface * TTF_RenderText_Blended_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrap_width);
+ * @from SDL_ttf.h:1550 SDL_Surface * TTF_RenderText_Blended_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, int wrap_width);
  */
 TTF_RenderText_Blended_Wrapped: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, "i32"],
@@ -1791,7 +1811,7 @@ TTF_RenderText_Blended_Wrapped: {
  * @sa TTF_RenderGlyph_Shaded
  * @sa TTF_RenderGlyph_Solid
  *
- * @from SDL_ttf.h:1553 SDL_Surface * TTF_RenderGlyph_Blended(TTF_Font *font, Uint32 ch, SDL_Color fg);
+ * @from SDL_ttf.h:1579 SDL_Surface * TTF_RenderGlyph_Blended(TTF_Font *font, Uint32 ch, SDL_Color fg);
  */
 TTF_RenderGlyph_Blended: {
       parameters: ["pointer", "u32", {"struct":["u8","u8","u8","u8"]}],
@@ -1834,7 +1854,7 @@ TTF_RenderGlyph_Blended: {
  * @sa TTF_RenderText_Shaded
  * @sa TTF_RenderText_Solid
  *
- * @from SDL_ttf.h:1590 SDL_Surface * TTF_RenderText_LCD(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
+ * @from SDL_ttf.h:1616 SDL_Surface * TTF_RenderText_LCD(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg);
  */
 TTF_RenderText_LCD: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}],
@@ -1878,7 +1898,7 @@ TTF_RenderText_LCD: {
  * @sa TTF_RenderText_Shaded_Wrapped
  * @sa TTF_RenderText_Solid_Wrapped
  *
- * @from SDL_ttf.h:1628 SDL_Surface * TTF_RenderText_LCD_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
+ * @from SDL_ttf.h:1654 SDL_Surface * TTF_RenderText_LCD_Wrapped(TTF_Font *font, const char *text, size_t length, SDL_Color fg, SDL_Color bg, int wrap_width);
  */
 TTF_RenderText_LCD_Wrapped: {
       parameters: ["pointer", "pointer", "usize", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}, "i32"],
@@ -1915,7 +1935,7 @@ TTF_RenderText_LCD_Wrapped: {
  * @sa TTF_RenderGlyph_Shaded
  * @sa TTF_RenderGlyph_Solid
  *
- * @from SDL_ttf.h:1659 SDL_Surface * TTF_RenderGlyph_LCD(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
+ * @from SDL_ttf.h:1685 SDL_Surface * TTF_RenderGlyph_LCD(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg);
  */
 TTF_RenderGlyph_LCD: {
       parameters: ["pointer", "u32", {"struct":["u8","u8","u8","u8"]}, {"struct":["u8","u8","u8","u8"]}],
@@ -1936,7 +1956,7 @@ TTF_RenderGlyph_LCD: {
  * @sa TTF_DestroySurfaceTextEngine
  * @sa TTF_DrawSurfaceText
  *
- * @from SDL_ttf.h:1720 TTF_TextEngine * TTF_CreateSurfaceTextEngine(void);
+ * @from SDL_ttf.h:1746 TTF_TextEngine * TTF_CreateSurfaceTextEngine(void);
  */
 TTF_CreateSurfaceTextEngine: {
       parameters: [],
@@ -1967,7 +1987,7 @@ TTF_CreateSurfaceTextEngine: {
  * @sa TTF_CreateSurfaceTextEngine
  * @sa TTF_CreateText
  *
- * @from SDL_ttf.h:1745 bool TTF_DrawSurfaceText(TTF_Text *text, int x, int y, SDL_Surface *surface);
+ * @from SDL_ttf.h:1771 bool TTF_DrawSurfaceText(TTF_Text *text, int x, int y, SDL_Surface *surface);
  */
 TTF_DrawSurfaceText: {
       parameters: ["pointer", "i32", "i32", "pointer"],
@@ -1991,7 +2011,7 @@ TTF_DrawSurfaceText: {
  *
  * @sa TTF_CreateSurfaceTextEngine
  *
- * @from SDL_ttf.h:1763 void TTF_DestroySurfaceTextEngine(TTF_TextEngine *engine);
+ * @from SDL_ttf.h:1789 void TTF_DestroySurfaceTextEngine(TTF_TextEngine *engine);
  */
 TTF_DestroySurfaceTextEngine: {
       parameters: ["pointer"],
@@ -2015,7 +2035,7 @@ TTF_DestroySurfaceTextEngine: {
  * @sa TTF_DrawRendererText
  * @sa TTF_CreateRendererTextEngineWithProperties
  *
- * @from SDL_ttf.h:1781 TTF_TextEngine * TTF_CreateRendererTextEngine(SDL_Renderer *renderer);
+ * @from SDL_ttf.h:1807 TTF_TextEngine * TTF_CreateRendererTextEngine(SDL_Renderer *renderer);
  */
 TTF_CreateRendererTextEngine: {
       parameters: ["pointer"],
@@ -2047,7 +2067,7 @@ TTF_CreateRendererTextEngine: {
  * @sa TTF_DestroyRendererTextEngine
  * @sa TTF_DrawRendererText
  *
- * @from SDL_ttf.h:1807 TTF_TextEngine * TTF_CreateRendererTextEngineWithProperties(SDL_PropertiesID props);
+ * @from SDL_ttf.h:1833 TTF_TextEngine * TTF_CreateRendererTextEngineWithProperties(SDL_PropertiesID props);
  */
 TTF_CreateRendererTextEngineWithProperties: {
       parameters: ["u32"],
@@ -2078,7 +2098,7 @@ TTF_CreateRendererTextEngineWithProperties: {
  * @sa TTF_CreateRendererTextEngine
  * @sa TTF_CreateText
  *
- * @from SDL_ttf.h:1835 bool TTF_DrawRendererText(TTF_Text *text, float x, float y);
+ * @from SDL_ttf.h:1861 bool TTF_DrawRendererText(TTF_Text *text, float x, float y);
  */
 TTF_DrawRendererText: {
       parameters: ["pointer", "f32", "f32"],
@@ -2102,7 +2122,7 @@ TTF_DrawRendererText: {
  *
  * @sa TTF_CreateRendererTextEngine
  *
- * @from SDL_ttf.h:1853 void TTF_DestroyRendererTextEngine(TTF_TextEngine *engine);
+ * @from SDL_ttf.h:1879 void TTF_DestroyRendererTextEngine(TTF_TextEngine *engine);
  */
 TTF_DestroyRendererTextEngine: {
       parameters: ["pointer"],
@@ -2127,7 +2147,7 @@ TTF_DestroyRendererTextEngine: {
  * @sa TTF_DestroyGPUTextEngine
  * @sa TTF_GetGPUTextDrawData
  *
- * @from SDL_ttf.h:1872 TTF_TextEngine * TTF_CreateGPUTextEngine(SDL_GPUDevice *device);
+ * @from SDL_ttf.h:1898 TTF_TextEngine * TTF_CreateGPUTextEngine(SDL_GPUDevice *device);
  */
 TTF_CreateGPUTextEngine: {
       parameters: ["pointer"],
@@ -2159,7 +2179,7 @@ TTF_CreateGPUTextEngine: {
  * @sa TTF_DestroyGPUTextEngine
  * @sa TTF_GetGPUTextDrawData
  *
- * @from SDL_ttf.h:1898 TTF_TextEngine * TTF_CreateGPUTextEngineWithProperties(SDL_PropertiesID props);
+ * @from SDL_ttf.h:1924 TTF_TextEngine * TTF_CreateGPUTextEngineWithProperties(SDL_PropertiesID props);
  */
 TTF_CreateGPUTextEngineWithProperties: {
       parameters: ["u32"],
@@ -2194,7 +2214,7 @@ TTF_CreateGPUTextEngineWithProperties: {
  * @sa TTF_CreateGPUTextEngine
  * @sa TTF_CreateText
  *
- * @from SDL_ttf.h:1950 TTF_GPUAtlasDrawSequence * TTF_GetGPUTextDrawData(TTF_Text *text);
+ * @from SDL_ttf.h:1976 TTF_GPUAtlasDrawSequence * TTF_GetGPUTextDrawData(TTF_Text *text);
  */
 TTF_GetGPUTextDrawData: {
       parameters: ["pointer"],
@@ -2218,7 +2238,7 @@ TTF_GetGPUTextDrawData: {
  *
  * @sa TTF_CreateGPUTextEngine
  *
- * @from SDL_ttf.h:1968 void TTF_DestroyGPUTextEngine(TTF_TextEngine *engine);
+ * @from SDL_ttf.h:1994 void TTF_DestroyGPUTextEngine(TTF_TextEngine *engine);
  */
 TTF_DestroyGPUTextEngine: {
       parameters: ["pointer"],
@@ -2241,7 +2261,7 @@ TTF_DestroyGPUTextEngine: {
  *
  * @sa TTF_GetGPUTextEngineWinding
  *
- * @from SDL_ttf.h:1997 void TTF_SetGPUTextEngineWinding(TTF_TextEngine *engine, TTF_GPUTextEngineWinding winding);
+ * @from SDL_ttf.h:2023 void TTF_SetGPUTextEngineWinding(TTF_TextEngine *engine, TTF_GPUTextEngineWinding winding);
  */
 TTF_SetGPUTextEngineWinding: {
       parameters: ["pointer", "u32"],
@@ -2265,7 +2285,7 @@ TTF_SetGPUTextEngineWinding: {
  *
  * @sa TTF_SetGPUTextEngineWinding
  *
- * @from SDL_ttf.h:2015 TTF_GPUTextEngineWinding TTF_GetGPUTextEngineWinding(const TTF_TextEngine *engine);
+ * @from SDL_ttf.h:2041 TTF_GPUTextEngineWinding TTF_GetGPUTextEngineWinding(const TTF_TextEngine *engine);
  */
 TTF_GetGPUTextEngineWinding: {
       parameters: ["pointer"],
@@ -2292,7 +2312,7 @@ TTF_GetGPUTextEngineWinding: {
  *
  * @sa TTF_DestroyText
  *
- * @from SDL_ttf.h:2036 TTF_Text * TTF_CreateText(TTF_TextEngine *engine, TTF_Font *font, const char *text, size_t length);
+ * @from SDL_ttf.h:2062 TTF_Text * TTF_CreateText(TTF_TextEngine *engine, TTF_Font *font, const char *text, size_t length);
  */
 TTF_CreateText: {
       parameters: ["pointer", "pointer", "pointer", "usize"],
@@ -2312,7 +2332,7 @@ TTF_CreateText: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2050 SDL_PropertiesID TTF_GetTextProperties(TTF_Text *text);
+ * @from SDL_ttf.h:2076 SDL_PropertiesID TTF_GetTextProperties(TTF_Text *text);
  */
 TTF_GetTextProperties: {
       parameters: ["pointer"],
@@ -2337,7 +2357,7 @@ TTF_GetTextProperties: {
  *
  * @sa TTF_GetTextEngine
  *
- * @from SDL_ttf.h:2069 bool TTF_SetTextEngine(TTF_Text *text, TTF_TextEngine *engine);
+ * @from SDL_ttf.h:2095 bool TTF_SetTextEngine(TTF_Text *text, TTF_TextEngine *engine);
  */
 TTF_SetTextEngine: {
       parameters: ["pointer", "pointer"],
@@ -2359,7 +2379,7 @@ TTF_SetTextEngine: {
  *
  * @sa TTF_SetTextEngine
  *
- * @from SDL_ttf.h:2085 TTF_TextEngine * TTF_GetTextEngine(TTF_Text *text);
+ * @from SDL_ttf.h:2111 TTF_TextEngine * TTF_GetTextEngine(TTF_Text *text);
  */
 TTF_GetTextEngine: {
       parameters: ["pointer"],
@@ -2388,7 +2408,7 @@ TTF_GetTextEngine: {
  *
  * @sa TTF_GetTextFont
  *
- * @from SDL_ttf.h:2108 bool TTF_SetTextFont(TTF_Text *text, TTF_Font *font);
+ * @from SDL_ttf.h:2134 bool TTF_SetTextFont(TTF_Text *text, TTF_Font *font);
  */
 TTF_SetTextFont: {
       parameters: ["pointer", "pointer"],
@@ -2410,7 +2430,7 @@ TTF_SetTextFont: {
  *
  * @sa TTF_SetTextFont
  *
- * @from SDL_ttf.h:2124 TTF_Font * TTF_GetTextFont(TTF_Text *text);
+ * @from SDL_ttf.h:2150 TTF_Font * TTF_GetTextFont(TTF_Text *text);
  */
 TTF_GetTextFont: {
       parameters: ["pointer"],
@@ -2434,7 +2454,7 @@ TTF_GetTextFont: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2142 bool TTF_SetTextDirection(TTF_Text *text, TTF_Direction direction);
+ * @from SDL_ttf.h:2168 bool TTF_SetTextDirection(TTF_Text *text, TTF_Direction direction);
  */
 TTF_SetTextDirection: {
       parameters: ["pointer", "u32"],
@@ -2455,7 +2475,7 @@ TTF_SetTextDirection: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2157 TTF_Direction TTF_GetTextDirection(TTF_Text *text);
+ * @from SDL_ttf.h:2183 TTF_Direction TTF_GetTextDirection(TTF_Text *text);
  */
 TTF_GetTextDirection: {
       parameters: ["pointer"],
@@ -2482,7 +2502,7 @@ TTF_GetTextDirection: {
  *
  * @sa TTF_StringToTag
  *
- * @from SDL_ttf.h:2178 bool TTF_SetTextScript(TTF_Text *text, Uint32 script);
+ * @from SDL_ttf.h:2204 bool TTF_SetTextScript(TTF_Text *text, Uint32 script);
  */
 TTF_SetTextScript: {
       parameters: ["pointer", "u32"],
@@ -2508,7 +2528,7 @@ TTF_SetTextScript: {
  *
  * @sa TTF_TagToString
  *
- * @from SDL_ttf.h:2198 Uint32 TTF_GetTextScript(TTF_Text *text);
+ * @from SDL_ttf.h:2224 Uint32 TTF_GetTextScript(TTF_Text *text);
  */
 TTF_GetTextScript: {
       parameters: ["pointer"],
@@ -2537,7 +2557,7 @@ TTF_GetTextScript: {
  * @sa TTF_GetTextColor
  * @sa TTF_SetTextColorFloat
  *
- * @from SDL_ttf.h:2221 bool TTF_SetTextColor(TTF_Text *text, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+ * @from SDL_ttf.h:2247 bool TTF_SetTextColor(TTF_Text *text, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
  */
 TTF_SetTextColor: {
       parameters: ["pointer", "u8", "u8", "u8", "u8"],
@@ -2566,7 +2586,7 @@ TTF_SetTextColor: {
  * @sa TTF_GetTextColorFloat
  * @sa TTF_SetTextColor
  *
- * @from SDL_ttf.h:2244 bool TTF_SetTextColorFloat(TTF_Text *text, float r, float g, float b, float a);
+ * @from SDL_ttf.h:2270 bool TTF_SetTextColorFloat(TTF_Text *text, float r, float g, float b, float a);
  */
 TTF_SetTextColorFloat: {
       parameters: ["pointer", "f32", "f32", "f32", "f32"],
@@ -2597,7 +2617,7 @@ TTF_SetTextColorFloat: {
  * @sa TTF_GetTextColorFloat
  * @sa TTF_SetTextColor
  *
- * @from SDL_ttf.h:2269 bool TTF_GetTextColor(TTF_Text *text, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
+ * @from SDL_ttf.h:2295 bool TTF_GetTextColor(TTF_Text *text, Uint8 *r, Uint8 *g, Uint8 *b, Uint8 *a);
  */
 TTF_GetTextColor: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -2628,7 +2648,7 @@ TTF_GetTextColor: {
  * @sa TTF_GetTextColor
  * @sa TTF_SetTextColorFloat
  *
- * @from SDL_ttf.h:2294 bool TTF_GetTextColorFloat(TTF_Text *text, float *r, float *g, float *b, float *a);
+ * @from SDL_ttf.h:2320 bool TTF_GetTextColorFloat(TTF_Text *text, float *r, float *g, float *b, float *a);
  */
 TTF_GetTextColorFloat: {
       parameters: ["pointer", "pointer", "pointer", "pointer", "pointer"],
@@ -2655,7 +2675,7 @@ TTF_GetTextColorFloat: {
  *
  * @sa TTF_GetTextPosition
  *
- * @from SDL_ttf.h:2315 bool TTF_SetTextPosition(TTF_Text *text, int x, int y);
+ * @from SDL_ttf.h:2341 bool TTF_SetTextPosition(TTF_Text *text, int x, int y);
  */
 TTF_SetTextPosition: {
       parameters: ["pointer", "i32", "i32"],
@@ -2679,7 +2699,7 @@ TTF_SetTextPosition: {
  *
  * @sa TTF_SetTextPosition
  *
- * @from SDL_ttf.h:2333 bool TTF_GetTextPosition(TTF_Text *text, int *x, int *y);
+ * @from SDL_ttf.h:2359 bool TTF_GetTextPosition(TTF_Text *text, int *x, int *y);
  */
 TTF_GetTextPosition: {
       parameters: ["pointer", "pointer", "pointer"],
@@ -2705,7 +2725,7 @@ TTF_GetTextPosition: {
  *
  * @sa TTF_GetTextWrapWidth
  *
- * @from SDL_ttf.h:2353 bool TTF_SetTextWrapWidth(TTF_Text *text, int wrap_width);
+ * @from SDL_ttf.h:2379 bool TTF_SetTextWrapWidth(TTF_Text *text, int wrap_width);
  */
 TTF_SetTextWrapWidth: {
       parameters: ["pointer", "i32"],
@@ -2729,7 +2749,7 @@ TTF_SetTextWrapWidth: {
  *
  * @sa TTF_SetTextWrapWidth
  *
- * @from SDL_ttf.h:2371 bool TTF_GetTextWrapWidth(TTF_Text *text, int *wrap_width);
+ * @from SDL_ttf.h:2397 bool TTF_GetTextWrapWidth(TTF_Text *text, int *wrap_width);
  */
 TTF_GetTextWrapWidth: {
       parameters: ["pointer", "pointer"],
@@ -2760,7 +2780,7 @@ TTF_GetTextWrapWidth: {
  *
  * @sa TTF_TextWrapWhitespaceVisible
  *
- * @from SDL_ttf.h:2396 bool TTF_SetTextWrapWhitespaceVisible(TTF_Text *text, bool visible);
+ * @from SDL_ttf.h:2422 bool TTF_SetTextWrapWhitespaceVisible(TTF_Text *text, bool visible);
  */
 TTF_SetTextWrapWhitespaceVisible: {
       parameters: ["pointer", "bool"],
@@ -2782,7 +2802,7 @@ TTF_SetTextWrapWhitespaceVisible: {
  *
  * @sa TTF_SetTextWrapWhitespaceVisible
  *
- * @from SDL_ttf.h:2412 bool TTF_TextWrapWhitespaceVisible(TTF_Text *text);
+ * @from SDL_ttf.h:2438 bool TTF_TextWrapWhitespaceVisible(TTF_Text *text);
  */
 TTF_TextWrapWhitespaceVisible: {
       parameters: ["pointer"],
@@ -2811,7 +2831,7 @@ TTF_TextWrapWhitespaceVisible: {
  * @sa TTF_DeleteTextString
  * @sa TTF_InsertTextString
  *
- * @from SDL_ttf.h:2435 bool TTF_SetTextString(TTF_Text *text, const char *string, size_t length);
+ * @from SDL_ttf.h:2461 bool TTF_SetTextString(TTF_Text *text, const char *string, size_t length);
  */
 TTF_SetTextString: {
       parameters: ["pointer", "pointer", "usize"],
@@ -2844,7 +2864,7 @@ TTF_SetTextString: {
  * @sa TTF_DeleteTextString
  * @sa TTF_SetTextString
  *
- * @from SDL_ttf.h:2462 bool TTF_InsertTextString(TTF_Text *text, int offset, const char *string, size_t length);
+ * @from SDL_ttf.h:2488 bool TTF_InsertTextString(TTF_Text *text, int offset, const char *string, size_t length);
  */
 TTF_InsertTextString: {
       parameters: ["pointer", "i32", "pointer", "usize"],
@@ -2873,7 +2893,7 @@ TTF_InsertTextString: {
  * @sa TTF_InsertTextString
  * @sa TTF_SetTextString
  *
- * @from SDL_ttf.h:2485 bool TTF_AppendTextString(TTF_Text *text, const char *string, size_t length);
+ * @from SDL_ttf.h:2511 bool TTF_AppendTextString(TTF_Text *text, const char *string, size_t length);
  */
 TTF_AppendTextString: {
       parameters: ["pointer", "pointer", "usize"],
@@ -2905,7 +2925,7 @@ TTF_AppendTextString: {
  * @sa TTF_InsertTextString
  * @sa TTF_SetTextString
  *
- * @from SDL_ttf.h:2511 bool TTF_DeleteTextString(TTF_Text *text, int offset, int length);
+ * @from SDL_ttf.h:2537 bool TTF_DeleteTextString(TTF_Text *text, int offset, int length);
  */
 TTF_DeleteTextString: {
       parameters: ["pointer", "i32", "i32"],
@@ -2932,7 +2952,7 @@ TTF_DeleteTextString: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2532 bool TTF_GetTextSize(TTF_Text *text, int *w, int *h);
+ * @from SDL_ttf.h:2558 bool TTF_GetTextSize(TTF_Text *text, int *w, int *h);
  */
 TTF_GetTextSize: {
       parameters: ["pointer", "pointer", "pointer"],
@@ -2961,7 +2981,7 @@ TTF_GetTextSize: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2592 bool TTF_GetTextSubString(TTF_Text *text, int offset, TTF_SubString *substring);
+ * @from SDL_ttf.h:2618 bool TTF_GetTextSubString(TTF_Text *text, int offset, TTF_SubString *substring);
  */
 TTF_GetTextSubString: {
       parameters: ["pointer", "i32", "pointer"],
@@ -2990,7 +3010,7 @@ TTF_GetTextSubString: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2615 bool TTF_GetTextSubStringForLine(TTF_Text *text, int line, TTF_SubString *substring);
+ * @from SDL_ttf.h:2641 bool TTF_GetTextSubStringForLine(TTF_Text *text, int line, TTF_SubString *substring);
  */
 TTF_GetTextSubStringForLine: {
       parameters: ["pointer", "i32", "pointer"],
@@ -3017,7 +3037,7 @@ TTF_GetTextSubStringForLine: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2636 TTF_SubString ** TTF_GetTextSubStringsForRange(TTF_Text *text, int offset, int length, int *count);
+ * @from SDL_ttf.h:2662 TTF_SubString ** TTF_GetTextSubStringsForRange(TTF_Text *text, int offset, int length, int *count);
  */
 TTF_GetTextSubStringsForRange: {
       parameters: ["pointer", "i32", "i32", "pointer"],
@@ -3045,7 +3065,7 @@ TTF_GetTextSubStringsForRange: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2658 bool TTF_GetTextSubStringForPoint(TTF_Text *text, int x, int y, TTF_SubString *substring);
+ * @from SDL_ttf.h:2684 bool TTF_GetTextSubStringForPoint(TTF_Text *text, int x, int y, TTF_SubString *substring);
  */
 TTF_GetTextSubStringForPoint: {
       parameters: ["pointer", "i32", "i32", "pointer"],
@@ -3069,7 +3089,7 @@ TTF_GetTextSubStringForPoint: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2676 bool TTF_GetPreviousTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *previous);
+ * @from SDL_ttf.h:2702 bool TTF_GetPreviousTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *previous);
  */
 TTF_GetPreviousTextSubString: {
       parameters: ["pointer", "pointer", "pointer"],
@@ -3094,7 +3114,7 @@ TTF_GetPreviousTextSubString: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2695 bool TTF_GetNextTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *next);
+ * @from SDL_ttf.h:2721 bool TTF_GetNextTextSubString(TTF_Text *text, const TTF_SubString *substring, TTF_SubString *next);
  */
 TTF_GetNextTextSubString: {
       parameters: ["pointer", "pointer", "pointer"],
@@ -3118,7 +3138,7 @@ TTF_GetNextTextSubString: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2713 bool TTF_UpdateText(TTF_Text *text);
+ * @from SDL_ttf.h:2739 bool TTF_UpdateText(TTF_Text *text);
  */
 TTF_UpdateText: {
       parameters: ["pointer"],
@@ -3138,7 +3158,7 @@ TTF_UpdateText: {
  *
  * @sa TTF_CreateText
  *
- * @from SDL_ttf.h:2727 void TTF_DestroyText(TTF_Text *text);
+ * @from SDL_ttf.h:2753 void TTF_DestroyText(TTF_Text *text);
  */
 TTF_DestroyText: {
       parameters: ["pointer"],
@@ -3168,7 +3188,7 @@ TTF_DestroyText: {
  * @sa TTF_OpenFont
  * @sa TTF_OpenFontIO
  *
- * @from SDL_ttf.h:2751 void TTF_CloseFont(TTF_Font *font);
+ * @from SDL_ttf.h:2777 void TTF_CloseFont(TTF_Font *font);
  */
 TTF_CloseFont: {
       parameters: ["pointer"],
@@ -3196,7 +3216,7 @@ TTF_CloseFont: {
  *
  * @since This function is available since SDL_ttf 3.0.0.
  *
- * @from SDL_ttf.h:2773 void TTF_Quit(void);
+ * @from SDL_ttf.h:2799 void TTF_Quit(void);
  */
 TTF_Quit: {
       parameters: [],
@@ -3226,7 +3246,7 @@ TTF_Quit: {
  * @sa TTF_Init
  * @sa TTF_Quit
  *
- * @from SDL_ttf.h:2797 int TTF_WasInit(void);
+ * @from SDL_ttf.h:2823 int TTF_WasInit(void);
  */
 TTF_WasInit: {
       parameters: [],

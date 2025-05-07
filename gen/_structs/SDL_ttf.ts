@@ -42,7 +42,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa TTF_GetTextProperties
  * @sa TTF_DestroyText
  *
- * @from SDL_ttf.h:1696 
+ * @from SDL_ttf.h:1722
  */
 export const TTF_Text = new _.Struct({
   text: _.u64, /**< char * : A copy of the UTF-8 string that this text object represents, useful for layout, debugging and retrieving substring text. This is updated when the text object is modified and will be freed automatically when the object is destroyed. */
@@ -60,7 +60,7 @@ export const TTF_Text = new _.Struct({
  *
  * @sa TTF_GetGPUTextDrawData
  *
- * @from SDL_ttf.h:1910 
+ * @from SDL_ttf.h:1936
  */
 export const TTF_GPUAtlasDrawSequence = new _.Struct({
   atlas_texture: _.u64, /**< SDL_GPUTexture * : Texture atlas that stores the glyphs */
@@ -87,7 +87,7 @@ export const TTF_GPUAtlasDrawSequence = new _.Struct({
  * @sa TTF_GetTextSubStringForPoint
  * @sa TTF_GetTextSubStringsForRange
  *
- * @from SDL_ttf.h:2561 
+ * @from SDL_ttf.h:2587
  */
 export const TTF_SubString = new _.Struct({
   flags: _.u32, /**< TTF_SubStringFlags : The flags for this substring */

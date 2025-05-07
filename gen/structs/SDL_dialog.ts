@@ -59,7 +59,7 @@ import * as _b from "../_structs/SDL_dialog.ts";
  * @sa SDL_ShowOpenFolderDialog
  * @sa SDL_ShowFileDialogWithProperties
  *
- * @from SDL_dialog.h:69 
+ * @from SDL_dialog.h:69
  */
 export interface DialogFileFilter {
   name: string; /* const char * */

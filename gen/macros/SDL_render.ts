@@ -55,7 +55,7 @@
 export const SDL_SOFTWARE_RENDERER = "software";
 
 /**
- * @from SDL_render:2568
+ * @from SDL_render:2567
  */
 export const SDL_DEBUG_TEXT_FONT_CHARACTER_SIZE = 8;
 

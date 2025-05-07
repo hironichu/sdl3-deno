@@ -138,7 +138,7 @@ import * as _b from "../_structs/SDL_audio.ts";
  *
  * @sa SDL_AudioFormat
  *
- * @from SDL_audio.h:404 
+ * @from SDL_audio.h:404
  */
 export interface AudioSpec {
   format: number; /**< SDL_AudioFormat : Audio data format */

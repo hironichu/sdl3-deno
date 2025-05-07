@@ -70,7 +70,7 @@ import * as _ from "@denosaurs/byte-type";
  * @sa SDL_CreateSurface
  * @sa SDL_DestroySurface
  *
- * @from SDL_surface.h:131 
+ * @from SDL_surface.h:131
  */
 export const SDL_Surface = new _.Struct({
   flags: _.u32, /**< SDL_SurfaceFlags : The flags of the surface, read-only */

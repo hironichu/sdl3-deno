@@ -93,7 +93,7 @@ import * as _b from "../_structs/SDL_pixels.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1111 
+ * @from SDL_pixels.h:1111
  */
 export interface Color {
   r: number; /* Uint8 */
@@ -128,7 +128,7 @@ export function write_Color(t: Color, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1125 
+ * @from SDL_pixels.h:1125
  */
 export interface FColor {
   r: number; /* float */
@@ -164,7 +164,7 @@ export function write_FColor(t: FColor, dt: DataView) {
  *
  * @sa SDL_SetPaletteColors
  *
- * @from SDL_pixels.h:1140 
+ * @from SDL_pixels.h:1140
  */
 export interface Palette {
   ncolors: number; /**< int : number of elements in `colors`. */
@@ -198,7 +198,7 @@ export function write_Palette(t: Palette, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_pixels.h:1153 
+ * @from SDL_pixels.h:1153
  */
 export interface PixelFormatDetails {
   format: number; /* SDL_PixelFormat */

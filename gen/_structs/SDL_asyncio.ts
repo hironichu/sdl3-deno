@@ -108,7 +108,7 @@ import * as _ from "@denosaurs/byte-type";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_asyncio.h:154 
+ * @from SDL_asyncio.h:154
  */
 export const SDL_AsyncIOOutcome = new _.Struct({
   asyncio: _.u64, /**< SDL_AsyncIO * : what generated this task. This pointer will be invalid if it was closed! */

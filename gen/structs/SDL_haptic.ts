@@ -222,7 +222,7 @@ import * as _b from "../_structs/SDL_haptic.ts";
  * @sa SDL_HapticEffect
  * @sa SDL_GetNumHapticAxes
  *
- * @from SDL_haptic.h:545 
+ * @from SDL_haptic.h:545
  */
 export interface HapticDirection {
   type: number; /**< Uint8 : The type of encoding. */
@@ -258,7 +258,7 @@ export function write_HapticDirection(t: HapticDirection, dt: DataView) {
  * @sa SDL_HAPTIC_CONSTANT
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:565 
+ * @from SDL_haptic.h:565
  */
 export interface HapticConstant {
     /* Header */
@@ -385,7 +385,7 @@ export function write_HapticConstant(t: HapticConstant, dt: DataView) {
  * @sa SDL_HAPTIC_SAWTOOTHDOWN
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:651 
+ * @from SDL_haptic.h:651
  */
 export interface HapticPeriodic {
     /* Header */
@@ -488,7 +488,7 @@ export function write_HapticPeriodic(t: HapticPeriodic, dt: DataView) {
  * @sa SDL_HAPTIC_FRICTION
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:707 
+ * @from SDL_haptic.h:707
  */
 export interface HapticCondition {
     /* Header */
@@ -569,7 +569,7 @@ export function write_HapticCondition(t: HapticCondition, dt: DataView) {
  * @sa SDL_HAPTIC_RAMP
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:746 
+ * @from SDL_haptic.h:746
  */
 export interface HapticRamp {
     /* Header */
@@ -651,7 +651,7 @@ export function write_HapticRamp(t: HapticRamp, dt: DataView) {
  * @sa SDL_HAPTIC_LEFTRIGHT
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:785 
+ * @from SDL_haptic.h:785
  */
 export interface HapticLeftRight {
     /* Header */
@@ -706,7 +706,7 @@ export function write_HapticLeftRight(t: HapticLeftRight, dt: DataView) {
  * @sa SDL_HAPTIC_CUSTOM
  * @sa SDL_HapticEffect
  *
- * @from SDL_haptic.h:815 
+ * @from SDL_haptic.h:815
  */
 export interface HapticCustom {
     /* Header */

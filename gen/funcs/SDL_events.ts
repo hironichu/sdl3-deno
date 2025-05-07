@@ -73,7 +73,7 @@ export const symbols = {
  * @sa SDL_PollEvent
  * @sa SDL_WaitEvent
  *
- * @from SDL_events.h:1068 void SDL_PumpEvents(void);
+ * @from SDL_events.h:1070 void SDL_PumpEvents(void);
  */
 SDL_PumpEvents: {
       parameters: [],
@@ -123,7 +123,7 @@ SDL_PumpEvents: {
  * @sa SDL_PumpEvents
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1126 int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1128 int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
  */
 SDL_PeepEvents: {
       parameters: ["pointer", "i32", "u32", "u32", "u32"],
@@ -147,7 +147,7 @@ SDL_PeepEvents: {
  *
  * @sa SDL_HasEvents
  *
- * @from SDL_events.h:1145 bool SDL_HasEvent(Uint32 type);
+ * @from SDL_events.h:1147 bool SDL_HasEvent(Uint32 type);
  */
 SDL_HasEvent: {
       parameters: ["u32"],
@@ -173,7 +173,7 @@ SDL_HasEvent: {
  *
  * @sa SDL_HasEvents
  *
- * @from SDL_events.h:1166 bool SDL_HasEvents(Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1168 bool SDL_HasEvents(Uint32 minType, Uint32 maxType);
  */
 SDL_HasEvents: {
       parameters: ["u32", "u32"],
@@ -207,7 +207,7 @@ SDL_HasEvents: {
  *
  * @sa SDL_FlushEvents
  *
- * @from SDL_events.h:1194 void SDL_FlushEvent(Uint32 type);
+ * @from SDL_events.h:1196 void SDL_FlushEvent(Uint32 type);
  */
 SDL_FlushEvent: {
       parameters: ["u32"],
@@ -240,7 +240,7 @@ SDL_FlushEvent: {
  *
  * @sa SDL_FlushEvent
  *
- * @from SDL_events.h:1221 void SDL_FlushEvents(Uint32 minType, Uint32 maxType);
+ * @from SDL_events.h:1223 void SDL_FlushEvents(Uint32 minType, Uint32 maxType);
  */
 SDL_FlushEvents: {
       parameters: ["u32", "u32"],
@@ -292,7 +292,7 @@ SDL_FlushEvents: {
  * @sa SDL_WaitEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
+ * @from SDL_events.h:1269 bool SDL_PollEvent(SDL_Event *event);
  */
 SDL_PollEvent: {
       parameters: ["pointer"],
@@ -322,7 +322,7 @@ SDL_PollEvent: {
  * @sa SDL_PushEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
+ * @from SDL_events.h:1293 bool SDL_WaitEvent(SDL_Event *event);
  */
 SDL_WaitEvent: {
       parameters: ["pointer"],
@@ -358,7 +358,7 @@ SDL_WaitEvent: {
  * @sa SDL_PushEvent
  * @sa SDL_WaitEvent
  *
- * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
+ * @from SDL_events.h:1323 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
  */
 SDL_WaitEventTimeout: {
       parameters: ["pointer", "i32"],
@@ -398,7 +398,7 @@ SDL_WaitEventTimeout: {
  * @sa SDL_PollEvent
  * @sa SDL_RegisterEvents
  *
- * @from SDL_events.h:1355 bool SDL_PushEvent(SDL_Event *event);
+ * @from SDL_events.h:1357 bool SDL_PushEvent(SDL_Event *event);
  */
 SDL_PushEvent: {
       parameters: ["pointer"],
@@ -445,7 +445,7 @@ SDL_PushEvent: {
  * @sa SDL_PeepEvents
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1417 void SDL_SetEventFilter(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1419 void SDL_SetEventFilter(SDL_EventFilter filter, void *userdata);
  */
 SDL_SetEventFilter: {
       parameters: ["function", "pointer"],
@@ -470,7 +470,7 @@ SDL_SetEventFilter: {
  *
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1436 bool SDL_GetEventFilter(SDL_EventFilter *filter, void **userdata);
+ * @from SDL_events.h:1438 bool SDL_GetEventFilter(SDL_EventFilter *filter, void **userdata);
  */
 SDL_GetEventFilter: {
       parameters: ["pointer", "pointer"],
@@ -508,7 +508,7 @@ SDL_GetEventFilter: {
  * @sa SDL_RemoveEventWatch
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1468 bool SDL_AddEventWatch(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1470 bool SDL_AddEventWatch(SDL_EventFilter filter, void *userdata);
  */
 SDL_AddEventWatch: {
       parameters: ["function", "pointer"],
@@ -531,7 +531,7 @@ SDL_AddEventWatch: {
  *
  * @sa SDL_AddEventWatch
  *
- * @from SDL_events.h:1485 void SDL_RemoveEventWatch(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1487 void SDL_RemoveEventWatch(SDL_EventFilter filter, void *userdata);
  */
 SDL_RemoveEventWatch: {
       parameters: ["function", "pointer"],
@@ -557,7 +557,7 @@ SDL_RemoveEventWatch: {
  * @sa SDL_GetEventFilter
  * @sa SDL_SetEventFilter
  *
- * @from SDL_events.h:1505 void SDL_FilterEvents(SDL_EventFilter filter, void *userdata);
+ * @from SDL_events.h:1507 void SDL_FilterEvents(SDL_EventFilter filter, void *userdata);
  */
 SDL_FilterEvents: {
       parameters: ["function", "pointer"],
@@ -577,7 +577,7 @@ SDL_FilterEvents: {
  *
  * @sa SDL_EventEnabled
  *
- * @from SDL_events.h:1519 void SDL_SetEventEnabled(Uint32 type, bool enabled);
+ * @from SDL_events.h:1521 void SDL_SetEventEnabled(Uint32 type, bool enabled);
  */
 SDL_SetEventEnabled: {
       parameters: ["u32", "bool"],
@@ -597,7 +597,7 @@ SDL_SetEventEnabled: {
  *
  * @sa SDL_SetEventEnabled
  *
- * @from SDL_events.h:1533 bool SDL_EventEnabled(Uint32 type);
+ * @from SDL_events.h:1535 bool SDL_EventEnabled(Uint32 type);
  */
 SDL_EventEnabled: {
       parameters: ["u32"],
@@ -619,7 +619,7 @@ SDL_EventEnabled: {
  *
  * @sa SDL_PushEvent
  *
- * @from SDL_events.h:1549 Uint32 SDL_RegisterEvents(int numevents);
+ * @from SDL_events.h:1551 Uint32 SDL_RegisterEvents(int numevents);
  */
 SDL_RegisterEvents: {
       parameters: ["i32"],
@@ -641,7 +641,7 @@ SDL_RegisterEvents: {
  * @sa SDL_WaitEvent
  * @sa SDL_WaitEventTimeout
  *
- * @from SDL_events.h:1565 SDL_Window * SDL_GetWindowFromEvent(const SDL_Event *event);
+ * @from SDL_events.h:1567 SDL_Window * SDL_GetWindowFromEvent(const SDL_Event *event);
  */
 SDL_GetWindowFromEvent: {
       parameters: ["pointer"],

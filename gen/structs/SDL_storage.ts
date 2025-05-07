@@ -262,7 +262,7 @@ import * as _b from "../_structs/SDL_storage.ts";
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_storage.h:273 
+ * @from SDL_storage.h:273
  */
 export interface StorageInterface {
     /* The version of this interface */

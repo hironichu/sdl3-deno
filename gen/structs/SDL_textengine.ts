@@ -9,7 +9,7 @@ import * as _b from "../_structs/SDL_textengine.ts";
  *
  * @sa TTF_DrawOperation
  *
- * @from SDL_textengine.h:59 
+ * @from SDL_textengine.h:59
  */
 export interface FillOperation {
   cmd: number; /**< TTF_DrawCommand : TTF_DRAW_COMMAND_FILL */
@@ -39,7 +39,7 @@ export function write_FillOperation(t: FillOperation, dt: DataView) {
  *
  * @sa TTF_DrawOperation
  *
- * @from SDL_textengine.h:72 
+ * @from SDL_textengine.h:72
  */
 export interface CopyOperation {
   cmd: number; /**< TTF_DrawCommand : TTF_DRAW_COMMAND_COPY */
@@ -155,7 +155,7 @@ export function write_TextData(t: TextData, dt: DataView) {
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_textengine.h:138 
+ * @from SDL_textengine.h:138
  */
 export interface TextEngine {
   version: number; /**< Uint32 : The version of this interface */

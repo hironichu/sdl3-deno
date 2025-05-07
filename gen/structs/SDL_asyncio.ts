@@ -109,7 +109,7 @@ import * as _b from "../_structs/SDL_asyncio.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_asyncio.h:154 
+ * @from SDL_asyncio.h:154
  */
 export interface AsyncIOOutcome {
   asyncio: Deno.PointerValue; /**< SDL_AsyncIO * : what generated this task. This pointer will be invalid if it was closed! */

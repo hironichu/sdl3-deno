@@ -47,7 +47,7 @@ import * as _b from "../_structs/SDL_messagebox.ts";
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:81 
+ * @from SDL_messagebox.h:81
  */
 export interface MessageBoxButtonData {
   flags: number; /* SDL_MessageBoxButtonFlags */
@@ -78,7 +78,7 @@ export function write_MessageBoxButtonData(t: MessageBoxButtonData, dt: DataView
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:93 
+ * @from SDL_messagebox.h:93
  */
 export interface MessageBoxColor {
   r: number; /* Uint8 */
@@ -109,7 +109,7 @@ export function write_MessageBoxColor(t: MessageBoxColor, dt: DataView) {
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:117 
+ * @from SDL_messagebox.h:117
  */
 export interface MessageBoxColorScheme {
   colors: MessageBoxColor[]; /* SDL_MessageBoxColor[SDL_MESSAGEBOX_COLOR_COUNT] */
@@ -134,7 +134,7 @@ export function write_MessageBoxColorScheme(t: MessageBoxColorScheme, dt: DataVi
  *
  * @since This struct is available since SDL 3.2.0.
  *
- * @from SDL_messagebox.h:127 
+ * @from SDL_messagebox.h:127
  */
 export interface MessageBoxData {
   flags: number; /* SDL_MessageBoxFlags */

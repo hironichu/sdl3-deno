@@ -50,7 +50,7 @@ import * as _b from "../_structs/SDL_iostream.ts";
  *
  * @sa SDL_INIT_INTERFACE
  *
- * @from SDL_iostream.h:91 
+ * @from SDL_iostream.h:91
  */
 export interface IOStreamInterface {
     /* The version of this interface */
