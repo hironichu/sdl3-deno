@@ -52,6 +52,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+import { throwSdlError, unsuported } from "../../src/_utils.ts";
+import { isWindows } from "../_utils.ts";
 import { lib } from "./lib.ts";
 
 /**
@@ -158,7 +160,7 @@ export const enterAppMainCallbacks = lib.symbols.SDL_EnterAppMainCallbacks;
  *
  * @from SDL_main.h:629 bool SDL_RegisterApp(const char *name, Uint32 style, void *hInst);
  */
-// export const registerApp = lib.symbols.SDL_RegisterApp;
+export const registerApp = isWindows() ? lib.symbols.SDL_RegisterApp : unsuported("SDL_GetDXGIOutputInfo is only available on Windows");
 
 /**
  * Deregister the win32 window class from an SDL_RegisterApp call.
@@ -177,7 +179,7 @@ export const enterAppMainCallbacks = lib.symbols.SDL_EnterAppMainCallbacks;
  *
  * @from SDL_main.h:646 void SDL_UnregisterApp(void);
  */
-// export const unregisterApp = lib.symbols.SDL_UnregisterApp;
+export const unregisterApp = isWindows() ? lib.symbols.SDL_UnregisterApp : unsuported("SDL_GetDXGIOutputInfo is only available on Windows");
 
 /**
  * Callback from the application to let the suspend continue.

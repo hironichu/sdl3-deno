@@ -28,7 +28,9 @@ export function getErr(): string {
 export function throwSdlError(s?: string): string {
   throw new Error(`${s || "SDL Error"}: ${getErr()}`);
 }
-
+export function unsuported(s: string): string {
+  throw new Error(`Unsupported: ${s}`);
+}
 export function init_pumpEvents(tick = 1000 / 60): number {
   if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
     throw new Error("SDL init video and events failed");

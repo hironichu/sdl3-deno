@@ -23,6 +23,18 @@ export function libSdlPath(lib: string): string {
   }
 }
 
+export function isMacos() {
+  return Deno.build.os === "darwin";
+}
+
+export function isLinux() {
+  return Deno.build.os === "linux";
+}
+
+export function isWindows() {
+  return Deno.build.os === "windows";
+}
+
 export function read_cstr_v(v: bigint): string {
   const p = Deno.UnsafePointer.create(v);
   if (!p) return "";

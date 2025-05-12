@@ -12,6 +12,8 @@
  * @module
  */
 
+import { isMacos, isWindows } from "../_utils.ts";
+
 /*
   Simple DirectMedia Layer
   Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
@@ -33,7 +35,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-export const symbols = {
+let _symbols = {
 
 /**
  * Set a callback for every Windows message, run before TranslateMessage().
@@ -833,3 +835,89 @@ SDL_OnApplicationDidEnterForeground: {
     },*/
 
 } as const satisfies Deno.ForeignLibraryInterface;
+
+const windows_symbols = {
+    SDL_GetDXGIOutputInfo: {
+      parameters: ["u32", "pointer", "pointer"],
+      result: "bool"
+    },
+    SDL_GetDirect3D9AdapterIndex: {
+      parameters: ["u32"],
+      result: "i32"
+    },
+    SDL_SetWindowsMessageHook: {
+      parameters: ["function", "pointer"],
+      result: "void"
+    },
+    SDL_RegisterApp: {
+      parameters: ["pointer", "i32", "pointer"],
+      result: "bool"
+    },
+    SDL_UnregisterApp: {
+      parameters: ["pointer"],
+      result: "bool"
+    },
+} as const satisfies Deno.ForeignLibraryInterface;
+const linux_symbols = {
+      SDL_SetLinuxThreadPriority: {
+      parameters: ["i64", "i32"],
+      result: "bool"
+   },
+    SDL_SetLinuxThreadPriorityAndPolicy: {
+      parameters: ["i64", "i32", "i32"],
+      result: "bool"
+    }
+  } as const satisfies  Deno.ForeignLibraryInterface
+const   macos_symbols = {
+    SDL_SetiOSAnimationCallback: {
+      parameters: ["pointer", "i32", "function", "pointer"],
+      result: "bool"
+    },
+    SDL_SetiOSEventPump: {
+      parameters: ["bool"],
+      result: "void"
+    },
+    SDL_OnApplicationWillTerminate: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationDidReceiveMemoryWarning: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationWillEnterBackground: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationDidEnterBackground: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationWillEnterForeground: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationDidEnterForeground: {
+      parameters: [],
+      result: "void"
+    },
+    SDL_OnApplicationDidChangeStatusBarOrientation: {
+      parameters: [],
+      result: "void"
+    }
+} as const satisfies Deno.ForeignLibraryInterface;
+
+type macos_symbols = typeof macos_symbols;
+type windows_symbols = typeof windows_symbols;
+type linux_symbols = typeof linux_symbols;
+
+type _symbols = typeof macos_symbols & typeof windows_symbols & typeof linux_symbols;
+
+export const symbols = {
+    ..._symbols,
+    ...(isMacos() ? macos_symbols: {}),
+    ...(isWindows() ? windows_symbols: {}),
+    ...(Deno.build.os === "linux" ? linux_symbols: {}),
+  } as const satisfies Deno.ForeignLibraryInterface;
+
+  // symbols.SDL_GetDXGIOutputInfo
