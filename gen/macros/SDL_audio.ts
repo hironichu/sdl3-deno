@@ -130,30 +130,30 @@
 /**
  * @from SDL_audio:150
  */
-export const SDL_AUDIO_MASK_BITSIZE = (0xFFu);
+export const SDL_AUDIO_MASK_BITSIZE = (0xFF);
 
 /**
  * @from SDL_audio:159
  */
-export const SDL_AUDIO_MASK_FLOAT = (1u<<8);
+export const SDL_AUDIO_MASK_FLOAT = (1<<8);
 
 /**
  * @from SDL_audio:169
  */
-export const SDL_AUDIO_MASK_BIG_ENDIAN = (1u<<12);
+export const SDL_AUDIO_MASK_BIG_ENDIAN = (1<<12);
 
 /**
  * @from SDL_audio:178
  */
-export const SDL_AUDIO_MASK_SIGNED = (1u<<15);
+export const SDL_AUDIO_MASK_SIGNED = (1<<15);
 
 /**
  * @from SDL_audio:384
  */
-export const SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK = ((SDL_AudioDeviceID) 0xFFFFFFFFu);
+export const SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK = 0xFFFFFFFF;
 
 /**
  * @from SDL_audio:395
  */
-export const SDL_AUDIO_DEVICE_DEFAULT_RECORDING = ((SDL_AudioDeviceID) 0xFFFFFFFEu);
+export const SDL_AUDIO_DEVICE_DEFAULT_RECORDING = 0xFFFFFFFE;
 

@@ -19,11 +19,14 @@
  */
 
 import * as IMG from "../gen/IMG.ts";
+import * as _s from "../gen/sdl/surface.ts";
 
 import * as SDL from "../gen/sdl/iostream.ts";
 import { destroySurface } from "../gen/sdl/surface.ts";
 
 import { cstr, throwSdlError } from "./_utils.ts";
+import { Color } from "./mod.ts";
+import { BLENDMODE, COLORSPACE } from "../gen/SDL.ts";
 
 export class Surface {
   pointer: Deno.PointerValue<unknown> = null;
@@ -153,6 +156,79 @@ export class Surface {
     return Surface.of(pointer);
   }
 
+
+  setBlendMode(blendMode: BLENDMODE) {
+    const result = _s.setSurfaceBlendMode(this.pointer, blendMode);
+    if (!result) {
+      throwSdlError(`Failed to set blend mode`);
+    }
+  }
+
+  setAlphaMod(alphaMod: number) {
+    if (alphaMod < 0 || alphaMod > 255) {
+      throw new Error("Alpha mod value must be between 0 and 255");
+    }
+    const result = _s.setSurfaceAlphaMod(this.pointer, alphaMod);
+    if (!result) {
+      throwSdlError(`Failed to set alpha mod`);
+    }
+  }
+  setColorkey(state: boolean, key: number) {
+    const result = _s.setSurfaceColorKey(this.pointer, state, key);
+    
+    if (!result) {
+      throwSdlError(`Failed to set color key`);
+    }
+  }
+
+  setColormod(r: number, g: number, b: number) {
+    if (!Color.check(r, g, b)) {
+      throw new Error("Color values must be between 0 and 255");
+    }
+
+    const result = _s.setSurfaceColorMod(this.pointer, r, g, b);
+    if (!result) {
+      throwSdlError(`Failed to set color mod`);
+    }
+  }
+
+  setColorSpace(colorSpace: COLORSPACE) {
+    const result = _s.setSurfaceColorspace(this.pointer, colorSpace);
+    if (!result) {
+      throwSdlError(`Failed to set color space`);
+    }
+  }
+
+  setPalette(palette: Deno.PointerValue) {
+    const result = _s.setSurfacePalette(this.pointer, palette);
+    if (!result) {
+      throwSdlError(`Failed to set palette`);
+    }
+  }
+  setRLE(state: boolean) {
+    const result = _s.setSurfaceRle(this.pointer, state);
+    if (!result) {
+      throwSdlError(`Failed to set RLE`);
+    }
+  }
+  
+  setClipRect(rect: Deno.PointerValue) {
+    const result = _s.setSurfaceClipRect(this.pointer, rect);
+    if (!result) {
+      throwSdlError(`Failed to set clip rect`);
+    }
+  }
+
+  clear(r: number, g: number, b: number, a: number) {
+    if (!Color.check(r, g, b, a)) {
+      throw new Error("Color values must be between 0 and 255");
+    }
+    const result = _s.clearSurface(this.pointer, r, g, b, a);
+    if (!result) {
+      throwSdlError(`Failed to clear surface`);
+    }
+  }
+  
   /**
    * Load an image from an SDL data source into a software surface.
    *
@@ -237,6 +313,10 @@ export class Surface {
    * @from SDL_surface.h:212 void SDL_DestroySurface(SDL_Surface *surface);
    */
   destroy() {
+    destroySurface(this.pointer);
+    this.pointer = null;
+  }
+  [Symbol.dispose]() {
     destroySurface(this.pointer);
     this.pointer = null;
   }

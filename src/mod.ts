@@ -23,3 +23,7 @@ export { Render, RenderDriver, Texture } from "./render.ts";
 export { Window, VideoDriver, DisplayModePtr } from "./video.ts";
 
 export { Properties, PropertyType } from "./properties.ts"
+
+export { Font } from "./font.ts";
+
+export { Color } from "./pixels.ts";

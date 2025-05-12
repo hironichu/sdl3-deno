@@ -30,10 +30,12 @@
  * @module
  */
 
+import { WINDOW } from "../gen/enums/mod.ts";
 import { EventType, EventUnion } from "../gen/events.ts";
 export { EventType };
 
 import * as SDL from "../gen/sdl/events.ts";
+import type { Window } from "./mod.ts";
 
 /**
  * Represents an SDL event with methods to poll, push, and access various event types.
@@ -123,7 +125,8 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
    */
   poll(): boolean {
-    return SDL.pollEvent(this.pointer) && this.readType_();
+   SDL.pollEvent(this.pointer);
+   return this.readType_();
   }
 
   private readType_(): true {
@@ -157,7 +160,8 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
    */
   wait(): boolean {
-    return SDL.waitEvent(this.pointer) && this.readType_();
+    SDL.waitEvent(this.pointer);
+    return this.readType_();
   }
 
   /**
@@ -258,4 +262,6 @@ export class Event extends EventUnion {
   override push(): boolean {
     return SDL.pushEvent(this.pointer);
   }
+
+
 }

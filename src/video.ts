@@ -56,6 +56,7 @@ import * as _ from "../gen/structs/SDL_video.ts";
 import { SDL_DisplayOrientation as DisplayOrientation } from "../gen/enums/SDL_video.ts";
 export { DisplayOrientation };
 import { cstr, read_cstr } from "./_utils.ts";
+import { getGamepadAppleSfSymbolsNameForAxis, hideCursor, showCursor, WINDOW } from "../gen/SDL.ts";
 
 export class DisplayModePtr {
   constructor(public pointer: Deno.PointerObject) {}
@@ -2556,6 +2557,7 @@ export class Window {
     return _r.read_Rect(UnsafeDataView(r, 16));
   }
 
+
   /**
    * Set the opacity for a window.
    *
@@ -2785,6 +2787,10 @@ export class Window {
   destroy() {
     SDL.destroyWindow(this.pointer);
   }
+  [Symbol.dispose]() {
+    SDL.destroyWindow(this.pointer);
+  }
+
 }
 
 export class ScreenSaver {

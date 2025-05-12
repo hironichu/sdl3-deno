@@ -2163,7 +2163,9 @@ export class Render {
   destroy() {
     SDL.destroyRenderer(this.pointer);
   }
-
+  [Symbol.dispose]() {
+    SDL.destroyRenderer(this.pointer);
+  }
   /**
    * Force the rendering context to flush any pending commands and state.
    *
@@ -3148,6 +3150,10 @@ export class Texture {
    * @from SDL_render.h:2391 void SDL_DestroyTexture(SDL_Texture *texture);
    */
   destroy() {
+    SDL.destroyTexture(this.pointer);
+  }
+
+  [Symbol.dispose]() {
     SDL.destroyTexture(this.pointer);
   }
 }

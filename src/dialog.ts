@@ -18,7 +18,7 @@
 import * as SDL from "../gen/sdl/dialog.ts";
 import { cstr } from "./_utils.ts";
 import { callbacks as CB } from "../gen/callbacks/SDL_dialog.ts";
-import { Cursor } from "@g9wp/ptr";
+import { Cursor } from "jsr:@g9wp/ptr";
 
 /**
  * Displays a dialog that lets the user select a file on their filesystem.

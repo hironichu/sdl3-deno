@@ -15,6 +15,7 @@ const OS_SUFFIX = Deno.build.os === "windows"
 
 export function libSdlPath(lib: string): string {
   lib = `${OS_PREFIX}${lib}${OS_SUFFIX}`;
+
   if (DENO_SDL3_PATH) {
     return `${DENO_SDL3_PATH}/${lib}`;
   } else {
