@@ -57,7 +57,7 @@ export {
  *
  * @from SDL_system.h:93 void SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata);
  */
-export const setWindowsMessageHook =  Deno.build.os === "windows" ? lib.symbols.SDL_SetWindowsMessageHook : unsuported("SDL_GetDXGIOutputInfo is only available on Windows");
+export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
 
 /**
  * Get the D3D9 adapter index that matches the specified display.
@@ -73,7 +73,7 @@ export const setWindowsMessageHook =  Deno.build.os === "windows" ? lib.symbols.
  *
  * @from SDL_system.h:111 int SDL_GetDirect3D9AdapterIndex(SDL_DisplayID displayID);
  */
-export const getDirect3D9AdapterIndex =  Deno.build.os === "windows" ? lib.symbols.SDL_GetDirect3D9AdapterIndex : unsuported("SDL_GetDXGIOutputInfo is only available on Windows");
+export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex;
 
 /**
  * Get the DXGI Adapter and Output indices for the specified display.
@@ -92,7 +92,7 @@ export const getDirect3D9AdapterIndex =  Deno.build.os === "windows" ? lib.symbo
  *
  * @from SDL_system.h:128 bool SDL_GetDXGIOutputInfo(SDL_DisplayID displayID, int *adapterIndex, int *outputIndex);
  */
-export const getDxgiOutputInfo = isWindows() ? lib.symbols.SDL_GetDXGIOutputInfo : unsuported("SDL_GetDXGIOutputInfo is only available on Windows");
+export const getDxgiOutputInfo = lib.symbols.SDL_GetDXGIOutputInfo;
 
 
 /**
@@ -108,7 +108,7 @@ export const getDxgiOutputInfo = isWindows() ? lib.symbols.SDL_GetDXGIOutputInfo
  *
  * @from SDL_system.h:173 void SDL_SetX11EventHook(SDL_X11EventHook callback, void *userdata);
  */
-export const setX11EventHook = isWindows() ? lib.symbols.SDL_SetX11EventHook : unsuported("SDL_SetX11EventHook is only available on Linux");
+export const setX11EventHook = lib.symbols.SDL_SetX11EventHook;
 
 /**
  * Sets the UNIX nice value for a thread.
