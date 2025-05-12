@@ -869,14 +869,6 @@ const linux_symbols = {
     }
   } as const satisfies  Deno.ForeignLibraryInterface
 const   macos_symbols = {
-    SDL_SetiOSAnimationCallback: {
-      parameters: ["pointer", "i32", "function", "pointer"],
-      result: "bool"
-    },
-    SDL_SetiOSEventPump: {
-      parameters: ["bool"],
-      result: "void"
-    },
     SDL_OnApplicationWillTerminate: {
       parameters: [],
       result: "void"
@@ -918,6 +910,4 @@ export const symbols = {
     ...(isMacos() ? macos_symbols: {}),
     ...(isWindows() ? windows_symbols: {}),
     ...(Deno.build.os === "linux" ? linux_symbols: {}),
-  } as const satisfies Deno.ForeignLibraryInterface;
-
-  // symbols.SDL_GetDXGIOutputInfo
+} as const satisfies Deno.ForeignLibraryInterface;
