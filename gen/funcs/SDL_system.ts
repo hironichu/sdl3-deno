@@ -51,10 +51,10 @@ export const symbols = {
  *
  * @from SDL_system.h:93 void SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata);
  */
-SDL_SetWindowsMessageHook: {
-      parameters: ["function", "pointer"],
-      result: "void"
-    },
+// SDL_SetWindowsMessageHook: {
+//       parameters: ["function", "pointer"],
+//       result: "void"
+//     },
 
 
 /**
@@ -71,10 +71,10 @@ SDL_SetWindowsMessageHook: {
  *
  * @from SDL_system.h:111 int SDL_GetDirect3D9AdapterIndex(SDL_DisplayID displayID);
  */
-SDL_GetDirect3D9AdapterIndex: {
-      parameters: ["u32"],
-      result: "i32"
-    },
+// SDL_GetDirect3D9AdapterIndex: {
+//       parameters: ["u32"],
+//       result: "i32"
+//     },
 
 
 /**
@@ -94,10 +94,10 @@ SDL_GetDirect3D9AdapterIndex: {
  *
  * @from SDL_system.h:128 bool SDL_GetDXGIOutputInfo(SDL_DisplayID displayID, int *adapterIndex, int *outputIndex);
  */
-SDL_GetDXGIOutputInfo: {
-      parameters: ["u32", "pointer", "pointer"],
-      result: "bool"
-    },
+// SDL_GetDXGIOutputInfo: {
+//       parameters: ["u32", "pointer", "pointer"],
+//       result: "bool"
+//     },
 
 
 /**

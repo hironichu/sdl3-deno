@@ -170,10 +170,10 @@ SDL_EnterAppMainCallbacks: {
  *
  * @from SDL_main.h:629 bool SDL_RegisterApp(const char *name, Uint32 style, void *hInst);
  */
-SDL_RegisterApp: {
-      parameters: ["pointer", "u32", "pointer"],
-      result: "bool"
-    },
+// SDL_RegisterApp: {
+//       parameters: ["pointer", "u32", "pointer"],
+//       result: "bool"
+//     },
 
 
 /**
@@ -193,10 +193,10 @@ SDL_RegisterApp: {
  *
  * @from SDL_main.h:646 void SDL_UnregisterApp(void);
  */
-SDL_UnregisterApp: {
-      parameters: [],
-      result: "void"
-    },
+// SDL_UnregisterApp: {
+//       parameters: [],
+//       result: "void"
+//     },
 
 
 /**

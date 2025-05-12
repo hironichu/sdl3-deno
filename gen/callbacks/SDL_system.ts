@@ -58,10 +58,10 @@ export const callbacks = {
  *
  * @from SDL_system.h:77 typedef bool (*SDL_WindowsMessageHook)(void *userdata, MSG *msg);
  */
-SDL_WindowsMessageHook: {
-      parameters: ["pointer", "pointer"],
-      result: "bool"
-    },
+// SDL_WindowsMessageHook: {
+//       parameters: ["pointer", "pointer"],
+//       result: "bool"
+//     },
 
 /**
  * A callback to be used with SDL_SetX11EventHook.

@@ -55,7 +55,7 @@ export {
  *
  * @from SDL_system.h:93 void SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata);
  */
-export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
+// export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
 
 /**
  * Get the D3D9 adapter index that matches the specified display.
@@ -71,7 +71,7 @@ export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
  *
  * @from SDL_system.h:111 int SDL_GetDirect3D9AdapterIndex(SDL_DisplayID displayID);
  */
-export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex;
+// export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex;
 
 /**
  * Get the DXGI Adapter and Output indices for the specified display.
@@ -90,7 +90,7 @@ export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex
  *
  * @from SDL_system.h:128 bool SDL_GetDXGIOutputInfo(SDL_DisplayID displayID, int *adapterIndex, int *outputIndex);
  */
-export const getDxgiOutputInfo = lib.symbols.SDL_GetDXGIOutputInfo;
+// export const getDxgiOutputInfo = lib.symbols.SDL_GetDXGIOutputInfo;
 
 /**
  * Set a callback for every X11 event.
