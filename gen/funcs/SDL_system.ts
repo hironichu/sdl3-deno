@@ -892,10 +892,6 @@ const   macos_symbols = {
     SDL_OnApplicationDidEnterForeground: {
       parameters: [],
       result: "void"
-    },
-    SDL_OnApplicationDidChangeStatusBarOrientation: {
-      parameters: [],
-      result: "void"
     }
 } as const satisfies Deno.ForeignLibraryInterface;
 
