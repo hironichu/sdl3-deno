@@ -34,3 +34,17 @@ export function cstr_v(s: string): bigint {
   );
 }
 
+
+export function isPlatform(platform: string) : boolean {
+  switch (platform) {
+    case 'WIN32':
+    case "WINDOWS": return Deno.build.os === "windows";
+    case "IOS": return Deno.build.os === "darwin";
+    case "LINUX": return Deno.build.os === "linux";
+    case 'ANDROID': return Deno.build.os === "android";
+    case "GDK":
+    default:
+      return false;
+  }
+}
+

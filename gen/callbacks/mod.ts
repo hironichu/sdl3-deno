@@ -10,6 +10,9 @@ import * as SDL_log from './SDL_log.ts'
 import * as SDL_main from './SDL_main.ts'
 import * as SDL_properties from './SDL_properties.ts'
 import * as SDL_stdinc from './SDL_stdinc.ts'
+import * as SDL_system__WINDOWS from './SDL_system__WINDOWS.ts'
+import * as SDL_system__IOS from './SDL_system__IOS.ts'
+import * as SDL_system__ANDROID from './SDL_system__ANDROID.ts'
 import * as SDL_system from './SDL_system.ts'
 import * as SDL_thread from './SDL_thread.ts'
 import * as SDL_timer from './SDL_timer.ts'
@@ -30,6 +33,9 @@ export const callbacks = {
   ...SDL_main.callbacks,
   ...SDL_properties.callbacks,
   ...SDL_stdinc.callbacks,
+  ...SDL_system__WINDOWS.callbacks,
+  ...SDL_system__IOS.callbacks,
+  ...SDL_system__ANDROID.callbacks,
   ...SDL_system.callbacks,
   ...SDL_thread.callbacks,
   ...SDL_timer.callbacks,

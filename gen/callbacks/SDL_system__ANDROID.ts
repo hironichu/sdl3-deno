@@ -35,30 +35,22 @@
 
 export const callbacks = {
 /**
- * A callback to be used with SDL_SetX11EventHook.
+ * Callback that presents a response from a SDL_RequestAndroidPermission call.
  *
- * This callback may modify the event, and should return true if the event
- * should continue to be processed, or false to prevent further processing.
- *
- * As this is processing an event directly from the X11 event loop, this
- * callback should do the minimum required work and return quickly.
- *
- * @param userdata the app-defined pointer provided to SDL_SetX11EventHook.
- * @param xevent a pointer to an Xlib XEvent union to process.
- * @returns true to let event continue on, false to drop it.
- *
- * @threadsafety This may only be called (by SDL) from the thread handling the
- *               X11 event loop.
+ * @param userdata an app-controlled pointer that is passed to the callback.
+ * @param permission the Android-specific permission name that was requested.
+ * @param granted true if permission is granted, false if denied.
  *
  * @since This datatype is available since SDL 3.2.0.
  *
- * @sa SDL_SetX11EventHook
+ * @sa SDL_RequestAndroidPermission
  *
- * @from SDL_system.h:160 typedef bool (*SDL_X11EventHook)(void *userdata, XEvent *xevent);
+ * @from SDL_system.h:516 typedef void (*SDL_RequestAndroidPermissionCallback)(void *userdata, const char *permission, bool granted);
+ * @platform-specific SDL_system.h:291 ANDROID: #ifdef SDL_PLATFORM_ANDROID
  */
-SDL_X11EventHook: {
-      parameters: ["pointer", "pointer"],
-      result: "bool"
+SDL_RequestAndroidPermissionCallback: {
+      parameters: ["pointer", "pointer", "bool"],
+      result: "void"
     },
 
 } as const;

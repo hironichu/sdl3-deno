@@ -33,32 +33,42 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-export const callbacks = {
-/**
- * A callback to be used with SDL_SetX11EventHook.
- *
- * This callback may modify the event, and should return true if the event
- * should continue to be processed, or false to prevent further processing.
- *
- * As this is processing an event directly from the X11 event loop, this
- * callback should do the minimum required work and return quickly.
- *
- * @param userdata the app-defined pointer provided to SDL_SetX11EventHook.
- * @param xevent a pointer to an Xlib XEvent union to process.
- * @returns true to let event continue on, false to drop it.
- *
- * @threadsafety This may only be called (by SDL) from the thread handling the
- *               X11 event loop.
- *
- * @since This datatype is available since SDL 3.2.0.
- *
- * @sa SDL_SetX11EventHook
- *
- * @from SDL_system.h:160 typedef bool (*SDL_X11EventHook)(void *userdata, XEvent *xevent);
- */
-SDL_X11EventHook: {
-      parameters: ["pointer", "pointer"],
-      result: "bool"
-    },
+import { lib } from "./lib.ts";
 
-} as const;
+/**
+ * Gets a reference to the global async task queue handle for GDK,
+ * initializing if needed.
+ *
+ * Once you are done with the task queue, you should call
+ * XTaskQueueCloseHandle to reduce the reference count to avoid a resource
+ * leak.
+ *
+ * @param outTaskQueue a pointer to be filled in with task queue handle.
+ * @returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_system.h:792 bool SDL_GetGDKTaskQueue(XTaskQueueHandle *outTaskQueue);
+ * @platform-specific SDL_system.h:774 GDK: #ifdef SDL_PLATFORM_GDK
+ */
+export const getGdkTaskQueue = lib.symbols.SDL_GetGDKTaskQueue;
+
+/**
+ * Gets a reference to the default user handle for GDK.
+ *
+ * This is effectively a synchronous version of XUserAddAsync, which always
+ * prefers the default user and allows a sign-in UI.
+ *
+ * @param outUserHandle a pointer to be filled in with the default user
+ *                      handle.
+ * @returns true if success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * @since This function is available since SDL 3.2.0.
+ *
+ * @from SDL_system.h:807 bool SDL_GetGDKDefaultUser(XUserHandle *outUserHandle);
+ * @platform-specific SDL_system.h:774 GDK: #ifdef SDL_PLATFORM_GDK
+ */
+export const getGdkDefaultUser = lib.symbols.SDL_GetGDKDefaultUser;
+
