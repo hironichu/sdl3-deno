@@ -34,12 +34,12 @@
 */
 
 /**
- * @from SDL_system__ANDROID.h:409
+ * @from SDL_system:409
  */
 export const SDL_ANDROID_EXTERNAL_STORAGE_READ = 0x01;
 
 /**
- * @from SDL_system__ANDROID.h:417
+ * @from SDL_system:417
  */
 export const SDL_ANDROID_EXTERNAL_STORAGE_WRITE = 0x02;
 

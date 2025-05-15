@@ -11,7 +11,6 @@ import * as SDL_error from './SDL_error.ts';
 import * as SDL_events from './SDL_events.ts';
 import * as SDL_filesystem from './SDL_filesystem.ts';
 import * as SDL_gamepad from './SDL_gamepad.ts';
-import * as SDL_gpu__GDK from './SDL_gpu__GDK.ts';
 import * as SDL_gpu from './SDL_gpu.ts';
 import * as SDL_guid from './SDL_guid.ts';
 import * as SDL_haptic from './SDL_haptic.ts';
@@ -40,12 +39,6 @@ import * as SDL_sensor from './SDL_sensor.ts';
 import * as SDL_stdinc from './SDL_stdinc.ts';
 import * as SDL_storage from './SDL_storage.ts';
 import * as SDL_surface from './SDL_surface.ts';
-import * as SDL_system__WINDOWS from './SDL_system__WINDOWS.ts';
-import * as SDL_system__WIN32 from './SDL_system__WIN32.ts';
-import * as SDL_system__LINUX from './SDL_system__LINUX.ts';
-import * as SDL_system__IOS from './SDL_system__IOS.ts';
-import * as SDL_system__ANDROID from './SDL_system__ANDROID.ts';
-import * as SDL_system__GDK from './SDL_system__GDK.ts';
 import * as SDL_system from './SDL_system.ts';
 import * as SDL_thread from './SDL_thread.ts';
 import * as SDL_time from './SDL_time.ts';
@@ -72,8 +65,8 @@ export const symbols = {
   ...SDL_events.symbols,
   ...SDL_filesystem.symbols,
   ...SDL_gamepad.symbols,
-  ...isPlatform('GDK') ? SDL_gpu__GDK.symbols : {},
   ...SDL_gpu.symbols,
+  ...isPlatform('GDK') ? SDL_gpu.GDK_symbols : {},
   ...SDL_guid.symbols,
   ...SDL_haptic.symbols,
   ...SDL_hidapi.symbols,
@@ -101,13 +94,13 @@ export const symbols = {
   ...SDL_stdinc.symbols,
   ...SDL_storage.symbols,
   ...SDL_surface.symbols,
-  ...isPlatform('WINDOWS') ? SDL_system__WINDOWS.symbols : {},
-  ...isPlatform('WIN32') ? SDL_system__WIN32.symbols : {},
-  ...isPlatform('LINUX') ? SDL_system__LINUX.symbols : {},
-  ...isPlatform('IOS') ? SDL_system__IOS.symbols : {},
-  ...isPlatform('ANDROID') ? SDL_system__ANDROID.symbols : {},
-  ...isPlatform('GDK') ? SDL_system__GDK.symbols : {},
+  ...isPlatform('WINDOWS') ? SDL_system.WINDOWS_symbols : {},
+  ...isPlatform('WIN32') ? SDL_system.WIN32_symbols : {},
   ...SDL_system.symbols,
+  ...isPlatform('LINUX') ? SDL_system.LINUX_symbols : {},
+  ...isPlatform('IOS') ? SDL_system.IOS_symbols : {},
+  ...isPlatform('ANDROID') ? SDL_system.ANDROID_symbols : {},
+  ...isPlatform('GDK') ? SDL_system.GDK_symbols : {},
   ...SDL_thread.symbols,
   ...SDL_time.symbols,
   ...SDL_timer.symbols,
