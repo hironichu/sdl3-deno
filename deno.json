@@ -1,6 +1,6 @@
 {
   "name": "@sdl3/sdl3-deno",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "license": "MIT",
   "exports": {
     ".": "./src/mod.ts",
@@ -11,6 +11,7 @@
     "./misc": "./src/misc.ts",
     "./render": "./src/render.ts",
     "./video": "./src/video.ts",
+    "./ttf": "./src/ttf.ts",
     "./SDL": "./gen/SDL.ts",
     "./IMG": "./gen/IMG.ts",
     "./TTF": "./gen/TTF.ts",
