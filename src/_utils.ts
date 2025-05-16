@@ -1,4 +1,6 @@
-import * as SDL from "../gen/SDL.ts";
+import { getError} from "../gen/sdl/error.ts";
+import { INIT, init } from "../gen/sdl/init.ts";
+import { pumpEvents } from "../gen/sdl/events.ts";
 
 const enc = new TextEncoder();
 
@@ -21,17 +23,19 @@ export function read_cstr(p: Deno.PointerValue): string {
 }
 
 export function getErr(): string {
-  const e = SDL.getError();
+  const e = getError();
   return read_cstr(e);
 }
 
-export function throwSdlError(s?: string): string {
-  throw new Error(`${s || "SDL Error"}: ${getErr()}`);
+export function SdlError(s?: string): Error {
+  return new Error(`${s || "SDL Error"}: ${getErr()}`);
+}
+
+export function throwSdlError(s?: string) {
+  throw SdlError(s);
 }
 
 export function init_pumpEvents(tick = 1000 / 60): number {
-  if (!SDL.init(SDL.INIT.VIDEO | SDL.INIT.EVENTS)) {
-    throw new Error("SDL init video and events failed");
-  }
-  return setInterval(SDL.pumpEvents, tick);
+  if (!init(INIT.VIDEO | INIT.EVENTS)) throwSdlError("SDL init failed");
+  return setInterval(pumpEvents, tick);
 }
