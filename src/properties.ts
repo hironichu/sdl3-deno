@@ -49,7 +49,7 @@
 
 import * as SDL from "../gen/sdl/properties.ts";
 
-import { cstr, read_cstr, throwSdlError } from "./_utils.ts";
+import { cstr, read_cstr, SdlError } from "./_utils.ts";
 
 import { SDL_PropertyType as PropertyType } from "../gen/enums/SDL_properties.ts";
 
@@ -114,7 +114,7 @@ export class Properties {
   constructor(id?: number) {
     if (id === undefined) {
       id = SDL.createProperties();
-      if (id === 0) throwSdlError();
+      if (id === 0) throw SdlError("createProperties");
     }
     this.id = id;
   }
@@ -131,7 +131,7 @@ export class Properties {
    */
   static get global(): Properties | null {
     const id = SDL.getGlobalProperties();
-    if (id === 0) return null;
+    if (id === 0) throw SdlError("getGlobalProperties");
     return new Properties(id);
   }
 

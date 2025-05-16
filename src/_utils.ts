@@ -31,11 +31,7 @@ export function SdlError(s?: string): Error {
   return new Error(`${s || "SDL Error"}: ${getErr()}`);
 }
 
-export function throwSdlError(s?: string) {
-  throw SdlError(s);
-}
-
 export function init_pumpEvents(tick = 1000 / 60): number {
-  if (!init(INIT.VIDEO | INIT.EVENTS)) throwSdlError("SDL init failed");
+  if (!init(INIT.VIDEO | INIT.EVENTS)) throw SdlError("SDL init failed");
   return setInterval(pumpEvents, tick);
 }

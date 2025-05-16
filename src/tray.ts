@@ -14,7 +14,7 @@ import * as SDL from "../gen/sdl/tray.ts";
 
 import { callbacks as CB } from "../gen/callbacks/SDL_tray.ts";
 
-import { cstr, ptr_view, read_cstr, throwSdlError } from "./_utils.ts";
+import { cstr, ptr_view, read_cstr, SdlError } from "./_utils.ts";
 import { Surface } from "./surface.ts";
 
 type TrayEntryUnsafeCallback = Deno.UnsafeCallback<typeof CB.SDL_TrayCallback>;
@@ -171,7 +171,7 @@ export class Tray {
     const s = new Surface(icon);
     const tray = SDL.createTray(s.pointer, cstr(tooltip));
     s.destroy();
-    if (!tray) throwSdlError(`Failed to create system tray`);
+    if (!tray) throw SdlError(`Failed to create system tray`);
     return tray;
   }
 
@@ -219,8 +219,8 @@ export class Tray {
    *
    * @from SDL_tray.h:135 void SDL_SetTrayIcon(SDL_Tray *tray, SDL_Surface *icon);
    */
-  setIcon(iconPath?: string) {
-    Tray.setIcon(this.pointer, iconPath);
+  setIcon(icon?: string) {
+    Tray.setIcon(this.pointer, icon);
   }
 
   static setTooltip(tray: Deno.PointerValue, tooltip?: string) {
@@ -268,7 +268,7 @@ export class Tray {
    */
   createMenu(): TrayMenu {
     const menu = Tray.createMenu(this.pointer);
-    if (!menu) throwSdlError(`Failed to create menu`);
+    if (!menu) throw SdlError(`Failed to create menu`);
     return TrayMenu.of(menu);
   }
   static createMenu(tray: Deno.PointerValue): Deno.PointerValue {
@@ -491,7 +491,7 @@ export class TrayEntry {
    */
   createSubmenu(): TrayMenu {
     const menu = TrayEntry.createSubmenu(this.pointer);
-    if (!menu) throwSdlError(`Failed to create sub menu`);
+    if (!menu) throw SdlError(`Failed to create sub menu`);
     return new TrayMenu(menu);
   }
 
@@ -673,8 +673,8 @@ export class TrayEntry {
    *
    * @from SDL_tray.h:405 void SDL_SetTrayEntryEnabled(SDL_TrayEntry *entry, bool enabled);
    */
-  setEnabled(checked: boolean = true) {
-    TrayEntry.setEnabled(this.pointer, checked);
+  setEnabled(enabled: boolean = true) {
+    TrayEntry.setEnabled(this.pointer, enabled);
   }
   static getEnabled(entry: Deno.PointerValue): boolean {
     return Tray.getEntryEnabled(entry);
@@ -947,9 +947,9 @@ export class TrayMenu {
   insertEntryAt(
     pos: number,
     label: string | undefined,
-    flag: number,
+    flags: number,
   ): TrayEntry {
-    return TrayEntry.of(TrayMenu.insertEntryAt(this.pointer, pos, label, flag));
+    return TrayEntry.of(TrayMenu.insertEntryAt(this.pointer, pos, label, flags));
   }
 
   static clearCb_() {

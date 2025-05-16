@@ -1,5 +1,5 @@
 import * as SDL from "../gen/sdl/init.ts";
-import { throwSdlError } from "./_utils.ts";
+import { SdlError } from "./_utils.ts";
 
 export { INIT } from "../gen/SDL.ts";
 
@@ -67,7 +67,7 @@ export class SdlContext {
     if (SdlContext.#inited) throw new Error("only one SdlContext allowed");
     SdlContext.#inited = true;
     flags ??= SDL.INIT.VIDEO | SDL.INIT.EVENTS;
-    if (!SDL.init(flags)) throwSdlError("SDL init failed");
+    if (!SDL.init(flags)) throw SdlError("SDL init failed");
   }
 
   static init(flags?: number): SdlContext {

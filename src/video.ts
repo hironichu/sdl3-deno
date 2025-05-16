@@ -55,7 +55,7 @@ import * as _r from "../gen/structs/SDL_rect.ts";
 import * as _ from "../gen/structs/SDL_video.ts";
 import { SDL_DisplayOrientation as DisplayOrientation } from "../gen/enums/SDL_video.ts";
 export { DisplayOrientation };
-import { cstr, read_cstr } from "./_utils.ts";
+import { cstr, read_cstr, SdlError } from "./_utils.ts";
 
 export class DisplayModePtr {
   constructor(public pointer: Deno.PointerObject) {}
@@ -180,9 +180,9 @@ export class Display {
    *
    * @from SDL_video.h:585 SDL_DisplayID * SDL_GetDisplays(int *count);
    */
-  get displays(): Display[] | null {
+  get displays(): Display[] {
     const displays = SDL.getDisplays(null);
-    if (!displays) return null;
+    if (!displays) throw SdlError("getDisplays");
     const p = Cursor.Unsafe(displays);
     const r = [];
     while (true) {
@@ -194,8 +194,8 @@ export class Display {
     return r;
   }
 
-  static tryFrom(id: number): Display | null {
-    if (id === 0) return null;
+  static tryFrom(id: number): Display {
+    if (id === 0) throw Error("invalid display id");
     return new Display(id);
   }
 
@@ -213,7 +213,7 @@ export class Display {
    *
    * @from SDL_video.h:599 SDL_DisplayID SDL_GetPrimaryDisplay(void);
    */
-  static get primary(): Display | null {
+  static get primary(): Display {
     return Display.tryFrom(SDL.getPrimaryDisplay());
   }
 
@@ -245,9 +245,9 @@ export class Display {
    *
    * @from SDL_video.h:627 SDL_PropertiesID SDL_GetDisplayProperties(SDL_DisplayID displayID);
    */
-  get properties(): number | null {
+  get properties(): number {
     const id = SDL.getDisplayProperties(this.id);
-    if (id === 0) return null;
+    if (id === 0) throw SdlError("getDisplayProperties");
     return id;
   }
   /**
@@ -265,9 +265,9 @@ export class Display {
    *
    * @from SDL_video.h:645 const char * SDL_GetDisplayName(SDL_DisplayID displayID);
    */
-  get name(): string | null {
+  get name(): string {
     const r = SDL.getDisplayName(this.id);
-    if (!r) return null;
+    if (!r) throw SdlError("getDisplayName");
     return read_cstr(r);
   }
 
@@ -291,10 +291,10 @@ export class Display {
    *
    * @from SDL_video.h:665 bool SDL_GetDisplayBounds(SDL_DisplayID displayID, SDL_Rect *rect);
    */
-  get bounds(): _r.Rect | null {
+  get bounds(): _r.Rect {
     const buf = new Int32Array(4);
     const r = SDL.getDisplayBounds(this.id, Deno.UnsafePointer.of(buf));
-    if (!r) return null;
+    if (!r) throw SdlError("getDisplayBounds");
     return _r.read_Rect(toDataView(buf));
   }
 
@@ -325,10 +325,10 @@ export class Display {
    * @from SDL_video.h:691 bool SDL_GetDisplayUsableBounds(SDL_DisplayID displayID, SDL_Rect *rect);
    */
 
-  get usableBounds(): _r.Rect | null {
+  get usableBounds(): _r.Rect {
     const buf = new Int32Array(4);
     const r = SDL.getDisplayUsableBounds(this.id, Deno.UnsafePointer.of(buf));
-    if (!r) return null;
+    if (!r) throw SdlError("getDisplayUsableBounds");
     return _r.read_Rect(toDataView(buf));
   }
 
@@ -428,9 +428,9 @@ export class Display {
    *
    * @from SDL_video.h:776 SDL_DisplayMode ** SDL_GetFullscreenDisplayModes(SDL_DisplayID displayID, int *count);
    */
-  fullscreenDisplayModes(): DisplayModePtr[] | null {
+  fullscreenDisplayModes(): DisplayModePtr[] {
     const modes = SDL.getFullscreenDisplayModes(this.id, null);
-    if (!modes) return null;
+    if (!modes) throw SdlError("getFullscreenDisplayModes");
     const p = Cursor.Unsafe(modes);
     const r = [];
     while (true) {
@@ -478,7 +478,7 @@ export class Display {
     h: number,
     refresh_rate: number,
     include_high_density_modes: boolean,
-  ): DisplayModePtr | null {
+  ): DisplayModePtr {
     const buf = new Uint32Array(10);
     if (
       !SDL.getClosestFullscreenDisplayMode(
@@ -489,7 +489,7 @@ export class Display {
         include_high_density_modes,
         Deno.UnsafePointer.of(buf),
       )
-    ) return null;
+    ) throw SdlError("getClosestFullscreenDisplayMode");
     return new DisplayModePtr(Deno.UnsafePointer.of(buf)!);
   }
 
@@ -514,9 +514,9 @@ export class Display {
    *
    * @from SDL_video.h:828 const SDL_DisplayMode * SDL_GetDesktopDisplayMode(SDL_DisplayID displayID);
    */
-  get desktopDisplayMode(): DisplayModePtr | null {
+  get desktopDisplayMode(): DisplayModePtr {
     const r = SDL.getDesktopDisplayMode(this.id);
-    if (!r) return null;
+    if (!r) throw SdlError("getDesktopDisplayMode");
     return new DisplayModePtr(r);
   }
 
@@ -541,9 +541,9 @@ export class Display {
    *
    * @from SDL_video.h:849 const SDL_DisplayMode * SDL_GetCurrentDisplayMode(SDL_DisplayID displayID);
    */
-  get currentDisplayMode(): DisplayModePtr | null {
+  get currentDisplayMode(): DisplayModePtr {
     const r = SDL.getDesktopDisplayMode(this.id);
-    if (!r) return null;
+    if (!r) throw SdlError("getDesktopDisplayMode");
     return new DisplayModePtr(r);
   }
 
@@ -563,11 +563,11 @@ export class Display {
    *
    * @from SDL_video.h:865 SDL_DisplayID SDL_GetDisplayForPoint(const SDL_Point *point);
    */
-  static forPoint(point: _r.Point): Display | null {
+  static forPoint(point: _r.Point): Display {
     const buf = new Uint32Array(4);
     _r.write_Point(point, toDataView(buf));
     const r = SDL.getDisplayForPoint(Deno.UnsafePointer.of(buf));
-    if (r === 0) return null;
+    if (r === 0) throw SdlError("getDisplayForPoint");
     return new Display(r);
   }
 
@@ -588,11 +588,11 @@ export class Display {
    *
    * @from SDL_video.h:882 SDL_DisplayID SDL_GetDisplayForRect(const SDL_Rect *rect);
    */
-  static forRect(rect: _r.Rect): Display | null {
+  static forRect(rect: _r.Rect): Display {
     const buf = new Uint32Array(4);
     _r.write_Rect(rect, toDataView(buf));
     const r = SDL.getDisplayForRect(Deno.UnsafePointer.of(buf));
-    if (r === 0) return null;
+    if (r === 0) throw SdlError("getDisplayForRect");
     return new Display(r);
   }
 }
@@ -618,9 +618,9 @@ export class Window {
    *
    * @from SDL_video.h:899 SDL_DisplayID SDL_GetDisplayForWindow(SDL_Window *window);
    */
-  get display(): Display | null {
+  get display(): Display {
     const r = SDL.getDisplayForWindow(this.pointer);
-    if (r === 0) return null;
+    if (r === 0) throw SdlError("getDisplayForWindow");
     return new Display(r);
   }
 
@@ -730,9 +730,9 @@ export class Window {
    *
    * @from SDL_video.h:993 const SDL_DisplayMode * SDL_GetWindowFullscreenMode(SDL_Window *window);
    */
-  get fullscreenMode(): DisplayModePtr | null {
+  get fullscreenMode(): DisplayModePtr {
     const r = SDL.getWindowFullscreenMode(this.pointer);
-    if (!r) return null;
+    if (!r) throw SdlError("getWindowFullscreenMode");
     return new DisplayModePtr(r);
   }
 
@@ -751,10 +751,10 @@ export class Window {
    *
    * @from SDL_video.h:1008 void * SDL_GetWindowICCProfile(SDL_Window *window, size_t *size);
    */
-  get IccProfile(): { data: Deno.PointerObject; size: bigint } | null {
+  get IccProfile(): { data: Deno.PointerObject; size: bigint } {
     const buf = new BigUint64Array(1);
     const r = SDL.getWindowIccProfile(this.pointer, Deno.UnsafePointer.of(buf));
-    if (!r) return null;
+    if (!r) throw SdlError("getWindowIccProfile");
     return { data: r, size: buf[0] };
   }
 
@@ -792,9 +792,9 @@ export class Window {
    *
    * @from SDL_video.h:1038 SDL_Window ** SDL_GetWindows(int *count);
    */
-  static get windows(): Window[] | null {
+  static get windows(): Window[] {
     const windows = SDL.getWindows(null);
-    if (!windows) return null;
+    if (!windows) throw SdlError("getWindows");
     const p = Cursor.Unsafe(windows);
     const r = [];
     while (true) {
@@ -897,9 +897,9 @@ export class Window {
     w: number,
     h: number,
     flags: bigint,
-  ): Window | null {
+  ): Window {
     const r = SDL.createWindow(cstr(title), w, h, flags);
-    if (!r) return null;
+    if (!r) throw SdlError("createWindow");
     return new Window(r);
   }
 
@@ -971,7 +971,7 @@ export class Window {
     w: number,
     h: number,
     flags: bigint,
-  ): Window | null {
+  ): Window {
     const r = SDL.createPopupWindow(
       this.pointer,
       offset_x,
@@ -980,7 +980,7 @@ export class Window {
       h,
       flags,
     );
-    if (!r) return null;
+    if (!r) throw SdlError("createPopupWindow");
     return new Window(r);
   }
 
@@ -1105,9 +1105,9 @@ export class Window {
    *
    * @from SDL_video.h:1307 SDL_Window * SDL_CreateWindowWithProperties(SDL_PropertiesID props);
    */
-  static createWithProperties(props: number): Window | null {
+  static createWithProperties(props: number): Window {
     const r = SDL.createWindowWithProperties(props);
-    if (!r) return null;
+    if (!r) throw SdlError("createWindowWithProperties");
     return new Window(r);
   }
 
@@ -1160,9 +1160,9 @@ export class Window {
    *
    * @from SDL_video.h:1378 SDL_Window * SDL_GetWindowFromID(SDL_WindowID id);
    */
-  static fromId(id: number): Window | null {
+  static fromId(id: number): Window {
     const r = SDL.getWindowFromId(id);
-    if (!r) return null;
+    if (!r) throw SdlError("getWindowFromId");
     return new Window(r);
   }
 
@@ -1181,9 +1181,9 @@ export class Window {
    *
    * @from SDL_video.h:1393 SDL_Window * SDL_GetWindowParent(SDL_Window *window);
    */
-  get parent(): Window | null {
+  get parent(): Window {
     const r = SDL.getWindowParent(this.pointer);
-    if (!r) return null;
+    if (!r) throw SdlError("getWindowParent");
     return new Window(r);
   }
 
@@ -1475,7 +1475,7 @@ export class Window {
    *
    * @from SDL_video.h:1694 bool SDL_GetWindowPosition(SDL_Window *window, int *x, int *y);
    */
-  get position(): { x: number; y: number } | null {
+  get position(): { x: number; y: number } {
     const x = new Int32Array(1);
     const y = new Int32Array(1);
     if (
@@ -1484,7 +1484,7 @@ export class Window {
         Deno.UnsafePointer.of(x),
         Deno.UnsafePointer.of(y),
       )
-    ) return null;
+    ) throw SdlError("getWindowPosition");
     return { x: x[0], y: y[0] };
   }
 
@@ -1552,7 +1552,7 @@ export class Window {
    *
    * @from SDL_video.h:1754 bool SDL_GetWindowSize(SDL_Window *window, int *w, int *h);
    */
-  get size(): { w: number; h: number } | null {
+  get size(): { w: number; h: number } {
     const w = new Int32Array(1);
     const h = new Int32Array(1);
     if (
@@ -1561,7 +1561,7 @@ export class Window {
         Deno.UnsafePointer.of(w),
         Deno.UnsafePointer.of(h),
       )
-    ) return null;
+    ) throw SdlError("getWindowSize");
     return { w: w[0], h: h[0] };
   }
 
@@ -1587,10 +1587,10 @@ export class Window {
    *
    * @from SDL_video.h:1776 bool SDL_GetWindowSafeArea(SDL_Window *window, SDL_Rect *rect);
    */
-  safeArea(): _r.Rect | null {
+  safeArea(): _r.Rect {
     const buf = new Uint32Array(4);
     if (!SDL.getWindowSafeArea(this.pointer, Deno.UnsafePointer.of(buf))) {
-      return null;
+      throw SdlError("getWindowSafeArea");
     }
     return _r.read_Rect(toDataView(buf));
   }
@@ -1659,7 +1659,7 @@ export class Window {
    *
    * @from SDL_video.h:1836 bool SDL_GetWindowAspectRatio(SDL_Window *window, float *min_aspect, float *max_aspect);
    */
-  get aspectRatio(): { min_aspect: number; max_aspect: number } | null {
+  get aspectRatio(): { min_aspect: number; max_aspect: number } {
     const min_aspect = new Float32Array(1);
     const max_aspect = new Float32Array(1);
     if (
@@ -1668,7 +1668,7 @@ export class Window {
         Deno.UnsafePointer.of(min_aspect),
         Deno.UnsafePointer.of(max_aspect),
       )
-    ) return null;
+    ) throw SdlError("getWindowAspectRatio");
     return { min_aspect: min_aspect[0], max_aspect: max_aspect[0] };
   }
 
@@ -1714,7 +1714,7 @@ export class Window {
     left: number;
     bottom: number;
     right: number;
-  } | null {
+  } {
     const top = new Int32Array(1);
     const left = new Int32Array(1);
     const bottom = new Int32Array(1);
@@ -1727,7 +1727,7 @@ export class Window {
         Deno.UnsafePointer.of(bottom),
         Deno.UnsafePointer.of(right),
       )
-    ) return null;
+    ) throw SdlError("getWindowBordersSize");
     return {
       top: top[0],
       left: left[0],
@@ -1755,7 +1755,7 @@ export class Window {
    *
    * @from SDL_video.h:1893 bool SDL_GetWindowSizeInPixels(SDL_Window *window, int *w, int *h);
    */
-  get sizeInPixels(): { w: number; h: number } | null {
+  get sizeInPixels(): { w: number; h: number } {
     const w = new Int32Array(1);
     const h = new Int32Array(1);
     if (
@@ -1764,7 +1764,7 @@ export class Window {
         Deno.UnsafePointer.of(w),
         Deno.UnsafePointer.of(h),
       )
-    ) return null;
+    ) throw SdlError("getWindowSizeInPixels");
     return { w: w[0], h: h[0] };
   }
   /**
@@ -1809,7 +1809,7 @@ export class Window {
    *
    * @from SDL_video.h:1931 bool SDL_GetWindowMinimumSize(SDL_Window *window, int *w, int *h);
    */
-  get minimumSize(): { w: number; h: number } | null {
+  get minimumSize(): { w: number; h: number } {
     const w = new Int32Array(1);
     const h = new Int32Array(1);
     if (
@@ -1818,7 +1818,7 @@ export class Window {
         Deno.UnsafePointer.of(w),
         Deno.UnsafePointer.of(h),
       )
-    ) return null;
+    ) throw SdlError("getWindowMinimumSize");
     return { w: w[0], h: h[0] };
   }
 
@@ -1864,7 +1864,7 @@ export class Window {
    *
    * @from SDL_video.h:1969 bool SDL_GetWindowMaximumSize(SDL_Window *window, int *w, int *h);
    */
-  get maximumSize(): { w: number; h: number } | null {
+  get maximumSize(): { w: number; h: number } {
     const w = new Int32Array(1);
     const h = new Int32Array(1);
     if (
@@ -1873,7 +1873,7 @@ export class Window {
         Deno.UnsafePointer.of(w),
         Deno.UnsafePointer.of(h),
       )
-    ) return null;
+    ) throw SdlError("getWindowMaximumSize");
     return { w: w[0], h: h[0] };
   }
 
@@ -2291,11 +2291,11 @@ export class Window {
    *
    * @from SDL_video.h:2330 bool SDL_GetWindowSurfaceVSync(SDL_Window *window, int *vsync);
    */
-  get SurfaceVSync(): number | null {
+  get surfaceVSync(): number {
     const vsync = new Int32Array(1);
     if (
       !SDL.getWindowSurfaceVSync(this.pointer, Deno.UnsafePointer.of(vsync))
-    ) return null;
+    ) throw SdlError("getWindowSurfaceVSync");
     return vsync[0];
   }
 
@@ -2499,9 +2499,9 @@ export class Window {
    *
    * @from SDL_video.h:2495 SDL_Window * SDL_GetGrabbedWindow(void);
    */
-  static get grabbed(): Window | null {
+  static get grabbed(): Window {
     const r = SDL.getGrabbedWindow();
-    if (!r) return null;
+    if (!r) throw SdlError("getGrabbedWindow");
     return new Window(r);
   }
 
@@ -2550,9 +2550,9 @@ export class Window {
    *
    * @from SDL_video.h:2534 const SDL_Rect * SDL_GetWindowMouseRect(SDL_Window *window);
    */
-  get mouseRect(): _r.Rect | null {
+  get mouseRect(): _r.Rect {
     const r = SDL.getWindowMouseRect(this.pointer);
-    if (!r) return null;
+    if (!r) throw SdlError("getWindowMouseRect");
     return _r.read_Rect(UnsafeDataView(r, 16));
   }
 
@@ -3068,10 +3068,10 @@ export class GL {
    *
    * @from SDL_video.h:3058 bool SDL_GL_GetAttribute(SDL_GLAttr attr, int *value);
    */
-  static getAttribute(attr: number): number | null {
+  static getAttribute(attr: number): number {
     const buf = new Uint32Array(1);
     const r = SDL.glGetAttribute(attr, Deno.UnsafePointer.of(buf));
-    if (!r) return null;
+    if (!r) throw SdlError("glGetAttribute");
     return buf[0];
   }
 
@@ -3087,9 +3087,9 @@ export class GL {
    *
    * @from SDL_video.h:3112 SDL_Window * SDL_GL_GetCurrentWindow(void);
    */
-  static glGetCurrentWindow(): Window | null {
+  static glGetCurrentWindow(): Window {
     const r = SDL.glGetCurrentWindow();
-    if (!r) return null;
+    if (!r) throw SdlError("glGetCurrentWindow");
     return new Window(r);
   }
 
@@ -3173,10 +3173,10 @@ export class GL {
    *
    * @from SDL_video.h:3239 bool SDL_GL_GetSwapInterval(int *interval);
    */
-  static glGetSwapInterval(): number | null {
+  static glGetSwapInterval(): number {
     const buf = new Uint32Array(1);
     const r = SDL.glGetSwapInterval(Deno.UnsafePointer.of(buf));
-    if (!r) return null;
+    if (!r) throw SdlError("glGetSwapInterval");
     return buf[0];
   }
 
