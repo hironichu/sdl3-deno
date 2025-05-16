@@ -21,6 +21,7 @@ import * as _ from "../gen/structs/SDL_messagebox.ts";
 import * as SDL from "../gen/sdl/messagebox.ts";
 
 import { cstr } from "./_utils.ts";
+import type { WindowPointer } from "./pointer_type.ts";
 
 /** informational dialog  */
 export function info(title: string, message: string): void {
@@ -230,7 +231,7 @@ export interface MsgBoxOptionSimple {
   type?: MsgBoxFlagType;
   direction?: MsgBoxFlagBtnDirection;
   flags?: MsgBoxFlag[]; /* SDL_MessageBoxFlags */
-  window?: Deno.PointerValue; /**< SDL_Window * : Parent window, can be NULL */
+  window?: WindowPointer; /**< SDL_Window * : Parent window, can be NULL */
   title: string; /**< const char * : UTF-8 title */
   message: string; /**< const char * : UTF-8 message text */
 }
@@ -245,8 +246,9 @@ export interface MsgBoxOptionSimple {
 export interface MsgBoxOption extends MsgBoxOptionSimple {
   //numbuttons: _.i32, /* int */
   buttons: ButtonOption[]; /* const SDL_MessageBoxButtonData * */
-  colorScheme?:
-    Deno.PointerValue; /**< const SDL_MessageBoxColorScheme * : SDL_MessageBoxColorScheme, can be NULL to use system settings */
+  colorScheme?: Deno.PointerValue<
+    "SDL_MessageBoxColorScheme"
+  >; /**< const SDL_MessageBoxColorScheme * : SDL_MessageBoxColorScheme, can be NULL to use system settings */
 }
 
 /**

@@ -21,19 +21,19 @@ type TrayEntryUnsafeCallback = Deno.UnsafeCallback<typeof CB.SDL_TrayCallback>;
 
 type TrayEntryCallback = (
   userdata: Deno.PointerValue,
-  entry: Deno.PointerValue,
+  entry: EntryPointer,
 ) => void;
 
 const entryCb = {
   map: new Array<{
-    tray: Deno.PointerValue;
-    entry: Deno.PointerValue;
+    tray: TrayPointer;
+    entry: EntryPointer;
     callback: TrayEntryUnsafeCallback;
   }>(),
 
   addCallback(
-    tray: Deno.PointerValue,
-    entry: Deno.PointerValue,
+    tray: TrayPointer,
+    entry: EntryPointer,
     callback: TrayEntryUnsafeCallback,
   ) {
     const index = this.map.findIndex((i) => i.entry == entry);
@@ -44,14 +44,14 @@ const entryCb = {
       this.map.push({ tray, entry, callback });
     }
   },
-  removeEntry(entry: Deno.PointerValue) {
+  removeEntry(entry: EntryPointer) {
     const index = this.map.findIndex((i) => i.entry == entry);
     if (index !== -1) {
       this.map[index].callback.close();
       this.map.splice(index, 1);
     }
   },
-  removeTray(tray: Deno.PointerValue) {
+  removeTray(tray: TrayPointer) {
     const r = this.map;
     this.map = [];
     for (const i of r) {
@@ -108,6 +108,10 @@ export interface TrayEntryOption {
   type?: TrayEntryFlagRequired;
 }
 
+type TrayPointer = Deno.PointerValue<"SDL_Tray">;
+type MenuPointer = Deno.PointerValue<"SDL_Menu">;
+type EntryPointer = Deno.PointerValue<"SDL_Entry">;
+
 /**
  * An opaque handle representing a toplevel system tray object.
  *
@@ -130,16 +134,16 @@ export interface TrayEntryOption {
  * ```
  */
 export class Tray {
-  pointer: Deno.PointerValue;
+  pointer: TrayPointer;
 
-  constructor({ icon, tooltip, menu }: TrayOption, tray?: Deno.PointerValue) {
+  constructor({ icon, tooltip, menu }: TrayOption, tray?: TrayPointer) {
     this.pointer = tray !== undefined ? tray : Tray.create(icon, tooltip);
     if (menu && this.pointer) {
       this.createMenu().createSubmenu(this, menu);
     }
   }
 
-  static of(tray: Deno.PointerValue): Tray {
+  static of(tray: TrayPointer): Tray {
     return new Tray({}, tray);
   }
 
@@ -167,15 +171,15 @@ export class Tray {
    *
    * @from SDL_tray.h:120 SDL_Tray * SDL_CreateTray(SDL_Surface *icon, const char *tooltip);
    */
-  static create(icon?: string, tooltip?: string): Deno.PointerValue {
+  static create(icon?: string, tooltip?: string): TrayPointer {
     const s = new Surface(icon);
     const tray = SDL.createTray(s.pointer, cstr(tooltip));
     s.destroy();
     if (!tray) throw SdlError(`Failed to create system tray`);
-    return tray;
+    return tray as TrayPointer;
   }
 
-  static destroy(tray: Deno.PointerValue) {
+  static destroy(tray: TrayPointer) {
     SDL.destroyTray(tray);
   }
 
@@ -199,7 +203,7 @@ export class Tray {
     this.pointer = null;
   }
 
-  static setIcon(tray: Deno.PointerValue, iconPath?: string) {
+  static setIcon(tray: TrayPointer, iconPath?: string) {
     const icon = iconPath ? new Surface(iconPath) : null;
     SDL.setTrayIcon(tray, icon?.pointer ?? null);
     icon?.destroy();
@@ -223,7 +227,7 @@ export class Tray {
     Tray.setIcon(this.pointer, icon);
   }
 
-  static setTooltip(tray: Deno.PointerValue, tooltip?: string) {
+  static setTooltip(tray: TrayPointer, tooltip?: string) {
     SDL.setTrayTooltip(tray, cstr(tooltip));
   }
   /**
@@ -271,16 +275,16 @@ export class Tray {
     if (!menu) throw SdlError(`Failed to create menu`);
     return TrayMenu.of(menu);
   }
-  static createMenu(tray: Deno.PointerValue): Deno.PointerValue {
-    return SDL.createTrayMenu(tray);
+  static createMenu(tray: TrayPointer): MenuPointer {
+    return SDL.createTrayMenu(tray) as MenuPointer;
   }
 
-  static createSubmenu(entry: Deno.PointerValue): Deno.PointerValue {
-    return SDL.createTraySubmenu(entry);
+  static createSubmenu(entry: EntryPointer): MenuPointer {
+    return SDL.createTraySubmenu(entry) as MenuPointer;
   }
 
-  static getMenu(tray: Deno.PointerValue): Deno.PointerValue {
-    return SDL.getTrayMenu(tray);
+  static getMenu(tray: TrayPointer): MenuPointer {
+    return SDL.getTrayMenu(tray) as MenuPointer;
   }
 
   /**
@@ -310,15 +314,15 @@ export class Tray {
     return TrayMenu.of(Tray.getMenu(this.pointer));
   }
 
-  static getSubmenu(entry: Deno.PointerValue): Deno.PointerValue {
-    return SDL.getTraySubmenu(entry);
+  static getSubmenu(entry: EntryPointer): MenuPointer {
+    return SDL.getTraySubmenu(entry) as MenuPointer;
   }
 
-  static getEntries(menu: Deno.PointerValue): Deno.PointerValue[] {
+  static getEntries(menu: MenuPointer): EntryPointer[] {
     const a = SDL.getTrayEntries(menu, null);
     if (!a) return [];
 
-    const entries = [];
+    const entries: EntryPointer[] = [];
     const d = ptr_view(a);
     let i = 0;
     while (true) {
@@ -328,53 +332,59 @@ export class Tray {
         break;
       }
       i += 8;
-      entries.push(Deno.UnsafePointer.create(p));
+      entries.push(Deno.UnsafePointer.create(p) as EntryPointer);
     }
 
     return entries;
   }
 
-  static removeEntry(entry: Deno.PointerValue) {
+  static removeEntry(entry: EntryPointer) {
     SDL.removeTrayEntry(entry);
   }
 
   static insertEntryAt(
-    menu: Deno.PointerValue,
+    menu: MenuPointer,
     pos: number,
     label: string | undefined,
     flag: number,
-  ): Deno.PointerValue {
-    return SDL.insertTrayEntryAt(menu, pos, cstr(label), flag);
+  ): EntryPointer {
+    return SDL.insertTrayEntryAt(menu, pos, cstr(label), flag) as EntryPointer;
   }
 
-  static setEntryLabel(entry: Deno.PointerValue, label: string) {
+  static setEntryLabel(entry: EntryPointer, label: string) {
     SDL.setTrayEntryLabel(entry, cstr(label));
   }
 
-  static getEntryLabel(entry: Deno.PointerValue): string {
+  static getEntryLabel(entry: EntryPointer): string {
     const label = SDL.getTrayEntryLabel(entry);
     return label ? read_cstr(label) : "";
   }
 
-  static setEntryChecked(entry: Deno.PointerValue, checked: boolean) {
+  static setEntryChecked(entry: EntryPointer, checked: boolean) {
     SDL.setTrayEntryChecked(entry, checked);
   }
-  static getEntryChecked(entry: Deno.PointerValue): boolean {
+  static getEntryChecked(entry: EntryPointer): boolean {
     return SDL.getTrayEntryChecked(entry);
   }
-  static setEntryEnabled(entry: Deno.PointerValue, enabled: boolean) {
+  static setEntryEnabled(entry: EntryPointer, enabled: boolean) {
     SDL.setTrayEntryEnabled(entry, enabled);
   }
-  static getEntryEnabled(entry: Deno.PointerValue): boolean {
+  static getEntryEnabled(entry: EntryPointer): boolean {
     return SDL.getTrayEntryEnabled(entry);
   }
 
   static setEntryCallback(
-    entry: Deno.PointerValue,
+    entry: EntryPointer,
     callback: TrayEntryCallback,
     userdata: Deno.PointerValue = null,
   ): TrayEntryUnsafeCallback {
-    const c = new Deno.UnsafeCallback(CB.SDL_TrayCallback, callback);
+    const c = new Deno.UnsafeCallback(
+      CB.SDL_TrayCallback,
+      callback as (
+        userdata: Deno.PointerValue,
+        entry: Deno.PointerValue,
+      ) => void,
+    );
     SDL.setTrayEntryCallback(entry, c.pointer, userdata);
     return c;
   }
@@ -398,7 +408,7 @@ export class Tray {
    * @from SDL_tray.h:440 void SDL_SetTrayEntryCallback(SDL_TrayEntry *entry, SDL_TrayCallback callback, void *userdata);
    */
   setEntryCallback(
-    entry: Deno.PointerValue,
+    entry: EntryPointer,
     callback: TrayEntryCallback,
     userdata: Deno.PointerValue = null,
   ) {
@@ -406,20 +416,20 @@ export class Tray {
     entryCb.addCallback(this.pointer, entry, c);
   }
 
-  static clickEntry(entry: Deno.PointerValue) {
+  static clickEntry(entry: EntryPointer) {
     SDL.clickTrayEntry(entry);
   }
 
-  static getEntryParent(entry: Deno.PointerValue): Deno.PointerValue {
-    return SDL.getTrayEntryParent(entry);
+  static getEntryParent(entry: EntryPointer): MenuPointer {
+    return SDL.getTrayEntryParent(entry) as MenuPointer;
   }
 
-  static getMenuParentEntry(entry: Deno.PointerValue): Deno.PointerValue {
-    return SDL.getTrayMenuParentEntry(entry);
+  static getMenuParentEntry(menu: MenuPointer): EntryPointer {
+    return SDL.getTrayMenuParentEntry(menu) as EntryPointer;
   }
 
-  static getMenuParentTray(menu: Deno.PointerValue): Deno.PointerValue {
-    return SDL.getTrayMenuParentTray(menu);
+  static getMenuParentTray(menu: MenuPointer): TrayPointer {
+    return SDL.getTrayMenuParentTray(menu) as TrayPointer;
   }
 
   static update() {
@@ -431,17 +441,17 @@ export class Tray {
  * An opaque handle representing an entry on a system tray object.
  */
 export class TrayEntry {
-  pointer: Deno.PointerValue;
+  pointer: EntryPointer;
 
-  constructor(pointer: Deno.PointerValue) {
+  constructor(pointer: EntryPointer) {
     this.pointer = pointer;
   }
 
-  static of(pointer: Deno.PointerValue): TrayEntry {
+  static of(pointer: EntryPointer): TrayEntry {
     return new TrayEntry(pointer);
   }
 
-  static getParentMenu(entry: Deno.PointerValue): Deno.PointerValue {
+  static getParentMenu(entry: EntryPointer): MenuPointer {
     return Tray.getEntryParent(entry);
   }
   /**
@@ -462,7 +472,7 @@ export class TrayEntry {
     return TrayMenu.of(TrayEntry.getParentMenu(this.pointer));
   }
 
-  static createSubmenu(menu: Deno.PointerValue): Deno.PointerValue {
+  static createSubmenu(menu: EntryPointer): MenuPointer {
     return Tray.createSubmenu(menu);
   }
 
@@ -495,7 +505,7 @@ export class TrayEntry {
     return new TrayMenu(menu);
   }
 
-  static getSubmenu(menu: Deno.PointerValue): Deno.PointerValue {
+  static getSubmenu(menu: EntryPointer): MenuPointer {
     return Tray.getSubmenu(menu);
   }
 
@@ -526,7 +536,7 @@ export class TrayEntry {
     return TrayMenu.of(TrayEntry.getSubmenu(this.pointer));
   }
 
-  static remove(entry: Deno.PointerValue) {
+  static remove(entry: EntryPointer) {
     Tray.removeEntry(entry);
   }
 
@@ -549,7 +559,7 @@ export class TrayEntry {
     this.pointer = null;
   }
 
-  static setLabel(entry: Deno.PointerValue, label: string) {
+  static setLabel(entry: EntryPointer, label: string) {
     Tray.setEntryLabel(entry, label);
   }
 
@@ -577,7 +587,7 @@ export class TrayEntry {
   setLabel(label: string) {
     TrayEntry.setLabel(this.pointer, label);
   }
-  static getLabel(entry: Deno.PointerValue): string {
+  static getLabel(entry: EntryPointer): string {
     return Tray.getEntryLabel(entry);
   }
   /**
@@ -602,7 +612,7 @@ export class TrayEntry {
     return TrayEntry.getLabel(this.pointer);
   }
 
-  static setChecked(entry: Deno.PointerValue, checked: boolean = true) {
+  static setChecked(entry: EntryPointer, checked: boolean = true) {
     Tray.setEntryChecked(entry, checked);
   }
 
@@ -627,7 +637,7 @@ export class TrayEntry {
   setChecked(checked: boolean = true) {
     TrayEntry.setChecked(this.pointer, checked);
   }
-  static getChecked(entry: Deno.PointerValue): boolean {
+  static getChecked(entry: EntryPointer): boolean {
     return Tray.getEntryChecked(entry);
   }
 
@@ -653,7 +663,7 @@ export class TrayEntry {
     return TrayEntry.getChecked(this.pointer);
   }
 
-  static setEnabled(entry: Deno.PointerValue, enabled: boolean = true) {
+  static setEnabled(entry: EntryPointer, enabled: boolean = true) {
     Tray.setEntryEnabled(entry, enabled);
   }
   /**
@@ -676,7 +686,7 @@ export class TrayEntry {
   setEnabled(enabled: boolean = true) {
     TrayEntry.setEnabled(this.pointer, enabled);
   }
-  static getEnabled(entry: Deno.PointerValue): boolean {
+  static getEnabled(entry: EntryPointer): boolean {
     return Tray.getEntryEnabled(entry);
   }
   /**
@@ -700,7 +710,7 @@ export class TrayEntry {
   }
 
   static setCallback(
-    entry: Deno.PointerValue,
+    entry: EntryPointer,
     callback: TrayEntryCallback,
     userdata: Deno.PointerValue = null,
   ): TrayEntryUnsafeCallback {
@@ -732,7 +742,7 @@ export class TrayEntry {
     tray.setEntryCallback(this.pointer, callback, userdata);
   }
 
-  static click(entry: Deno.PointerValue) {
+  static click(entry: EntryPointer) {
     Tray.clickEntry(entry);
   }
 
@@ -755,9 +765,9 @@ export class TrayEntry {
  * An opaque handle representing a menu/submenu on a system tray object.
  */
 export class TrayMenu {
-  pointer: Deno.PointerValue;
+  pointer: MenuPointer;
 
-  constructor(pointer: Deno.PointerValue) {
+  constructor(pointer: MenuPointer) {
     this.pointer = pointer;
   }
 
@@ -825,7 +835,7 @@ export class TrayMenu {
     }
   }
 
-  static of(pointer: Deno.PointerValue): TrayMenu {
+  static of(pointer: MenuPointer): TrayMenu {
     return new TrayMenu(pointer);
   }
 
@@ -852,11 +862,11 @@ export class TrayMenu {
    *
    * @from SDL_tray.h:523 SDL_Tray * SDL_GetTrayMenuParentTray(SDL_TrayMenu *menu);
    */
-  get parentTray(): Deno.PointerValue {
+  get parentTray(): TrayPointer {
     return Tray.getMenuParentTray(this.pointer);
   }
 
-  static getParentEntry(menu: Deno.PointerValue): Deno.PointerValue {
+  static getParentEntry(menu: MenuPointer): EntryPointer {
     return Tray.getMenuParentEntry(menu);
   }
 
@@ -883,7 +893,7 @@ export class TrayMenu {
     return TrayEntry.of(TrayMenu.getParentEntry(this.pointer));
   }
 
-  static getEntries(menu: Deno.PointerValue): Deno.PointerValue[] {
+  static getEntries(menu: MenuPointer): EntryPointer[] {
     return Tray.getEntries(menu);
   }
 
@@ -909,11 +919,11 @@ export class TrayMenu {
   }
 
   static insertEntryAt(
-    menu: Deno.PointerValue,
+    menu: MenuPointer,
     pos: number,
     label: string | undefined,
     flag: number,
-  ): Deno.PointerValue {
+  ): EntryPointer {
     return Tray.insertEntryAt(menu, pos, label, flag);
   }
 
@@ -949,7 +959,9 @@ export class TrayMenu {
     label: string | undefined,
     flags: number,
   ): TrayEntry {
-    return TrayEntry.of(TrayMenu.insertEntryAt(this.pointer, pos, label, flags));
+    return TrayEntry.of(
+      TrayMenu.insertEntryAt(this.pointer, pos, label, flags),
+    );
   }
 
   static clearCb_() {

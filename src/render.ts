@@ -59,6 +59,8 @@ import { Buf } from "@g9wp/ptr/buf";
 import { toDataView } from "@g9wp/ptr";
 import { Surface } from "./surface.ts";
 
+import type { RendererPointer, SurfacePointer, WindowPointer } from "./pointer_type.ts";
+
 export class RenderDriver {
   /**
    * Get the number of 2D rendering drivers available for the current display.
@@ -116,7 +118,7 @@ export class RenderDriver {
 }
 
 export class Render {
-  constructor(public pointer: Deno.PointerObject) {}
+  constructor(public pointer: RendererPointer) {}
 
   /**
    * Create a window and default renderer.
@@ -162,8 +164,8 @@ export class Render {
     ) throw SdlError("createWindowAndRenderer");
     const c = b.cursor;
     return {
-      window: new Window(c.ptr!),
-      renderer: new Render(c.ptr!),
+      window: new Window(c.ptr! as WindowPointer),
+      renderer: new Render(c.ptr! as RendererPointer),
     };
   }
 
@@ -209,7 +211,7 @@ export class Render {
     const r = SDL.createRenderer(
       window.pointer,
       name ? cstr(name.join(",")) : null,
-    );
+    ) as RendererPointer;
     if (!r) throw SdlError("createRenderer");
     return new Render(r);
   }
@@ -268,7 +270,7 @@ export class Render {
    * @from SDL_render.h:298 SDL_Renderer * SDL_CreateRendererWithProperties(SDL_PropertiesID props);
    */
   createWithProperties(props: number): Render {
-    const r = SDL.createRendererWithProperties(props);
+    const r = SDL.createRendererWithProperties(props) as RendererPointer;
     if (!r) throw SdlError("createRendererWithProperties");
     return new Render(r);
   }
@@ -295,7 +297,7 @@ export class Render {
    * @from SDL_render.h:331 SDL_Renderer * SDL_CreateSoftwareRenderer(SDL_Surface *surface);
    */
   createSoftware(surface: Deno.PointerValue): Render {
-    const r = SDL.createSoftwareRenderer(surface);
+    const r = SDL.createSoftwareRenderer(surface) as RendererPointer;
     if (!r) throw SdlError("createSoftwareRenderer");
     return new Render(r);
   }
@@ -314,7 +316,7 @@ export class Render {
    * @from SDL_render.h:344 SDL_Renderer * SDL_GetRenderer(SDL_Window *window);
    */
   static fromWindow(window: Window): Render {
-    const r = SDL.getRenderer(window.pointer);
+    const r = SDL.getRenderer(window.pointer) as RendererPointer;
     if (!r) throw SdlError("getRenderer");
     return new Render(r);
   }
@@ -333,7 +335,7 @@ export class Render {
    * @from SDL_render.h:357 SDL_Window * SDL_GetRenderWindow(SDL_Renderer *renderer);
    */
   get window(): Window {
-    const w = SDL.getRenderWindow(this.pointer);
+    const w = SDL.getRenderWindow(this.pointer) as WindowPointer;
     if (!w) throw SdlError("getRenderWindow");
     return new Window(w);
   }
@@ -2089,9 +2091,12 @@ export class Render {
    * @from SDL_render.h:2324 SDL_Surface * SDL_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect);
    */
   readPixels(rect: _r.Rect | null): Surface {
-    const r = SDL.renderReadPixels(this.pointer, rect ? writeRect(rect) : null);
+    const r = SDL.renderReadPixels(
+      this.pointer,
+      rect ? writeRect(rect) : null,
+    ) as SurfacePointer;
     if (!r) throw SdlError("renderReadPixels");
-    return new Surface(undefined, r);
+    return Surface.of(r);
   }
 
   /**
@@ -2505,7 +2510,7 @@ export class Texture {
    * @from SDL_render.h:847 SDL_Renderer * SDL_GetRendererFromTexture(SDL_Texture *texture);
    */
   get render(): Render {
-    const r = SDL.getRendererFromTexture(this.pointer);
+    const r = SDL.getRendererFromTexture(this.pointer) as RendererPointer;
     if (!r) throw SdlError("getRendererFromTexture");
     return new Render(r);
   }
@@ -3106,7 +3111,7 @@ export class Texture {
     if (!SDL.lockTextureToSurface(this.pointer, writeRect(rect), b.pointer)) {
       throw SdlError("lockTextureToSurface");
     }
-    return new Surface(undefined, b.pv);
+    return Surface.of(b.pv as SurfacePointer);
   }
 
   /**

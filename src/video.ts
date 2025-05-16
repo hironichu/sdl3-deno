@@ -57,6 +57,8 @@ import { SDL_DisplayOrientation as DisplayOrientation } from "../gen/enums/SDL_v
 export { DisplayOrientation };
 import { cstr, read_cstr, SdlError } from "./_utils.ts";
 
+import type { SurfacePointer, WindowPointer } from "./pointer_type.ts";
+
 export class DisplayModePtr {
   constructor(public pointer: Deno.PointerObject) {}
 
@@ -598,7 +600,7 @@ export class Display {
 }
 
 export class Window {
-  constructor(public pointer: Deno.PointerObject) {
+  constructor(public pointer: WindowPointer) {
   }
 
   /**
@@ -793,12 +795,12 @@ export class Window {
    * @from SDL_video.h:1038 SDL_Window ** SDL_GetWindows(int *count);
    */
   static get windows(): Window[] {
-    const windows = SDL.getWindows(null);
+    const windows = SDL.getWindows(null) as WindowPointer;
     if (!windows) throw SdlError("getWindows");
     const p = Cursor.Unsafe(windows);
     const r = [];
     while (true) {
-      const window = p.ptr;
+      const window = p.ptr as WindowPointer;
       if (!window) break;
       r.push(new Window(window));
     }
@@ -898,7 +900,7 @@ export class Window {
     h: number,
     flags: bigint,
   ): Window {
-    const r = SDL.createWindow(cstr(title), w, h, flags);
+    const r = SDL.createWindow(cstr(title), w, h, flags) as WindowPointer;
     if (!r) throw SdlError("createWindow");
     return new Window(r);
   }
@@ -979,7 +981,7 @@ export class Window {
       w,
       h,
       flags,
-    );
+    ) as WindowPointer;
     if (!r) throw SdlError("createPopupWindow");
     return new Window(r);
   }
@@ -1106,7 +1108,7 @@ export class Window {
    * @from SDL_video.h:1307 SDL_Window * SDL_CreateWindowWithProperties(SDL_PropertiesID props);
    */
   static createWithProperties(props: number): Window {
-    const r = SDL.createWindowWithProperties(props);
+    const r = SDL.createWindowWithProperties(props) as WindowPointer;
     if (!r) throw SdlError("createWindowWithProperties");
     return new Window(r);
   }
@@ -1161,7 +1163,7 @@ export class Window {
    * @from SDL_video.h:1378 SDL_Window * SDL_GetWindowFromID(SDL_WindowID id);
    */
   static fromId(id: number): Window {
-    const r = SDL.getWindowFromId(id);
+    const r = SDL.getWindowFromId(id) as WindowPointer;
     if (!r) throw SdlError("getWindowFromId");
     return new Window(r);
   }
@@ -1182,7 +1184,7 @@ export class Window {
    * @from SDL_video.h:1393 SDL_Window * SDL_GetWindowParent(SDL_Window *window);
    */
   get parent(): Window {
-    const r = SDL.getWindowParent(this.pointer);
+    const r = SDL.getWindowParent(this.pointer) as WindowPointer;
     if (!r) throw SdlError("getWindowParent");
     return new Window(r);
   }
@@ -1402,7 +1404,7 @@ export class Window {
    *
    * @from SDL_video.h:1628 bool SDL_SetWindowIcon(SDL_Window *window, SDL_Surface *icon);
    */
-  setIcon(icon: Deno.PointerValue): boolean {
+  setIcon(icon: SurfacePointer): boolean {
     return SDL.setWindowIcon(this.pointer, icon);
   }
 
@@ -2240,8 +2242,8 @@ export class Window {
    *
    * @from SDL_video.h:2284 SDL_Surface * SDL_GetWindowSurface(SDL_Window *window);
    */
-  get surface(): Deno.PointerValue {
-    return SDL.getWindowSurface(this.pointer);
+  get surface(): SurfacePointer {
+    return SDL.getWindowSurface(this.pointer) as SurfacePointer;
   }
 
   /**
@@ -2500,7 +2502,7 @@ export class Window {
    * @from SDL_video.h:2495 SDL_Window * SDL_GetGrabbedWindow(void);
    */
   static get grabbed(): Window {
-    const r = SDL.getGrabbedWindow();
+    const r = SDL.getGrabbedWindow() as WindowPointer;
     if (!r) throw SdlError("getGrabbedWindow");
     return new Window(r);
   }
@@ -2739,7 +2741,7 @@ export class Window {
    *
    * @from SDL_video.h:2776 bool SDL_SetWindowShape(SDL_Window *window, SDL_Surface *shape);
    */
-  setShape(shape: Deno.PointerValue): boolean {
+  setShape(shape: SurfacePointer): boolean {
     return SDL.setWindowShape(this.pointer, shape);
   }
   /**
@@ -3088,7 +3090,7 @@ export class GL {
    * @from SDL_video.h:3112 SDL_Window * SDL_GL_GetCurrentWindow(void);
    */
   static glGetCurrentWindow(): Window {
-    const r = SDL.glGetCurrentWindow();
+    const r = SDL.glGetCurrentWindow() as WindowPointer;
     if (!r) throw SdlError("glGetCurrentWindow");
     return new Window(r);
   }

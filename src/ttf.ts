@@ -23,6 +23,11 @@ import {
 } from "../gen/structs/SDL_ttf.ts";
 import { free } from "../gen/sdl/stdinc.ts";
 
+import type { SurfacePointer } from "./pointer_type.ts";
+type FontPointer = Deno.PointerValue<"TTF_Font">;
+type TextPointer = Deno.PointerValue<"TTF_Text">;
+type TextEnginePointer = Deno.PointerValue<"TTF_TextEngine">;
+
 export class TtfContext {
   #inited: boolean = false;
 
@@ -111,7 +116,7 @@ export class TtfContext {
 }
 
 export class Font {
-  constructor(public pointer: Deno.PointerValue) {}
+  constructor(public pointer: FontPointer) {}
 
   /**
    * Create a font from a file, using a specified point size.
@@ -136,7 +141,7 @@ export class Font {
    * @from SDL_ttf.h:152 TTF_Font * TTF_OpenFont(const char *file, float ptsize);
    */
   static open(file: string, ptsize: number): Font {
-    const fontPointer = TTF.openFont(cstr(file), ptsize);
+    const fontPointer = TTF.openFont(cstr(file), ptsize) as FontPointer;
     if (fontPointer === null) throw SdlError("openFont");
     return new Font(fontPointer);
   }
@@ -169,11 +174,11 @@ export class Font {
    * @from SDL_ttf.h:179 TTF_Font * TTF_OpenFontIO(SDL_IOStream *src, bool closeio, float ptsize);
    */
   static openIo(
-    src: Deno.PointerValue,
+    src: Deno.PointerValue<"SDL_IOStream">,
     closeio: boolean,
     ptsize: number,
   ): Font {
-    const fontPointer = TTF.openFontIo(src, closeio, ptsize);
+    const fontPointer = TTF.openFontIo(src, closeio, ptsize) as FontPointer;
     if (fontPointer === null) throw SdlError("openFont");
     return new Font(fontPointer);
   }
@@ -224,7 +229,7 @@ export class Font {
    * @from SDL_ttf.h:224 TTF_Font * TTF_OpenFontWithProperties(SDL_PropertiesID props);
    */
   static openWithProperties(props: number): Font {
-    const fontPointer = TTF.openFontWithProperties(props);
+    const fontPointer = TTF.openFontWithProperties(props) as FontPointer;
     if (fontPointer === null) throw SdlError("openFont");
     return new Font(fontPointer);
   }
@@ -251,7 +256,7 @@ export class Font {
    * @from SDL_ttf.h:255 TTF_Font * TTF_CopyFont(TTF_Font *existing_font);
    */
   copy(): Font {
-    const fontPointer = TTF.copyFont(this.pointer);
+    const fontPointer = TTF.copyFont(this.pointer) as FontPointer;
     if (fontPointer === null) throw SdlError("openFont");
     return new Font(fontPointer);
   }
@@ -1203,7 +1208,7 @@ export class Font {
       this.pointer,
       ch,
       Deno.UnsafePointer.of(image_type),
-    );
+    ) as SurfacePointer;
     if (!surface) throw SdlError("getGlyphImage");
     return { surface: Surface.of(surface), image_type: image_type[0] };
   }
@@ -1236,7 +1241,7 @@ export class Font {
       this.pointer,
       glyph_index,
       b.pointer,
-    );
+    ) as SurfacePointer;
     if (!surface) throw SdlError("getGlyphImageForIndex");
     return { surface: Surface.of(surface), image_type: b.arr[0] };
   }
@@ -1491,7 +1496,7 @@ export class Font {
       cstr(text),
       0n,
       b,
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextSolid");
     return Surface.of(p);
   }
@@ -1545,7 +1550,7 @@ export class Font {
       0n,
       b,
       wrapLength,
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextSolidWrapped");
     return Surface.of(p);
   }
@@ -1582,7 +1587,7 @@ export class Font {
   renderGlyphSolid(ch: number, color: Color): Surface {
     const b = new Uint8Array(4);
     write_Color(color, new DataView(b.buffer));
-    const p = TTF.renderGlyphSolid(this.pointer, ch, b);
+    const p = TTF.renderGlyphSolid(this.pointer, ch, b) as SurfacePointer;
     if (!p) throw SdlError("renderGlyphSolid");
     return Surface.of(p);
   }
@@ -1632,7 +1637,7 @@ export class Font {
       0n,
       sdl_color(fg),
       sdl_color(bg),
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextShaded");
     return Surface.of(p);
   }
@@ -1688,7 +1693,7 @@ export class Font {
       sdl_color(fg),
       sdl_color(bg),
       wrap_width,
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextShadedWrapped");
     return Surface.of(p);
   }
@@ -1730,7 +1735,7 @@ export class Font {
       ch,
       sdl_color(fg),
       sdl_color(bg),
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderGlyphShaded");
     return Surface.of(p);
   }
@@ -1777,7 +1782,7 @@ export class Font {
       cstr(text),
       0n,
       sdl_color(fg),
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextBlended");
     return Surface.of(p);
   }
@@ -1829,7 +1834,7 @@ export class Font {
       0n,
       sdl_color(fg),
       wrap_width,
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextBlendedWrapped");
     return Surface.of(p);
   }
@@ -1864,7 +1869,11 @@ export class Font {
    * @from SDL_ttf.h:1579 SDL_Surface * TTF_RenderGlyph_Blended(TTF_Font *font, Uint32 ch, SDL_Color fg);
    */
   renderGlyphBlended(ch: number, fg: Color): Surface {
-    const p = TTF.renderGlyphBlended(this.pointer, ch, sdl_color(fg));
+    const p = TTF.renderGlyphBlended(
+      this.pointer,
+      ch,
+      sdl_color(fg),
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderGlyphBlended");
     return Surface.of(p);
   }
@@ -1913,7 +1922,7 @@ export class Font {
       0n,
       sdl_color(fg),
       sdl_color(bg),
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextLcd");
     return Surface.of(p);
   }
@@ -1969,7 +1978,7 @@ export class Font {
       sdl_color(fg),
       sdl_color(bg),
       wrap_width,
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderTextLcdWrapped");
     return Surface.of(p);
   }
@@ -2011,7 +2020,7 @@ export class Font {
       ch,
       sdl_color(fg),
       sdl_color(bg),
-    );
+    ) as SurfacePointer;
     if (!p) throw SdlError("renderGlyphLcd");
     return Surface.of(p);
   }
@@ -2503,7 +2512,7 @@ export class Text {
    * @from SDL_ttf.h:2150 TTF_Font * TTF_GetTextFont(TTF_Text *text);
    */
   get font(): Font {
-    return new Font(TTF.getTextFont(this.pointer));
+    return new Font(TTF.getTextFont(this.pointer) as FontPointer);
   }
 
   /**

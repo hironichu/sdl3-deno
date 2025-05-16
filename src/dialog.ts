@@ -19,6 +19,7 @@ import * as SDL from "../gen/sdl/dialog.ts";
 import { cstr } from "./_utils.ts";
 import { callbacks as CB } from "../gen/callbacks/SDL_dialog.ts";
 import { Cursor } from "@g9wp/ptr";
+import type { WindowPointer } from "./pointer_type.ts";
 
 /**
  * Displays a dialog that lets the user select a file on their filesystem.
@@ -79,7 +80,7 @@ export function openFile(
   options: {
     callback: FileCallback;
     userdata?: Deno.PointerValue;
-    window?: Deno.PointerValue;
+    window?: WindowPointer;
     filters?: FileFilter[];
     default_location?: string;
     allow_many?: boolean;
@@ -155,7 +156,7 @@ export function saveFile(
   options: {
     callback: FileCallback;
     userdata?: Deno.PointerValue;
-    window?: Deno.PointerValue;
+    window?: WindowPointer;
     filters?: FileFilter[];
     default_location?: string;
   } | FileCallback,
@@ -224,7 +225,7 @@ export function openFolder(
   options: {
     callback: FileCallback;
     userdata?: Deno.PointerValue;
-    window?: Deno.PointerValue;
+    window?: WindowPointer;
     default_location?: string;
     allow_many?: boolean;
   } | FileCallback,

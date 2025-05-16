@@ -24,21 +24,23 @@ import * as SDL from "../gen/sdl/iostream.ts";
 import { destroySurface } from "../gen/sdl/surface.ts";
 
 import { cstr, SdlError } from "./_utils.ts";
+import type { SurfacePointer } from "./pointer_type.ts";
+
 
 export class Surface {
-  pointer: Deno.PointerValue<unknown> = null;
+  pointer: SurfacePointer = null;
 
-  constructor(imagePath?: string, surface?: Deno.PointerValue) {
+  constructor(imagePath?: string, surface?: SurfacePointer) {
     if (surface !== undefined) {
       this.pointer = surface;
       return;
     }
     if (!imagePath) return;
-    this.pointer = IMG.load(cstr(imagePath));
+    this.pointer = IMG.load(cstr(imagePath)) as SurfacePointer;
     if (!this.pointer) throw SdlError(`Failed to load image`);
   }
 
-  static of(pointer: Deno.PointerValue): Surface {
+  static of(pointer: SurfacePointer): Surface {
     return new Surface(undefined, pointer);
   }
 
@@ -148,7 +150,7 @@ export class Surface {
       Deno.UnsafePointer.of(buffer),
       BigInt(buffer.length),
     );
-    const pointer = IMG.loadIo(io, false);
+    const pointer = IMG.loadIo(io, false) as SurfacePointer;
     if (!pointer) throw SdlError(`Failed to load image`);
     return Surface.of(pointer);
   }
@@ -218,7 +220,11 @@ export class Surface {
       Deno.UnsafePointer.of(buffer),
       BigInt(buffer.length),
     );
-    const pointer = IMG.loadTypedIo(io, false, cstr(fmt_hint));
+    const pointer = IMG.loadTypedIo(
+      io,
+      false,
+      cstr(fmt_hint),
+    ) as SurfacePointer;
     if (!pointer) throw SdlError(`Failed to load image`);
     return Surface.of(pointer);
   }
