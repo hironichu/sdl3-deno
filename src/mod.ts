@@ -1,7 +1,7 @@
 import * as SDL from "../gen/SDL.ts";
-export { SDL }
+export { SDL };
 import * as IMG from "../gen/IMG.ts";
-export { IMG }
+export { IMG };
 // import * as TTF from "../gen/TTF.ts";
 // export { TTF }
 
@@ -15,11 +15,10 @@ export { MessageBox };
 
 export { Event, EventType } from "./events.ts";
 
-export { openUrl } from "./misc.ts"
-
+export { openUrl } from "./misc.ts";
 
 export { Render, RenderDriver, Texture } from "./render.ts";
 
-export { Window, VideoDriver, DisplayModePtr } from "./video.ts";
+export { DisplayModePtr, VideoDriver, Window } from "./video.ts";
 
-export { Properties, PropertyType } from "./properties.ts"
+export { Properties, PropertyType } from "./properties.ts";

@@ -1583,7 +1583,7 @@ export class Render {
    *
    * @from SDL_render.h:1983 bool SDL_RenderPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
    */
- points(points: _r.FPoint[], count: number): boolean {
+  points(points: _r.FPoint[], count: number): boolean {
     const buf = Buf.of(Float32Array, points.length * 2);
     points.forEach((point, i) => {
       buf.arr[i * 2] = point.x;
@@ -1704,7 +1704,7 @@ export class Render {
    *
    * @from SDL_render.h:2073 bool SDL_RenderFillRect(SDL_Renderer *renderer, const SDL_FRect *rect);
    */
- fillRect(rect: _r.FRect | null): boolean {
+  fillRect(rect: _r.FRect | null): boolean {
     return SDL.renderFillRect(this.pointer, rect ? writeFRect(rect) : null);
   }
 

@@ -220,7 +220,6 @@ export class Event extends EventUnion {
     SDL.pumpEvents();
   }
 
-
   /**
    * Add an event to the event queue.
    *

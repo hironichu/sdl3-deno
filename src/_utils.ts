@@ -1,4 +1,4 @@
-import { getError} from "../gen/sdl/error.ts";
+import { getError } from "../gen/sdl/error.ts";
 import { INIT, init } from "../gen/sdl/init.ts";
 import { pumpEvents } from "../gen/sdl/events.ts";
 

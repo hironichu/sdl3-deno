@@ -3115,7 +3115,7 @@ export class GL {
    *
    * @from SDL_video.h:3185 void SDL_EGL_SetAttributeCallbacks(SDL_EGLAttribArrayCallback platformAttribCallback,                                                               SDL_EGLIntArrayCallback surfaceAttribCallback,                                                               SDL_EGLIntArrayCallback contextAttribCallback, void *userdata);
    */
-  eglSetAttributeCallbacks() {}  // TODO
+  eglSetAttributeCallbacks() {} // TODO
 
   /**
    * Set the swap interval for the current OpenGL context.
