@@ -183,6 +183,12 @@ export class Font {
     return new Font(fontPointer);
   }
 
+
+  close() {
+    TTF.closeFont(this.pointer);
+    this.pointer = null;
+  }
+
   /**
    * Create a font with the specified properties.
    *
@@ -3260,6 +3266,8 @@ export class Text {
     TTF.destroyText(this.pointer);
     this.pointer = null;
   }
+
+
 }
 
 export function sdl_color(color: Color): Uint8Array {

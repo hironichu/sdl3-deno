@@ -123,7 +123,8 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1267 bool SDL_PollEvent(SDL_Event *event);
    */
   poll(): boolean {
-    return SDL.pollEvent(this.pointer) && this.readType_();
+    SDL.pollEvent(this.pointer)
+    return this.readType_();
   }
 
   private readType_(): true {
@@ -157,7 +158,8 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1291 bool SDL_WaitEvent(SDL_Event *event);
    */
   wait(): boolean {
-    return SDL.waitEvent(this.pointer) && this.readType_();
+    SDL.waitEvent(this.pointer)
+    return this.readType_();
   }
 
   /**
@@ -191,7 +193,8 @@ export class Event extends EventUnion {
    * @from SDL_events.h:1321 bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
    */
   waitTimeout(timeoutMS: number): boolean {
-    return SDL.waitEventTimeout(this.pointer, timeoutMS) && this.readType_();
+    SDL.waitEventTimeout(this.pointer, timeoutMS)
+    return this.readType_();
   }
 
   /**
