@@ -7,11 +7,12 @@ const DENO_SDL3_PATH = (() => {
 })();
 
 const OS_PREFIX = Deno.build.os === "windows" ? "" : "lib";
-const OS_SUFFIX = Deno.build.os === "windows"
-  ? ".dll"
-  : Deno.build.os === "darwin"
-  ? ".dylib"
-  : ".so";
+const OS_SUFFIX =
+  Deno.build.os === "windows"
+    ? ".dll"
+    : Deno.build.os === "darwin"
+      ? ".dylib"
+      : ".so";
 
 export function libSdlPath(lib: string): string {
   lib = `${OS_PREFIX}${lib}${OS_SUFFIX}`;
@@ -29,22 +30,22 @@ export function read_cstr_v(v: bigint): string {
 }
 const enc = new TextEncoder();
 export function cstr_v(s: string): bigint {
-  return Deno.UnsafePointer.value(
-    Deno.UnsafePointer.of(enc.encode(s + "\0")),
-  );
+  return Deno.UnsafePointer.value(Deno.UnsafePointer.of(enc.encode(s + "\0")));
 }
 
-
-export function isPlatform(platform: string) : boolean {
+export function isPlatform(platform: string): boolean {
   switch (platform) {
-    case 'WIN32':
-    case "WINDOWS": return Deno.build.os === "windows";
-    case "IOS": return Deno.build.os === "darwin";
-    case "LINUX": return Deno.build.os === "linux";
-    case 'ANDROID': return Deno.build.os === "android";
+    case "WIN32":
+    case "WINDOWS":
+      return Deno.build.os === "windows";
+    case "IOS":
+      return Deno.build.os === "darwin";
+    case "LINUX":
+      return Deno.build.os === "linux";
+    case "ANDROID":
+      return Deno.build.os === "android";
     case "GDK":
     default:
       return false;
   }
 }
-

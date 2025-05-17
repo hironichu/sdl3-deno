@@ -137,7 +137,7 @@ export const enterAppMainCallbacks = lib.symbols.SDL_EnterAppMainCallbacks;
  *
  * This can be called to set the application window class at startup. It is
  * safe to call this multiple times, as long as every call is eventually
- * paired with a call to SDL_UnregisterApp, but a second registration attempt
+ * paired with a call to Xbox, but a second registration attempt
  * while a previous registration is still active will be ignored, other than
  * to increment a counter.
  *
@@ -190,4 +190,3 @@ export const unregisterApp = lib.symbols.SDL_UnregisterApp;
  * @from SDL_main.h:658 void SDL_GDKSuspendComplete(void);
  */
 export const gdkSuspendComplete = lib.symbols.SDL_GDKSuspendComplete;
-

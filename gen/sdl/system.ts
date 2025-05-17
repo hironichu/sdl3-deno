@@ -35,9 +35,7 @@
 
 import { lib } from "./lib.ts";
 
-export {
-  SDL_Sandbox as SANDBOX,
-} from "../enums/SDL_system.ts"
+export { SDL_Sandbox as SANDBOX } from "../enums/SDL_system.ts";
 
 /**
  * Set a callback for every Windows message, run before TranslateMessage().
@@ -73,7 +71,8 @@ export const setWindowsMessageHook = lib.symbols.SDL_SetWindowsMessageHook;
  * @from SDL_system.h:111 int SDL_GetDirect3D9AdapterIndex(SDL_DisplayID displayID);
  * @platformSpecific WIN32 SDL_system.h:97 #if defined(SDL_PLATFORM_WIN32) || defined(SDL_PLATFORM_WINGDK)
  */
-export const getDirect3D9AdapterIndex = lib.symbols.SDL_GetDirect3D9AdapterIndex;
+export const getDirect3D9AdapterIndex =
+  lib.symbols.SDL_GetDirect3D9AdapterIndex;
 
 /**
  * Get the DXGI Adapter and Output indices for the specified display.
@@ -144,7 +143,8 @@ export const setLinuxThreadPriority = lib.symbols.SDL_SetLinuxThreadPriority;
  * @from SDL_system.h:206 bool SDL_SetLinuxThreadPriorityAndPolicy(Sint64 threadID, int sdlPriority, int schedPolicy);
  * @platformSpecific LINUX SDL_system.h:176 #ifdef SDL_PLATFORM_LINUX
  */
-export const setLinuxThreadPriorityAndPolicy = lib.symbols.SDL_SetLinuxThreadPriorityAndPolicy;
+export const setLinuxThreadPriorityAndPolicy =
+  lib.symbols.SDL_SetLinuxThreadPriorityAndPolicy;
 
 /**
  * Use this function to set the animation callback on Apple iOS.
@@ -186,7 +186,7 @@ export const setLinuxThreadPriorityAndPolicy = lib.symbols.SDL_SetLinuxThreadPri
  * @from SDL_system.h:270 bool SDL_SetiOSAnimationCallback(SDL_Window *window, int interval, SDL_iOSAnimationCallback callback, void *callbackParam);
  * @platformSpecific IOS SDL_system.h:213 #ifdef SDL_PLATFORM_IOS
  */
-export const setiOsAnimationCallback = lib.symbols.SDL_SetiOSAnimationCallback;
+// export const setiOsAnimationCallback = lib.symbols.SDL_SetiOSAnimationCallback;
 
 /**
  * Use this function to enable or disable the SDL event pump on Apple iOS.
@@ -202,7 +202,7 @@ export const setiOsAnimationCallback = lib.symbols.SDL_SetiOSAnimationCallback;
  * @from SDL_system.h:283 void SDL_SetiOSEventPump(bool enabled);
  * @platformSpecific IOS SDL_system.h:213 #ifdef SDL_PLATFORM_IOS
  */
-export const setiOsEventPump = lib.symbols.SDL_SetiOSEventPump;
+// export const setiOsEventPump = lib.symbols.SDL_SetiOSEventPump;
 
 /**
  * Get the Android Java Native Interface Environment of the current thread.
@@ -356,7 +356,8 @@ export const sendAndroidBackButton = lib.symbols.SDL_SendAndroidBackButton;
  * @from SDL_system.h:440 const char * SDL_GetAndroidInternalStoragePath(void);
  * @platformSpecific ANDROID SDL_system.h:291 #ifdef SDL_PLATFORM_ANDROID
  */
-export const getAndroidInternalStoragePath = lib.symbols.SDL_GetAndroidInternalStoragePath;
+export const getAndroidInternalStoragePath =
+  lib.symbols.SDL_GetAndroidInternalStoragePath;
 
 /**
  * Get the current state of external storage for this Android application.
@@ -376,7 +377,8 @@ export const getAndroidInternalStoragePath = lib.symbols.SDL_GetAndroidInternalS
  * @from SDL_system.h:457 Uint32 SDL_GetAndroidExternalStorageState(void);
  * @platformSpecific ANDROID SDL_system.h:291 #ifdef SDL_PLATFORM_ANDROID
  */
-export const getAndroidExternalStorageState = lib.symbols.SDL_GetAndroidExternalStorageState;
+export const getAndroidExternalStorageState =
+  lib.symbols.SDL_GetAndroidExternalStorageState;
 
 /**
  * Get the path used for external storage for this Android application.
@@ -403,7 +405,8 @@ export const getAndroidExternalStorageState = lib.symbols.SDL_GetAndroidExternal
  * @from SDL_system.h:481 const char * SDL_GetAndroidExternalStoragePath(void);
  * @platformSpecific ANDROID SDL_system.h:291 #ifdef SDL_PLATFORM_ANDROID
  */
-export const getAndroidExternalStoragePath = lib.symbols.SDL_GetAndroidExternalStoragePath;
+export const getAndroidExternalStoragePath =
+  lib.symbols.SDL_GetAndroidExternalStoragePath;
 
 /**
  * Get the path used for caching data for this Android application.
@@ -467,7 +470,8 @@ export const getAndroidCachePath = lib.symbols.SDL_GetAndroidCachePath;
  * @from SDL_system.h:552 bool SDL_RequestAndroidPermission(const char *permission, SDL_RequestAndroidPermissionCallback cb, void *userdata);
  * @platformSpecific ANDROID SDL_system.h:291 #ifdef SDL_PLATFORM_ANDROID
  */
-export const requestAndroidPermission = lib.symbols.SDL_RequestAndroidPermission;
+export const requestAndroidPermission =
+  lib.symbols.SDL_RequestAndroidPermission;
 
 /**
  * Shows an Android toast notification.
@@ -574,7 +578,8 @@ export const getSandbox = lib.symbols.SDL_GetSandbox;
  *
  * @from SDL_system.h:664 void SDL_OnApplicationWillTerminate(void);
  */
-export const onApplicationWillTerminate = lib.symbols.SDL_OnApplicationWillTerminate;
+export const onApplicationWillTerminate =
+  lib.symbols.SDL_OnApplicationWillTerminate;
 
 /**
  * Let iOS apps with external event handling report
@@ -593,7 +598,8 @@ export const onApplicationWillTerminate = lib.symbols.SDL_OnApplicationWillTermi
  *
  * @from SDL_system.h:681 void SDL_OnApplicationDidReceiveMemoryWarning(void);
  */
-export const onApplicationDidReceiveMemoryWarning = lib.symbols.SDL_OnApplicationDidReceiveMemoryWarning;
+export const onApplicationDidReceiveMemoryWarning =
+  lib.symbols.SDL_OnApplicationDidReceiveMemoryWarning;
 
 /**
  * Let iOS apps with external event handling report
@@ -612,7 +618,8 @@ export const onApplicationDidReceiveMemoryWarning = lib.symbols.SDL_OnApplicatio
  *
  * @from SDL_system.h:698 void SDL_OnApplicationWillEnterBackground(void);
  */
-export const onApplicationWillEnterBackground = lib.symbols.SDL_OnApplicationWillEnterBackground;
+export const onApplicationWillEnterBackground =
+  lib.symbols.SDL_OnApplicationWillEnterBackground;
 
 /**
  * Let iOS apps with external event handling report
@@ -631,7 +638,8 @@ export const onApplicationWillEnterBackground = lib.symbols.SDL_OnApplicationWil
  *
  * @from SDL_system.h:715 void SDL_OnApplicationDidEnterBackground(void);
  */
-export const onApplicationDidEnterBackground = lib.symbols.SDL_OnApplicationDidEnterBackground;
+export const onApplicationDidEnterBackground =
+  lib.symbols.SDL_OnApplicationDidEnterBackground;
 
 /**
  * Let iOS apps with external event handling report
@@ -650,7 +658,8 @@ export const onApplicationDidEnterBackground = lib.symbols.SDL_OnApplicationDidE
  *
  * @from SDL_system.h:732 void SDL_OnApplicationWillEnterForeground(void);
  */
-export const onApplicationWillEnterForeground = lib.symbols.SDL_OnApplicationWillEnterForeground;
+export const onApplicationWillEnterForeground =
+  lib.symbols.SDL_OnApplicationWillEnterForeground;
 
 /**
  * Let iOS apps with external event handling report
@@ -669,7 +678,8 @@ export const onApplicationWillEnterForeground = lib.symbols.SDL_OnApplicationWil
  *
  * @from SDL_system.h:749 void SDL_OnApplicationDidEnterForeground(void);
  */
-export const onApplicationDidEnterForeground = lib.symbols.SDL_OnApplicationDidEnterForeground;
+export const onApplicationDidEnterForeground =
+  lib.symbols.SDL_OnApplicationDidEnterForeground;
 
 /**
  * Let iOS apps with external event handling report
@@ -689,7 +699,8 @@ export const onApplicationDidEnterForeground = lib.symbols.SDL_OnApplicationDidE
  * @from SDL_system.h:768 void SDL_OnApplicationDidChangeStatusBarOrientation(void);
  * @platformSpecific IOS SDL_system.h:751 #ifdef SDL_PLATFORM_IOS
  */
-export const onApplicationDidChangeStatusBarOrientation = lib.symbols.SDL_OnApplicationDidChangeStatusBarOrientation;
+// export const onApplicationDidChangeStatusBarOrientation =
+//   lib.symbols.SDL_OnApplicationDidChangeStatusBarOrientation;
 
 /**
  * Gets a reference to the global async task queue handle for GDK,
@@ -727,4 +738,3 @@ export const getGdkTaskQueue = lib.symbols.SDL_GetGDKTaskQueue;
  * @platformSpecific GDK SDL_system.h:774 #ifdef SDL_PLATFORM_GDK
  */
 export const getGdkDefaultUser = lib.symbols.SDL_GetGDKDefaultUser;
-

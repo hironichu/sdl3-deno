@@ -2,17 +2,19 @@ import * as _ from "./structs/SDL_events.ts";
 import { SDL_EventType as EventType } from "./enums/SDL_events.ts";
 export { EventType };
 
-export type PartialCommon<T extends _.CommonEvent> = Partial<_.CommonEvent> & Omit<T, keyof _.CommonEvent>;
+export type PartialCommon<T extends _.CommonEvent> = Partial<_.CommonEvent> &
+  Omit<T, keyof _.CommonEvent>;
 
-export type PartialComm_T<T extends _.CommonEvent> =
-  Pick<_.CommonEvent, "type"> &
+export type PartialComm_T<T extends _.CommonEvent> = Pick<
+  _.CommonEvent,
+  "type"
+> &
   Partial<Omit<_.CommonEvent, "type">> &
   Omit<T, keyof _.CommonEvent>;
 
 export abstract class EventUnion {
   abstract get dt(): DataView;
   abstract push(): void;
-
 
   /**< Event type, shared with all events, Uint32 to cover user events which are not in the SDL_EventType enumeration */
   get common(): _.CommonEvent {
@@ -64,7 +66,10 @@ export abstract class EventUnion {
     return _.read_TextEditingEvent(this.dt);
   }
   pushTextEditing(e: PartialCommon<_.TextEditingEvent>) {
-    _.write_TextEditingEvent({ type: EventType.TEXT_EDITING, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_TextEditingEvent(
+      { type: EventType.TEXT_EDITING, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -73,7 +78,15 @@ export abstract class EventUnion {
     return _.read_TextEditingCandidatesEvent(this.dt);
   }
   pushTextEditingCandidates(e: PartialCommon<_.TextEditingCandidatesEvent>) {
-    _.write_TextEditingCandidatesEvent({ type: EventType.TEXT_EDITING_CANDIDATES, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_TextEditingCandidatesEvent(
+      {
+        type: EventType.TEXT_EDITING_CANDIDATES,
+        reserved: 0,
+        timestamp: 0n,
+        ...e,
+      },
+      this.dt,
+    );
     this.push();
   }
 
@@ -82,7 +95,10 @@ export abstract class EventUnion {
     return _.read_TextInputEvent(this.dt);
   }
   pushTextInput(e: PartialCommon<_.TextInputEvent>) {
-    _.write_TextInputEvent({ type: EventType.TEXT_INPUT, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_TextInputEvent(
+      { type: EventType.TEXT_INPUT, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -100,7 +116,10 @@ export abstract class EventUnion {
     return _.read_MouseMotionEvent(this.dt);
   }
   pushMouseMotion(e: PartialCommon<_.MouseMotionEvent>) {
-    _.write_MouseMotionEvent({ type: EventType.MOUSE_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_MouseMotionEvent(
+      { type: EventType.MOUSE_MOTION, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -118,7 +137,10 @@ export abstract class EventUnion {
     return _.read_MouseWheelEvent(this.dt);
   }
   pushMouseWheel(e: PartialCommon<_.MouseWheelEvent>) {
-    _.write_MouseWheelEvent({ type: EventType.MOUSE_WHEEL, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_MouseWheelEvent(
+      { type: EventType.MOUSE_WHEEL, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -127,7 +149,15 @@ export abstract class EventUnion {
     return _.read_JoyAxisEvent(this.dt);
   }
   pushJoyAxis(e: PartialCommon<_.JoyAxisEvent>) {
-    _.write_JoyAxisEvent({ type: EventType.JOYSTICK_AXIS_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_JoyAxisEvent(
+      {
+        type: EventType.JOYSTICK_AXIS_MOTION,
+        reserved: 0,
+        timestamp: 0n,
+        ...e,
+      },
+      this.dt,
+    );
     this.push();
   }
 
@@ -136,7 +166,15 @@ export abstract class EventUnion {
     return _.read_JoyBallEvent(this.dt);
   }
   pushJoyBall(e: PartialCommon<_.JoyBallEvent>) {
-    _.write_JoyBallEvent({ type: EventType.JOYSTICK_BALL_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_JoyBallEvent(
+      {
+        type: EventType.JOYSTICK_BALL_MOTION,
+        reserved: 0,
+        timestamp: 0n,
+        ...e,
+      },
+      this.dt,
+    );
     this.push();
   }
 
@@ -145,7 +183,10 @@ export abstract class EventUnion {
     return _.read_JoyHatEvent(this.dt);
   }
   pushJoyHat(e: PartialCommon<_.JoyHatEvent>) {
-    _.write_JoyHatEvent({ type: EventType.JOYSTICK_HAT_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_JoyHatEvent(
+      { type: EventType.JOYSTICK_HAT_MOTION, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -172,7 +213,15 @@ export abstract class EventUnion {
     return _.read_JoyBatteryEvent(this.dt);
   }
   pushJoyBattery(e: PartialCommon<_.JoyBatteryEvent>) {
-    _.write_JoyBatteryEvent({ type: EventType.JOYSTICK_BATTERY_UPDATED, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_JoyBatteryEvent(
+      {
+        type: EventType.JOYSTICK_BATTERY_UPDATED,
+        reserved: 0,
+        timestamp: 0n,
+        ...e,
+      },
+      this.dt,
+    );
     this.push();
   }
 
@@ -181,7 +230,10 @@ export abstract class EventUnion {
     return _.read_GamepadAxisEvent(this.dt);
   }
   pushGamepadAxis(e: PartialCommon<_.GamepadAxisEvent>) {
-    _.write_GamepadAxisEvent({ type: EventType.GAMEPAD_AXIS_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_GamepadAxisEvent(
+      { type: EventType.GAMEPAD_AXIS_MOTION, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -217,7 +269,15 @@ export abstract class EventUnion {
     return _.read_GamepadSensorEvent(this.dt);
   }
   pushGamepadSensor(e: PartialCommon<_.GamepadSensorEvent>) {
-    _.write_GamepadSensorEvent({ type: EventType.GAMEPAD_SENSOR_UPDATE, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_GamepadSensorEvent(
+      {
+        type: EventType.GAMEPAD_SENSOR_UPDATE,
+        reserved: 0,
+        timestamp: 0n,
+        ...e,
+      },
+      this.dt,
+    );
     this.push();
   }
 
@@ -271,7 +331,10 @@ export abstract class EventUnion {
     return _.read_PenMotionEvent(this.dt);
   }
   pushPenMotion(e: PartialCommon<_.PenMotionEvent>) {
-    _.write_PenMotionEvent({ type: EventType.PEN_MOTION, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_PenMotionEvent(
+      { type: EventType.PEN_MOTION, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -298,7 +361,10 @@ export abstract class EventUnion {
     return _.read_PenAxisEvent(this.dt);
   }
   pushPenAxis(e: PartialCommon<_.PenAxisEvent>) {
-    _.write_PenAxisEvent({ type: EventType.PEN_AXIS, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_PenAxisEvent(
+      { type: EventType.PEN_AXIS, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -316,7 +382,10 @@ export abstract class EventUnion {
     return _.read_ClipboardEvent(this.dt);
   }
   pushClipboard(e: PartialCommon<_.ClipboardEvent>) {
-    _.write_ClipboardEvent({ type: EventType.CLIPBOARD_UPDATE, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_ClipboardEvent(
+      { type: EventType.CLIPBOARD_UPDATE, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -325,7 +394,10 @@ export abstract class EventUnion {
     return _.read_SensorEvent(this.dt);
   }
   pushSensor(e: PartialCommon<_.SensorEvent>) {
-    _.write_SensorEvent({ type: EventType.SENSOR_UPDATE, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_SensorEvent(
+      { type: EventType.SENSOR_UPDATE, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
@@ -334,7 +406,10 @@ export abstract class EventUnion {
     return _.read_QuitEvent(this.dt);
   }
   pushQuit(e: PartialCommon<_.QuitEvent>) {
-    _.write_QuitEvent({ type: EventType.QUIT, reserved: 0, timestamp: 0n, ...e }, this.dt);
+    _.write_QuitEvent(
+      { type: EventType.QUIT, reserved: 0, timestamp: 0n, ...e },
+      this.dt,
+    );
     this.push();
   }
 
